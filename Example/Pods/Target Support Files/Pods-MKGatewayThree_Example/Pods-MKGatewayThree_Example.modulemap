@@ -1,0 +1,6 @@
+framework module Pods_MKGatewayThree_Example {
+  umbrella header "Pods-MKGatewayThree_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,2144 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - CircleProgressBar (0.32)
+  - CTMediator (48)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - libxlsxwriter (1.1.5)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.7.5)
+  - MKBaseBleModule (1.1.4)
+  - MKBaseModuleLibrary (1.1.7):
+    - MKBaseModuleLibrary/Base (= 1.1.7)
+    - MKBaseModuleLibrary/Category (= 1.1.7)
+    - MKBaseModuleLibrary/Defines (= 1.1.7)
+    - MKBaseModuleLibrary/Tools (= 1.1.7)
+  - MKBaseModuleLibrary/Base (1.1.7):
+    - MKBaseModuleLibrary/Base/Cell (= 1.1.7)
+    - MKBaseModuleLibrary/Base/Controller (= 1.1.7)
+    - MKBaseModuleLibrary/Base/NavigationController (= 1.1.7)
+    - MKBaseModuleLibrary/Base/View (= 1.1.7)
+  - MKBaseModuleLibrary/Base/Cell (1.1.7):
+    - MKBaseModuleLibrary/Base/Cell/MKBaseCell (= 1.1.7)
+  - MKBaseModuleLibrary/Base/Cell/MKBaseCell (1.1.7):
+    - Masonry
+    - MKBaseModuleLibrary/Defines
+  - MKBaseModuleLibrary/Base/Controller (1.1.7):
+    - MKBaseModuleLibrary/Category
+    - MKBaseModuleLibrary/Defines
+    - WRNavigationBar
+  - MKBaseModuleLibrary/Base/NavigationController (1.1.7)
+  - MKBaseModuleLibrary/Base/View (1.1.7):
+    - MKBaseModuleLibrary/Base/View/CollectionView (= 1.1.7)
+    - MKBaseModuleLibrary/Base/View/TableView (= 1.1.7)
+  - MKBaseModuleLibrary/Base/View/CollectionView (1.1.7)
+  - MKBaseModuleLibrary/Base/View/TableView (1.1.7)
+  - MKBaseModuleLibrary/Category (1.1.7):
+    - MKBaseModuleLibrary/Defines
+    - MKBaseModuleLibrary/Tools/MKClassInfo
+    - Toast
+  - MKBaseModuleLibrary/Defines (1.1.7)
+  - MKBaseModuleLibrary/Tools (1.1.7):
+    - MKBaseModuleLibrary/Tools/MKClassInfo (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKDateFormatter (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKExcelManager (= 1.1.7)
+    - MKBaseModuleLibrary/Tools/MKModuleManager (= 1.1.7)
+  - MKBaseModuleLibrary/Tools/MKClassInfo (1.1.7)
+  - MKBaseModuleLibrary/Tools/MKDateFormatter (1.1.7)
+  - MKBaseModuleLibrary/Tools/MKExcelManager (1.1.7):
+    - libxlsxwriter
+    - MKBaseModuleLibrary/Defines
+    - SSZipArchive
+  - MKBaseModuleLibrary/Tools/MKModuleManager (1.1.7)
+  - MKBaseMQTTModule (0.0.3):
+    - MKBaseMQTTModule/MQTT (= 0.0.3)
+    - MKBaseMQTTModule/NetworkManager (= 0.0.3)
+  - MKBaseMQTTModule/MQTT (0.0.3):
+    - MQTTClient
+  - MKBaseMQTTModule/NetworkManager (0.0.3):
+    - AFNetworking
+  - MKCustomUIModule (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Cell (= 1.4.4)
+    - MKCustomUIModule/Controller (= 1.4.4)
+    - MKCustomUIModule/MQTTServerView (= 1.4.4)
+    - MKCustomUIModule/UIAdopter (= 1.4.4)
+    - MKCustomUIModule/View (= 1.4.4)
+  - MKCustomUIModule/Cell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Cell/LoRaCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell (= 1.4.4)
+  - MKCustomUIModule/Cell/LoRaCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Cell/LoRaCell/MKAdvancedSettingCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKFilterConditionCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKFilterDataCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKFilterRawAdvDataCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKLoraDeviceTypeCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKLoRaSettingCHCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKMeasureTxPowerCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKMixedChoiceCell (= 1.4.4)
+    - MKCustomUIModule/Cell/LoRaCell/MKRawAdvDataOperationCell (= 1.4.4)
+  - MKCustomUIModule/Cell/LoRaCell/MKAdvancedSettingCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/LoRaCell/MKFilterConditionCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/UIAdopter
+    - MKCustomUIModule/View/MKPickerView
+  - MKCustomUIModule/Cell/LoRaCell/MKFilterDataCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/Cell/LoRaCell/MKFilterRawAdvDataCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/Cell/LoRaCell/MKLoraDeviceTypeCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/LoRaCell/MKLoRaSettingCHCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKPickerView
+  - MKCustomUIModule/Cell/LoRaCell/MKMeasureTxPowerCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/UIAdopter
+    - MKCustomUIModule/View/MKSlider
+  - MKCustomUIModule/Cell/LoRaCell/MKMixedChoiceCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/LoRaCell/MKRawAdvDataOperationCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/NormalCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Cell/NormalCell/MKButtonMsgCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKNormalSliderCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKNormalTextCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKSettingTextCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKTextButtonCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKTextFieldCell (= 1.4.4)
+    - MKCustomUIModule/Cell/NormalCell/MKTextSwitchCell (= 1.4.4)
+  - MKCustomUIModule/Cell/NormalCell/MKButtonMsgCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/NormalCell/MKNormalSliderCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/UIAdopter
+    - MKCustomUIModule/View/MKSlider
+  - MKCustomUIModule/Cell/NormalCell/MKNormalTextCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/NormalCell/MKSettingTextCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Cell/NormalCell/MKTextButtonCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKPickerView
+  - MKCustomUIModule/Cell/NormalCell/MKTextFieldCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/Cell/NormalCell/MKTextSwitchCell (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Controller (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/CASelectPage (= 1.4.4)
+    - MKCustomUIModule/Controller/MKAboutPage (= 1.4.4)
+    - MKCustomUIModule/Controller/MKAlertController (= 1.4.4)
+    - MKCustomUIModule/Controller/MKTrackerAboutPage (= 1.4.4)
+    - MKCustomUIModule/Controller/MKTrackerLogPage (= 1.4.4)
+  - MKCustomUIModule/Controller/CASelectPage (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/CASelectPage/Controller (= 1.4.4)
+  - MKCustomUIModule/Controller/CASelectPage/Controller (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Cell/NormalCell/MKNormalTextCell
+  - MKCustomUIModule/Controller/MKAboutPage (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/MKAboutPage/Controller (= 1.4.4)
+    - MKCustomUIModule/Controller/MKAboutPage/Model (= 1.4.4)
+    - MKCustomUIModule/Controller/MKAboutPage/View (= 1.4.4)
+  - MKCustomUIModule/Controller/MKAboutPage/Controller (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/MKAboutPage/Model
+    - MKCustomUIModule/Controller/MKAboutPage/View
+  - MKCustomUIModule/Controller/MKAboutPage/Model (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Controller/MKAboutPage/View (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/MKAboutPage/Model
+  - MKCustomUIModule/Controller/MKAlertController (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Controller/MKTrackerAboutPage (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/MKTrackerAboutPage/Controller (= 1.4.4)
+  - MKCustomUIModule/Controller/MKTrackerAboutPage/Controller (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/Controller/MKTrackerLogPage (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/Controller/MKTrackerLogPage/Controller (= 1.4.4)
+  - MKCustomUIModule/Controller/MKTrackerLogPage/Controller (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/MQTTServerView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/MQTTServerView/GeneralParams (= 1.4.4)
+    - MKCustomUIModule/MQTTServerView/SSL (= 1.4.4)
+    - MKCustomUIModule/MQTTServerView/UserCredentials (= 1.4.4)
+  - MKCustomUIModule/MQTTServerView/GeneralParams (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/MQTTServerView/SSL (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/MQTTServerView/UserCredentials (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/UIAdopter (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View
+  - MKCustomUIModule/View (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/HaveRefreshView (= 1.4.4)
+    - MKCustomUIModule/View/MKAlertView (= 1.4.4)
+    - MKCustomUIModule/View/MKHexKeyBoard (= 1.4.4)
+    - MKCustomUIModule/View/MKHudManager (= 1.4.4)
+    - MKCustomUIModule/View/MKPageControl (= 1.4.4)
+    - MKCustomUIModule/View/MKPickerView (= 1.4.4)
+    - MKCustomUIModule/View/MKProgressView (= 1.4.4)
+    - MKCustomUIModule/View/MKSearchButton (= 1.4.4)
+    - MKCustomUIModule/View/MKSearchConditionsView (= 1.4.4)
+    - MKCustomUIModule/View/MKSlider (= 1.4.4)
+    - MKCustomUIModule/View/MKTableSectionHeader (= 1.4.4)
+    - MKCustomUIModule/View/MKTextField (= 1.4.4)
+    - MKCustomUIModule/View/NirKxMenu (= 1.4.4)
+    - MKCustomUIModule/View/WifiAlertView (= 1.4.4)
+  - MKCustomUIModule/View/HaveRefreshView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKAlertView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKCustomUIModule/View/MKHexKeyBoard (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKHudManager (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKPageControl (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKPickerView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKProgressView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKSearchButton (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKSearchConditionsView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKSlider
+  - MKCustomUIModule/View/MKSlider (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKTableSectionHeader (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/MKTextField (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/NirKxMenu (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+  - MKCustomUIModule/View/WifiAlertView (1.4.4):
+    - CircleProgressBar
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseModuleLibrary
+    - MKCustomUIModule/View/MKTextField
+  - MKGatewayThree (0.0.1):
+    - MKGatewayThree/CTMediator (= 0.0.1)
+    - MKGatewayThree/DeviceModel (= 0.0.1)
+    - MKGatewayThree/Expand (= 0.0.1)
+    - MKGatewayThree/Functions (= 0.0.1)
+    - MKGatewayThree/SDK (= 0.0.1)
+    - MKGatewayThree/Target (= 0.0.1)
+  - MKGatewayThree/CTMediator (0.0.1):
+    - CTMediator
+    - MKBaseModuleLibrary
+  - MKGatewayThree/DeviceModel (0.0.1):
+    - MKBaseModuleLibrary
+    - MKGatewayThree/SDK/MQTT
+  - MKGatewayThree/Expand (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/Expand/BaseController (= 0.0.1)
+    - MKGatewayThree/Expand/BleBaseController (= 0.0.1)
+    - MKGatewayThree/Expand/DatabaseManager (= 0.0.1)
+    - MKGatewayThree/Expand/ExcelManager (= 0.0.1)
+    - MKGatewayThree/Expand/ImportServerPage (= 0.0.1)
+    - MKGatewayThree/Expand/View (= 0.0.1)
+  - MKGatewayThree/Expand/BaseController (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/SDK/MQTT
+  - MKGatewayThree/Expand/BleBaseController (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/SDK/BLE
+  - MKGatewayThree/Expand/DatabaseManager (0.0.1):
+    - FMDB
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/DeviceModel
+  - MKGatewayThree/Expand/ExcelManager (0.0.1):
+    - libxlsxwriter
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - SSZipArchive
+  - MKGatewayThree/Expand/ImportServerPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/Expand/ImportServerPage/Controller (= 0.0.1)
+  - MKGatewayThree/Expand/ImportServerPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/Expand/View/AlertView (= 0.0.1)
+    - MKGatewayThree/Expand/View/FilterCell (= 0.0.1)
+    - MKGatewayThree/Expand/View/UserCredentialsView (= 0.0.1)
+  - MKGatewayThree/Expand/View/AlertView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View/FilterCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/Expand/View/FilterCell/FilterBeaconCell (= 0.0.1)
+    - MKGatewayThree/Expand/View/FilterCell/FilterByRawDataCell (= 0.0.1)
+    - MKGatewayThree/Expand/View/FilterCell/FilterEditSectionHeaderView (= 0.0.1)
+    - MKGatewayThree/Expand/View/FilterCell/FilterNormalTextFieldCell (= 0.0.1)
+  - MKGatewayThree/Expand/View/FilterCell/FilterBeaconCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View/FilterCell/FilterByRawDataCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View/FilterCell/FilterEditSectionHeaderView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View/FilterCell/FilterNormalTextFieldCell (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Expand/View/UserCredentialsView (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+  - MKGatewayThree/Functions (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules (= 0.0.1)
+    - MKGatewayThree/Functions/DeviceDataPage (= 0.0.1)
+    - MKGatewayThree/Functions/DeviceListPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules (= 0.0.1)
+    - MKGatewayThree/Functions/ScanPage (= 0.0.1)
+    - MKGatewayThree/Functions/ServerForApp (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/View (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/View
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/View (= 0.0.1)
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model
+    - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/View
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/AddDeviceModules/ParamsModel (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceDataPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/DeviceDataPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/DeviceDataPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceDataPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/DeviceDataPage/View
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage
+    - MKGatewayThree/Functions/ManageBleModules
+    - MKGatewayThree/Functions/SettingPages
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceDataPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceListPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/DeviceListPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/DeviceListPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/DeviceListPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceListPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/DeviceDataPage
+    - MKGatewayThree/Functions/DeviceListPage/Model
+    - MKGatewayThree/Functions/DeviceListPage/View
+    - MKGatewayThree/Functions/ScanPage
+    - MKGatewayThree/Functions/ServerForApp
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceListPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/DeviceListPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/DeviceListPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByButtonPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByMacPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByOtherPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByPirPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByTag (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByTLMPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByUIDPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByURLPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByButtonPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByMacPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByOtherPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByPirPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage
+    - MKGatewayThree/Functions/FilterPages/FilterByButtonPage
+    - MKGatewayThree/Functions/FilterPages/FilterByOtherPage
+    - MKGatewayThree/Functions/FilterPages/FilterByPirPage
+    - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model
+    - MKGatewayThree/Functions/FilterPages/FilterByTag
+    - MKGatewayThree/Functions/FilterPages/FilterByTLMPage
+    - MKGatewayThree/Functions/FilterPages/FilterByUIDPage
+    - MKGatewayThree/Functions/FilterPages/FilterByURLPage
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTag (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByTag/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByTag/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTag/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByTag/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTag/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTLMPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByUIDPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByURLPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadOptionPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage
+    - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage
+    - MKGatewayThree/Functions/FilterPages/FilterByMacPage
+    - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage
+    - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model
+    - MKGatewayThree/Functions/FilterPages/UploadOptionPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/UploadOptionPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage
+    - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/BXPButtonPage
+    - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/View
+    - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ScanPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ScanPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ScanPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/ScanPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ScanPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/AddDeviceModules
+    - MKGatewayThree/Functions/ScanPage/Model
+    - MKGatewayThree/Functions/ScanPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ScanPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ScanPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ScanPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ServerForApp (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ServerForApp/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/ServerForApp/Model (= 0.0.1)
+    - MKGatewayThree/Functions/ServerForApp/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ServerForApp/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/ServerForApp/Model
+    - MKGatewayThree/Functions/ServerForApp/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ServerForApp/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/ServerForApp/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/OTAPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/SettingPage (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage
+    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/OTAPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/OTAPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/OTAPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/OTAPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/OTAPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/OTAPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/SettingPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/SettingPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/SettingPage/Model (= 0.0.1)
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/SettingPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage
+    - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages
+    - MKGatewayThree/Functions/SettingPages/NormalSettings
+    - MKGatewayThree/Functions/SettingPages/OTAPage
+    - MKGatewayThree/Functions/SettingPages/SettingPage/Model
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/SettingPages/SettingPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/SDK (0.0.1):
+    - MKGatewayThree/SDK/BLE (= 0.0.1)
+    - MKGatewayThree/SDK/MQTT (= 0.0.1)
+  - MKGatewayThree/SDK/BLE (0.0.1):
+    - MKBaseBleModule
+  - MKGatewayThree/SDK/MQTT (0.0.1):
+    - MKGatewayThree/SDK/MQTT/Manager (= 0.0.1)
+    - MKGatewayThree/SDK/MQTT/SDK (= 0.0.1)
+  - MKGatewayThree/SDK/MQTT/Manager (0.0.1):
+    - MKBaseModuleLibrary
+    - MKBaseMQTTModule
+  - MKGatewayThree/SDK/MQTT/SDK (0.0.1):
+    - MKBaseModuleLibrary
+    - MKGatewayThree/SDK/MQTT/Manager
+  - MKGatewayThree/Target (0.0.1):
+    - MKBaseModuleLibrary
+    - MKGatewayThree/Functions
+  - MLInputDodger (1.5.2)
+  - MQTTClient (0.15.3):
+    - MQTTClient/Core (= 0.15.3)
+  - MQTTClient/Core (0.15.3):
+    - MQTTClient/Manager
+    - MQTTClient/Min
+  - MQTTClient/Manager (0.15.3):
+    - MQTTClient/Min
+  - MQTTClient/Min (0.15.3)
+  - SSZipArchive (2.4.3)
+  - Toast (4.0.0)
+  - WRNavigationBar (1.4.0)
+
+DEPENDENCIES:
+  - MKGatewayThree (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - CircleProgressBar
+    - CTMediator
+    - FMDB
+    - libxlsxwriter
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - MKBaseBleModule
+    - MKBaseModuleLibrary
+    - MKBaseMQTTModule
+    - MKCustomUIModule
+    - MLInputDodger
+    - MQTTClient
+    - SSZipArchive
+    - Toast
+    - WRNavigationBar
+
+EXTERNAL SOURCES:
+  MKGatewayThree:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
+  CTMediator: 3f3578b525b3a46a7a2f92a99922ec40363f4269
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  libxlsxwriter: 07cdc00cf0edb30ce9773efbbb49a03459a6e0f0
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
+  MKBaseModuleLibrary: 9ab75dfc3c79d88aa3ad13068cc5d47cba77bdd2
+  MKBaseMQTTModule: b3a5c4776b60d5c395da4fd7019fc1cf64ec48a6
+  MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
+  MKGatewayThree: 0f3b962fd6cceb252ab2284d7d5cf2e36832f5d3
+  MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
+  MQTTClient: 0dfa04e789479c2e461786464969895c1fcb0875
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  WRNavigationBar: 10bfdf96addf14d640d07c2ef08a029c18d8af10
+
+PODFILE CHECKSUM: 97310066bb2604cc94649e00f466cd002056a637
+
+COCOAPODS: 1.12.0
