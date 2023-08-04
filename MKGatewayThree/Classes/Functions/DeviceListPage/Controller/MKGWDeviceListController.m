@@ -107,6 +107,10 @@ MKGWDeviceModelDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![MKNetworkManager sharedInstance].currentNetworkAvailable) {
+        [self.view showCentralToast:@"Network error,please check!"];
+        return;
+    }
     MKGWDeviceListModel *deviceModel = self.dataList[indexPath.row];
     if (deviceModel.onLineState != MKGWDeviceModelStateOnline) {
         [self.view showCentralToast:@"Device is off-line!"];
@@ -177,6 +181,7 @@ MKGWDeviceModelDelegate>
     MKGWDeviceModel *receiveModel = user[@"deviceModel"];
     MKGWDeviceListModel *deviceModel = [[MKGWDeviceListModel alloc] init];
     deviceModel.deviceType = receiveModel.deviceType;
+    deviceModel.networkType = receiveModel.networkType;
     deviceModel.clientID = receiveModel.clientID;
     deviceModel.deviceName = receiveModel.deviceName;
     deviceModel.subscribedTopic = receiveModel.subscribedTopic;
@@ -238,7 +243,8 @@ MKGWDeviceModelDelegate>
         if ([deviceModel.macAddress isEqualToString:user[@"macAddress"]]) {
             deviceModel.onLineState = MKGWDeviceModelStateOnline;
             [deviceModel startStateMonitoringTimer];
-            deviceModel.wifiLevel = [user[@"data"][@"net_status"] integerValue];
+            deviceModel.networkType = [NSString stringWithFormat:@"%@",user[@"data"][@"net_interface"]];
+            deviceModel.wifiLevel = [user[@"data"][@"wifi_rssi"] integerValue];
             break;
         }
     }
@@ -311,6 +317,7 @@ MKGWDeviceModelDelegate>
                 //如果设备打开了遗嘱功能
                 [unsubTopicList addObject:model.lwtTopic];
             }
+            model.networkType = user[@"networkType"];
             model.clientID = user[@"clientID"];
             model.subscribedTopic = user[@"subscribedTopic"];
             model.publishedTopic = user[@"publishedTopic"];
@@ -479,6 +486,7 @@ MKGWDeviceModelDelegate>
         MKGWDeviceModel *tempModel = deviceList[i];
         MKGWDeviceListModel *deviceModel = [[MKGWDeviceListModel alloc] init];
         deviceModel.deviceType = tempModel.deviceType;
+        deviceModel.networkType = tempModel.networkType;
         deviceModel.clientID = tempModel.clientID;
         deviceModel.deviceName = tempModel.deviceName;
         deviceModel.subscribedTopic = tempModel.subscribedTopic;

@@ -287,7 +287,7 @@ static dispatch_once_t onceToken;
         return nil;
     }
     if ([MKMQTTServerManager shared].managerState != MKMQTTSessionManagerStateConnected) {
-        [self operationFailedBlockWithMsg:@"MTQQ Server disconnect" failedBlock:failedBlock];
+        [self operationFailedBlockWithMsg:@"MQTT Server disconnect" failedBlock:failedBlock];
         return nil;
     }
     __weak typeof(self) weakSelf = self;

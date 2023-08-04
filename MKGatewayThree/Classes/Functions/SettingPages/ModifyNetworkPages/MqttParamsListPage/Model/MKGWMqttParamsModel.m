@@ -31,6 +31,10 @@
             [self operationFailedBlockWithMsg:@"Read Mqtt Infos Error" block:failedBlock];
             return;
         }
+        if (![self readNetworkType]) {
+            [self operationFailedBlockWithMsg:@"Read Network Type Error" block:failedBlock];
+            return;
+        }
         moko_dispatch_main_safe(^{
             sucBlock();
         });
@@ -47,6 +51,19 @@
         self.publishTopic = returnData[@"data"][@"pub_topic"];
         self.lwtStatus = ([returnData[@"data"][@"lwt_en"] integerValue] == 1);
         self.lwtTopic = returnData[@"data"][@"lwt_topic"];
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readNetworkType {
+    __block BOOL success = NO;
+    [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.networkType = [NSString stringWithFormat:@"%@",returnData[@"data"][@"net_interface"]];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

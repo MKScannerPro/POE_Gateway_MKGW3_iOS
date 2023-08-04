@@ -190,10 +190,10 @@
     if (self.rssi < -127 || self.rssi > 0) {
         return @"Rssi Error";
     }
-    if (!ValidStr(self.macAddress) || self.macAddress.length % 2 != 0 || self.macAddress.length > 12) {
+    if (self.macAddress.length % 2 != 0 || self.macAddress.length > 12) {
         return @"Mac Address Error";
     }
-    if (!ValidStr(self.advName) || self.advName.length > 20) {
+    if (self.advName.length > 20) {
         return @"Adv Name Error";
     }
     return @"";

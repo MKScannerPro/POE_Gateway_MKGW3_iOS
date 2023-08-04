@@ -591,11 +591,11 @@
 
 - (BOOL)configEthernetIpAddress {
     __block BOOL success = NO;
-    [MKGWInterface gw_configWIFIIpAddress:self.ethernet_ip
-                                     mask:self.ethernet_mask
-                                  gateway:self.ethernet_gateway
-                                      dns:self.ethernet_dns
-                                 sucBlock:^{
+    [MKGWInterface gw_configEthernetIpAddress:self.ethernet_ip
+                                         mask:self.ethernet_mask
+                                      gateway:self.ethernet_gateway
+                                          dns:self.ethernet_dns
+                                     sucBlock:^{
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     }

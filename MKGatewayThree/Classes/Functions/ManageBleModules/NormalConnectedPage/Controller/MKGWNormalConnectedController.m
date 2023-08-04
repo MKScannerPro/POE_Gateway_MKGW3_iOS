@@ -85,7 +85,7 @@ MKGWNormalConnectedCellDelegate>
     [super viewDidLoad];
     [self loadSubViews];
     [self parseTableDatas];
-    [self addNotifications];
+    [self addNotes];
 }
 
 #pragma mark - super method
@@ -219,7 +219,7 @@ MKGWNormalConnectedCellDelegate>
 }
 
 #pragma mark - private method
-- (void)addNotifications {
+- (void)addNotes {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDisconnect:)
                                                  name:MKGWReceiveGatewayDisconnectDeviceNotification

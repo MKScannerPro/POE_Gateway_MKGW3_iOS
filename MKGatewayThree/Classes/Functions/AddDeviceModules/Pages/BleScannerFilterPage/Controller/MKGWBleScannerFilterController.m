@@ -208,7 +208,7 @@ MKGWFilterNormalTextFieldCellDelegate>
     cellModel1.index = 0;
     cellModel1.msg = @"Filter by MAC Address";
     cellModel1.maxLength = 12;
-    cellModel1.textPlaceholder = @"1~6 Bytes";
+    cellModel1.textPlaceholder = @"0~6 Bytes";
     cellModel1.textFieldType = mk_hexCharOnly;
     cellModel1.textFieldValue = self.dataModel.macAddress;
     [self.section1List addObject:cellModel1];
@@ -217,7 +217,7 @@ MKGWFilterNormalTextFieldCellDelegate>
     cellModel2.index = 1;
     cellModel2.msg = @"Filter by ADV Name";
     cellModel2.maxLength = 20;
-    cellModel2.textPlaceholder = @"1~20 Characters";
+    cellModel2.textPlaceholder = @"0~20 Characters";
     cellModel2.textFieldType = mk_normal;
     cellModel2.textFieldValue = self.dataModel.advName;
     [self.section1List addObject:cellModel2];

@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKGWMqttParamsModel : NSObject
 
+/// 0:Ethernet    1:WiFi
+@property (nonatomic, copy)NSString *networkType;
+
 @property (nonatomic, copy)NSString *clientID;
 
 @property (nonatomic, copy)NSString *subscribeTopic;

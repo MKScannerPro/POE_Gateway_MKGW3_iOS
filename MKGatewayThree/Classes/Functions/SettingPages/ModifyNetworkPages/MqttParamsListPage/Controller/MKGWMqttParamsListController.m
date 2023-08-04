@@ -167,6 +167,7 @@
                                                             object:nil
                                                           userInfo:@{
             @"macAddress":SafeStr([MKGWDeviceModeManager shared].macAddress),
+            @"networkType":SafeStr(self.dataModel.networkType),
             @"clientID":SafeStr(self.dataModel.clientID),
             @"subscribedTopic":SafeStr(self.dataModel.subscribeTopic),
             @"publishedTopic":SafeStr(self.dataModel.publishTopic),

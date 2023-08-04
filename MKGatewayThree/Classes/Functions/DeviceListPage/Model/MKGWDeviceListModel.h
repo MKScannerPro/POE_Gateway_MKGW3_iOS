@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKGWDeviceListModel : MKGWDeviceModel
 
-/// 0:Good 1:Medium 2:Poor
+/// 当前网络为WIFI的情况下有效
 @property (nonatomic, assign)NSInteger wifiLevel;
 
 @end

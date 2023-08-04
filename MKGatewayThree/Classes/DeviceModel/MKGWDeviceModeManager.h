@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MKGWDeviceModeManagerDataProtocol <NSObject>
 
-/// MTQQ通信所需的ID，如果存在重复的，会出现交替上线的情况
+/// MQTT通信所需的ID，如果存在重复的，会出现交替上线的情况
 @property (nonatomic, copy)NSString *clientID;
 
 /**

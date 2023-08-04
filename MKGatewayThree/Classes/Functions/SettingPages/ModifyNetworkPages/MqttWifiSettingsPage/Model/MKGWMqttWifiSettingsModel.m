@@ -210,7 +210,7 @@
     __block BOOL success = NO;
     [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
-        self.networkType = ([returnData[@"data"][@"net_interface"] integerValue] == 1);
+        self.networkType = [returnData[@"data"][@"net_interface"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

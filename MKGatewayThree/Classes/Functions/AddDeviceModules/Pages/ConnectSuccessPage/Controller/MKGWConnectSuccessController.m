@@ -73,6 +73,7 @@
         
         MKGWDeviceModel *deviceModel = [[MKGWDeviceModel alloc] init];
         deviceModel.deviceType = self.deviceModel.deviceType;
+        deviceModel.networkType = self.deviceModel.networkType;
         deviceModel.clientID = self.deviceModel.clientID;
         deviceModel.deviceName = self.deviceModel.deviceName;
         deviceModel.subscribedTopic = self.deviceModel.subscribedTopic;

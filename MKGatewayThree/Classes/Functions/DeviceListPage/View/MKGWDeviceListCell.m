@@ -106,21 +106,32 @@
     self.macLabel.text = SafeStr(_dataModel.macAddress);
     if (dataModel.onLineState == MKGWDeviceModelStateOffline) {
         //设备离线
+        if ([dataModel.networkType integerValue] == 0) {
+            //网线Ethernet
+            self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_offline_ethernet.png");
+            return;
+        }
+        //WIFI
         self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_offline_wifi.png");
         return;
     }
     //设备在线
-    if (_dataModel.wifiLevel == 0) {
+    if ([dataModel.networkType integerValue] == 0) {
+        //网线Ethernet
+        self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_online_ethernet.png");
+        return;
+    }
+    if (_dataModel.wifiLevel >= -50) {
         //Good
         self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_good_wifi.png");
         return;
     }
-    if (_dataModel.wifiLevel == 1) {
+    if (_dataModel.wifiLevel >= -65 && _dataModel.wifiLevel < -50) {
         //Medium
         self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_medium_wifi.png");
         return;
     }
-    if (_dataModel.wifiLevel == 2) {
+    if (_dataModel.wifiLevel < -65) {
         //Poor
         self.wifiIcon.image = LOADICON(@"MKGatewayThree", @"MKGWDeviceListCell", @"gw_poor_wifi.png");
         return;

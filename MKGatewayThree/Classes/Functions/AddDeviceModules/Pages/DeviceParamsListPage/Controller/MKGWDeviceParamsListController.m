@@ -280,6 +280,7 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
     
     MKGWDeviceModel *deviceModel = [[MKGWDeviceModel alloc] init];
     deviceModel.deviceType = [MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType;
+    deviceModel.networkType = [MKGWDeviceMQTTParamsModel shared].deviceModel.networkType;
     deviceModel.clientID = [MKGWDeviceMQTTParamsModel shared].deviceModel.clientID;
     deviceModel.subscribedTopic = [MKGWDeviceMQTTParamsModel shared].deviceModel.subscribedTopic;
     deviceModel.publishedTopic = [MKGWDeviceMQTTParamsModel shared].deviceModel.publishedTopic;

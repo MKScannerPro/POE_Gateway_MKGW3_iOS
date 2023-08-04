@@ -8,8 +8,7 @@
 
 #import "MKGWMQTTServerManager.h"
 
-#import "MQTTSSLSecurityPolicyTransport.h"
-#import "MQTTSSLSecurityPolicy.h"
+#import "MQTTClient.h"
 
 #import "MKMQTTServerLogManager.h"
 
@@ -126,8 +125,6 @@ static dispatch_once_t onceToken;
         NSError *error = [sessionManager lastErrorCode];
         NSString *errorMsg = [NSString stringWithFormat:@"MQTT Session Manager Error:%@",error.localizedDescription];
         [MKMQTTServerLogManager saveDataWithFileName:mqttLogName dataList:@[errorMsg]];
-        //连接失败，尝试重连
-        [self connect];
     }
     @synchronized (self.managerList) {
         for (id <MKGWServerManagerProtocol>protocol in self.managerList) {

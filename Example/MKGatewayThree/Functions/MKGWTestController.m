@@ -22,9 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.defaultTitle = @"RemoteGateway";
+    self.defaultTitle = @"POE gateway";
     self.leftButton.hidden = YES;
-    UIButton *button = [MKCustomUIAdopter customButtonWithTitle:@"RemoteGateway"
+    UIButton *button = [MKCustomUIAdopter customButtonWithTitle:@"POE gateway"
                                                          target:self
                                                          action:@selector(pushRemoteGatewayPage)];
     [self.view addSubview:button];

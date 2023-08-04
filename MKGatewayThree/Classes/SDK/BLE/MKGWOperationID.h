@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskReadLWTRetainOperation,           //读取LWT Retain
     mk_gw_taskReadLWTTopicOperation,            //读取LWT topic
     mk_gw_taskReadLWTPayloadOperation,          //读取LWT Payload
-    mk_gw_taskReadConnectModeOperation,         //读取MTQQ服务器通信加密方式
+    mk_gw_taskReadConnectModeOperation,         //读取MQTT服务器通信加密方式
     
 #pragma mark - Filter Params
     mk_gw_taskReadRssiFilterValueOperation,             //读取扫描RSSI过滤
@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskConfigLWTRetainOperation,             //配置LWT Retain
     mk_gw_taskConfigLWTTopicOperation,              //配置LWT topic
     mk_gw_taskConfigLWTPayloadOperation,            //配置LWT payload
-    mk_gw_taskConfigConnectModeOperation,           //配置MTQQ服务器通信加密方式
+    mk_gw_taskConfigConnectModeOperation,           //配置MQTT服务器通信加密方式
     mk_gw_taskConfigCAFileOperation,                //配置CA证书
     mk_gw_taskConfigClientCertOperation,            //配置设备证书
     mk_gw_taskConfigClientPrivateKeyOperation,      //配置私钥

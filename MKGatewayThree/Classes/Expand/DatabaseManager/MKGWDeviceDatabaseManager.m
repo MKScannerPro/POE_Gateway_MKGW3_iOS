@@ -21,7 +21,7 @@
     if (![db open]) {
         return NO;
     }
-    NSString *sqlCreateTable = [NSString stringWithFormat:@"create table if not exists RGDeviceTable (deviceType text,clientID text,deviceName text,subscribedTopic text,publishedTopic text,macAddress text, lwtStatus text,lwtTopic text)"];
+    NSString *sqlCreateTable = [NSString stringWithFormat:@"create table if not exists RGDeviceTable (deviceType text,networkType text,clientID text,deviceName text,subscribedTopic text,publishedTopic text,macAddress text, lwtStatus text,lwtTopic text)"];
     BOOL resCreate = [db executeUpdate:sqlCreateTable];
     if (!resCreate) {
         [db close];
@@ -42,7 +42,7 @@
         [self operationInsertFailedBlock:failedBlock];
         return;
     }
-    NSString *sqlCreateTable = [NSString stringWithFormat:@"create table if not exists RGDeviceTable (deviceType text,clientID text,deviceName text,subscribedTopic text,publishedTopic text,macAddress text,lwtStatus text,lwtTopic text)"];
+    NSString *sqlCreateTable = [NSString stringWithFormat:@"create table if not exists RGDeviceTable (deviceType text,networkType text,clientID text,deviceName text,subscribedTopic text,publishedTopic text,macAddress text,lwtStatus text,lwtTopic text)"];
     BOOL resCreate = [db executeUpdate:sqlCreateTable];
     if (!resCreate) {
         [db close];
@@ -61,10 +61,10 @@
             }
             if (exist) {
                 //存在该设备，更新设备
-                [db executeUpdate:@"UPDATE RGDeviceTable SET deviceType = ?, clientID = ?, deviceName = ? ,subscribedTopic = ? ,publishedTopic = ?,lwtStatus = ? ,lwtTopic = ? WHERE macAddress = ?",SafeStr(device.deviceType),SafeStr(device.clientID),SafeStr(device.deviceName),SafeStr(device.subscribedTopic),SafeStr(device.publishedTopic),(device.lwtStatus ? @"1" : @"0"),SafeStr(device.lwtTopic),SafeStr(device.macAddress)];
+                [db executeUpdate:@"UPDATE RGDeviceTable SET deviceType = ?, networkType = ?, clientID = ?, deviceName = ? ,subscribedTopic = ? ,publishedTopic = ?,lwtStatus = ? ,lwtTopic = ? WHERE macAddress = ?",SafeStr(device.deviceType),SafeStr(device.networkType),SafeStr(device.clientID),SafeStr(device.deviceName),SafeStr(device.subscribedTopic),SafeStr(device.publishedTopic),(device.lwtStatus ? @"1" : @"0"),SafeStr(device.lwtTopic),SafeStr(device.macAddress)];
             }else{
                 //不存在，插入设备
-                [db executeUpdate:@"INSERT INTO RGDeviceTable (deviceType,clientID,deviceName,subscribedTopic,publishedTopic,macAddress,lwtTopic,lwtStatus) VALUES (?,?,?,?,?,?,?,?)",SafeStr(device.deviceType),SafeStr(device.clientID),SafeStr(device.deviceName),SafeStr(device.subscribedTopic),SafeStr(device.publishedTopic),SafeStr(device.macAddress),SafeStr(device.lwtTopic),(device.lwtStatus ? @"1" : @"0")];
+                [db executeUpdate:@"INSERT INTO RGDeviceTable (deviceType,networkType,clientID,deviceName,subscribedTopic,publishedTopic,macAddress,lwtTopic,lwtStatus) VALUES (?,?,?,?,?,?,?,?,?)",SafeStr(device.deviceType),SafeStr(device.networkType),SafeStr(device.clientID),SafeStr(device.deviceName),SafeStr(device.subscribedTopic),SafeStr(device.publishedTopic),SafeStr(device.macAddress),SafeStr(device.lwtTopic),(device.lwtStatus ? @"1" : @"0")];
             }
         }
         
@@ -114,6 +114,7 @@
         while ([result next]) {
             MKGWDeviceModel *dataModel = [[MKGWDeviceModel alloc] init];
             dataModel.clientID = [result stringForColumn:@"clientID"];
+            dataModel.networkType = [result stringForColumn:@"networkType"];
             dataModel.deviceName = [result stringForColumn:@"deviceName"];
             dataModel.subscribedTopic = [result stringForColumn:@"subscribedTopic"];
             dataModel.publishedTopic = [result stringForColumn:@"publishedTopic"];

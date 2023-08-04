@@ -175,7 +175,7 @@ static dispatch_once_t onceToken;
 }
 
 - (void)startScan {
-    [[MKBLEBaseCentralManager shared] scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"AA0B"]] options:nil];
+    [[MKBLEBaseCentralManager shared] scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"AA0F"]] options:nil];
 }
 
 - (void)stopScan {
@@ -398,7 +398,7 @@ static dispatch_once_t onceToken;
         return @{};
     }
     NSDictionary *manuParams = advDic[CBAdvertisementDataServiceDataKey];
-    NSData *manufacturerData = manuParams[[CBUUID UUIDWithString:@"AA0B"]];
+    NSData *manufacturerData = manuParams[[CBUUID UUIDWithString:@"AA0F"]];
     NSData *normalData = advDic[CBAdvertisementDataManufacturerDataKey];
     if (!MKValidData(manufacturerData) || manufacturerData.length != 1
         || !MKValidData(normalData) || normalData.length < 8) {

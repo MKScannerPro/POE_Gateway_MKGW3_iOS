@@ -259,7 +259,7 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
         };
         operationID = mk_gw_taskReadLWTPayloadOperation;
     }else if ([cmd isEqualToString:@"2f"]) {
-        //读取MTQQ服务器通信加密方式
+        //读取MQTT服务器通信加密方式
         NSString *mode = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
         resultDic = @{@"mode":mode};
         operationID = mk_gw_taskReadConnectModeOperation;
@@ -480,7 +480,7 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
         //配置LWT payload
         operationID = mk_gw_taskConfigLWTPayloadOperation;
     }else if ([cmd isEqualToString:@"2f"]) {
-        //配置MTQQ服务器通信加密方式
+        //配置MQTT服务器通信加密方式
         operationID = mk_gw_taskConfigConnectModeOperation;
     }else if ([cmd isEqualToString:@"40"]) {
         //配置WIFI 加密模式

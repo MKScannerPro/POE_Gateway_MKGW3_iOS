@@ -33,7 +33,10 @@ extern NSString *const MKGWDeviceModelOfflineNotification;
 /// 设备类型
 @property (nonatomic, copy)NSString *deviceType;
 
-/// MTQQ通信所需的ID，如果存在重复的，会出现交替上线的情况
+/// 0:Ethernet   1:WIFI
+@property (nonatomic, copy)NSString *networkType;
+
+/// MQTT通信所需的ID，如果存在重复的，会出现交替上线的情况
 @property (nonatomic, copy)NSString *clientID;
 
 /**

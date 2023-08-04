@@ -26,6 +26,8 @@
 #import "MKTextSwitchCell.h"
 #import "MKCAFileSelectController.h"
 
+#import "MKGWDeviceModel.h"
+
 #import "MKGWDeviceMQTTParamsModel.h"
 
 #import "MKGWBleWifiSettingsModel.h"
@@ -382,6 +384,7 @@ MKCAFileSelectControllerDelegate>
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
         [MKGWDeviceMQTTParamsModel shared].wifiConfig = YES;
+        [MKGWDeviceMQTTParamsModel shared].deviceModel.networkType = [NSString stringWithFormat:@"%ld",(long)self.dataModel.networkType];
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
         [[MKHudManager share] hide];

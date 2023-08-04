@@ -12,6 +12,8 @@ use_frameworks!
 inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
+platform :ios,'12.0'
+
 target 'MKGatewayThree_Example' do
   pod 'MKGatewayThree', :path => '../'
 end
