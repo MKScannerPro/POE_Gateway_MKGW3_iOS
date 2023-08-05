@@ -45,6 +45,14 @@ typedef NS_ENUM(NSInteger, mk_gw_mqtt_networkType) {
 };
 
 
+typedef NS_ENUM(NSInteger, mk_gw_PHYMode) {
+    mk_gw_PHYMode_BLE4,                     //1M PHY (BLE 4.2)
+    mk_gw_PHYMode_BLE5,                     //1M PHY (BLE 5)
+    mk_gw_PHYMode_BLE4AndBLE5,              //1M PHY (BLE 4.2 + BLE 5)
+    mk_gw_PHYMode_CodedBLE5,                //Coded PHY(BLE 5)
+};
+
+
 @protocol gw_indicatorLightStatusProtocol <NSObject>
 
 @property (nonatomic, assign)BOOL system_indicator;

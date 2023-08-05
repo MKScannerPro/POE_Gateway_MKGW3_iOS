@@ -30,6 +30,10 @@
             [self operationFailedBlockWithMsg:@"Read Filter Relationship Error" block:failedBlock];
             return;
         }
+        if (![self readFilterPHY]) {
+            [self operationFailedBlockWithMsg:@"Read Filter PHY Error" block:failedBlock];
+            return;
+        }
         if (![self readFilterByRSSI]) {
             [self operationFailedBlockWithMsg:@"Read Filter By RSSI Error" block:failedBlock];
             return;
@@ -46,6 +50,10 @@
     dispatch_async(self.readQueue, ^{
         if (![self configFilterRelationship]) {
             [self operationFailedBlockWithMsg:@"Setup failed!" block:failedBlock];
+            return;
+        }
+        if (![self configFilterPHY]) {
+            [self operationFailedBlockWithMsg:@"Read Filter PHY Error" block:failedBlock];
             return;
         }
         if (![self configFilterByRSSI]) {
@@ -77,6 +85,31 @@
 - (BOOL)configFilterRelationship {
     __block BOOL success = NO;
     [MKGWMQTTInterface gw_configFilterRelationship:self.relationship macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readFilterPHY {
+    __block BOOL success = NO;
+    [MKGWMQTTInterface gw_readFilterByPHYWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.phy = [returnData[@"data"][@"phy_filter"] integerValue];
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)configFilterPHY {
+    __block BOOL success = NO;
+    [MKGWMQTTInterface gw_configFilterByPHY:self.phy macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

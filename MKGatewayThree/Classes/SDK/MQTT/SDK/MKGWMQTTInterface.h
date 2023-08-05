@@ -494,6 +494,18 @@ NS_ASSUME_NONNULL_BEGIN
                          sucBlock:(void (^)(id returnData))sucBlock
                       failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Filter by PHY.
+/// @param phy phy
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configFilterByPHY:(mk_gw_PHYMode)phy
+                  macAddress:(NSString *)macAddress
+                       topic:(NSString *)topic
+                    sucBlock:(void (^)(id returnData))sucBlock
+                 failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// The gateway connects to the BXP-Button with the specified MAC address.
 /// @param password 0-16 Characters
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
@@ -890,6 +902,16 @@ NS_ASSUME_NONNULL_BEGIN
                                         topic:(NSString *)topic
                                      sucBlock:(void (^)(id returnData))sucBlock
                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Filter by PHY.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readFilterByPHYWithMacAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock;
 
 /// Read the service and feature information of the specified BXP-Button connected to the current gateway.
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)

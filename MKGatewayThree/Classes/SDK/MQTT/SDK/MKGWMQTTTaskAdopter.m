@@ -215,6 +215,9 @@
     }else if (msgID == 1059) {
         //配置扫描数据上报内容选项
         operationID = mk_gw_server_taskConfigUploadDataOptionOperation;
+    }else if (msgID == 1060) {
+        //配置扫描过滤PHY
+        operationID = mk_gw_server_taskConfigFilterByPHYOperation;
     }else if (msgID == 1061) {
         //配置iBeacon广播参数
         operationID = mk_gw_server_taskConfigAdvertiseBeaconParamsOperation;
@@ -332,6 +335,9 @@
     }else if (msgID == 2059) {
         //读取扫描数据上报内容选项
         operationID = mk_gw_server_taskReadUploadDataOptionOperation;
+    }else if (msgID == 2060) {
+        //读取Phy过滤类型
+        operationID = mk_gw_server_taskReadFilterByPHYOperation;
     }else if (msgID == 2061) {
         //读取iBeacon广播参数
         operationID = mk_gw_server_taskReadAdvertiseBeaconParamsOperation;

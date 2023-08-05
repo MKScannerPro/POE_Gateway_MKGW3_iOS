@@ -1268,6 +1268,33 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_configFilterByPHY:(mk_gw_PHYMode)phy
+                  macAddress:(NSString *)macAddress
+                       topic:(NSString *)topic
+                    sucBlock:(void (^)(id returnData))sucBlock
+                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1060),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"phy_filter":@(phy),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigFilterByPHYOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)gw_connectBXPButtonWithPassword:(NSString *)password
                                  bleMac:(NSString *)bleMacAddress
                              macAddress:(NSString *)macAddress
@@ -2189,6 +2216,29 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_gw_server_taskReadUploadDataOptionOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readFilterByPHYWithMacAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2060),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadFilterByPHYOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

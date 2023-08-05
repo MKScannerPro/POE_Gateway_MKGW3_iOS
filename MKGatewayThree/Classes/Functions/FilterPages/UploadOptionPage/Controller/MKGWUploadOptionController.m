@@ -52,6 +52,8 @@ MKGWFilterCellDelegate>
 
 @property (nonatomic, strong)NSMutableArray *section4List;
 
+@property (nonatomic, strong)NSMutableArray *section5List;
+
 @property (nonatomic, strong)NSMutableArray *headerList;
 
 @property (nonatomic, strong)MKGWUploadOptionModel *dataModel;
@@ -84,7 +86,7 @@ MKGWFilterCellDelegate>
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 3 || section == 4) {
+    if (section == 4 || section == 5) {
         return 10;
     }
     return 0.f;
@@ -104,15 +106,8 @@ MKGWFilterCellDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        MKNormalTextCellModel *cellModel = self.section1List[indexPath.row];
-        if (ValidStr(cellModel.methodName) && [self respondsToSelector:NSSelectorFromString(cellModel.methodName)]) {
-            [self performSelector:NSSelectorFromString(cellModel.methodName) withObject:nil];
-        }
-        return;
-    }
-    if (indexPath.section == 3) {
-        MKNormalTextCellModel *cellModel = self.section3List[indexPath.row];
+    if (indexPath.section == 2) {
+        MKNormalTextCellModel *cellModel = self.section2List[indexPath.row];
         if (ValidStr(cellModel.methodName) && [self respondsToSelector:NSSelectorFromString(cellModel.methodName)]) {
             [self performSelector:NSSelectorFromString(cellModel.methodName) withObject:nil];
         }
@@ -120,6 +115,13 @@ MKGWFilterCellDelegate>
     }
     if (indexPath.section == 4) {
         MKNormalTextCellModel *cellModel = self.section4List[indexPath.row];
+        if (ValidStr(cellModel.methodName) && [self respondsToSelector:NSSelectorFromString(cellModel.methodName)]) {
+            [self performSelector:NSSelectorFromString(cellModel.methodName) withObject:nil];
+        }
+        return;
+    }
+    if (indexPath.section == 5) {
+        MKNormalTextCellModel *cellModel = self.section5List[indexPath.row];
         if (ValidStr(cellModel.methodName) && [self respondsToSelector:NSSelectorFromString(cellModel.methodName)]) {
             [self performSelector:NSSelectorFromString(cellModel.methodName) withObject:nil];
         }
@@ -148,6 +150,9 @@ MKGWFilterCellDelegate>
     if (section == 4) {
         return self.section4List.count;
     }
+    if (section == 5) {
+        return self.section5List.count;
+    }
     return 0;
 }
 
@@ -159,23 +164,29 @@ MKGWFilterCellDelegate>
         return cell;
     }
     if (indexPath.section == 1) {
-        MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
-        cell.dataModel = self.section1List[indexPath.row];
-        return cell;
-    }
-    if (indexPath.section == 2) {
         MKGWFilterCell *cell = [MKGWFilterCell initCellWithTableView:tableView];
-        cell.dataModel = self.section2List[indexPath.row];
+        cell.dataModel = self.section1List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
-    if (indexPath.section == 3) {
+    if (indexPath.section == 2) {
         MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
+        cell.dataModel = self.section2List[indexPath.row];
+        return cell;
+    }
+    if (indexPath.section == 3) {
+        MKGWFilterCell *cell = [MKGWFilterCell initCellWithTableView:tableView];
         cell.dataModel = self.section3List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
+    if (indexPath.section == 4) {
+        MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
+        cell.dataModel = self.section4List[indexPath.row];
         return cell;
     }
     MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
-    cell.dataModel = self.section4List[indexPath.row];
+    cell.dataModel = self.section5List[indexPath.row];
     return cell;
 }
 
@@ -194,9 +205,16 @@ MKGWFilterCellDelegate>
 #pragma mark - MKGWFilterCellDelegate
 - (void)gw_filterValueChanged:(NSInteger)dataListIndex index:(NSInteger)index {
     if (index == 0) {
+        //Filter by PHY
+        self.dataModel.phy = dataListIndex;
+        MKGWFilterCellModel *cellModel = self.section1List[0];
+        cellModel.dataListIndex = dataListIndex;
+        return;
+    }
+    if (index == 1) {
         //Filter Relationship
         self.dataModel.relationship = dataListIndex;
-        MKGWFilterCellModel *cellModel = self.section2List[0];
+        MKGWFilterCellModel *cellModel = self.section3List[0];
         cellModel.dataListIndex = dataListIndex;
         return;
     }
@@ -264,8 +282,9 @@ MKGWFilterCellDelegate>
     [self loadSection2Datas];
     [self loadSection3Datas];
     [self loadSection4Datas];
+    [self loadSection5Datas];
     
-    for (NSInteger i = 0; i < 5; i ++) {
+    for (NSInteger i = 0; i < 6; i ++) {
         MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
         [self.headerList addObject:headerModel];
     }
@@ -286,48 +305,57 @@ MKGWFilterCellDelegate>
 }
 
 - (void)loadSection1Datas {
+    MKGWFilterCellModel *cellModel = [[MKGWFilterCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"Filter by PHY";
+    cellModel.dataList = @[@"1M PHY(V4.2)",@"1M PHY(V5.0)",@"1M PHY(V4.2) & 1M PHY(V5.0)",@"Coded PHY(V5.0)"];
+    cellModel.dataListIndex = self.dataModel.phy;
+    [self.section1List addObject:cellModel];
+}
+
+- (void)loadSection2Datas {
     MKNormalTextCellModel *cellModel1 = [[MKNormalTextCellModel alloc] init];
     cellModel1.showRightIcon = YES;
     cellModel1.leftMsg = @"Filter by MAC address";
     cellModel1.methodName = @"filterByMACAddress";
-    [self.section1List addObject:cellModel1];
+    [self.section2List addObject:cellModel1];
     
     MKNormalTextCellModel *cellModel2 = [[MKNormalTextCellModel alloc] init];
     cellModel2.showRightIcon = YES;
     cellModel2.leftMsg = @"Filter by ADV Name";
     cellModel2.methodName = @"filterByADVName";
-    [self.section1List addObject:cellModel2];
+    [self.section2List addObject:cellModel2];
     
     MKNormalTextCellModel *cellModel3 = [[MKNormalTextCellModel alloc] init];
     cellModel3.showRightIcon = YES;
     cellModel3.leftMsg = @"Filter by Raw Data";
     cellModel3.methodName = @"filterByRawData";
-    [self.section1List addObject:cellModel3];
-}
-
-- (void)loadSection2Datas {
-    MKGWFilterCellModel *cellModel = [[MKGWFilterCellModel alloc] init];
-    cellModel.index = 0;
-    cellModel.msg = @"Filter Relationship";
-    cellModel.dataList = @[@"Null",@"Only MAC",@"Only ADV Name",@"Only RAW DATA",@"ADV name&Raw data",@"MAC&ADV name&Raw data",@"ADV name | Raw data",@"ADV Name & MAC"];
-    cellModel.dataListIndex = self.dataModel.relationship;
-    [self.section2List addObject:cellModel];
+    [self.section2List addObject:cellModel3];
 }
 
 - (void)loadSection3Datas {
-    MKNormalTextCellModel *cellModel = [[MKNormalTextCellModel alloc] init];
-    cellModel.showRightIcon = YES;
-    cellModel.leftMsg = @"Duplicate Data Filter";
-    cellModel.methodName = @"duplicateDataFilter";
+    MKGWFilterCellModel *cellModel = [[MKGWFilterCellModel alloc] init];
+    cellModel.index = 1;
+    cellModel.msg = @"Filter Relationship";
+    cellModel.dataList = @[@"Null",@"Only MAC",@"Only ADV Name",@"Only RAW DATA",@"ADV name&Raw data",@"MAC&ADV name&Raw data",@"ADV name | Raw data",@"ADV Name & MAC"];
+    cellModel.dataListIndex = self.dataModel.relationship;
     [self.section3List addObject:cellModel];
 }
 
 - (void)loadSection4Datas {
     MKNormalTextCellModel *cellModel = [[MKNormalTextCellModel alloc] init];
     cellModel.showRightIcon = YES;
+    cellModel.leftMsg = @"Duplicate Data Filter";
+    cellModel.methodName = @"duplicateDataFilter";
+    [self.section4List addObject:cellModel];
+}
+
+- (void)loadSection5Datas {
+    MKNormalTextCellModel *cellModel = [[MKNormalTextCellModel alloc] init];
+    cellModel.showRightIcon = YES;
     cellModel.leftMsg = @"Upload Data Option";
     cellModel.methodName = @"uploadDataOption";
-    [self.section4List addObject:cellModel];
+    [self.section5List addObject:cellModel];
 }
 
 #pragma mark - UI
@@ -389,6 +417,13 @@ MKGWFilterCellDelegate>
         _section4List = [NSMutableArray array];
     }
     return _section4List;
+}
+
+- (NSMutableArray *)section5List {
+    if (!_section4List) {
+        _section5List = [NSMutableArray array];
+    }
+    return _section5List;
 }
 
 - (NSMutableArray *)headerList {
