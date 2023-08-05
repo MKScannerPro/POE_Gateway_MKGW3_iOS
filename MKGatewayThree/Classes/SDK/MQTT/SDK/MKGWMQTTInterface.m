@@ -2772,16 +2772,14 @@
     if (protocol.connectMode < 0 || protocol.connectMode > 3) {
         return NO;
     }
-    if (protocol.lwtStatus) {
-        if (protocol.lwtQos < 0 || protocol.lwtQos > 2) {
-            return NO;
-        }
-        if (!ValidStr(protocol.lwtTopic) || protocol.lwtTopic.length > 128 || ![protocol.lwtTopic isAsciiString]) {
-            return NO;
-        }
-        if (!ValidStr(protocol.lwtPayload) || protocol.lwtPayload.length > 128 || ![protocol.lwtPayload isAsciiString]) {
-            return NO;
-        }
+    if (protocol.lwtQos < 0 || protocol.lwtQos > 2) {
+        return NO;
+    }
+    if (!ValidStr(protocol.lwtTopic) || protocol.lwtTopic.length > 128 || ![protocol.lwtTopic isAsciiString]) {
+        return NO;
+    }
+    if (!ValidStr(protocol.lwtPayload) || protocol.lwtPayload.length > 128 || ![protocol.lwtPayload isAsciiString]) {
+        return NO;
     }
     return YES;
 }

@@ -791,28 +791,28 @@ mk_textSwitchCellDelegate>
 
 - (void)loadSection13Datas {
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
-    cellModel1.index = 5;
+    cellModel1.index = 8;
     cellModel1.msg = @"IP";
     cellModel1.textFieldType = mk_normal;
     cellModel1.textFieldValue = self.dataModel.ethernet_ip;
     [self.section13List addObject:cellModel1];
     
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 6;
+    cellModel2.index = 9;
     cellModel2.msg = @"Mask";
     cellModel2.textFieldType = mk_normal;
     cellModel2.textFieldValue = self.dataModel.ethernet_mask;
     [self.section13List addObject:cellModel2];
     
     MKTextFieldCellModel *cellModel3 = [[MKTextFieldCellModel alloc] init];
-    cellModel3.index = 7;
+    cellModel3.index = 10;
     cellModel3.msg = @"Gateway";
     cellModel3.textFieldType = mk_normal;
     cellModel3.textFieldValue = self.dataModel.ethernet_gateway;
     [self.section13List addObject:cellModel3];
     
     MKTextFieldCellModel *cellModel4 = [[MKTextFieldCellModel alloc] init];
-    cellModel4.index = 8;
+    cellModel4.index = 11;
     cellModel4.msg = @"DNS";
     cellModel4.textFieldType = mk_normal;
     cellModel4.textFieldValue = self.dataModel.ethernet_dns;
@@ -829,28 +829,28 @@ mk_textSwitchCellDelegate>
 
 - (void)loadSection15Datas {
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
-    cellModel1.index = 9;
+    cellModel1.index = 12;
     cellModel1.msg = @"IP";
     cellModel1.textFieldType = mk_normal;
     cellModel1.textFieldValue = self.dataModel.wifi_ip;
     [self.section15List addObject:cellModel1];
     
     MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 10;
+    cellModel2.index = 13;
     cellModel2.msg = @"Mask";
     cellModel2.textFieldType = mk_normal;
     cellModel2.textFieldValue = self.dataModel.wifi_mask;
     [self.section15List addObject:cellModel2];
     
     MKTextFieldCellModel *cellModel3 = [[MKTextFieldCellModel alloc] init];
-    cellModel3.index = 11;
+    cellModel3.index = 14;
     cellModel3.msg = @"Gateway";
     cellModel3.textFieldType = mk_normal;
     cellModel3.textFieldValue = self.dataModel.wifi_gateway;
     [self.section15List addObject:cellModel3];
     
     MKTextFieldCellModel *cellModel4 = [[MKTextFieldCellModel alloc] init];
-    cellModel4.index = 12;
+    cellModel4.index = 15;
     cellModel4.msg = @"DNS";
     cellModel4.textFieldType = mk_normal;
     cellModel4.textFieldValue = self.dataModel.wifi_dns;

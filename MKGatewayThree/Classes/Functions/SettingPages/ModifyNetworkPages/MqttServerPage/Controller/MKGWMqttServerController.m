@@ -520,7 +520,7 @@ MKGWImportServerControllerDelegate>
     MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
     cellModel1.index = 0;
     cellModel1.msg = @"Host";
-    cellModel1.textPlaceholder = @"Less than 64 Characters";
+    cellModel1.textPlaceholder = @"1-64 Characters";
     cellModel1.textFieldType = mk_normal;
     cellModel1.textFieldValue = self.dataModel.host;
     cellModel1.maxLength = 64;

@@ -66,14 +66,14 @@ PODS:
     - MKBaseModuleLibrary/Defines
     - SSZipArchive
   - MKBaseModuleLibrary/Tools/MKModuleManager (1.1.8)
-  - MKBaseMQTTModule (0.0.6):
-    - MKBaseMQTTModule/MQTT (= 0.0.6)
-    - MKBaseMQTTModule/MQTTClient (= 0.0.6)
-    - MKBaseMQTTModule/NetworkManager (= 0.0.6)
-  - MKBaseMQTTModule/MQTT (0.0.6):
+  - MKBaseMQTTModule (0.0.7):
+    - MKBaseMQTTModule/MQTT (= 0.0.7)
+    - MKBaseMQTTModule/MQTTClient (= 0.0.7)
+    - MKBaseMQTTModule/NetworkManager (= 0.0.7)
+  - MKBaseMQTTModule/MQTT (0.0.7):
     - MKBaseMQTTModule/MQTTClient
-  - MKBaseMQTTModule/MQTTClient (0.0.6)
-  - MKBaseMQTTModule/NetworkManager (0.0.6):
+  - MKBaseMQTTModule/MQTTClient (0.0.7)
+  - MKBaseMQTTModule/NetworkManager (0.0.7):
     - AFNetworking
   - MKCustomUIModule (1.4.4):
     - CircleProgressBar
@@ -2123,7 +2123,7 @@ SPEC CHECKSUMS:
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 8d0292b517d87552083f9180eeaa4569605707db
-  MKBaseMQTTModule: bf70d6463720f7f095f1c2a48dc123ada9118dcd
+  MKBaseMQTTModule: 5434692b017865eede3b2ac6d2b4df52acd65a91
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MKGatewayThree: 0f3b962fd6cceb252ab2284d7d5cf2e36832f5d3
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8

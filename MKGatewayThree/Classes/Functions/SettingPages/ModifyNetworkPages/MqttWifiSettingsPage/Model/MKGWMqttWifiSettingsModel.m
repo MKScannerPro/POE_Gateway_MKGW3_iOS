@@ -107,6 +107,10 @@
             [self operationFailedBlockWithMsg:@"Config Wifi Infos Error" block:failedBlock];
             return;
         }
+        if (![self configWifiNetworkInfos]) {
+            [self operationFailedBlockWithMsg:@"Config Wifi Network Infos Error" block:failedBlock];
+            return;
+        }
         if (self.security == 1 && !(!ValidStr(self.caFilePath) && !ValidStr(self.clientKeyPath) && !ValidStr(self.clientCertPath))) {
             //三个证书同时为空，则不需要发送
             if (((self.eapType == 0 || self.eapType == 1) && self.verifyServer) || self.eapType == 2) {
