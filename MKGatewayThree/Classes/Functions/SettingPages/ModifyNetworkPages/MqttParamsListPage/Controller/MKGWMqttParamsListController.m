@@ -160,7 +160,7 @@
 #pragma mark - private method
 - (void)updateLocaDeviceData {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWDeviceDatabaseManager updateClientID:self.dataModel.clientID subscribedTopic:self.dataModel.subscribeTopic publishedTopic:self.dataModel.publishTopic lwtStatus:self.dataModel.lwtStatus lwtTopic:self.dataModel.lwtTopic macAddress:[MKGWDeviceModeManager shared].macAddress sucBlock:^{
+    [MKGWDeviceDatabaseManager updateClientID:self.dataModel.clientID subscribedTopic:self.dataModel.subscribeTopic publishedTopic:self.dataModel.publishTopic lwtStatus:self.dataModel.lwtStatus lwtTopic:self.dataModel.lwtTopic macAddress:[MKGWDeviceModeManager shared].macAddress networkType:[MKGWDeviceModeManager shared].networkType sucBlock:^{
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Setup succeed!"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_deviceModifyMQTTServerSuccessNotification"
@@ -173,6 +173,7 @@
             @"publishedTopic":SafeStr(self.dataModel.publishTopic),
             @"lwtStatus":@(self.dataModel.lwtStatus),
             @"lwtTopic":SafeStr(self.dataModel.lwtTopic),
+            @"networkType":SafeStr([MKGWDeviceModeManager shared].networkType),
         }];
         [self performSelector:@selector(gotoHomePage) withObject:nil afterDelay:0.5f];
     } failedBlock:^(NSError * _Nonnull error) {

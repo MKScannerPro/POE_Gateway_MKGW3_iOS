@@ -178,6 +178,7 @@
              lwtStatus:(BOOL)lwtStatus
               lwtTopic:(NSString *)lwtTopic
             macAddress:(NSString *)macAddress
+           networkType:(NSString *)networkType
               sucBlock:(void (^)(void))sucBlock
            failedBlock:(void (^)(NSError *error))failedBlock {
     if (!ValidStr(clientID) || !ValidStr(macAddress) || !ValidStr(subscribedTopic) || !ValidStr(publishedTopic)) {
@@ -208,7 +209,7 @@
             return;
         }
         //存在该设备，更新设备
-        [db executeUpdate:@"UPDATE RGDeviceTable SET clientID = ?, subscribedTopic = ? ,publishedTopic = ? , lwtStatus = ?,lwtTopic = ? WHERE macAddress = ?",SafeStr(clientID),SafeStr(subscribedTopic),SafeStr(publishedTopic),(lwtStatus ? @"1" : @"0"),SafeStr(lwtTopic),SafeStr(macAddress)];
+        [db executeUpdate:@"UPDATE RGDeviceTable SET clientID = ?, subscribedTopic = ? ,publishedTopic = ? , lwtStatus = ?,lwtTopic = ?,networkType = ? WHERE macAddress = ?",SafeStr(clientID),SafeStr(subscribedTopic),SafeStr(publishedTopic),(lwtStatus ? @"1" : @"0"),SafeStr(lwtTopic),SafeStr(networkType),SafeStr(macAddress)];
         if (sucBlock) {
             moko_dispatch_main_safe(^{
                 sucBlock();

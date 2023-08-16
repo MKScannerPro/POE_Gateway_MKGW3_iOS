@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param lwtStatus用户是否打开了遗嘱功能
 /// @param lwtTopic 遗言topic(用户打开了遗嘱功能的时候不能为空)
 /// @param macAddress 本地存储的key
+/// @param networkType 网络类型
 /// @param sucBlock 成功回调
 /// @param failedBlock 失败回调
 + (void)updateClientID:(NSString *)clientID
@@ -56,6 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
              lwtStatus:(BOOL)lwtStatus
               lwtTopic:(NSString *)lwtTopic
             macAddress:(NSString *)macAddress
+           networkType:(NSString *)networkType
               sucBlock:(void (^)(void))sucBlock
            failedBlock:(void (^)(NSError *error))failedBlock;
 

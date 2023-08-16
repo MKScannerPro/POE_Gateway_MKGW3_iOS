@@ -107,6 +107,11 @@ mk_textSwitchCellDelegate>
     [self saveDataToDevice];
 }
 
+- (void)leftButtonMethod {
+    [MKGWDeviceModeManager shared].networkType = [NSString stringWithFormat:@"%ld",(long)self.dataModel.networkType];
+    [super leftButtonMethod];
+}
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.f;

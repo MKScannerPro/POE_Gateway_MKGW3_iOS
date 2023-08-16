@@ -153,7 +153,7 @@ static const NSInteger packDataMaxLen = 150;
             }
             NSString *lenString = [MKBLEBaseSDKAdopter fetchHexValue:len byteLen:1];
             NSString *asciiChar = [MKGWSDKDataAdopter fetchAsciiCode:[userName substringWithRange:NSMakeRange(i * packDataMaxLen, len)]];
-            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,totalNum,index,lenString,asciiChar];
+            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,totalNumString,index,lenString,asciiChar];
             BOOL success = [self sendDataToPeripheral:commandString
                                                taskID:mk_gw_taskConfigServerUserNameOperation
                                             semaphore:semaphore];

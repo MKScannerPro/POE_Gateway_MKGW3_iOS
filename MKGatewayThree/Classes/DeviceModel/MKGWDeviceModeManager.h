@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)sharedDealloc;
 
+@property (nonatomic, copy)NSString *networkType;
+
 /// 当前设备的deviceID
 - (NSString *)deviceID;
 
