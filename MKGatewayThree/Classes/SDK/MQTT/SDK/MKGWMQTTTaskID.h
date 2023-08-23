@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskConfigCommunicationTimeoutOperation,       //配置通信超时时间
     mk_gw_server_taskConfigIndicatorLightStatusOperation,       //配置指示灯开关
     mk_gw_server_taskResetDeviceOperation,              //恢复出厂设置
+    mk_gw_server_taskConfigNpcOTAHostOperation,         //Npc Ota
     mk_gw_server_taskModifyWifiInfosOperation,          //配置wifi网络
     mk_gw_server_taskModifyWifiCertsOperation,          //配置EAP证书
     mk_gw_server_taskModifyWifiNetworkInfoOperation,        //配置Wifi网络参数

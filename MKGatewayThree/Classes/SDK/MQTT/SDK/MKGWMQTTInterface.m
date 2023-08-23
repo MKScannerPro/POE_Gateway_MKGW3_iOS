@@ -319,6 +319,37 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_configNpcOTAWithFilePath:(NSString *)filePath
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(filePath) || filePath.length > 256 || ![filePath isAsciiString]) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1015),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+                @"firmware_url":filePath
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigNpcOTAHostOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)gw_modifyWifiInfos:(id <mk_gw_mqttModifyWifiProtocol>)protocol
                 macAddress:(NSString *)macAddress
                      topic:(NSString *)topic

@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKGWOTAPageModel : NSObject
 
+/// 0:Wifi OTA   1:NCP OTA
+@property (nonatomic, assign)NSInteger otaType;
+
 @property (nonatomic, copy)NSString *filePath;
 
 - (void)configDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;

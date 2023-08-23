@@ -19,6 +19,7 @@
 
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
+#import "MKTextButtonCell.h"
 #import "MKTextFieldCell.h"
 
 #import "MKGWMQTTDataManager.h"
@@ -31,11 +32,14 @@
 
 @interface MKGWOTAController ()<UITableViewDelegate,
 UITableViewDataSource,
+MKTextButtonCellDelegate,
 MKTextFieldCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
-@property (nonatomic, strong)NSMutableArray *dataList;
+@property (nonatomic, strong)NSMutableArray *section0List;
+
+@property (nonatomic, strong)NSMutableArray *section1List;
 
 @property (nonatomic, strong)MKGWOTAPageModel *dataModel;
 
@@ -66,10 +70,6 @@ MKTextFieldCellDelegate>
     [super viewDidLoad];
     [self loadSubViews];
     [self loadSectionDatas];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveOTAResult:)
-                                                 name:MKGWReceiveDeviceOTAResultNotification
-                                               object:nil];
 }
 
 #pragma mark - UITableViewDelegate
@@ -79,18 +79,47 @@ MKTextFieldCellDelegate>
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+    if (section == 0) {
+        return self.section0List.count;
+    }
+    if (section == 1) {
+        return self.section1List.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        MKTextButtonCell *cell = [MKTextButtonCell initCellWithTableView:tableView];
+        cell.dataModel = self.section0List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
     MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
-    cell.dataModel = self.dataList[indexPath.row];
+    cell.dataModel = self.section1List[indexPath.row];
     cell.delegate = self;
     return cell;
+}
+
+#pragma mark - MKTextButtonCellDelegate
+/// 右侧按钮点击触发的回调事件
+/// @param index 当前cell所在的index
+/// @param dataListIndex 点击按钮选中的dataList里面的index
+/// @param value dataList[dataListIndex]
+- (void)mk_loraTextButtonCellSelected:(NSInteger)index
+                        dataListIndex:(NSInteger)dataListIndex
+                                value:(NSString *)value {
+    if (index == 0) {
+        //Firmware type
+        MKTextButtonCellModel *cellModel = self.section0List[0];
+        cellModel.dataListIndex = dataListIndex;
+        self.dataModel.otaType = dataListIndex;
+        return;
+    }
 }
 
 #pragma mark - MKTextFieldCellDelegate
@@ -98,7 +127,7 @@ MKTextFieldCellDelegate>
 /// @param index 当前cell所在的index
 /// @param value 当前textField的值
 - (void)mk_deviceTextCellValueChanged:(NSInteger)index textValue:(NSString *)value {
-    MKTextFieldCellModel *cellModel = self.dataList[index];
+    MKTextFieldCellModel *cellModel = self.section1List[index];
     cellModel.textFieldValue = value;
     if (index == 0) {
         //Firmware file URL
@@ -130,7 +159,18 @@ MKTextFieldCellDelegate>
     self.leftButton.enabled = NO;
     @weakify(self);
     [self.dataModel configDataWithSucBlock:^{
-        
+        @strongify(self);
+        if (self.dataModel.otaType == 0) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(receiveOTAResult:)
+                                                         name:MKGWReceiveDeviceOTAResultNotification
+                                                       object:nil];
+        }else if (self.dataModel.otaType == 1) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(receiveOTAResult:)
+                                                         name:MKGWReceiveDeviceNpcOTAResultNotification
+                                                       object:nil];
+        }
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
         [[MKHudManager share] hide];
@@ -141,15 +181,30 @@ MKTextFieldCellDelegate>
 
 #pragma mark - loadSectionDatas
 - (void)loadSectionDatas {
-    MKTextFieldCellModel *cellModel1 = [[MKTextFieldCellModel alloc] init];
-    cellModel1.index = 0;
-    cellModel1.msg = @"Firmware file URL";
-    cellModel1.textPlaceholder = @"1-256 Characters";
-    cellModel1.textFieldType = mk_normal;
-    cellModel1.maxLength = 256;
-    [self.dataList addObject:cellModel1];
+    [self loadSection0Datas];
+    [self loadSection1Datas];
     
     [self.tableView reloadData];
+}
+
+- (void)loadSection0Datas {
+    MKTextButtonCellModel *cellModel = [[MKTextButtonCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"Firmware type";
+    cellModel.dataList = @[@"WIFI firmware",@"Bluetooth firmware"];
+    cellModel.dataListIndex = self.dataModel.otaType;
+    cellModel.buttonLabelFont = MKFont(13.f);
+    [self.section0List addObject:cellModel];
+}
+
+- (void)loadSection1Datas {
+    MKTextFieldCellModel *cellModel = [[MKTextFieldCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"Firmware file URL";
+    cellModel.textPlaceholder = @"1-256 Characters";
+    cellModel.textFieldType = mk_normal;
+    cellModel.maxLength = 256;
+    [self.section1List addObject:cellModel];
 }
 
 #pragma mark - UI
@@ -176,11 +231,18 @@ MKTextFieldCellDelegate>
     return _tableView;
 }
 
-- (NSMutableArray *)dataList {
-    if (!_dataList) {
-        _dataList = [NSMutableArray array];
+- (NSMutableArray *)section0List {
+    if (!_section0List) {
+        _section0List = [NSMutableArray array];
     }
-    return _dataList;
+    return _section0List;
+}
+
+- (NSMutableArray *)section1List {
+    if (!_section1List) {
+        _section1List = [NSMutableArray array];
+    }
+    return _section1List;
 }
 
 - (MKGWOTAPageModel *)dataModel {

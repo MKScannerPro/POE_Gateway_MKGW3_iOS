@@ -136,6 +136,18 @@ NS_ASSUME_NONNULL_BEGIN
                             sucBlock:(void (^)(id returnData))sucBlock
                          failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// NPC OTA.
+/// @param filePath 1-256 Characters
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configNpcOTAWithFilePath:(NSString *)filePath
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// Modify Wifi.
 /// @param protocol protocol
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)

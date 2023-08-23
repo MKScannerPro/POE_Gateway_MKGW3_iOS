@@ -39,10 +39,18 @@
             [self operationFailedBlockWithMsg:@"Device is busy now!" block:failedBlock];
             return;
         }
-        if (![self startOTA]) {
-            [self operationFailedBlockWithMsg:@"OTA Error" block:failedBlock];
-            return;
+        if (self.otaType == 0) {
+            if (![self startOTA]) {
+                [self operationFailedBlockWithMsg:@"OTA Error" block:failedBlock];
+                return;
+            }
+        }else if (self.otaType == 1) {
+            if (![self startNpcOTA]) {
+                [self operationFailedBlockWithMsg:@"Npc OTA Error" block:failedBlock];
+                return;
+            }
         }
+        
         moko_dispatch_main_safe(^{
             sucBlock();
         });
@@ -65,6 +73,18 @@
 - (BOOL)startOTA {
     __block BOOL success = NO;
     [MKGWMQTTInterface gw_configOTAWithFilePath:self.filePath macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)startNpcOTA {
+    __block BOOL success = NO;
+    [MKGWMQTTInterface gw_configNpcOTAWithFilePath:self.filePath macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

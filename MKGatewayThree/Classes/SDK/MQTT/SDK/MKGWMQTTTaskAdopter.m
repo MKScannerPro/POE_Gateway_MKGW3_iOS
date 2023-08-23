@@ -137,6 +137,9 @@
     }else if (msgID == 1013) {
         //恢复出厂设置
         operationID = mk_gw_server_taskResetDeviceOperation;
+    }else if (msgID == 1015) {
+        //Npc OTA
+        operationID = mk_gw_server_taskConfigNpcOTAHostOperation;
     }else if (msgID == 1020) {
         //配置wifi
         operationID = mk_gw_server_taskModifyWifiInfosOperation;
