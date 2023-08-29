@@ -420,7 +420,7 @@ MKGWFilterCellDelegate>
 }
 
 - (NSMutableArray *)section5List {
-    if (!_section4List) {
+    if (!_section5List) {
         _section5List = [NSMutableArray array];
     }
     return _section5List;
