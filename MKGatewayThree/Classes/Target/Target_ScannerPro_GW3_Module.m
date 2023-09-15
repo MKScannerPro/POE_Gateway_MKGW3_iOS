@@ -12,7 +12,7 @@
 
 @implementation Target_ScannerPro_GW3_Module
 
-- (UIViewController *)Action_MKScannerPro_RemoteGateway_DeviceListPage:(NSDictionary *)params {
+- (UIViewController *)Action_MKScannerPro_GW3_DeviceListPage:(NSDictionary *)params {
     MKGWDeviceListController *vc = [[MKGWDeviceListController alloc] init];
     vc.connectServer = YES;
     return vc;
