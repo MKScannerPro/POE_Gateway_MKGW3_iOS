@@ -1,9 +1,9 @@
 //
-//  MKGWFilterNormalTextFieldCell.h
-//  MKGatewayThree_Example
+//  MKFilterNormalTextFieldCell.h
+//  MKCustomUIModule_Example
 //
-//  Created by aa on 2023/2/7..
-//  Copyright © 2023 aadyx2007@163.com. All rights reserved.
+//  Created by aa on 2024/1/9.
+//  Copyright © 2024 aadyx2007@163.com. All rights reserved.
 //
 
 #import <MKBaseModuleLibrary/MKBaseCell.h>
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWFilterNormalTextFieldCellModel : NSObject
+@interface MKFilterNormalTextFieldCellModel : NSObject
 
 @property (nonatomic, assign)NSInteger index;
 
@@ -33,19 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol MKGWFilterNormalTextFieldCellDelegate <NSObject>
+@protocol MKFilterNormalTextFieldCellDelegate <NSObject>
 
-- (void)mk_gw_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index;
+- (void)mk_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index;
 
 @end
 
-@interface MKGWFilterNormalTextFieldCell : MKBaseCell
+@interface MKFilterNormalTextFieldCell : MKBaseCell
 
-@property (nonatomic, strong)MKGWFilterNormalTextFieldCellModel *dataModel;
+@property (nonatomic, strong)MKFilterNormalTextFieldCellModel *dataModel;
 
-@property (nonatomic, weak)id <MKGWFilterNormalTextFieldCellDelegate>delegate;
+@property (nonatomic, weak)id <MKFilterNormalTextFieldCellDelegate>delegate;
 
-+ (MKGWFilterNormalTextFieldCell *)initCellWithTableView:(UITableView *)tableView;
++ (MKFilterNormalTextFieldCell *)initCellWithTableView:(UITableView *)tableView;
 
 @end
 

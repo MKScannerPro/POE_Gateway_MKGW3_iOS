@@ -24,17 +24,17 @@
 
 #import "MKGWDeviceModel.h"
 
-#import "MKGWFilterBeaconCell.h"
+#import "MKFilterBeaconCell.h"
 
-#import "MKGWFilterNormalTextFieldCell.h"
+#import "MKFilterNormalTextFieldCell.h"
 
 #import "MKGWFilterByBeaconModel.h"
 
 @interface MKGWFilterByBeaconController ()<UITableViewDelegate,
 UITableViewDataSource,
 mk_textSwitchCellDelegate,
-MKGWFilterNormalTextFieldCellDelegate,
-MKGWFilterBeaconCellDelegate>
+MKFilterNormalTextFieldCellDelegate,
+MKFilterBeaconCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -105,12 +105,12 @@ MKGWFilterBeaconCellDelegate>
         return cell;
     }
     if (indexPath.section == 1) {
-        MKGWFilterNormalTextFieldCell *cell = [MKGWFilterNormalTextFieldCell initCellWithTableView:tableView];
+        MKFilterNormalTextFieldCell *cell = [MKFilterNormalTextFieldCell initCellWithTableView:tableView];
         cell.dataModel = self.section1List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
-    MKGWFilterBeaconCell *cell = [MKGWFilterBeaconCell initCellWithTableView:tableView];
+    MKFilterBeaconCell *cell = [MKFilterBeaconCell initCellWithTableView:tableView];
     cell.dataModel = self.section2List[indexPath.row];
     cell.delegate = self;
     return cell;
@@ -130,20 +130,20 @@ MKGWFilterBeaconCellDelegate>
     }
 }
 
-#pragma mark - MKGWFilterNormalTextFieldCellDelegate
-- (void)mk_gw_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index {
+#pragma mark - MKFilterNormalTextFieldCellDelegate
+- (void)mk_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index {
     if (index == 0) {
         //iBeacon UUID
         self.dataModel.uuid = text;
-        MKGWFilterNormalTextFieldCellModel *cellModel = self.section1List[0];
+        MKFilterNormalTextFieldCellModel *cellModel = self.section1List[0];
         cellModel.textFieldValue = text;
         return;
     }
 }
 
-#pragma mark - MKGWFilterBeaconCellDelegate
-- (void)mk_gw_beaconMinValueChanged:(NSString *)value index:(NSInteger)index {
-    MKGWFilterBeaconCellModel *cellModel = self.section2List[index];
+#pragma mark - MKFilterBeaconCellDelegate
+- (void)mk_beaconMinValueChanged:(NSString *)value index:(NSInteger)index {
+    MKFilterBeaconCellModel *cellModel = self.section2List[index];
     cellModel.minValue = value;
     if (index == 0) {
         //Major
@@ -157,8 +157,8 @@ MKGWFilterBeaconCellDelegate>
     }
 }
 
-- (void)mk_gw_beaconMaxValueChanged:(NSString *)value index:(NSInteger)index {
-    MKGWFilterBeaconCellModel *cellModel = self.section2List[index];
+- (void)mk_beaconMaxValueChanged:(NSString *)value index:(NSInteger)index {
+    MKFilterBeaconCellModel *cellModel = self.section2List[index];
     cellModel.maxValue = value;
     if (index == 0) {
         //Major
@@ -225,7 +225,7 @@ MKGWFilterBeaconCellDelegate>
 }
 
 - (void)loadSection1Datas {
-    MKGWFilterNormalTextFieldCellModel *cellModel = [[MKGWFilterNormalTextFieldCellModel alloc] init];
+    MKFilterNormalTextFieldCellModel *cellModel = [[MKFilterNormalTextFieldCellModel alloc] init];
     cellModel.index = 0;
     if (self.pageType == mk_gw_filterByBeaconPageType_beacon) {
         cellModel.msg = @"iBeacon UUID";
@@ -242,13 +242,13 @@ MKGWFilterBeaconCellDelegate>
 }
 
 - (void)loadSection2Datas {
-    MKGWFilterBeaconCellModel *cellModel1 = [[MKGWFilterBeaconCellModel alloc] init];
+    MKFilterBeaconCellModel *cellModel1 = [[MKFilterBeaconCellModel alloc] init];
     cellModel1.index = 0;
     cellModel1.minValue = self.dataModel.minMajor;
     cellModel1.maxValue = self.dataModel.maxMajor;
     [self.section2List addObject:cellModel1];
     
-    MKGWFilterBeaconCellModel *cellModel2 = [[MKGWFilterBeaconCellModel alloc] init];
+    MKFilterBeaconCellModel *cellModel2 = [[MKFilterBeaconCellModel alloc] init];
     cellModel2.index = 1;
     cellModel2.minValue = self.dataModel.minMinor;
     cellModel2.maxValue = self.dataModel.maxMinor;

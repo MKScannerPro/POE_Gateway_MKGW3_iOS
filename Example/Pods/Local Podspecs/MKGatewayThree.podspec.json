@@ -124,27 +124,6 @@
               "source_files": "MKGatewayThree/Classes/Expand/View/AlertView/**"
             },
             {
-              "name": "FilterCell",
-              "subspecs": [
-                {
-                  "name": "FilterBeaconCell",
-                  "source_files": "MKGatewayThree/Classes/Expand/View/FilterCell/FilterBeaconCell/**"
-                },
-                {
-                  "name": "FilterByRawDataCell",
-                  "source_files": "MKGatewayThree/Classes/Expand/View/FilterCell/FilterByRawDataCell/**"
-                },
-                {
-                  "name": "FilterEditSectionHeaderView",
-                  "source_files": "MKGatewayThree/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**"
-                },
-                {
-                  "name": "FilterNormalTextFieldCell",
-                  "source_files": "MKGatewayThree/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**"
-                }
-              ]
-            },
-            {
               "name": "UserCredentialsView",
               "source_files": "MKGatewayThree/Classes/Expand/View/UserCredentialsView/**"
             }

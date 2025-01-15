@@ -103,26 +103,6 @@ TODO: Add long description of the pod here.
         ssss.source_files = 'MKGatewayThree/Classes/Expand/View/AlertView/**'
       end
       
-      sss.subspec 'FilterCell' do |ssss|
-        
-        ssss.subspec 'FilterBeaconCell' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Expand/View/FilterCell/FilterBeaconCell/**'
-        end
-        
-        ssss.subspec 'FilterByRawDataCell' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Expand/View/FilterCell/FilterByRawDataCell/**'
-        end
-        
-        ssss.subspec 'FilterEditSectionHeaderView' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**'
-        end
-        
-        ssss.subspec 'FilterNormalTextFieldCell' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**'
-        end
-      
-      end
-      
       sss.subspec 'UserCredentialsView' do |ssss|
         
         ssss.source_files = 'MKGatewayThree/Classes/Expand/View/UserCredentialsView/**'
