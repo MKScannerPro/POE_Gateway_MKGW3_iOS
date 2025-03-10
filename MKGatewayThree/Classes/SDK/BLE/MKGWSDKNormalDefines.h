@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, mk_gw_centralManagerStatus) {
 typedef NS_ENUM(NSInteger, mk_gw_networkType) {
     mk_gw_networkType_ethernet,
     mk_gw_networkType_wifi,
+    mk_gw_networkType_ethAndWifi,
+    mk_gw_networkType_wifiAndEth
 };
 
 typedef NS_ENUM(NSInteger, mk_gw_wifiSecurity) {
@@ -67,5 +69,11 @@ typedef NS_ENUM(NSInteger, mk_gw_filterRelationship) {
 
 /// Stops scanning equipment.
 - (void)mk_gw_stopScan;
+
+@end
+
+@protocol mk_gw_centralManagerScanWifiDelegate <NSObject>
+
+- (void)mk_gw_receiveWifi:(NSString *)content;
 
 @end

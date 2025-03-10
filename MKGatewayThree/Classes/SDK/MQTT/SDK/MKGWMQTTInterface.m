@@ -1326,6 +1326,76 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_configFilterByTofList:(NSArray <NSString *>*)codeList
+                            isOn:(BOOL)isOn
+                      macAddress:(NSString *)macAddress
+                           topic:(NSString *)topic
+                        sucBlock:(void (^)(id returnData))sucBlock
+                     failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (codeList.count > 10 || !codeList || ![codeList isKindOfClass:NSArray.class]) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    for (NSString * code in codeList) {
+        if (code.length != 4 || ![code regularExpressions:isHexadecimal]) {
+            [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+            return;
+        }
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1062),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"switch_value":(isOn ? @(1) : @(0)),
+            @"mfg_code":codeList,
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigFilterByTofOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configUploadDataInterval:(NSInteger)interval
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (interval < 0 || interval > 86400) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1063),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"interval":@(interval),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigUploadDataIntervalOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)gw_connectBXPButtonWithPassword:(NSString *)password
                                  bleMac:(NSString *)bleMacAddress
                              macAddress:(NSString *)macAddress
@@ -2274,6 +2344,54 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_readFilterByTofWithMacAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2062),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadFilterByTofOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readUploadDataIntervalWithMacAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2063),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadUploadDataIntervalOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-B-D  ************************
+
 + (void)gw_readBXPButtonConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
                                                   macAddress:(NSString *)macAddress
                                                        topic:(NSString *)topic
@@ -2616,6 +2734,3300 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_configV2AdvertiseBeaconParams:(id <gw_advertiseBeaconV2Protocol>)protocol
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (![self isConfirmAdvBeaconV2Protocol:protocol]) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1061),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"switch_value":(protocol.advertise ? @(1) : @(0)),
+            @"major":@(protocol.major),
+            @"minor":@(protocol.minor),
+            @"uuid":SafeStr(protocol.uuid),
+            @"adv_interval":@(protocol.advInterval),
+            @"tx_power":@(protocol.txPower),
+            @"rssi_1m":@(protocol.rssi1M),
+            @"connectable":(protocol.connectable ? @(1) : @(0))
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigAdvertiseBeaconParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_clearTriggerEventCount:(mk_gw_triggerEventType)eventType
+                           bleMac:(NSString *)bleMacAddress
+                       macAddress:(NSString *)macAddress
+                            topic:(NSString *)topic
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock {
+    
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1113),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"type":@(eventType),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskClearTriggerEventCountOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                blinkingTime:(NSInteger)blinkingTime
+                            blinkingInterval:(NSInteger)blinkingInterval
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (blinkingTime < 1 || blinkingTime > 6000 || blinkingInterval < 0 || blinkingInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1109),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"flash_time":@(blinkingTime),
+            @"flash_interval":@(blinkingInterval)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnLedRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnBuzzerRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                       ringTime:(NSInteger)ringTime
+                                   ringInterval:(NSInteger)ringInterval
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (ringTime < 1 || ringTime > 6000 || ringInterval < 0 || ringInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1111),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"ring_time":@(ringTime),
+            @"ring_interval":@(ringInterval)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnBuzzerRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                  notify:(BOOL)notify
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1115),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnRemotePowerOffWithBleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1118),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnRemotePowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnReadAdvParamsWithBleMac:(NSString *)bleMacAddress
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1120),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnReadAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnConfigAdvParamsWithParams:(NSDictionary *)params
+                                    bleMac:(NSString *)bleMacAddress
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSMutableDictionary *advParam = [NSMutableDictionary dictionary];
+    [advParam setObject:bleMacAddress forKey:@"mac"];
+    [advParam setObject:params[@"channel"] forKey:@"channel"];
+    if ([params[@"channelType"] integerValue] == 0) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"normal_adv"];
+    }else if ([params[@"channelType"] integerValue] == 1) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"trigger_after_adv"];
+    }else if ([params[@"channelType"] integerValue] == 2) {
+        NSDictionary * tempDic1 = @{
+            @"adv_interval":params[@"afterAdvInterval"],
+            @"tx_power":params[@"afterTxPower"],
+        };
+        [advParam setObject:tempDic1 forKey:@"trigger_after_adv"];
+        NSDictionary * tempDic2 = @{
+            @"adv_interval":params[@"beforeAdvInterval"],
+            @"tx_power":params[@"beforeTxPower"],
+        };
+        [advParam setObject:tempDic2 forKey:@"trigger_before_adv"];
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1122),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":advParam
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnConfigAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-B-CR  ************************
+
++ (void)gw_connectBXPButtonCRWithPassword:(NSString *)password
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1150),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectBXPButtonCRWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPButtonCRConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                                    macAddress:(NSString *)macAddress
+                                                         topic:(NSString *)topic
+                                                      sucBlock:(void (^)(id returnData))sucBlock
+                                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1152),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPButtonCRConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPButtonCRConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                                macAddress:(NSString *)macAddress
+                                                     topic:(NSString *)topic
+                                                  sucBlock:(void (^)(id returnData))sucBlock
+                                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1154),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPButtonCRStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_dismissBXPButtonCRAlarmStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                               macAddress:(NSString *)macAddress
+                                                    topic:(NSString *)topic
+                                                 sucBlock:(void (^)(id returnData))sucBlock
+                                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1156),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskDismissBXPBCRAlarmStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                  blinkingTime:(NSInteger)blinkingTime
+                              blinkingInterval:(NSInteger)blinkingInterval
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (blinkingTime < 1 || blinkingTime > 6000 || blinkingInterval < 0 || blinkingInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1158),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"flash_time":@(blinkingTime),
+            @"flash_interval":@(blinkingInterval)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRLedRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRBuzzerRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                         ringTime:(NSInteger)ringTime
+                                     ringInterval:(NSInteger)ringInterval
+                                       macAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (ringTime < 1 || ringTime > 6000 || ringInterval < 0 || ringInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1160),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"ring_time":@(ringTime),
+            @"ring_interval":@(ringInterval)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRBuzzerRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1164),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRRemotePowerOffWithBleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1167),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRRemotePowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRVibratingRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                       vibratingTime:(NSInteger)vibratingTime
+                                   vibratingInterval:(NSInteger)vibratingInterval
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (vibratingTime < 1 || vibratingTime > 6000 || vibratingInterval < 0 || vibratingInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1169),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"shake_time":@(vibratingTime),
+            @"shake_interval":@(vibratingInterval)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRVibratingRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRReadAdvParamsWithBleMac:(NSString *)bleMacAddress
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1174),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRReadAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBtnCRConfigAdvParamsWithParams:(NSDictionary *)params
+                                      bleMac:(NSString *)bleMacAddress
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSMutableDictionary *advParam = [NSMutableDictionary dictionary];
+    [advParam setObject:bleMacAddress forKey:@"mac"];
+    [advParam setObject:params[@"channel"] forKey:@"channel"];
+    if ([params[@"channelType"] integerValue] == 0) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"normal_adv"];
+    }else if ([params[@"channelType"] integerValue] == 1) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"trigger_after_adv"];
+    }else if ([params[@"channelType"] integerValue] == 2) {
+        NSDictionary * tempDic1 = @{
+            @"adv_interval":params[@"afterAdvInterval"],
+            @"tx_power":params[@"afterTxPower"],
+        };
+        [advParam setObject:tempDic1 forKey:@"trigger_after_adv"];
+        NSDictionary * tempDic2 = @{
+            @"adv_interval":params[@"beforeAdvInterval"],
+            @"tx_power":params[@"beforeTxPower"],
+        };
+        [advParam setObject:tempDic2 forKey:@"trigger_before_adv"];
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1176),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":advParam
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpBtnCRConfigAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-C  ************************
+
++ (void)gw_connectBXPCWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1350),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectBXPCWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPCConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1352),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPCConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPCConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1354),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPCStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPCNotifyRealTimeHTDataWithBleMac:(NSString *)bleMacAddress
+                                          notify:(BOOL)notify
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1356),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyBXPCNotifyRealTimeHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPCNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1359),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPCNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPCNotifyHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                            notify:(BOOL)notify
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1362),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyBXPCNotifyHistoricalHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPCDeleteHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1365),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskDeleteBXPCHistoricalHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPCPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1367),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpCPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPCTHDataSampleRateWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1369),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPCTHDataSampleRateOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPCSampleRate:(NSInteger)sampleRate
+                         bleMac:(NSString *)bleMacAddress
+                     macAddress:(NSString *)macAddress
+                          topic:(NSString *)topic
+                       sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (sampleRate < 1 || sampleRate > 65535) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1371),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"sampling_rate":@(sampleRate),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPCSampleRateOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPCAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1373),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPCAdvParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPCAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (channel < 0 || channel > 5 || interval < 1 || interval > 100 || txPower < 0 || txPower > 8) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSInteger tempTx = -40;
+    if (txPower == 1) {
+        tempTx = -20;
+    }else if (txPower == 2) {
+        tempTx = -16;
+    }else if (txPower == 3) {
+        tempTx = -12;
+    }else if (txPower == 4) {
+        tempTx = -8;
+    }else if (txPower == 5) {
+        tempTx = -4;
+    }else if (txPower == 6) {
+        tempTx = 0;
+    }else if (txPower == 7) {
+        tempTx = 3;
+    }else if (txPower == 8) {
+        tempTx = 4;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1375),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"channel":@(channel),
+            @"adv_interval":@(interval * 100),
+            @"tx_power":@(tempTx)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPCAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-D  ************************
+
++ (void)gw_connectBXPDWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1400),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectBXPDWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPDConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1402),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPDConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPDConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1404),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPDStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPDAccParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1406),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPDAccParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPDAccParamsWithScale:(mk_gw_threeAxisDataAG)scale
+                             sampleRate:(mk_gw_threeAxisDataRate)sampleRate
+                            sensitivity:(NSInteger)sensitivity
+                                 bleMac:(NSString *)bleMacAddress
+                             macAddress:(NSString *)macAddress
+                                  topic:(NSString *)topic
+                               sucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (scale == mk_gw_threeAxisDataAG0 && (sensitivity < 1 || sensitivity > 20)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG1 && (sensitivity < 1 || sensitivity > 40)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG2 && (sensitivity < 1 || sensitivity > 80)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG3 && (sensitivity < 1 || sensitivity > 160)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1408),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"full_scale":@(scale),
+            @"sensitivity":@(sensitivity),
+            @"sampling_rate":@(sampleRate)
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPDAccParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPDNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1414),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPDNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPDPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1417),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpDPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPDAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1419),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPDAdvParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPDAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (channel < 0 || channel > 5 || interval < 1 || interval > 100 || txPower < 0 || txPower > 8) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSInteger tempTx = -40;
+    if (txPower == 1) {
+        tempTx = -20;
+    }else if (txPower == 2) {
+        tempTx = -16;
+    }else if (txPower == 3) {
+        tempTx = -12;
+    }else if (txPower == 4) {
+        tempTx = -8;
+    }else if (txPower == 5) {
+        tempTx = -4;
+    }else if (txPower == 6) {
+        tempTx = 0;
+    }else if (txPower == 7) {
+        tempTx = 3;
+    }else if (txPower == 8) {
+        tempTx = 4;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1421),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"channel":@(channel),
+            @"adv_interval":@(interval * 100),
+            @"tx_power":@(tempTx)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPDAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-T  ************************
+
++ (void)gw_connectBXPTWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1450),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectBXPTWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPTConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1452),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPTConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPTConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1454),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPTStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPTAccParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1456),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPTAccParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPTAccParamsWithScale:(mk_gw_threeAxisDataAG)scale
+                             sampleRate:(mk_gw_threeAxisDataRate)sampleRate
+                            sensitivity:(NSInteger)sensitivity
+                                 bleMac:(NSString *)bleMacAddress
+                             macAddress:(NSString *)macAddress
+                                  topic:(NSString *)topic
+                               sucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (scale == mk_gw_threeAxisDataAG0 && (sensitivity < 1 || sensitivity > 20)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG1 && (sensitivity < 1 || sensitivity > 40)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG2 && (sensitivity < 1 || sensitivity > 80)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }else if (scale == mk_gw_threeAxisDataAG3 && (sensitivity < 1 || sensitivity > 160)) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1458),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"full_scale":@(scale),
+            @"sensitivity":@(sensitivity),
+            @"sampling_rate":@(sampleRate)
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPTAccParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPTMotioEventCountWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1460),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPTMotioEventCountOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_clearBXPTMotioEventCountWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1462),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskClearBXPTMotioEventCountOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPTLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                        color:(mk_gw_bxptLedColor)color
+                                 blinkingTime:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 0 || blinkingInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSString *colorString = @"green";
+    if (color == mk_gw_bxptLedColor_blue) {
+        colorString = @"blue";
+    }else if (color == mk_gw_bxptLedColor_red) {
+        colorString = @"red";
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1464),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"color":colorString,
+            @"flash_time":@(blinkingTime),
+            @"flash_interval":@(blinkingInterval * 100)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPTLedRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPTNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1466),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPTNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPTPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1469),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpTPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPTAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1471),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPTAdvParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPTAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (channel < 0 || channel > 5 || interval < 1 || interval > 100 || txPower < 0 || txPower > 8) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSInteger tempTx = -40;
+    if (txPower == 1) {
+        tempTx = -20;
+    }else if (txPower == 2) {
+        tempTx = -16;
+    }else if (txPower == 3) {
+        tempTx = -12;
+    }else if (txPower == 4) {
+        tempTx = -8;
+    }else if (txPower == 5) {
+        tempTx = -4;
+    }else if (txPower == 6) {
+        tempTx = 0;
+    }else if (txPower == 7) {
+        tempTx = 3;
+    }else if (txPower == 8) {
+        tempTx = 4;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1473),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"channel":@(channel),
+            @"adv_interval":@(interval * 100),
+            @"tx_power":@(tempTx)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPTAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  BXP-S  ************************
+
++ (void)gw_connectBXPSWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1500),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectBXPSWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPSConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1502),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPSConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPSConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1504),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPSStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSNotifyRealTimeHTDataWithBleMac:(NSString *)bleMacAddress
+                                          notify:(BOOL)notify
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1506),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyBXPSNotifyRealTimeHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1509),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPSNotifyAccDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                            notify:(BOOL)notify
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1512),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyBXPSNotifyHistoricalHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSDeleteHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1515),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskDeleteBXPSHistoricalHTDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPSTHDataSampleRateWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1517),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPSTHDataSampleRateOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPSSampleRate:(NSInteger)sampleRate
+                         bleMac:(NSString *)bleMacAddress
+                     macAddress:(NSString *)macAddress
+                          topic:(NSString *)topic
+                       sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (sampleRate < 1 || sampleRate > 65535) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1519),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"sampling_rate":@(sampleRate),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPSSampleRateOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPSHallCountWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1521),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPSHallCountOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_clearBXPSHallCountWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1523),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskClearBXPSHallCountOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                        color:(mk_gw_bxptLedColor)color
+                                 blinkingTime:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 0 || blinkingInterval > 100) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSString *colorString = @"green";
+    if (color == mk_gw_bxptLedColor_blue) {
+        colorString = @"blue";
+    }else if (color == mk_gw_bxptLedColor_red) {
+        colorString = @"red";
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1525),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"color":colorString,
+            @"flash_time":@(blinkingTime * 10),
+            @"flash_interval":@(blinkingInterval * 100)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPSLedRemoteReminderOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpBXPSPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1527),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBxpSPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  MK Pir  ************************
+
++ (void)gw_connectMKPirWithPassword:(NSString *)password
+                             bleMac:(NSString *)bleMacAddress
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1550),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectMKPirWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKPirConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                              macAddress:(NSString *)macAddress
+                                                   topic:(NSString *)topic
+                                                sucBlock:(void (^)(id returnData))sucBlock
+                                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1552),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKPirConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKPirConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1554),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKPirStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_notifyMKPirSensorDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1556),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyMKPirSensorDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKPirSensorSensitivityWithBleMac:(NSString *)bleMacAddress
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1559),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKPirSensorSensitivityOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKPirSensorSensitivityWithBleMac:(NSString *)bleMacAddress
+                                      sensitivity:(mk_gw_pirSensorParamType)sensitivity
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1561),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"sensitivity":@(sensitivity)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKPirSensorSensitivityOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKPirSensorDelayWithBleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1563),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKPirSensorDelayOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKPirSensorDelayWithBleMac:(NSString *)bleMacAddress
+                                      delay:(mk_gw_pirSensorParamType)delay
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1565),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"delay_status":@(delay)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKPirSensorDelayOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpMKPirPowerOffWithBleMac:(NSString *)bleMacAddress
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1567),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskMKPirPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKPirAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1569),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKPirAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKPirAdvParamsWithInterval:(NSInteger)interval
+                                    txPower:(NSInteger)txPower
+                                     bleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (interval < 1 || interval > 100 || txPower < 0 || txPower > 7) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSInteger tempTx = -40;
+    if (txPower == 1) {
+        tempTx = -20;
+    }else if (txPower == 2) {
+        tempTx = -16;
+    }else if (txPower == 3) {
+        tempTx = -12;
+    }else if (txPower == 4) {
+        tempTx = -8;
+    }else if (txPower == 5) {
+        tempTx = -4;
+    }else if (txPower == 6) {
+        tempTx = 0;
+    }else if (txPower == 7) {
+        tempTx = 4;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1571),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"adv_interval":@(interval),
+            @"tx_power":@(tempTx)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKPirAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  MK Tof  ************************
+
++ (void)gw_connectMKTofWithPassword:(NSString *)password
+                             bleMac:(NSString *)bleMacAddress
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (password.length > 16) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1600),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"passwd":SafeStr(password),
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConnectMKTofWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKTofConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                              macAddress:(NSString *)macAddress
+                                                   topic:(NSString *)topic
+                                                sucBlock:(void (^)(id returnData))sucBlock
+                                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1602),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKTofConnectedDeviceInfoOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKTofConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1604),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKTofStatusOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpMKTofNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1606),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyMKTofAccDataOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpMKTofPowerOffWithBleMac:(NSString *)bleMacAddress
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1609),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskMKTofPowerOffOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKTofAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1611),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKTofAdvParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKTofAdvParamsWithInterval:(NSInteger)interval
+                                    txPower:(NSInteger)txPower
+                                     bleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (interval < 1 || interval > 86400 || txPower < 0 || txPower > 8) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    NSInteger tempTx = -40;
+    if (txPower == 1) {
+        tempTx = -20;
+    }else if (txPower == 2) {
+        tempTx = -16;
+    }else if (txPower == 3) {
+        tempTx = -12;
+    }else if (txPower == 4) {
+        tempTx = -8;
+    }else if (txPower == 5) {
+        tempTx = -4;
+    }else if (txPower == 6) {
+        tempTx = 0;
+    }else if (txPower == 7) {
+        tempTx = 3;
+    }else if (txPower == 8) {
+        tempTx = 4;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1613),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"adv_interval":@(interval),
+            @"tx_power":@(tempTx)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKTofAdvParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKTofSensorParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                       macAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1615),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKTofSensorParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKTofSensorParamsWithInterval:(NSInteger)sampleInterval
+                                   sampleCount:(NSInteger)sampleCount
+                                    sampleTime:(NSInteger)sampleTime
+                                        bleMac:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (sampleInterval < 1 || sampleInterval > 86400 || sampleCount < 2 || sampleCount > 255 || sampleTime < 8 || sampleTime > 140 || ((sampleCount + 1) * sampleTime * 0.001) > sampleInterval) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    
+    NSDictionary *data = @{
+        @"msg_id":@(1617),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"interval":@(sampleInterval),
+            @"count":@(sampleCount),
+            @"time":@(sampleTime)
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKTofSensorParamsOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readMKTofRangingModeWithBleMacAddress:(NSString *)bleMacAddress
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1619),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadMKTofRangingModeOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configMKTofRangingMode:(mk_gw_tofRangingMode)mode
+                           bleMac:(NSString *)bleMacAddress
+                       macAddress:(NSString *)macAddress
+                            topic:(NSString *)topic
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1621),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"mode":@(mode + 1)
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigMKTofRangingModeOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_bxpMKTofNotifySensorDataWithBleMac:(NSString *)bleMacAddress
+                                       notify:(BOOL)notify
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1623),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"switch_value":(notify ? @(1) : @(0))
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskNotifyMKTofSensorDataOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
+#pragma mark *********************  Normal Ble  ************************
++ (void)gw_readBleCommunicateTimeoutWithMacAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2209),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBleCommunicateTimeoutOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBleCommunicateTimeout:(NSInteger)timeout
+                            macAddress:(NSString *)macAddress
+                                 topic:(NSString *)topic
+                              sucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (timeout < 0 || timeout > 60) {
+        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1209),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+                @"timeout":@(timeout),
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBleCommunicateTimeoutOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 #pragma mark - private method
 + (NSString *)checkMacAddress:(NSString *)macAddress
                       topic:(NSString *)topic {
@@ -2840,6 +6252,27 @@
             return NO;
         }
         if (protocol.advInterval < 1 || protocol.advInterval > 100 || protocol.txPower < 0 || protocol.txPower > 15) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
++ (BOOL)isConfirmAdvBeaconV2Protocol:(id <gw_advertiseBeaconV2Protocol>)protocol {
+    if (![protocol conformsToProtocol:@protocol(gw_advertiseBeaconV2Protocol)]) {
+        return NO;
+    }
+    if (protocol.advertise) {
+        if (protocol.major < 0 || protocol.major > 65535 || protocol.minor < 0 || protocol.minor > 65535) {
+            return NO;
+        }
+        if (!ValidStr(protocol.uuid) || protocol.uuid.length != 32 || ![protocol.uuid regularExpressions:isHexadecimal]) {
+            return NO;
+        }
+        if (protocol.advInterval < 1 || protocol.advInterval > 100 || protocol.txPower < 0 || protocol.txPower > 15) {
+            return NO;
+        }
+        if (protocol.rssi1M < -100 || protocol.rssi1M > 0) {
             return NO;
         }
     }

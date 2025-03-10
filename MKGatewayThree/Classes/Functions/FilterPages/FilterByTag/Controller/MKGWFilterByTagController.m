@@ -23,6 +23,8 @@
 #import "MKCustomUIAdopter.h"
 #import "MKTableSectionLineHeader.h"
 
+#import "MKGWDeviceModeManager.h"
+
 #import "MKFilterEditSectionHeaderView.h"
 
 #import "MKGWFilterByTagModel.h"
@@ -248,7 +250,7 @@ MKFilterEditSectionHeaderViewDelegate>
 - (void)loadSection0Datas {
     MKTextSwitchCellModel *cellModel = [[MKTextSwitchCellModel alloc] init];
     cellModel.index = 0;
-    cellModel.msg = @"BXP-Tag";
+    cellModel.msg = ([MKGWDeviceModeManager shared].isV2 ? @"BXP- Tag/Sensor" : @"BXP-Tag");
     cellModel.isOn = self.dataModel.isOn;
     [self.section0List addObject:cellModel];
 }
@@ -284,7 +286,8 @@ MKFilterEditSectionHeaderViewDelegate>
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = @"BXP-Tag";
+    self.defaultTitle =
+    ([MKGWDeviceModeManager shared].isV2 ? @"BXP- Tag/Sensor" : @"BXP-Tag");
     [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWFilterByTagController", @"gw_saveIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

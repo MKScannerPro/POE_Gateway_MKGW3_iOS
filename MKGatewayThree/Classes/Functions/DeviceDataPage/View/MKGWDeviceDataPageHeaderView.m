@@ -180,7 +180,7 @@
     [self.scannerButton setImage:image forState:UIControlStateNormal];
     self.manageBleButton.hidden = !_dataModel.isOn;
     self.totalLabel.hidden = !_dataModel.isOn;
-    self.filterTestButton.hidden = NO;
+    self.filterTestButton.hidden = YES;
 }
 
 #pragma mark - public method

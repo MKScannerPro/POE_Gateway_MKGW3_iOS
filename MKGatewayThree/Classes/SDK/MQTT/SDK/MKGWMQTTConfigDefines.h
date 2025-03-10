@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, mk_gw_duplicateDataFilter) {
 typedef NS_ENUM(NSInteger, mk_gw_mqtt_networkType) {
     mk_gw_mqtt_networkType_ethernet,
     mk_gw_mqtt_networkType_wifi,
+    mk_gw_mqtt_networkType_ethernetAndWifi,     //Only for V2
+    mk_gw_mqtt_networkType_wifiAndEthernet,     //Only for V2
 };
 
 
@@ -52,6 +54,43 @@ typedef NS_ENUM(NSInteger, mk_gw_PHYMode) {
     mk_gw_PHYMode_CodedBLE5,                //Coded PHY(BLE 5)
 };
 
+typedef NS_ENUM(NSInteger, mk_gw_triggerEventType) {
+    mk_gw_triggerEventType_singlePress,
+    mk_gw_triggerEventType_DoublePress,
+    mk_gw_triggerEventType_longPress,
+};
+
+typedef NS_ENUM(NSInteger, mk_gw_threeAxisDataRate) {
+    mk_gw_threeAxisDataRate1hz,           //1hz
+    mk_gw_threeAxisDataRate10hz,          //10hz
+    mk_gw_threeAxisDataRate25hz,          //25hz
+    mk_gw_threeAxisDataRate50hz,          //50hz
+    mk_gw_threeAxisDataRate100hz          //100hz
+};
+
+typedef NS_ENUM(NSInteger, mk_gw_threeAxisDataAG) {
+    mk_gw_threeAxisDataAG0,               //±2g
+    mk_gw_threeAxisDataAG1,               //±4g
+    mk_gw_threeAxisDataAG2,               //±8g
+    mk_gw_threeAxisDataAG3                //±16g
+};
+
+typedef NS_ENUM(NSInteger, mk_gw_bxptLedColor) {
+    mk_gw_bxptLedColor_green,
+    mk_gw_bxptLedColor_blue,
+    mk_gw_bxptLedColor_red
+};
+
+typedef NS_ENUM(NSInteger, mk_gw_pirSensorParamType) {
+    mk_gw_pirSensorParamTypeLow,
+    mk_gw_pirSensorParamTypeMedium,
+    mk_gw_pirSensorParamTypeHigh,
+};
+
+typedef NS_ENUM(NSInteger, mk_gw_tofRangingMode) {
+    mk_gw_tofRangingModeShortdistance,
+    mk_gw_tofRangingModeLongdistance,
+};
 
 @protocol gw_indicatorLightStatusProtocol <NSObject>
 
@@ -291,5 +330,14 @@ typedef NS_ENUM(NSInteger, mk_gw_PHYMode) {
  15：21dbm
  */
 @property (nonatomic, assign)NSInteger txPower;
+
+@end
+
+
+@protocol gw_advertiseBeaconV2Protocol <gw_advertiseBeaconProtocol>
+
+@property (nonatomic, assign)NSInteger rssi1M;
+
+@property (nonatomic, assign)BOOL connectable;
 
 @end

@@ -34,6 +34,7 @@
 #import "MKGWMqttWifiSettingsController.h"
 #import "MKGWMqttServerController.h"
 #import "MKGWMqttNetworkSettingsController.h"
+#import "MKGWMqttNetworkSettingsV2Controller.h"
 
 @interface MKGWMqttParamsListController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -80,6 +81,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         //Network Settings
+        if ([MKGWDeviceModeManager shared].isV2) {
+            MKGWMqttNetworkSettingsV2Controller *vc = [[MKGWMqttNetworkSettingsV2Controller alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
         MKGWMqttWifiSettingsController *vc = [[MKGWMqttWifiSettingsController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -87,12 +93,6 @@
     if (indexPath.section == 0 && indexPath.row == 1) {
         //MQTT Settings
         MKGWMqttServerController *vc = [[MKGWMqttServerController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
-    if (indexPath.section == 0 && indexPath.row == 2) {
-        //Network Settings
-        MKGWMqttNetworkSettingsController *vc = [[MKGWMqttNetworkSettingsController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskReadDeviceWifiSTAMacAddressOperation, //读取WIFI STA MAC地址
     mk_gw_taskReadNTPServerHostOperation,       //读取NTP服务器域名
     mk_gw_taskReadTimeZoneOperation,            //读取时区
+    mk_gw_taskReadWifiFirmwareOperation,        //读取wifi固件版本
+    mk_gw_taskReadBLEFirmwareOperation,         //读取BLE固件版本
     
 #pragma mark - Wifi Params
     mk_gw_taskReadWIFISecurityOperation,        //读取设备当前wifi的加密模式
@@ -56,6 +58,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskReadFilterRelationshipOperation,          //读取扫描过滤逻辑
     mk_gw_taskReadFilterMACAddressListOperation,        //读取MAC过滤列表
     mk_gw_taskReadFilterAdvNameListOperation,           //读取ADV Name过滤列表
+    mk_gw_taskReadFilterReportIntervalOperation,        //读取数据上报间隔
     
 #pragma mark - iBeacon Params
     mk_gw_taskReadAdvertiseBeaconStatusOperation,       //读取iBeacon开关
@@ -64,6 +67,9 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskReadBeaconUUIDOperation,                  //读取iBeacon UUID
     mk_gw_taskReadBeaconAdvIntervalOperation,           //读取Adv interval
     mk_gw_taskReadBeaconTxPowerOperation,               //读取Tx Power
+    mk_gw_taskReadBeaconRssiOperation,                      //读取RSSI@1m
+    mk_gw_taskReadConnectableOperation,                 //读取可连接状态
+    mk_gw_taskReadDeviceModeOperation,                  //读取设备模式
     
     
 #pragma mark - 密码特征
@@ -92,6 +98,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskConfigNetworkTypeOperation,                   //配置网络接口类型
     mk_gw_taskConfigEthernetDHCPStatusOperation,            //配置Ethernet DHCP开关
     mk_gw_taskConfigEthernetIpInfoOperation,                //配置Ethernet IP地址相关信息
+    mk_gw_taskStartWifiScanOperation,                       //进行一次wifi扫描
     
 #pragma mark - MQTT Params
     mk_gw_taskConfigServerHostOperation,        //配置MQTT服务器域名
@@ -119,7 +126,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskConfigFilterRelationshipOperation,                //配置扫描过滤逻辑
     mk_gw_taskConfigFilterMACAddressListOperation,           //配置MAC过滤规则
     mk_gw_taskConfigFilterAdvNameListOperation,             //配置Adv Name过滤规则
-    
+    mk_gw_taskConfigFilterReportIntervalOperation,          //配置数据上报间隔
     
 #pragma mark - 蓝牙广播参数
     mk_gw_taskConfigAdvertiseBeaconStatusOperation,         //配置iBeacon开关
@@ -128,6 +135,7 @@ typedef NS_ENUM(NSInteger, mk_gw_taskOperationID) {
     mk_gw_taskConfigBeaconUUIDOperation,                    //配置iBeacon UUID
     mk_gw_taskConfigAdvIntervalOperation,                   //配置广播频率
     mk_gw_taskConfigTxPowerOperation,                       //配置Tx Power
-    
+    mk_gw_taskConfigBeaconRssiOperation,                    //配置Beacon Rssi@1m
+    mk_gw_taskConfigConnectableOperation,                   //配置可连接状态
 };
 

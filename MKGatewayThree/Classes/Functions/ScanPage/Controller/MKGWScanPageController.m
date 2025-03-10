@@ -26,6 +26,7 @@
 #import "MKGWBLESDK.h"
 
 #import "MKGWDeviceParamsListController.h"
+#import "MKGWDeviceParamsListV2Controller.h"
 
 #import "MKGWScanPageCell.h"
 
@@ -255,8 +256,7 @@ mk_gw_centralManagerScanDelegate>
     [[MKGWCentralManager shared] connectPeripheral:deviecModel.peripheral password:password sucBlock:^(CBPeripheral * _Nonnull peripheral) {
         [[NSUserDefaults standardUserDefaults] setObject:password forKey:localPasswordKey];
         [[MKHudManager share] hide];
-        self.rightButton.selected = NO;
-        [self pushMQTTForDevicePage:deviecModel.deviceType];
+        [self readDeviceMode:deviecModel.deviceType];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKGWCentralManager shared] disconnect];
         [[MKHudManager share] hide];
@@ -265,10 +265,35 @@ mk_gw_centralManagerScanDelegate>
     }];
 }
 
-- (void)pushMQTTForDevicePage:(NSString *)deviceType {
-    MKGWDeviceParamsListController *vc = [[MKGWDeviceParamsListController alloc] init];
-    vc.deviceType = deviceType;
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)readDeviceMode:(NSString *)deviceType {
+    [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
+    [MKGWInterface gw_readDeviceModeWithSucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        self.rightButton.selected = NO;
+        [self pushMQTTForDevicePage:deviceType originMode:([returnData[@"result"][@"mode"] integerValue] == 0)];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKGWCentralManager shared] disconnect];
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        [self connectFailed];
+    }];
+}
+
+- (void)pushMQTTForDevicePage:(NSString *)deviceType originMode:(BOOL)originMode {
+    if ([deviceType isEqualToString:@"00"]) {
+        //V1
+        MKGWDeviceParamsListController *vc = [[MKGWDeviceParamsListController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if ([deviceType isEqualToString:@"01"]) {
+        //V2
+        MKGWDeviceParamsListV2Controller *vc = [[MKGWDeviceParamsListV2Controller alloc] init];
+        vc.originMode = originMode;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    [self.view showCentralToast:@"Device Type Error"];
 }
 
 - (void)connectFailed {

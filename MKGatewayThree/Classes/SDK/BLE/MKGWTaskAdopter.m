@@ -157,6 +157,16 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
             @"timeZone":[MKBLEBaseSDKAdopter signedHexTurnString:content],
         };
         operationID = mk_gw_taskReadTimeZoneOperation;
+    }else if ([cmd isEqualToString:@"13"]) {
+        //读取wifi固件版本
+        NSString *firmware = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, data.length - 4)] encoding:NSUTF8StringEncoding];
+        resultDic = @{@"firmware":firmware};
+        operationID = mk_gw_taskReadWifiFirmwareOperation;
+    }else if ([cmd isEqualToString:@"15"]) {
+        //读取BLE固件版本
+        NSString *firmware = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, data.length - 4)] encoding:NSUTF8StringEncoding];
+        resultDic = @{@"firmware":firmware};
+        operationID = mk_gw_taskReadBLEFirmwareOperation;
     }else if ([cmd isEqualToString:@"20"]) {
         //读取MQTT服务器域名
         NSString *host = @"";
@@ -394,6 +404,11 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
             @"macList":(MKValidArray(macList) ? macList : @[]),
         };
         operationID = mk_gw_taskReadFilterMACAddressListOperation;
+    }else if ([cmd isEqualToString:@"68"]) {
+        //读取数据上报间隔
+        NSString *interval = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
+        resultDic = @{@"interval":interval};
+        operationID = mk_gw_taskReadFilterReportIntervalOperation;
     }else if ([cmd isEqualToString:@"70"]) {
         //读取iBeacon开关
         BOOL isOn = ([content isEqualToString:@"01"]);
@@ -423,6 +438,22 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
         NSString *txPower = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
         resultDic = @{@"txPower":txPower};
         operationID = mk_gw_taskReadBeaconTxPowerOperation;
+    }else if ([cmd isEqualToString:@"76"]) {
+        //读取RSSI@1m
+        resultDic = @{
+            @"rssi":[NSString stringWithFormat:@"%@",[MKBLEBaseSDKAdopter signedHexTurnString:content]],
+        };
+        operationID = mk_gw_taskReadBeaconRssiOperation;
+    }else if ([cmd isEqualToString:@"77"]) {
+        //读取可连接状态
+        BOOL connectable = ([content isEqualToString:@"01"]);
+        resultDic = @{@"connectable":@(connectable)};
+        operationID = mk_gw_taskReadConnectableOperation;
+    }else if ([cmd isEqualToString:@"c0"]) {
+        //读取设备模式
+        NSString *mode = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
+        resultDic = @{@"mode":mode};
+        operationID = mk_gw_taskReadDeviceModeOperation;
     }
     
     return [self dataParserGetDataSuccess:resultDic operationID:operationID];
@@ -521,6 +552,9 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
     }else if ([cmd isEqualToString:@"4f"]) {
         //配置Ethernet IP地址相关信息
         operationID = mk_gw_taskConfigEthernetIpInfoOperation;
+    }else if ([cmd isEqualToString:@"50"]) {
+        //进行一次wifi扫描
+        operationID = mk_gw_taskStartWifiScanOperation;
     }else if ([cmd isEqualToString:@"60"]) {
         //配置扫描RSSI过滤
         operationID = mk_gw_taskConfigRssiFilterValueOperation;
@@ -530,6 +564,9 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
     }else if ([cmd isEqualToString:@"64"]) {
         //配置MAC过滤规则
         operationID = mk_gw_taskConfigFilterMACAddressListOperation;
+    }else if ([cmd isEqualToString:@"68"]) {
+        //配置数据上报间隔
+        operationID = mk_gw_taskConfigFilterReportIntervalOperation;
     }else if ([cmd isEqualToString:@"70"]) {
         //配置iBeacon 开关
         operationID = mk_gw_taskConfigAdvertiseBeaconStatusOperation;
@@ -548,6 +585,12 @@ NSString *const mk_gw_contentKey = @"mk_gw_contentKey";
     }else if ([cmd isEqualToString:@"75"]) {
         //配置TxPower
         operationID = mk_gw_taskConfigTxPowerOperation;
+    }else if ([cmd isEqualToString:@"76"]) {
+        //配置Beacon Rssi@1m
+        operationID = mk_gw_taskConfigBeaconRssiOperation;
+    }else if ([cmd isEqualToString:@"77"]) {
+        //配置可连接状态
+        operationID = mk_gw_taskConfigConnectableOperation;
     }
     
     return [self dataParserGetDataSuccess:@{@"success":@(success)} operationID:operationID];

@@ -28,10 +28,18 @@
 
 #import "MKGWNormalConnectedController.h"
 #import "MKGWBXPButtonController.h"
+#import "MKGWBXPButtonCRController.h"
+#import "MKGWBXPCController.h"
+#import "MKGWBXPDController.h"
+#import "MKGWBXPTController.h"
+#import "MKGWBXPSController.h"
+#import "MKGWPirController.h"
+#import "MKGWTofController.h"
 
 #import "MKGWManageBleDeviceSearchView.h"
 #import "MKGWManageBleDevicesSearchButton.h"
 #import "MKGWManageBleDevicesCell.h"
+#import "MKGWManageBleDevicesTypeSelectedView.h"
 
 static CGFloat const offset_X = 15.f;
 static CGFloat const searchButtonHeight = 40.f;
@@ -146,36 +154,18 @@ MKGWManageBleDevicesCellDelegate>
  9：pir
  10：other
  */
-- (void)gw_manageBleDevicesCellConnectButtonPressed:(NSString *)macAddress typeCode:(NSInteger)typeCode; {
-    if (typeCode == 7) {
-        //BXP-Button
-        @weakify(self);
-        MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
-            @strongify(self);
-        }];
-        
-        MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
-            @strongify(self);
-            [self connectBXPButtonWithPassword:self.asciiText bleMac:macAddress];
-        }];
-        MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:@""
-                                                                              placeholder:@"Password is 0-16 Chracters"
-                                                                            textFieldType:mk_normal
-                                                                                maxLength:16
-                                                                                  handler:^(NSString * _Nonnull text) {
-            @strongify(self);
-            self.asciiText = text;
-        }];
-        
-        MKAlertView *alertView = [[MKAlertView alloc] init];
-        [alertView addAction:cancelAction];
-        [alertView addAction:confirmAction];
-        [alertView addTextField:textField];
-        [alertView showAlertWithTitle:@"Enter password" message:@"" notificationName:@"mk_gw_needDismissAlert"];
-        return;
+- (void)gw_manageBleDevicesCellConnectButtonPressed:(NSString *)macAddress typeCode:(NSInteger)typeCode {
+    
+    NSString *recordSelectedType = [[NSUserDefaults standardUserDefaults] objectForKey:@"gw_bleDeviceConnectType"];
+    if (!ValidStr(recordSelectedType)) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"gw_bleDeviceConnectType"];
+        recordSelectedType = @"1";
     }
-    //Normal
-    [self connectNormalDeviceWithBleMac:macAddress];
+    
+    [MKGWManageBleDevicesTypeSelectedView showWithType:[recordSelectedType integerValue] selecteBlock:^(MKGWManageBleDevicesTypeSelectedViewType selectedType) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld",(long)selectedType] forKey:@"gw_bleDeviceConnectType"];
+        [self connectDeviceWithTypeCode:typeCode macAddress:macAddress selectedType:selectedType];
+    }];
 }
 
 #pragma mark - note
@@ -302,6 +292,77 @@ MKGWManageBleDevicesCellDelegate>
 }
 
 #pragma mark - 连接部分
+- (void)connectDeviceWithTypeCode:(NSInteger)typeCode
+                       macAddress:(NSString *)macAddress
+                     selectedType:(MKGWManageBleDevicesTypeSelectedViewType)selectedType {
+    if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeOther) {
+        [self connectNormalDeviceWithBleMac:macAddress];
+        return;
+    }
+    @weakify(self);
+    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
+        @strongify(self);
+    }];
+    
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        @strongify(self);
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPBD) {
+            //BXP-B-D
+            [self connectBXPButtonWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPBCR) {
+            //BXP-B-CR
+            [self connectBXPCWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPC) {
+            //BXP-C
+            [self connectBXPCWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPD) {
+            //BXP-D
+            [self connectBXPDWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPT) {
+            //BXP-T
+            [self connectBXPTWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeBXPS) {
+            //BXP-S
+            [self connectBXPSWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypePIR) {
+            //MK Pir
+            [self connectMKPirWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+        if (selectedType == MKGWManageBleDevicesTypeSelectedViewTypeTOF) {
+            //MK Tof
+            [self connectMKTofWithPassword:self.asciiText bleMac:macAddress];
+            return;
+        }
+    }];
+    MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:@""
+                                                                          placeholder:@"Password is 0-16 Chracters"
+                                                                        textFieldType:mk_normal
+                                                                            maxLength:16
+                                                                              handler:^(NSString * _Nonnull text) {
+        @strongify(self);
+        self.asciiText = text;
+    }];
+    
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:cancelAction];
+    [alertView addAction:confirmAction];
+    [alertView addTextField:textField];
+    [alertView showAlertWithTitle:@"Enter password" message:@"" notificationName:@"mk_gw_needDismissAlert"];
+}
+
 - (void)connectBXPButtonWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
     [MKGWMQTTInterface gw_connectBXPButtonWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
@@ -312,6 +373,132 @@ MKGWManageBleDevicesCellDelegate>
             return;
         }
         MKGWBXPButtonController *vc = [[MKGWBXPButtonController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectBXPButtonCRWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectBXPButtonCRWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWBXPButtonCRController *vc = [[MKGWBXPButtonCRController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectBXPCWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectBXPCWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWBXPCController *vc = [[MKGWBXPCController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectBXPDWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectBXPDWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWBXPDController *vc = [[MKGWBXPDController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectBXPTWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectBXPTWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWBXPTController *vc = [[MKGWBXPTController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectBXPSWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectBXPSWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWBXPSController *vc = [[MKGWBXPSController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectMKPirWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectMKPirWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWPirController *vc = [[MKGWPirController alloc] init];
+        vc.deviceBleInfo = returnData;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)connectMKTofWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
+    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+    [MKGWMQTTInterface gw_connectMKTofWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
+            //连接失败
+            [self.view showCentralToast:returnData[@"data"][@"result_msg"]];
+            return;
+        }
+        MKGWTofController *vc = [[MKGWTofController alloc] init];
         vc.deviceBleInfo = returnData;
         [self.navigationController pushViewController:vc animated:YES];
     } failedBlock:^(NSError * _Nonnull error) {

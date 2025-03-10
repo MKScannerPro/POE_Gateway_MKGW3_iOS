@@ -149,6 +149,19 @@ static dispatch_once_t onceToken;
                                                           userInfo:@{@"type":[content substringWithRange:NSMakeRange(8, 2)]}];
         return;
     }
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"AA03"]]) {
+        if ([[string substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"ee"]) {
+            //单帧
+            NSString *cmd = [string substringWithRange:NSMakeRange(4, 2)];
+            if ([cmd isEqualToString:@"51"]) {
+                //扫描的wifi数据
+                if ([self.wifiDelegate respondsToSelector:@selector(mk_gw_receiveWifi:)]) {
+                    [self.wifiDelegate mk_gw_receiveWifi:[string substringFromIndex:6]];
+                }
+                return;
+            }
+        }
+    }
 }
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     if (error) {

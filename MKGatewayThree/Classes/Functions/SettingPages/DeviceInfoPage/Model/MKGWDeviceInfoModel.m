@@ -45,6 +45,7 @@
         self.productMode = returnData[@"data"][@"product_model"];
         self.manu = returnData[@"data"][@"company_name"];
         self.firmware = returnData[@"data"][@"firmware_version"];
+        self.bleFirmware = returnData[@"data"][@"sl_ble_version"];
         self.hardware = returnData[@"data"][@"hardware_version"];
         self.software = returnData[@"data"][@"software_version"];
         self.ethernetMac = returnData[@"data"][@"eth_mac"];

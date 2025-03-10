@@ -114,6 +114,28 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)gw_readTimeZoneWithSucBlock:(void (^)(id returnData))sucBlock
                         failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Read the firmware version of the wifi.
+/*
+ @{
+ @"firmware":@"V1.0.2"
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readWifiFirmwareWithSucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the firmware version of the BLE.
+/*
+ @{
+ @"firmware":@"V1.0.2"
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readBLEFirmwareWithSucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock;
+
 #pragma mark *********************MQTT Params************************
 
 /// Read the domain name of the MQTT server.
@@ -511,6 +533,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)gw_readFilterAdvNameListWithSucBlock:(void (^)(id returnData))sucBlock
                                  failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// The reports interval gateway upload the beacon's data .
+/*
+ @{
+ @"interval":@"600",        //Unit:s        Supported by V2.
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readFilterReportIntervalWithSucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
+
 #pragma mark *********************BLE Adv Params************************
 
 /// The advertise status of iBeacon.
@@ -594,6 +627,40 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param failedBlock Failure callback
 + (void)gw_readBeaconTxPowerWithSucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// iBeacon RSSI@1m.
+/*
+ @{
+    @"rssi":@"-50",     //Unit:dBm
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readBeaconRssiWithSucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Connectable.
+/*
+ @{
+    @"connectable":@(YES),
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readConnectableWithSucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock;
+
+
+/// Device Mode.
+/*
+ @{
+    @"mode":@"0",   //@"0":Configuration Mode   @"1":Connection Server Mode
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)gw_readDeviceModeWithSucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock;
 
 @end
 

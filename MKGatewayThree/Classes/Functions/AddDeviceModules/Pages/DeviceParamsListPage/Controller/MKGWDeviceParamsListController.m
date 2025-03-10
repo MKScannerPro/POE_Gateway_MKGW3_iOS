@@ -83,7 +83,7 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
     [super viewDidLoad];
     [self loadSubViews];
     [self loadSectionDatas];
-    [MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType = self.deviceType;
+    [MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType = @"00";
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceConnectStateChanged)
                                                  name:mk_gw_peripheralConnectStateChangedNotification

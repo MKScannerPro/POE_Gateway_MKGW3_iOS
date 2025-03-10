@@ -518,6 +518,32 @@ NS_ASSUME_NONNULL_BEGIN
                     sucBlock:(void (^)(id returnData))sucBlock
                  failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Filtered list of TOF List.
+/// @param codeList You can set up to 10 filters.2 Bytes.
+/// @param isOn Filter Status.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configFilterByTofList:(NSArray <NSString *>*)codeList
+                            isOn:(BOOL)isOn
+                      macAddress:(NSString *)macAddress
+                           topic:(NSString *)topic
+                        sucBlock:(void (^)(id returnData))sucBlock
+                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Data Upload Interval.
+/// @param interval 0~86400s
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configUploadDataInterval:(NSInteger)interval
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// The gateway connects to the BXP-Button with the specified MAC address.
 /// @param password 0-16 Characters
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
@@ -925,6 +951,29 @@ NS_ASSUME_NONNULL_BEGIN
                                 sucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Filter by MK-TOF.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readFilterByTofWithMacAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Data Upload Interval.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readUploadDataIntervalWithMacAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
+
+
+#pragma mark *********************  BXP-B-D  ************************
+
 /// Read the service and feature information of the specified BXP-Button connected to the current gateway.
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
@@ -1055,6 +1104,1230 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param sucBlock Success callback
 /// @param failedBlock Failed callback
 + (void)gw_configAdvertiseBeaconParams:(id <gw_advertiseBeaconProtocol>)protocol
+                            macAddress:(NSString *)macAddress
+                                 topic:(NSString *)topic
+                              sucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Advertise iBeacon for V2.
+/// @param protocol protocol.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configV2AdvertiseBeaconParams:(id <gw_advertiseBeaconV2Protocol>)protocol
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Clear trigger event count.
+/// @param eventType eventType.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_clearTriggerEventCount:(mk_gw_triggerEventType)eventType
+                           bleMac:(NSString *)bleMacAddress
+                       macAddress:(NSString *)macAddress
+                            topic:(NSString *)topic
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D LED Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param blinkingTime flash time, 1 x 100ms ~ 6000 x 100ms.
+/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                blinkingTime:(NSInteger)blinkingTime
+                            blinkingInterval:(NSInteger)blinkingInterval
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D Buzzer Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param ringTime ring time, 1 x 100ms ~ 6000 x 100ms.
+/// @param ringInterval ring interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnBuzzerRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                       ringTime:(NSInteger)ringTime
+                                   ringInterval:(NSInteger)ringInterval
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                  notify:(BOOL)notify
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnRemotePowerOffWithBleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D Advertisement parameters.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnReadAdvParamsWithBleMac:(NSString *)bleMacAddress
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-D Advertisement parameters.
+/// @param params Adv Params.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnConfigAdvParamsWithParams:(NSDictionary *)params
+                                    bleMac:(NSString *)bleMacAddress
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  BXP-B-CR  ************************
+
+/// The gateway connects to the BXP-Button-CR with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectBXPButtonCRWithPassword:(NSString *)password
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified BXP-Button-CR connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPButtonCRConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                                    macAddress:(NSString *)macAddress
+                                                         topic:(NSString *)topic
+                                                      sucBlock:(void (^)(id returnData))sucBlock
+                                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-Button-CR's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPButtonCRConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                                macAddress:(NSString *)macAddress
+                                                     topic:(NSString *)topic
+                                                  sucBlock:(void (^)(id returnData))sucBlock
+                                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Dismiss BXP-B-CR Alarm Status.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_dismissBXPButtonCRAlarmStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                               macAddress:(NSString *)macAddress
+                                                    topic:(NSString *)topic
+                                                 sucBlock:(void (^)(id returnData))sucBlock
+                                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR LED Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param blinkingTime flash time, 1 x 100ms ~ 6000 x 100ms.
+/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                  blinkingTime:(NSInteger)blinkingTime
+                              blinkingInterval:(NSInteger)blinkingInterval
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR Buzzer Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param ringTime ring time, 1 x 100ms ~ 6000 x 100ms.
+/// @param ringInterval ring interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRBuzzerRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                         ringTime:(NSInteger)ringTime
+                                     ringInterval:(NSInteger)ringInterval
+                                       macAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRRemotePowerOffWithBleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR Vibrating Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param vibratingTime vibrating time, 1 x 100ms ~ 6000 x 100ms.
+/// @param vibratingInterval vibrating interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRVibratingRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                       vibratingTime:(NSInteger)vibratingTime
+                                   vibratingInterval:(NSInteger)vibratingInterval
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR Advertisement parameters.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRReadAdvParamsWithBleMac:(NSString *)bleMacAddress
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-B-CR Advertisement parameters.
+/// @param params Adv Params.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBtnCRConfigAdvParamsWithParams:(NSDictionary *)params
+                                      bleMac:(NSString *)bleMacAddress
+                                  macAddress:(NSString *)macAddress
+                                       topic:(NSString *)topic
+                                    sucBlock:(void (^)(id returnData))sucBlock
+                                 failedBlock:(void (^)(NSError *error))failedBlock;
+
+
+#pragma mark *********************  BXP-C  ************************
+/// The gateway connects to the BXP-C with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectBXPCWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified BXP-C connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPCConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-C's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPCConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-C notify Real Time HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPCNotifyRealTimeHTDataWithBleMac:(NSString *)bleMacAddress
+                                          notify:(BOOL)notify
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-C notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPCNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-D notify Historical HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPCNotifyHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                            notify:(BOOL)notify
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-D delete Historical HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPCDeleteHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-C remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPCPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-C's H&T datas sample rate.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPCTHDataSampleRateWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the  BXP-C's H&T datas sample rate.
+/// @param sampleRate 1s~65535s
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPCSampleRate:(NSInteger)sampleRate
+                         bleMac:(NSString *)bleMacAddress
+                     macAddress:(NSString *)macAddress
+                          topic:(NSString *)topic
+                       sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-C's advertising paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPCAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-C Advertisement parameters.
+/// @param channel 0~5.
+/// @param interval advterisment interval. 1 x 100ms ~ 100 x 100ms.
+/// @param txPower 0~9:
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPCAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  BXP-D  ************************
+/// The gateway connects to the BXP-D with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectBXPDWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified BXP-D connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPDConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-D's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPDConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-D's Accelerometer paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPDAccParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the  BXP-D's Accelerometer paramters which is connected by the current gateway.
+/// @param scale scale
+/// @param sampleRate sampleRate
+/// @param sensitivity If the scale is mk_gw_threeAxisDataAG0, the range is 1~20.If the scale is mk_gw_threeAxisDataAG1, the range is 1~40.If the scale is mk_gw_threeAxisDataAG2, the range is 1~80.If the scale is mk_gw_threeAxisDataAG3, the range is 1~160.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPDAccParamsWithScale:(mk_gw_threeAxisDataAG)scale
+                             sampleRate:(mk_gw_threeAxisDataRate)sampleRate
+                            sensitivity:(NSInteger)sensitivity
+                                 bleMac:(NSString *)bleMacAddress
+                             macAddress:(NSString *)macAddress
+                                  topic:(NSString *)topic
+                               sucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-D notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPDNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-D remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPDPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-D's advertising paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPDAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-D Advertisement parameters.
+/// @param channel 0~5.
+/// @param interval advterisment interval. 1 x 100ms ~ 100 x 100ms.
+/// @param txPower 0~9: 
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPDAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  BXP-T  ************************
+/// The gateway connects to the BXP-T with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectBXPTWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified BXP-T connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPTConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-T's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPTConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-T's Accelerometer paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPTAccParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the  BXP-T's Accelerometer paramters which is connected by the current gateway.
+/// @param scale scale
+/// @param sampleRate sampleRate
+/// @param sensitivity If the scale is mk_gw_threeAxisDataAG0, the range is 1~20.If the scale is mk_gw_threeAxisDataAG1, the range is 1~40.If the scale is mk_gw_threeAxisDataAG2, the range is 1~80.If the scale is mk_gw_threeAxisDataAG3, the range is 1~160.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPTAccParamsWithScale:(mk_gw_threeAxisDataAG)scale
+                             sampleRate:(mk_gw_threeAxisDataRate)sampleRate
+                            sensitivity:(NSInteger)sensitivity
+                                 bleMac:(NSString *)bleMacAddress
+                             macAddress:(NSString *)macAddress
+                                  topic:(NSString *)topic
+                               sucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-T's Motion event count which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPTMotioEventCountWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Clear the  BXP-T's Motion event count which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_clearBXPTMotioEventCountWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-T LED Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param color LED color
+/// @param blinkingTime flash time, 1s ~ 600s.
+/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPTLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                        color:(mk_gw_bxptLedColor)color
+                                 blinkingTime:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-T notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPTNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-T remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPTPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-T's advertising paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPTAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-T Advertisement parameters.
+/// @param channel 0~5.
+/// @param interval advterisment interval. 1 x 100ms ~ 100 x 100ms.
+/// @param txPower 0~9:
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPTAdvParamsWithChannel:(NSInteger)channel
+                                 interval:(NSInteger)interval
+                                  txPower:(NSInteger)txPower
+                                   bleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  BXP-S  ************************
+/// The gateway connects to the BXP-S with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectBXPSWithPassword:(NSString *)password
+                            bleMac:(NSString *)bleMacAddress
+                        macAddress:(NSString *)macAddress
+                             topic:(NSString *)topic
+                          sucBlock:(void (^)(id returnData))sucBlock
+                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified BXP-S connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPSConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                             macAddress:(NSString *)macAddress
+                                                  topic:(NSString *)topic
+                                               sucBlock:(void (^)(id returnData))sucBlock
+                                            failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-S's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPSConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                         macAddress:(NSString *)macAddress
+                                              topic:(NSString *)topic
+                                           sucBlock:(void (^)(id returnData))sucBlock
+                                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S notify Real Time HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSNotifyRealTimeHTDataWithBleMac:(NSString *)bleMacAddress
+                                          notify:(BOOL)notify
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S notify Historical HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                            notify:(BOOL)notify
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S delete Historical HT Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSDeleteHistoricalHTDataWithBleMac:(NSString *)bleMacAddress
+                                        macAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-S's H&T datas sample rate.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPSTHDataSampleRateWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the  BXP-S's H&T datas sample rate.
+/// @param sampleRate 1s~65535s
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBXPSSampleRate:(NSInteger)sampleRate
+                         bleMac:(NSString *)bleMacAddress
+                     macAddress:(NSString *)macAddress
+                          topic:(NSString *)topic
+                       sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  BXP-S's Hall Sensor count which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBXPSHallCountWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Clear the  BXP-S's Hall Sensor count which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_clearBXPSHallCountWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S LED Remote Reminder.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param color LED color
+/// @param blinkingTime flash time, 1s ~ 600s.
+/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSLedRemoteReminderWithBleMac:(NSString *)bleMacAddress
+                                        color:(mk_gw_bxptLedColor)color
+                                 blinkingTime:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// BXP-S remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpBXPSPowerOffWithBleMac:(NSString *)bleMacAddress
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  MK Pir  ************************
+/// The gateway connects to the MK Pir with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectMKPirWithPassword:(NSString *)password
+                             bleMac:(NSString *)bleMacAddress
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified MK Pir connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKPirConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                              macAddress:(NSString *)macAddress
+                                                   topic:(NSString *)topic
+                                                sucBlock:(void (^)(id returnData))sucBlock
+                                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Pir's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKPirConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Pir notify Sensor Datas.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_notifyMKPirSensorDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the Pir sensor sensitivity.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKPirSensorSensitivityWithBleMac:(NSString *)bleMacAddress
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the Pir sensor sensitivity.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param sensitivity sensitivity
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKPirSensorSensitivityWithBleMac:(NSString *)bleMacAddress
+                                      sensitivity:(mk_gw_pirSensorParamType)sensitivity
+                                     macAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the Pir sensor delay.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKPirSensorDelayWithBleMac:(NSString *)bleMacAddress
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Config the Pir sensor delay.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param delay delay
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKPirSensorDelayWithBleMac:(NSString *)bleMacAddress
+                                      delay:(mk_gw_pirSensorParamType)delay
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Pir remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpMKPirPowerOffWithBleMac:(NSString *)bleMacAddress
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Pir's advertising paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKPirAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Pir Advertisement parameters.
+/// @param interval advterisment interval. 1 x 100ms ~ 100 x 100ms.
+/// @param txPower 0~7:(-40,-20,-16,-12,-8,-4,0,4)
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKPirAdvParamsWithInterval:(NSInteger)interval
+                                    txPower:(NSInteger)txPower
+                                     bleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+#pragma mark *********************  MK Tof  ************************
+/// The gateway connects to the MK Tof with the specified MAC address.
+/// @param password 0-16 Characters
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_connectMKTofWithPassword:(NSString *)password
+                             bleMac:(NSString *)bleMacAddress
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the service and feature information of the specified MK Tof connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKTofConnectedDeviceInfoWithBleMacAddress:(NSString *)bleMacAddress
+                                              macAddress:(NSString *)macAddress
+                                                   topic:(NSString *)topic
+                                                sucBlock:(void (^)(id returnData))sucBlock
+                                             failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Tof's status that connected to the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKTofConnectedStatusWithBleMacAddress:(NSString *)bleMacAddress
+                                          macAddress:(NSString *)macAddress
+                                               topic:(NSString *)topic
+                                            sucBlock:(void (^)(id returnData))sucBlock
+                                         failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof notify Acc Data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpMKTofNotifyAccDataWithBleMac:(NSString *)bleMacAddress
+                                    notify:(BOOL)notify
+                                macAddress:(NSString *)macAddress
+                                     topic:(NSString *)topic
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof remote power off.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpMKTofPowerOffWithBleMac:(NSString *)bleMacAddress
+                           macAddress:(NSString *)macAddress
+                                topic:(NSString *)topic
+                             sucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Tof's advertising paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKTofAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof Advertisement parameters.
+/// @param interval advterisment interval. 1s~86400s.
+/// @param txPower 0~8:(-40,-20,-16,-12,-8,-4,0,3,4)
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKTofAdvParamsWithInterval:(NSInteger)interval
+                                    txPower:(NSInteger)txPower
+                                     bleMac:(NSString *)bleMacAddress
+                                 macAddress:(NSString *)macAddress
+                                      topic:(NSString *)topic
+                                   sucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Tof's sensor paramters which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKTofSensorParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                       macAddress:(NSString *)macAddress
+                                            topic:(NSString *)topic
+                                         sucBlock:(void (^)(id returnData))sucBlock
+                                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof sensor parameters.
+/// @param sampleInterval sample interval. 1s~86400s.(sampleCount + 1) *sampleTime <= sampleInterval
+/// @param sampleCount sample count. 2~255
+/// @param sampleTime sample time.8ms~140ms.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKTofSensorParamsWithInterval:(NSInteger)sampleInterval
+                                   sampleCount:(NSInteger)sampleCount
+                                    sampleTime:(NSInteger)sampleTime
+                                        bleMac:(NSString *)bleMacAddress
+                                    macAddress:(NSString *)macAddress
+                                         topic:(NSString *)topic
+                                      sucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the  MK Tof's ranging mode which is connected by the current gateway.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readMKTofRangingModeWithBleMacAddress:(NSString *)bleMacAddress
+                                      macAddress:(NSString *)macAddress
+                                           topic:(NSString *)topic
+                                        sucBlock:(void (^)(id returnData))sucBlock
+                                     failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof ranging mode.
+/// @param mode mode.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configMKTofRangingMode:(mk_gw_tofRangingMode)mode
+                           bleMac:(NSString *)bleMacAddress
+                       macAddress:(NSString *)macAddress
+                            topic:(NSString *)topic
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// MK Tof notify sensor data.
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param notify notify
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_bxpMKTofNotifySensorDataWithBleMac:(NSString *)bleMacAddress
+                                       notify:(BOOL)notify
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+
+
+#pragma mark *********************  Normal Ble  ************************
+/// Bluetooth communicate timeout.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readBleCommunicateTimeoutWithMacAddress:(NSString *)macAddress
+                                             topic:(NSString *)topic
+                                          sucBlock:(void (^)(id returnData))sucBlock
+                                       failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Bluetooth communicate timeout.
+/// @param timeout 0min~60mins.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configBleCommunicateTimeout:(NSInteger)timeout
                             macAddress:(NSString *)macAddress
                                  topic:(NSString *)topic
                               sucBlock:(void (^)(id returnData))sucBlock

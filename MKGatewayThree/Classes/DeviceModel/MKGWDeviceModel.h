@@ -30,10 +30,10 @@ extern NSString *const MKGWDeviceModelOfflineNotification;
 
 @interface MKGWDeviceModel : NSObject<MKGWDeviceModeManagerDataProtocol>
 
-/// 设备类型
+/// 设备类型 00:V1固件    01:V2固件
 @property (nonatomic, copy)NSString *deviceType;
 
-/// 0:Ethernet   1:WIFI
+/// 0:ethernet   1:wifi 2:ETH->WIFI 3:WIFI->ETH
 @property (nonatomic, copy)NSString *networkType;
 
 /// MQTT通信所需的ID，如果存在重复的，会出现交替上线的情况

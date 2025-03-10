@@ -11,8 +11,12 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
+#import "MKGWDeviceModel.h"
+
 #import "MKGWInterface.h"
 #import "MKGWInterface+MKGWConfig.h"
+
+#import "MKGWDeviceMQTTParamsModel.h"
 
 @interface MKGWBleScannerFilterModel ()
 
@@ -37,6 +41,12 @@
         if (![self readAdvName]) {
             [self operationFailedBlockWithMsg:@"Read Adv Name Error" block:failedBlock];
             return;
+        }
+        if ([[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"]) {
+            if (![self readFilterInterval]) {
+                [self operationFailedBlockWithMsg:@"Read Adv Name Error" block:failedBlock];
+                return;
+            }
         }
         moko_dispatch_main_safe(^{
             if (sucBlock) {
@@ -68,6 +78,12 @@
         if (![self configRelationShip]) {
             [self operationFailedBlockWithMsg:@"Config Relation Ship Error" block:failedBlock];
             return;
+        }
+        if ([[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"]) {
+            if (![self configFilterInterval]) {
+                [self operationFailedBlockWithMsg:@"Config Adv Name Error" block:failedBlock];
+                return;
+            }
         }
         moko_dispatch_main_safe(^{
             if (sucBlock) {
@@ -185,6 +201,31 @@
     return success;
 }
 
+- (BOOL)readFilterInterval {
+    __block BOOL success = NO;
+    [MKGWInterface gw_readFilterReportIntervalWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.interval = returnData[@"result"][@"interval"];
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)configFilterInterval {
+    __block BOOL success = NO;
+    [MKGWInterface gw_configFilterReportInterval:[self.interval integerValue] sucBlock:^{
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
 #pragma mark - private method
 - (NSString *)checkMsg {
     if (self.rssi < -127 || self.rssi > 0) {
@@ -195,6 +236,11 @@
     }
     if (self.advName.length > 20) {
         return @"Adv Name Error";
+    }
+    if ([[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"]) {
+        if (!ValidStr(self.interval) || [self.interval integerValue] < 0 || [self.interval integerValue] > 86400) {
+            return @"Report Interval Error";
+        }
     }
     return @"";
 }

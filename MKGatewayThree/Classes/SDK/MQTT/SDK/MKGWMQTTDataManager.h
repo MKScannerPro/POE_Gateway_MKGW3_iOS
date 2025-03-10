@@ -45,7 +45,31 @@ extern NSString *const MKGWReceiveBxpButtonDfuResultNotification;
 
 extern NSString *const MKGWReceiveDeviceOfflineNotification;
 
+extern NSString *const MKGWReceiveBXPBtnAccDataNotification;
 
+extern NSString *const MKGWReceiveBXPBtnCRAccDataNotification;
+
+extern NSString *const MKGWReceiveBXPCRealTimeHTDataNotification;
+
+extern NSString *const MKGWReceiveBXPCAccDataNotification;
+
+extern NSString *const MKGWReceiveBXPCHistoricalHTDataNotification;
+
+extern NSString *const MKGWReceiveBXPDAccDataNotification;
+
+extern NSString *const MKGWReceiveBXPTAccDataNotification;
+
+extern NSString *const MKGWReceiveBXPSRealTimeHTDataNotification;
+
+extern NSString *const MKGWReceiveBXPSAccDataNotification;
+
+extern NSString *const MKGWReceiveBXPSHistoricalHTDataNotification;
+
+extern NSString *const MKGWReceiveMKPirSensorDataNotification;
+
+extern NSString *const MKGWReceiveMKTofAccDataNotification;
+
+extern NSString *const MKGWReceiveMKTofDistanceDataNotification;
 
 @protocol MKGWReceiveDeviceDatasDelegate <NSObject>
 

@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 0~20 Characters
 @property (nonatomic, copy)NSString *advName;
 
+/// 0s~86400s
+@property (nonatomic, copy)NSString *interval;
+
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;
 
 - (void)configDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;

@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKGWDeviceParamsListController : MKGWBleBaseController
 
-@property (nonatomic, copy)NSString *deviceType;
-
 @end
 
 NS_ASSUME_NONNULL_END

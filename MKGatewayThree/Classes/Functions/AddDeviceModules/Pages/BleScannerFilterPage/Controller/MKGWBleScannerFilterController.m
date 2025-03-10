@@ -21,21 +21,29 @@
 #import "MKCustomUIAdopter.h"
 #import "MKNormalSliderCell.h"
 #import "MKTableSectionLineHeader.h"
+#import "MKTextFieldCell.h"
 
 #import "MKFilterNormalTextFieldCell.h"
+
+#import "MKGWDeviceModel.h"
+
+#import "MKGWDeviceMQTTParamsModel.h"
 
 #import "MKGWBleScannerFilterModel.h"
 
 @interface MKGWBleScannerFilterController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKNormalSliderCellDelegate,
-MKFilterNormalTextFieldCellDelegate>
+MKFilterNormalTextFieldCellDelegate,
+MKTextFieldCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *section0List;
 
 @property (nonatomic, strong)NSMutableArray *section1List;
+
+@property (nonatomic, strong)NSMutableArray *section2List;
 
 @property (nonatomic, strong)NSMutableArray *headerList;
 
@@ -79,7 +87,14 @@ MKFilterNormalTextFieldCellDelegate>
     if (indexPath.section == 0) {
         return 60.f;
     }
-    return 66.f;
+    if (indexPath.section == 1) {
+        return 66.f;
+    }
+    if (indexPath.section == 2) {
+        MKTextFieldCellModel *cellModel = self.section2List[indexPath.row];
+        return [cellModel cellHeightWithContentWidth:kViewWidth];
+    }
+    return 0.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -104,6 +119,9 @@ MKFilterNormalTextFieldCellDelegate>
     if (section == 1) {
         return self.section1List.count;
     }
+    if (section == 2) {
+        return ([[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"] ? self.section2List.count : 0);
+    }
     return 0;
 }
 
@@ -114,8 +132,14 @@ MKFilterNormalTextFieldCellDelegate>
         cell.delegate = self;
         return cell;
     }
-    MKFilterNormalTextFieldCell *cell = [MKFilterNormalTextFieldCell initCellWithTableView:tableView];
-    cell.dataModel = self.section1List[indexPath.row];
+    if (indexPath.section == 1) {
+        MKFilterNormalTextFieldCell *cell = [MKFilterNormalTextFieldCell initCellWithTableView:tableView];
+        cell.dataModel = self.section1List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
+    MKTextFieldCell *cell = [MKTextFieldCell initCellWithTableView:tableView];
+    cell.dataModel = self.section2List[indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -153,6 +177,17 @@ MKFilterNormalTextFieldCellDelegate>
     }
 }
 
+#pragma mark - MKTextFieldCellDelegate
+- (void)mk_deviceTextCellValueChanged:(NSInteger)index textValue:(NSString *)value {
+    if (index == 0) {
+        //Report Interval
+        MKTextFieldCellModel *cellModel = self.section2List[0];
+        cellModel.textFieldValue = value;
+        self.dataModel.interval = value;
+        return;
+    }
+}
+
 #pragma mark - interface
 - (void)readDatasFromDevice {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
@@ -186,8 +221,9 @@ MKFilterNormalTextFieldCellDelegate>
 - (void)loadSectionDatas {
     [self loadSection0Datas];
     [self loadSection1Datas];
+    [self loadSection2Datas];
     
-    for (NSInteger i = 0; i < 2; i ++) {
+    for (NSInteger i = 0; i < 3; i ++) {
         MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
         [self.headerList addObject:headerModel];
     }
@@ -223,9 +259,22 @@ MKFilterNormalTextFieldCellDelegate>
     [self.section1List addObject:cellModel2];
 }
 
+- (void)loadSection2Datas {
+    MKTextFieldCellModel *cellModel = [[MKTextFieldCellModel alloc] init];
+    cellModel.index = 0;
+    cellModel.msg = @"Report Interval";
+    cellModel.maxLength = 5;
+    cellModel.textPlaceholder = @"0-86400";
+    cellModel.unit = @"s";
+    cellModel.textFieldType = mk_realNumberOnly;
+    cellModel.textFieldValue = self.dataModel.interval;
+    cellModel.noteMsg = @"Report Interval 0: The gateway reports Beacon data in real time.";
+    [self.section2List addObject:cellModel];
+}
+
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = @"Scanner Filter";
+    self.defaultTitle = ([[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"] ? @"Scan & Upload" : @"Scanner Filter");
     [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWBleScannerFilterController", @"gw_saveIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -260,6 +309,13 @@ MKFilterNormalTextFieldCellDelegate>
         _section1List = [NSMutableArray array];
     }
     return _section1List;
+}
+
+- (NSMutableArray *)section2List {
+    if (!_section2List) {
+        _section2List = [NSMutableArray array];
+    }
+    return _section2List;
 }
 
 - (NSMutableArray *)headerList {

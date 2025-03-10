@@ -17,6 +17,8 @@
 #import "MKHudManager.h"
 #import "MKNormalTextCell.h"
 
+#import "MKGWDeviceModeManager.h"
+
 #import "MKGWDeviceInfoModel.h"
 
 @interface MKGWDeviceInfoController ()<UITableViewDelegate, UITableViewDataSource>
@@ -104,9 +106,16 @@
     [self.dataList addObject:cellModel5];
     
     MKNormalTextCellModel *cellModel6 = [[MKNormalTextCellModel alloc] init];
-    cellModel6.leftMsg = @"Firmware version";
+    cellModel6.leftMsg = ([MKGWDeviceModeManager shared].isV2 ? @"WIFI Firmware version" : @"Firmware version");
     cellModel6.rightMsg = self.dataModel.firmware;
     [self.dataList addObject:cellModel6];
+    
+    if ([MKGWDeviceModeManager shared].isV2) {
+        MKNormalTextCellModel *cellModel10 = [[MKNormalTextCellModel alloc] init];
+        cellModel10.leftMsg = @"BLE Firmware version";
+        cellModel10.rightMsg = self.dataModel.bleFirmware;
+        [self.dataList addObject:cellModel10];
+    }
     
     MKNormalTextCellModel *cellModel7 = [[MKNormalTextCellModel alloc] init];
     cellModel7.leftMsg = @"WIFI MAC";

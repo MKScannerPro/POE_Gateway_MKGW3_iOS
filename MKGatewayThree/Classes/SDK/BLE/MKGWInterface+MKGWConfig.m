@@ -816,6 +816,15 @@ static const NSInteger packDataMaxLen = 150;
                    failedBlock:failedBlock];
 }
 
++ (void)gw_startWifiScanWithSucBlock:(void (^)(void))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed015000";
+    [self configDataWithTaskID:mk_gw_taskStartWifiScanOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
 #pragma mark *********************Filter Params************************
 
 + (void)gw_configRssiFilterValue:(NSInteger)rssi
@@ -956,6 +965,21 @@ static const NSInteger packDataMaxLen = 150;
     dispatch_resume(timer);
 }
 
++ (void)gw_configFilterReportInterval:(NSInteger)interval
+                             sucBlock:(void (^)(void))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    if (interval < 0 || interval > 86400) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *value = [MKBLEBaseSDKAdopter fetchHexValue:interval byteLen:4];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ed016804",value];
+    [self configDataWithTaskID:mk_gw_taskConfigFilterReportIntervalOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
 #pragma mark *********************BLE Adv Params************************
 
 + (void)gw_configAdvertiseBeaconStatus:(BOOL)isOn
@@ -1037,6 +1061,31 @@ static const NSInteger packDataMaxLen = 150;
     NSString *value = [MKBLEBaseSDKAdopter fetchHexValue:txPower byteLen:1];
     NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ed017501",value];
     [self configDataWithTaskID:mk_gw_taskConfigTxPowerOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
++ (void)gw_configBeaconRssi:(NSInteger)rssi
+                   sucBlock:(void (^)(void))sucBlock
+                failedBlock:(void (^)(NSError *error))failedBlock {
+    if (rssi < -100 || rssi > 0) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *rssiValue = [MKBLEBaseSDKAdopter hexStringFromSignedNumber:rssi];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ed017601",rssiValue];
+    [self configDataWithTaskID:mk_gw_taskConfigBeaconRssiOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
++ (void)gw_configConnectable:(BOOL)connectable
+                    sucBlock:(void (^)(void))sucBlock
+                 failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = (connectable ? @"ed01770101" : @"ed01770100");
+    [self configDataWithTaskID:mk_gw_taskConfigConnectableOperation
                           data:commandString
                       sucBlock:sucBlock
                    failedBlock:failedBlock];

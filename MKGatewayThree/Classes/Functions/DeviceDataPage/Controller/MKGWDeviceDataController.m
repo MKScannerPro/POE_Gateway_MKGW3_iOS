@@ -32,10 +32,19 @@
 #import "MKGWFilterTestResultAlert.h"
 
 #import "MKGWSettingController.h"
+#import "MKGWSettingForV2Controller.h"
 #import "MKGWUploadOptionController.h"
+#import "MKGWUploadOptionV2Controller.h"
 #import "MKGWManageBleDevicesController.h"
 #import "MKGWNormalConnectedController.h"
 #import "MKGWBXPButtonController.h"
+#import "MKGWBXPButtonCRController.h"
+#import "MKGWBXPCController.h"
+#import "MKGWBXPDController.h"
+#import "MKGWBXPTController.h"
+#import "MKGWBXPSController.h"
+#import "MKGWPirController.h"
+#import "MKGWTofController.h"
 
 static NSTimeInterval const kRefreshInterval = 0.5f;
 
@@ -105,6 +114,11 @@ MKGWReceiveDeviceDatasDelegate>
 
 #pragma mark - super method
 - (void)rightButtonMethod {
+    if ([MKGWDeviceModeManager shared].isV2) {
+        MKGWSettingForV2Controller *vc = [[MKGWSettingForV2Controller alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     MKGWSettingController *vc = [[MKGWSettingController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -133,6 +147,11 @@ MKGWReceiveDeviceDatasDelegate>
 #pragma mark - MKGWDeviceDataPageHeaderViewDelegate
 
 - (void)gw_updateLoadButtonAction {
+    if ([MKGWDeviceModeManager shared].isV2) {
+        MKGWUploadOptionV2Controller *vc = [[MKGWUploadOptionV2Controller alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     MKGWUploadOptionController *vc = [[MKGWUploadOptionController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -163,7 +182,7 @@ MKGWReceiveDeviceDatasDelegate>
         if (ValidArray(deviceList)) {
             //网关已经连接设备
             NSDictionary *connectDevice = deviceList[0];
-            [self readConnectedDeviceInfoWithBleMac:connectDevice[@"mac"] normal:([connectDevice[@"type"] integerValue] == 0)];
+            [self readConnectedDeviceInfoWithBleMac:connectDevice[@"mac"] type:[connectDevice[@"type"] integerValue]];
             return;
         }
         //网关没有连接设备
@@ -251,8 +270,9 @@ MKGWReceiveDeviceDatasDelegate>
     }];
 }
 
-- (void)readConnectedDeviceInfoWithBleMac:(NSString *)bleMac normal:(BOOL)normal {
-    if (normal) {
+- (void)readConnectedDeviceInfoWithBleMac:(NSString *)bleMac type:(NSInteger)type {
+    if (type == 0) {
+        //通用链接
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
         [MKGWMQTTInterface gw_readNormalConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
@@ -265,17 +285,118 @@ MKGWReceiveDeviceDatasDelegate>
         }];
         return;
     }
-    //BXP-Button
-    [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readBXPButtonConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
-        [[MKHudManager share] hide];
-        MKGWBXPButtonController *vc = [[MKGWBXPButtonController alloc] init];
-        vc.deviceBleInfo = returnData;
-        [self.navigationController pushViewController:vc animated:YES];
-    } failedBlock:^(NSError * _Nonnull error) {
-        [[MKHudManager share] hide];
-        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
-    }];
+    if (type == 1) {
+        //BXP-B-D
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPButtonConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPButtonController *vc = [[MKGWBXPButtonController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 2) {
+        //BXP-B-CR
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPButtonCRConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPButtonCRController *vc = [[MKGWBXPButtonCRController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 3) {
+        //BXP-C
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPCConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPCController *vc = [[MKGWBXPCController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 4) {
+        //BXP-D
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPDConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPDController *vc = [[MKGWBXPDController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 5) {
+        //BXP-T
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPTConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPTController *vc = [[MKGWBXPTController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 6) {
+        //BXP-S
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readBXPSConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWBXPSController *vc = [[MKGWBXPSController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 7) {
+        //MK Pir
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readMKPirConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWPirController *vc = [[MKGWPirController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
+    if (type == 8) {
+        //MK Tof
+        [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
+        [MKGWMQTTInterface gw_readMKTofConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            [[MKHudManager share] hide];
+            MKGWTofController *vc = [[MKGWTofController alloc] init];
+            vc.deviceBleInfo = returnData;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
+        return;
+    }
 }
 
 #pragma mark - private method

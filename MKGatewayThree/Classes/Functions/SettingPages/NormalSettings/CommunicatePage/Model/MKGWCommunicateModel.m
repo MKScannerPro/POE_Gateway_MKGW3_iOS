@@ -51,25 +51,47 @@
 #pragma mark - interface
 - (BOOL)readCommunicateTimeout {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readCommunicateTimeoutWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
-        success = YES;
-        self.timeout = [NSString stringWithFormat:@"%@",returnData[@"data"][@"timeout"]];
-        dispatch_semaphore_signal(self.semaphore);
-    } failedBlock:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(self.semaphore);
-    }];
+    
+    if ([MKGWDeviceModeManager shared].isV2) {
+        [MKGWMQTTInterface gw_readBleCommunicateTimeoutWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            success = YES;
+            self.timeout = [NSString stringWithFormat:@"%@",returnData[@"data"][@"timeout"]];
+            dispatch_semaphore_signal(self.semaphore);
+        } failedBlock:^(NSError * _Nonnull error) {
+            dispatch_semaphore_signal(self.semaphore);
+        }];
+    }else {
+        [MKGWMQTTInterface gw_readCommunicateTimeoutWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            success = YES;
+            self.timeout = [NSString stringWithFormat:@"%@",returnData[@"data"][@"timeout"]];
+            dispatch_semaphore_signal(self.semaphore);
+        } failedBlock:^(NSError * _Nonnull error) {
+            dispatch_semaphore_signal(self.semaphore);
+        }];
+    }
+    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return success;
 }
 
 - (BOOL)configCommunicateTimeout {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configCommunicationTimeout:[self.timeout integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
-        success = YES;
-        dispatch_semaphore_signal(self.semaphore);
-    } failedBlock:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(self.semaphore);
-    }];
+    if ([MKGWDeviceModeManager shared].isV2) {
+        [MKGWMQTTInterface gw_configBleCommunicateTimeout:[self.timeout integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            success = YES;
+            dispatch_semaphore_signal(self.semaphore);
+        } failedBlock:^(NSError * _Nonnull error) {
+            dispatch_semaphore_signal(self.semaphore);
+        }];
+    }else {
+        [MKGWMQTTInterface gw_configCommunicationTimeout:[self.timeout integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+            success = YES;
+            dispatch_semaphore_signal(self.semaphore);
+        } failedBlock:^(NSError * _Nonnull error) {
+            dispatch_semaphore_signal(self.semaphore);
+        }];
+    }
+    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return success;
 }

@@ -128,6 +128,26 @@
                          failureBlock:failedBlock];
 }
 
++ (void)gw_readWifiFirmwareWithSucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed001300";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadWifiFirmwareOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)gw_readBLEFirmwareWithSucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed001500";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadBLEFirmwareOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
 #pragma mark *********************MQTT Params************************
 
 + (void)gw_readServerHostWithSucBlock:(void (^)(id returnData))sucBlock
@@ -519,6 +539,16 @@
                          failureBlock:failedBlock];
 }
 
++ (void)gw_readFilterReportIntervalWithSucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed006800";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadFilterReportIntervalOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
 #pragma mark *********************BLE Adv Params************************
 
 + (void)gw_readAdvertiseBeaconStatusWithSucBlock:(void (^)(id returnData))sucBlock
@@ -575,6 +605,36 @@
                              failedBlock:(void (^)(NSError *error))failedBlock {
     NSString *commandString = @"ed007500";
     [centralManager addTaskWithTaskID:mk_gw_taskReadBeaconTxPowerOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)gw_readBeaconRssiWithSucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed007600";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadBeaconRssiOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)gw_readConnectableWithSucBlock:(void (^)(id returnData))sucBlock
+                           failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed007700";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadConnectableOperation
+                       characteristic:peripheral.gw_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)gw_readDeviceModeWithSucBlock:(void (^)(id returnData))sucBlock
+                          failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ed00c000";
+    [centralManager addTaskWithTaskID:mk_gw_taskReadDeviceModeOperation
                        characteristic:peripheral.gw_custom
                           commandData:commandString
                          successBlock:sucBlock

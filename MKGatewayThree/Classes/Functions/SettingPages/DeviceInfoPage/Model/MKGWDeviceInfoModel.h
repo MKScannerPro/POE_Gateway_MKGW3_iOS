@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *firmware;
 
+@property (nonatomic, copy)NSString *bleFirmware;
+
 @property (nonatomic, copy)NSString *software;
 
 @property (nonatomic, copy)NSString *hardware;

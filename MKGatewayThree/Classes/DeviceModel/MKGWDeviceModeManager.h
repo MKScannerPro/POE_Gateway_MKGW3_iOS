@@ -42,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)sharedDealloc;
 
+/// 是不是V2版本的固件
+@property (nonatomic, assign)BOOL isV2;
+
 @property (nonatomic, copy)NSString *networkType;
 
 /// 当前设备的deviceID

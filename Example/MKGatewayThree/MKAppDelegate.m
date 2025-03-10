@@ -86,14 +86,19 @@
 }
 
 - (void)addLocationAuth {
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 13) {
-        return;
-    }
     //iOS13版本系统新增位置权限
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        self.locationManager = [[CLLocationManager alloc] init];
+    if (self.locationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+}
+
+#pragma mark - getter
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
 }
 
 @end
