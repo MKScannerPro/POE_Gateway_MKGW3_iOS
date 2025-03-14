@@ -18,11 +18,10 @@
 #import "MKHudManager.h"
 #import "MKCustomUIAdopter.h"
 
-#import "MKNormalService.h"
-
 #import "MKIoTCloudExitAccountAlert.h"
 
 #import "MKGWUserLoginManager.h"
+#import "MKGWNetworkService.h"
 
 #import "MKGWSyncDeviceCell.h"
 
@@ -86,8 +85,7 @@ MKGWSyncDeviceCellDelegate>
     NSMutableArray *uploadList = [NSMutableArray array];
     for (MKGWSyncDeviceCellModel *cellModel in self.dataList) {
         if (cellModel.selected) {
-            MKUserCreatScannerProDeviceModel *uploadModel = [[MKUserCreatScannerProDeviceModel alloc] init];
-            uploadModel.deviceType = 7;
+            MKGWCreatScannerProDeviceModel *uploadModel = [[MKGWCreatScannerProDeviceModel alloc] init];
             uploadModel.macAddress = cellModel.macAddress;
             uploadModel.macName = cellModel.deviceName;
             uploadModel.lastWillTopic = cellModel.lwtTopic;
@@ -101,9 +99,9 @@ MKGWSyncDeviceCellDelegate>
         return;
     }
     [[MKHudManager share] showHUDWithTitle:@"Loading..." inView:self.view isPenetration:NO];
-    [[MKNormalService share] addScannerProDevicesToCloud:uploadList isHome:[MKGWUserLoginManager shared].isHome token:self.token sucBlock:^(id returnData) {
+    [[MKGWNetworkService share] addScannerProDevicesToCloud:uploadList isHome:[MKGWUserLoginManager shared].isHome token:self.token sucBlock:^(id returnData) {
         [[MKHudManager share] hide];
-        [self.view showCentralToast:@"Add devices success"];
+        [self.view showCentralToast:@"Sync success"];
     } failBlock:^(NSError *error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];

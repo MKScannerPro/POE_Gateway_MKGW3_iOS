@@ -20,7 +20,7 @@
 #import "MKAlertView.h"
 
 #import "MKIoTCloudAccountLoginAlertView.h"
-#import "MKNormalService.h"
+#import "MKIoTLoginService.h"
 
 #import "MKNetworkManager.h"
 
@@ -470,6 +470,9 @@ MKGWDeviceModelDelegate>
         return;
     }
     MKIoTCloudAccountLoginAlertViewModel *viewModel = [[MKIoTCloudAccountLoginAlertViewModel alloc] init];
+    viewModel.account = [MKGWUserLoginManager shared].username;
+    viewModel.isHome = [MKGWUserLoginManager shared].isHome;
+    viewModel.password = [MKGWUserLoginManager shared].password;
     MKIoTCloudAccountLoginAlertView *alertView = [[MKIoTCloudAccountLoginAlertView alloc] init];
     [alertView showViewWithModel:viewModel completeBlock:^(NSString * _Nonnull account, NSString * _Nonnull password, BOOL isHome) {
         [self login:isHome username:account password:password];
@@ -625,7 +628,7 @@ MKGWDeviceModelDelegate>
 
 - (void)login:(BOOL)isHome username:(NSString *)username password:(NSString *)password {
     [[MKHudManager share] showHUDWithTitle:@"Login..." inView:self.view isPenetration:NO];
-    [[MKNormalService share] loginWithUsername:username password:password isHome:isHome sucBlock:^(id returnData) {
+    [[MKIoTLoginService share] loginWithUsername:username password:password isHome:isHome sucBlock:^(id returnData) {
         [[MKHudManager share] hide];
         [[MKGWUserLoginManager shared] syncLoginDataWithHome:isHome username:username password:password];
         MKGWSyncDeviceController *vc = [[MKGWSyncDeviceController alloc] init];

@@ -235,6 +235,7 @@
 #import "MKGWSettingModel.h"
 #import "MKGWSyncDeviceController.h"
 #import "MKGWSyncDeviceCell.h"
+#import "MKGWNetworkService.h"
 #import "MKGWUserLoginManager.h"
 #import "CBPeripheral+MKGWAdd.h"
 #import "MKGWBLESDK.h"
