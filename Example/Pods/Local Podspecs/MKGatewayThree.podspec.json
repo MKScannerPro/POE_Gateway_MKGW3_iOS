@@ -1108,6 +1108,9 @@
                         "MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage": [
 
                         ],
+                        "MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage": [
+
+                        ],
                         "MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage": [
 
                         ]
@@ -1166,6 +1169,31 @@
                     {
                       "name": "Model",
                       "source_files": "MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model/**"
+                    }
+                  ]
+                },
+                {
+                  "name": "BXPButtonCREventAlarmPage",
+                  "subspecs": [
+                    {
+                      "name": "Controller",
+                      "source_files": "MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Controller/**",
+                      "dependencies": {
+                        "MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View": [
+
+                        ],
+                        "MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View/**"
+                    },
+                    {
+                      "name": "Model",
+                      "source_files": "MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model/**"
                     }
                   ]
                 }

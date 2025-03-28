@@ -39,6 +39,7 @@
 #import "MKGWBXPButtonCRRemoteReminderController.h"
 #import "MKGWBXPButtonCRAccDataController.h"
 #import "MKGWBXPButtonCRAdvParamsController.h"
+#import "MKGWBXPButtonCRAlarmEventController.h"
 
 @interface MKGWBXPButtonCRController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -143,6 +144,13 @@ MKGWPressEventCountCellDelegate>
     if (indexPath.section == 7 && indexPath.row == 0) {
         //Remote Reminder
         MKGWBXPButtonCRRemoteReminderController *vc = [[MKGWBXPButtonCRRemoteReminderController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 7 && indexPath.row == 1) {
+        //Alarm Event
+        MKGWBXPButtonCRAlarmEventController *vc = [[MKGWBXPButtonCRAlarmEventController alloc] init];
         vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
         return;

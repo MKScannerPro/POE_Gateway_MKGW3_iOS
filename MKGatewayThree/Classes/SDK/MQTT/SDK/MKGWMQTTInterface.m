@@ -3365,6 +3365,42 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_BXPCRNotifyAlarmDataWithBleMac:(NSString *)bleMacAddress
+                           alarmEventType:(mk_gw_bxpcrAlarmEventType)alarmEventType
+                                   notify:(BOOL)notify
+                               macAddress:(NSString *)macAddress
+                                    topic:(NSString *)topic
+                                 sucBlock:(void (^)(id returnData))sucBlock
+                              failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1171),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"type":@(alarmEventType),
+            @"switch_value":(notify ? @(1) : @(0)),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskBXPCRNotifyAlarmDataOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)gw_bxpBtnCRReadAdvParamsWithBleMac:(NSString *)bleMacAddress
                                 macAddress:(NSString *)macAddress
                                      topic:(NSString *)topic
@@ -5141,7 +5177,97 @@
     [[MKGWMQTTDataManager shared] sendData:data
                                      topic:topic
                                 macAddress:macAddress
-                                    taskID:mk_gw_server_taskBxpSPowerOffOperation
+                                    taskID:mk_gw_server_taskBXPSPowerOffOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readBXPSAdvParamsWithBleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1529),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadBXPSAdvParamsOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configBXPSAdvParamsWithParams:(NSDictionary *)params
+                                  bleMac:(NSString *)bleMacAddress
+                              macAddress:(NSString *)macAddress
+                                   topic:(NSString *)topic
+                                sucBlock:(void (^)(id returnData))sucBlock
+                             failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSMutableDictionary *advParam = [NSMutableDictionary dictionary];
+    [advParam setObject:bleMacAddress forKey:@"mac"];
+    [advParam setObject:params[@"channel"] forKey:@"channel"];
+    if ([params[@"channelType"] integerValue] == 0) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"normal_adv"];
+    }else if ([params[@"channelType"] integerValue] == 1) {
+        NSDictionary * tempDic = @{
+            @"adv_interval":params[@"advInterval"],
+            @"tx_power":params[@"txPower"],
+        };
+        [advParam setObject:tempDic forKey:@"trigger_after_adv"];
+    }else if ([params[@"channelType"] integerValue] == 2) {
+        NSDictionary * tempDic1 = @{
+            @"adv_interval":params[@"afterAdvInterval"],
+            @"tx_power":params[@"afterTxPower"],
+        };
+        [advParam setObject:tempDic1 forKey:@"trigger_after_adv"];
+        NSDictionary * tempDic2 = @{
+            @"adv_interval":params[@"beforeAdvInterval"],
+            @"tx_power":params[@"beforeTxPower"],
+        };
+        [advParam setObject:tempDic2 forKey:@"trigger_before_adv"];
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1531),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":advParam
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigBXPSAdvParamsOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

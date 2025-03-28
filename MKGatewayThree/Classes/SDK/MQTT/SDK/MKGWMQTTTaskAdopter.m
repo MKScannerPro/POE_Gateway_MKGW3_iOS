@@ -184,6 +184,14 @@
         }
         return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBxpBtnCRVibratingRemoteReminderOperation];
     }
+    if (msgID == 3172) {
+        //BXP-B-CR控制监听触发记录
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBXPCRNotifyAlarmDataOperation];
+    }
     if (msgID == 3175) {
         //BXP-B-CR读取广播参数
         BOOL success = ([json[@"result_code"] integerValue] == 0);
@@ -609,12 +617,28 @@
         return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBXPSNotifyAccDataOperation];
     }
     if (msgID == 3528) {
-        //BXP-T 远程关机
+        //BXP-S 远程关机
         BOOL success = ([json[@"result_code"] integerValue] == 0);
         if (!success) {
             return @{};
         }
-        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBxpSPowerOffOperation];
+        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBXPSPowerOffOperation];
+    }
+    if (msgID == 3530) {
+        //BXP-S 读取通道广播参数
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskReadBXPSAdvParamsOperation];
+    }
+    if (msgID == 3532) {
+        //BXP-S 配置通道广播参数 
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskConfigBXPSAdvParamsOperation];
     }
     if (msgID == 3551) {
         //MK Pir 连接设备

@@ -92,6 +92,12 @@ typedef NS_ENUM(NSInteger, mk_gw_tofRangingMode) {
     mk_gw_tofRangingModeLongdistance,
 };
 
+typedef NS_ENUM(NSInteger, mk_gw_bxpcrAlarmEventType) {
+    mk_gw_bxpcrAlarmEventType_single,
+    mk_gw_bxpcrAlarmEventType_double,
+    mk_gw_bxpcrAlarmEventType_long
+};
+
 @protocol gw_indicatorLightStatusProtocol <NSObject>
 
 @property (nonatomic, assign)BOOL system_indicator;

@@ -130,7 +130,7 @@ MKTextFieldCellDelegate>
     cellModel.index = 0;
     cellModel.msg = @"Report interval";
     cellModel.textFieldValue = self.dataModel.interval;
-    cellModel.textPlaceholder = @"10-86400";
+    cellModel.textPlaceholder = @"0-86400";
     cellModel.textFieldType = mk_realNumberOnly;
     cellModel.maxLength = 5;
     cellModel.unit = @"second";

@@ -85,13 +85,13 @@
         make.left.mas_equalTo(30.f);
         make.width.mas_equalTo(120.f);
         make.top.mas_equalTo(self.syncLabel.mas_bottom).mas_offset(20.f);
-        make.height.mas_equalTo(MKFont(10.f).lineHeight);
+        make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];
     [self.axisLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.timestampLabel.mas_right).mas_offset(30.f);
         make.width.mas_equalTo(130.f);
         make.centerY.mas_equalTo(self.timestampLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(10.f).lineHeight);
+        make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];
 }
 

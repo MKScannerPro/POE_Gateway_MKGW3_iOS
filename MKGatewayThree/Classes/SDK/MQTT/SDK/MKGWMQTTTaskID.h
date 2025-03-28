@@ -124,6 +124,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskBxpBtnCRNotifyAccDataOperation,                //BXP-B-CR监听三轴数据开关
     mk_gw_server_taskBxpBtnCRRemotePowerOffOperation,               //BXP-B-CR 远程关机
     mk_gw_server_taskBxpBtnCRVibratingRemoteReminderOperation,      //BXP-B-CR控制马达
+    mk_gw_server_taskBXPCRNotifyAlarmDataOperation,                 //BXP-B-CR控制监听触发记录
     mk_gw_server_taskBxpBtnCRReadAdvParamsOperation,                //BXP-B-CR读取广播参数
     mk_gw_server_taskBxpBtnCRConfigAdvParamsOperation,              //BXP-B-CR配置广播参数
     
@@ -176,7 +177,9 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskReadBXPSHallCountOperation,            //BXP-S 读取hall触发次数
     mk_gw_server_taskClearBXPSHallCountOperation,           //BXP-S 清除hall触发次数
     mk_gw_server_taskBXPSLedRemoteReminderOperation,        //BXP-S 远程控制LED
-    mk_gw_server_taskBxpSPowerOffOperation,                 //BXP-S 远程关机
+    mk_gw_server_taskBXPSPowerOffOperation,                 //BXP-S 远程关机
+    mk_gw_server_taskReadBXPSAdvParamsOperation,            //BXP-S 读取通道广播参数
+    mk_gw_server_taskConfigBXPSAdvParamsOperation,          //BXP-S 配置通道广播参数 
     
     mk_gw_server_taskConnectMKPirWithMacOperation,          //MK Pir 连接设备
     mk_gw_server_taskReadMKPirConnectedDeviceInfoOperation, //MK Pir 读取设备信息

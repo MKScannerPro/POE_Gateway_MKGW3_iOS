@@ -94,7 +94,7 @@
 }
 
 - (NSString *)checkMsg {
-    if (!ValidStr(self.interval) || [self.interval integerValue] < 10 || [self.interval integerValue] > 86400) {
+    if (!ValidStr(self.interval) || [self.interval integerValue] < 0 || [self.interval integerValue] > 86400) {
         return @"Params error";
     }
     return @"";

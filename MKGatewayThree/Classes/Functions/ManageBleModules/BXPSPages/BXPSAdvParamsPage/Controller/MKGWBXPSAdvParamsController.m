@@ -19,12 +19,6 @@
 #import "UITableView+MKAdd.h"
 
 #import "MKHudManager.h"
-#import "MKNormalTextCell.h"
-#import "MKTableSectionLineHeader.h"
-
-#import "MKGWAdvNormalCell.h"
-#import "MKGWAdvTriggerCell.h"
-#import "MKGWAdvTriggerTwoStateCell.h"
 
 #import "MKGWDeviceModeManager.h"
 #import "MKGWDeviceModel.h"
@@ -33,23 +27,19 @@
 
 #import "MKGWBXPSAdvParamsModel.h"
 
+#import "MKGWBXPSAdvNormalCell.h"
+#import "MKGWBXPSAdvTriggerCell.h"
+#import "MKGWBXPSAdvTriggerTwoStateCell.h"
+
 @interface MKGWBXPSAdvParamsController ()<UITableViewDelegate,
 UITableViewDataSource,
-MKGWAdvNormalCellDelegate,
-MKGWAdvTriggerCellDelegate,
-MKGWAdvTriggerTwoStateCellDelegate>
+MKGWBXPSAdvNormalCellDelegate,
+MKGWBXPSAdvTriggerCellDelegate,
+MKGWBXPSAdvTriggerTwoStateCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
-@property (nonatomic, strong)NSMutableArray *section0List;
-
-@property (nonatomic, strong)NSMutableArray *section1List;
-
-@property (nonatomic, strong)NSMutableArray *section2List;
-
-@property (nonatomic, strong)NSMutableArray *section3List;
-
-@property (nonatomic, strong)NSMutableArray *headerList;
+@property (nonatomic, strong)NSMutableArray *dataList;
 
 @property (nonatomic, strong)MKGWBXPSAdvParamsModel *dataModel;
 
@@ -78,46 +68,35 @@ MKGWAdvTriggerTwoStateCellDelegate>
     return [self loadTableCellHeight:indexPath];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10.f;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    MKTableSectionLineHeader *headerView = [MKTableSectionLineHeader initHeaderViewWithTableView:tableView];
-    headerView.headerModel = self.headerList[section];
-    return headerView;
-}
-
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.headerList.count;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return self.section0List.count;
-    }
-    if (section == 1) {
-        return self.section1List.count;
-    }
-    if (section == 2) {
-        return self.section2List.count;
-    }
-    if (section == 3) {
-        return self.section3List.count;
-    }
-    
-    return 0;
+    return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self loadTableCell:indexPath];
 }
 
-#pragma mark - MKGWAdvNormalCellDelegate
-- (void)gw_advNormalCell_setPressed:(NSInteger)index
-                           interval:(NSString *)interval
-                            txPower:(NSInteger)txPower {
+#pragma mark - MKGWBXPSAdvNormalCellDelegate
+/// set按钮点击事件
+/// - Parameters:
+///   - index: index
+///   - interval: 当前ADV interval
+///   - txPower: 当前Tx Power
+/*
+ 0:-40dBm
+ 1:-20dBm
+ 2:-16dBm
+ 3:-12dBm
+ 4:-8dBm
+ 5:-4dBm
+ 6:0dBm
+ 7:3dBm
+ 8:4dBm
+ */
+- (void)gw_BXPSAdvNormalCell_setPressed:(NSInteger)index
+                               interval:(NSString *)interval
+                                txPower:(NSInteger)txPower {
     if (!ValidStr(interval) || [interval integerValue] < 1 || [interval integerValue] > 100) {
         [self.view showCentralToast:@"ADV interval Error"];
         return;
@@ -129,7 +108,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"advInterval":@([interval integerValue] * 20),
         @"txPower":@(txPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configBXPSAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -138,10 +117,26 @@ MKGWAdvTriggerTwoStateCellDelegate>
     }];
 }
 
-#pragma mark - MKGWAdvTriggerCellDelegate
-- (void)gw_advTriggerCell_setPressed:(NSInteger)index
-                            interval:(NSString *)interval
-                             txPower:(NSInteger)txPower {
+#pragma mark - MKGWBXPSAdvTriggerCellDelegate
+/// set按钮点击事件
+/// - Parameters:
+///   - index: index
+///   - interval: 当前ADV interval
+///   - txPower: 当前Tx Power
+/*
+ 0:-40dBm
+ 1:-20dBm
+ 2:-16dBm
+ 3:-12dBm
+ 4:-8dBm
+ 5:-4dBm
+ 6:0dBm
+ 7:3dBm
+ 8:4dBm
+ */
+- (void)gw_BXPSAdvTriggerCell_setPressed:(NSInteger)index
+                                interval:(NSString *)interval
+                                 txPower:(NSInteger)txPower {
     if (!ValidStr(interval) || [interval integerValue] < 1 || [interval integerValue] > 100) {
         [self.view showCentralToast:@"ADV interval Error"];
         return;
@@ -153,7 +148,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"advInterval":@([interval integerValue] * 20),
         @"txPower":@(txPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configBXPSAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -162,12 +157,30 @@ MKGWAdvTriggerTwoStateCellDelegate>
     }];
 }
 
-#pragma mark - MKGWAdvTriggerTwoStateCellDelegate
-- (void)gw_advNormalCell_setPressed:(NSInteger)index
-                     beforeInterval:(NSString *)beforeInterval
-                      beforeTxPower:(NSInteger)beforeTxPower
-                      afterInterval:(NSString *)afterInterval
-                       afterTxPower:(NSInteger)afterTxPower {
+#pragma mark - MKGWBXPSAdvTriggerTwoStateCellDelegate
+/// set按钮点击事件
+/// - Parameters:
+///   - index: index
+///   - beforeInterval: ADV before triggered ADV interval
+///   - beforeTxPower: ADV before triggered Tx Power
+///   - afterInterval: ADV after triggered ADV interval
+///   - afterTxPower: ADV after triggered Tx Power
+/*
+ 0:-40dBm
+ 1:-20dBm
+ 2:-16dBm
+ 3:-12dBm
+ 4:-8dBm
+ 5:-4dBm
+ 6:0dBm
+ 7:3dBm
+ 8:4dBm
+ */
+- (void)gw_BXPSAdvTriggerTwoStateCell_setPressed:(NSInteger)index
+                                  beforeInterval:(NSString *)beforeInterval
+                                   beforeTxPower:(NSInteger)beforeTxPower
+                                   afterInterval:(NSString *)afterInterval
+                                    afterTxPower:(NSInteger)afterTxPower {
     if (!ValidStr(beforeInterval) || [beforeInterval integerValue] < 1 || [beforeInterval integerValue] > 100) {
         [self.view showCentralToast:@"Before ADV interval Error"];
         return;
@@ -185,7 +198,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"beforeAdvInterval":@([beforeInterval integerValue] * 20),
         @"beforeTxPower":@(beforeTxPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configBXPSAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -211,144 +224,125 @@ MKGWAdvTriggerTwoStateCellDelegate>
 
 #pragma mark - loadSectionDatas
 - (UITableViewCell *)loadTableCell:(NSIndexPath *)indexPath {
-    NSDictionary *advParams = @{};
-    for (NSDictionary *dic in self.dataModel.dataList) {
-        if ([dic[@"channel"] integerValue] == indexPath.section) {
-            advParams = dic;
-            break;
-        }
-    }
-    if (!ValidDict(advParams)) {
-        return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MKGWBXPSAdvParamsControllerCell"];
-    }
-    BOOL enable = [advParams[@"enable"] boolValue];
-    NSMutableArray *dataList = self.section0List;
-    if (indexPath.section == 1) {
-        dataList = self.section1List;
-    }else if (indexPath.section == 2) {
-        dataList = self.section2List;
-    }else if (indexPath.section == 3) {
-        dataList = self.section3List;
-    }
-    if (!enable) {
-        //关闭状态
-        MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:self.tableView];
-        cell.dataModel = dataList[indexPath.row];
-        return cell;
-    }
-    NSInteger channelType = [advParams[@"channel_type"] integerValue];
-    if (channelType == 0) {
+    NSObject *obj = self.dataList[indexPath.row];
+    if ([obj isKindOfClass:MKGWBXPSAdvNormalCellModel.class]) {
         //正常广播
-        MKGWAdvNormalCell *cell = [MKGWAdvNormalCell initCellWithTableView:self.tableView];
-        cell.dataModel = dataList[indexPath.row];
+        MKGWBXPSAdvNormalCell *cell = [MKGWBXPSAdvNormalCell initCellWithTableView:self.tableView];
+        cell.dataModel = obj;
         cell.delegate = self;
         return cell;
     }
-    if (channelType == 1) {
+    if ([obj isKindOfClass:MKGWBXPSAdvTriggerCellModel.class]) {
         //触发广播
-        MKGWAdvTriggerCell *cell = [MKGWAdvTriggerCell initCellWithTableView:self.tableView];
-        cell.dataModel = dataList[indexPath.row];
+        MKGWBXPSAdvTriggerCell *cell = [MKGWBXPSAdvTriggerCell initCellWithTableView:self.tableView];
+        cell.dataModel = obj;
         cell.delegate = self;
         return cell;
     }
-    //触发前+触发后广播
-    MKGWAdvTriggerTwoStateCell *cell = [MKGWAdvTriggerTwoStateCell initCellWithTableView:self.tableView];
-    cell.dataModel = dataList[indexPath.row];
-    cell.delegate = self;
-    return cell;
+    if ([obj isKindOfClass:MKGWBXPSAdvTriggerTwoStateCellModel.class]) {
+        //触发前+触发后广播
+        MKGWBXPSAdvTriggerTwoStateCell *cell = [MKGWBXPSAdvTriggerTwoStateCell initCellWithTableView:self.tableView];
+        cell.dataModel = obj;
+        cell.delegate = self;
+        return cell;
+    }
+    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MKGWBXPSAdvParamsControllerIdenty"];
 }
 
 - (CGFloat)loadTableCellHeight:(NSIndexPath *)indexPath {
-    NSMutableArray *dataList = self.section0List;
-    if (indexPath.section == 1) {
-        dataList = self.section1List;
-    }else if (indexPath.section == 2) {
-        dataList = self.section2List;
-    }else if (indexPath.section == 3) {
-        dataList = self.section3List;
+    NSObject *obj = self.dataList[indexPath.row];
+    if ([obj isKindOfClass:MKGWBXPSAdvNormalCellModel.class]) {
+        //正常广播
+        MKGWBXPSAdvNormalCellModel *tempModel = (MKGWBXPSAdvNormalCellModel *)obj;
+        return [tempModel fetchCellHeight];
     }
-    NSObject *obj = dataList[indexPath.row];
-    if ([obj isKindOfClass:MKNormalTextCellModel.class]) {
-        return 44.f;
+    if ([obj isKindOfClass:MKGWBXPSAdvTriggerCellModel.class]) {
+        //触发广播
+        MKGWBXPSAdvTriggerCellModel *tempModel = (MKGWBXPSAdvTriggerCellModel *)obj;
+        return [tempModel fetchCellHeight];
     }
-    if ([obj isKindOfClass:MKGWAdvNormalCellModel.class] || [obj isKindOfClass:MKGWAdvTriggerCellModel.class]) {
-        return 150.f;
-    }
-    if ([obj isKindOfClass:MKGWAdvTriggerTwoStateCellModel.class]) {
-        return 240.f;
+    if ([obj isKindOfClass:MKGWBXPSAdvTriggerTwoStateCellModel.class]) {
+        MKGWBXPSAdvTriggerTwoStateCellModel *tempModel = (MKGWBXPSAdvTriggerTwoStateCellModel *)obj;
+        return [tempModel fetchCellHeight];
     }
     return 0.0f;
 }
 
 - (void)loadSectionDatas {
-    [self.section0List addObject:[self loadObjectWithSection:0]];
-    [self.section1List addObject:[self loadObjectWithSection:1]];
-    [self.section2List addObject:[self loadObjectWithSection:2]];
-    [self.section3List addObject:[self loadObjectWithSection:3]];
-    
-    for (NSInteger i = 0; i < 4; i ++) {
-        MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
-        [self.headerList addObject:headerModel];
+    for (NSInteger i = 0; i < self.dataModel.dataList.count; i ++) {
+        NSDictionary *dic = self.dataModel.dataList[i];
+        NSInteger channel = [dic[@"channel"] integerValue];
+        BOOL enable = [dic[@"enable"] boolValue];
+        if (!enable) {
+            //通道关闭 No Data
+            MKGWBXPSAdvNormalCellModel *cellModel = [[MKGWBXPSAdvNormalCellModel alloc] init];
+            cellModel.slotIndex = channel;
+            cellModel.slotType = MKGWBXPSAdvNormalCellSlotTypeNoData;
+            [self.dataList addObject:cellModel];
+        }else {
+            //通道是打开的
+            NSInteger channelType = [dic[@"channel_type"] integerValue];
+            if (channelType == 0) {
+                //正常广播
+                MKGWBXPSAdvNormalCellModel *cellModel = [[MKGWBXPSAdvNormalCellModel alloc] init];
+                cellModel.slotIndex = channel;
+                
+                NSDictionary *normalAdv = dic[@"normal_adv"];
+                
+                cellModel.slotType = [self loadAdvType:[normalAdv[@"adv_type"] integerValue]];
+                cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)([normalAdv[@"adv_interval"] integerValue] / 20)];
+                cellModel.txPower = [normalAdv[@"tx_power"] integerValue];
+                [self.dataList addObject:cellModel];
+            }else if (channelType == 1) {
+                //触发广播
+                NSDictionary *afterAdv = dic[@"trigger_after_adv"];
+                MKGWBXPSAdvTriggerCellModel *cellModel = [[MKGWBXPSAdvTriggerCellModel alloc] init];
+                cellModel.slotIndex = channel;
+                                
+                cellModel.slotType = [self loadAdvType:[afterAdv[@"adv_type"] integerValue]];
+                cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)([afterAdv[@"adv_interval"] integerValue] / 20)];
+                cellModel.txPower = [afterAdv[@"tx_power"] integerValue];
+                [self.dataList addObject:cellModel];
+            }else if (channelType == 2) {
+                //触发前+触发后广播
+                NSDictionary *beforeAdv = dic[@"trigger_before_adv"];
+                NSDictionary *afterAdv = dic[@"trigger_after_adv"];
+                MKGWBXPSAdvTriggerTwoStateCellModel *cellModel = [[MKGWBXPSAdvTriggerTwoStateCellModel alloc] init];
+                cellModel.slotIndex = channel;
+                cellModel.beforeSlotType = [self loadAdvType:[beforeAdv[@"adv_type"] integerValue]];
+                cellModel.beforeTriggerInterval = [NSString stringWithFormat:@"%ld",(long)([beforeAdv[@"adv_interval"] integerValue] / 20)];
+                cellModel.beforeTriggerTxPower = [beforeAdv[@"tx_power"] integerValue];
+                cellModel.afterSlotType = [self loadAdvType:[afterAdv[@"adv_type"] integerValue]];
+                cellModel.afterTriggerInterval = [NSString stringWithFormat:@"%ld",(long)([afterAdv[@"adv_interval"] integerValue] / 20)];
+                cellModel.afterTriggerTxPower = [afterAdv[@"tx_power"] integerValue];
+                [self.dataList addObject:cellModel];
+            }
+        }
     }
         
     [self.tableView reloadData];
 }
 
-- (NSObject *)loadObjectWithSection:(NSInteger)section {
-    NSDictionary *advParams = @{};
-    for (NSDictionary *dic in self.dataModel.dataList) {
-        if ([dic[@"channel"] integerValue] == section) {
-            advParams = dic;
-            break;
-        }
+- (NSInteger)loadAdvType:(NSInteger)advType {
+    if (advType == 0x00) {
+        return 0;
     }
-    if (!ValidDict(advParams)) {
-        return [[NSObject alloc] init];
+    if (advType == 0x10) {
+        return 1;
     }
-    NSString *channelMsg = @"Single press mode";
-    if (section == 1) {
-        channelMsg = @"Double press mode";
-    }else if (section == 2) {
-        channelMsg = @"Long press mode";
-    }else if (section == 3) {
-        channelMsg = @"Abnormal inactivity mode";
+    if (advType == 0x20) {
+        return 2;
     }
-    BOOL enable = [advParams[@"enable"] boolValue];
-    if (!enable) {
-        //关闭状态
-        MKNormalTextCellModel *cellModel = [[MKNormalTextCellModel alloc] init];
-        cellModel.leftMsg = channelMsg;
-        cellModel.rightMsg = @"OFF";
-        return cellModel;
+    if (advType == 0x50) {
+        return 3;
     }
-    NSInteger channelType = [advParams[@"channel_type"] integerValue];
-    if (channelType == 0) {
-        //正常广播
-        MKGWAdvNormalCellModel *cellModel = [[MKGWAdvNormalCellModel alloc] init];
-        cellModel.index = section;
-        cellModel.msg = channelMsg;
-        cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"normal_adv"][@"adv_interval"] integerValue] / 20];
-        cellModel.txPower = [advParams[@"normal_adv"][@"tx_power"] integerValue];
-        return cellModel;
+    if (advType == 0x70) {
+        return 4;
     }
-    if (channelType == 1) {
-        //触发广播
-        MKGWAdvTriggerCellModel *cellModel = [[MKGWAdvTriggerCellModel alloc] init];
-        cellModel.index = section;
-        cellModel.msg = channelMsg;
-        cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_after_adv"][@"adv_interval"] integerValue] / 20];
-        cellModel.txPower = [advParams[@"trigger_after_adv"][@"tx_power"] integerValue];
-        return cellModel;
+    if (advType == 0x80) {
+        return 5;
     }
-    //触发前+触发后广播
-    MKGWAdvTriggerTwoStateCellModel *cellModel = [[MKGWAdvTriggerTwoStateCellModel alloc] init];
-    cellModel.index = section;
-    cellModel.msg = channelMsg;
-    cellModel.beforeTriggerInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_before_adv"][@"adv_interval"] integerValue] / 20];
-    cellModel.beforeTriggerTxPower = [advParams[@"trigger_before_adv"][@"tx_power"] integerValue];
-    cellModel.afterTriggerInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_after_adv"][@"adv_interval"] integerValue] / 20];
-    cellModel.afterTriggerTxPower = [advParams[@"trigger_after_adv"][@"tx_power"] integerValue];
-    return cellModel;
+    return 6;
 }
 
 #pragma mark - UI
@@ -375,39 +369,11 @@ MKGWAdvTriggerTwoStateCellDelegate>
     return _tableView;
 }
 
-- (NSMutableArray *)section0List {
-    if (!_section0List) {
-        _section0List = [NSMutableArray array];
+- (NSMutableArray *)dataList {
+    if (!_dataList) {
+        _dataList = [NSMutableArray array];
     }
-    return _section0List;
-}
-
-- (NSMutableArray *)section1List {
-    if (!_section1List) {
-        _section1List = [NSMutableArray array];
-    }
-    return _section1List;
-}
-
-- (NSMutableArray *)section2List {
-    if (!_section2List) {
-        _section2List = [NSMutableArray array];
-    }
-    return _section2List;
-}
-
-- (NSMutableArray *)section3List {
-    if (!_section3List) {
-        _section3List = [NSMutableArray array];
-    }
-    return _section3List;
-}
-
-- (NSMutableArray *)headerList {
-    if (!_headerList) {
-        _headerList = [NSMutableArray array];
-    }
-    return _headerList;
+    return _dataList;
 }
 
 - (MKGWBXPSAdvParamsModel *)dataModel {

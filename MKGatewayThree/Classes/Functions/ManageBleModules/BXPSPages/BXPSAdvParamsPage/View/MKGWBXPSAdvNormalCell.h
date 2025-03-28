@@ -10,16 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, MKGWBXPSAdvNormalCellSlotType) {
+    MKGWBXPSAdvNormalCellSlotTypeUID,
+    MKGWBXPSAdvNormalCellSlotTypeURL,
+    MKGWBXPSAdvNormalCellSlotTypeTLM,
+    MKGWBXPSAdvNormalCellSlotTypeBeacon,
+    MKGWBXPSAdvNormalCellSlotTypeTHInfo,
+    MKGWBXPSAdvNormalCellSlotTypeSensorInfo,
+    MKGWBXPSAdvNormalCellSlotTypeNoData,
+};
+
 @interface MKGWBXPSAdvNormalCellModel : NSObject
 
 @property (nonatomic, assign)NSInteger slotIndex;
 
-@property (nonatomic, copy)NSString *msg;
+@property (nonatomic, assign)MKGWBXPSAdvNormalCellSlotType slotType;
 
 @property (nonatomic, copy)NSString *advInterval;
 
 /*
- 对于deviceType=23的C112设备，最高支持到0dBm，其余可以支持到+6dBm
  0:-40dBm
  1:-20dBm
  2:-16dBm
@@ -31,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
  8:4dBm
  */
 @property (nonatomic, assign)NSInteger txPower;
+
+- (CGFloat)fetchCellHeight;
 
 @end
 
@@ -52,9 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
  7:3dBm
  8:4dBm
  */
-- (void)gw_advNormalCell_setPressed:(NSInteger)index
-                           interval:(NSString *)interval
-                            txPower:(NSInteger)txPower;
+- (void)gw_BXPSAdvNormalCell_setPressed:(NSInteger)index
+                               interval:(NSString *)interval
+                                txPower:(NSInteger)txPower;
 
 @end
 

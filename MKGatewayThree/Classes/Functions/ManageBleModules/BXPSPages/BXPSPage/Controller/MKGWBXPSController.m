@@ -39,7 +39,7 @@
 #import "MKGWBXPSTHDataSampleRateController.h"
 #import "MKGWBXPSHallCountController.h"
 #import "MKGWBXPSRemoteReminderController.h"
-//#import "MKGWBXPSAdvParamsController.h"
+#import "MKGWBXPSAdvParamsController.h"
 
 @interface MKGWBXPSController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -83,6 +83,7 @@ MKGWButtonFirmwareCellDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
+    [self addNotes];
     [self loadSectionDatas];
     [self readDatasFromDevice];
 }
@@ -168,9 +169,9 @@ MKGWButtonFirmwareCellDelegate>
     }
     if (indexPath.section == 3 && indexPath.row == 5) {
         //Advertisement parameters
-//        MKGWBXPSAdvParamsController *vc = [[MKGWBXPSAdvParamsController alloc] init];
-//        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
-//        [self.navigationController pushViewController:vc animated:YES];
+        MKGWBXPSAdvParamsController *vc = [[MKGWBXPSAdvParamsController alloc] init];
+        vc.bleMac = self.deviceBleInfo[@"data"][@"mac"];
+        [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 3 && indexPath.row == 6) {

@@ -37,6 +37,7 @@ NSString *const MKGWReceiveDeviceOfflineNotification = @"MKGWReceiveDeviceOfflin
 NSString *const MKGWReceiveBXPBtnAccDataNotification = @"MKGWReceiveBXPBtnAccDataNotification";
 
 NSString *const MKGWReceiveBXPBtnCRAccDataNotification = @"MKGWReceiveBXPBtnCRAccDataNotification";
+NSString *const MKGWReceiveBXPBtnCRAlarmEventDataNotification = @"MKGWReceiveBXPBtnCRAlarmEventDataNotification";
 
 NSString *const MKGWReceiveBXPCRealTimeHTDataNotification = @"MKGWReceiveBXPCRealTimeHTDataNotification";
 NSString *const MKGWReceiveBXPCAccDataNotification = @"MKGWReceiveBXPCAccDataNotification";
@@ -173,6 +174,13 @@ static dispatch_once_t onceToken;
     if (msgID == 3166) {
         //BXP-B-CR 三轴数据通知
         [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBXPBtnCRAccDataNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3173) {
+        //BXP-B-CR 触发记录数据通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBXPBtnCRAlarmEventDataNotification
                                                             object:nil
                                                           userInfo:data];
         return;

@@ -728,6 +728,7 @@ TODO: Add long description of the pod here.
                 ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
                 ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage'
                 ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage'
+                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage'
                 ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage'
             end
         end
@@ -759,6 +760,20 @@ TODO: Add long description of the pod here.
             end
             sssss.subspec 'Model' do |ssssss|
                 ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model/**'
+            end
+        end
+        ssss.subspec 'BXPButtonCREventAlarmPage' do |sssss|
+            sssss.subspec 'Controller' do |ssssss|
+                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Controller/**'
+                
+                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View'
+                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model'
+            end
+            sssss.subspec 'View' do |ssssss|
+                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View/**'
+            end
+            sssss.subspec 'Model' do |ssssss|
+                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model/**'
             end
         end
       end

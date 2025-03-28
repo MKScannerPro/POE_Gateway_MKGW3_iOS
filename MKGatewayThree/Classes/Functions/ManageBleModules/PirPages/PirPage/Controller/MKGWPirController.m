@@ -79,6 +79,7 @@ MKGWButtonFirmwareCellDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
+    [self addNotes];
     [self loadSectionDatas];
     [self readDatasFromDevice];
 }

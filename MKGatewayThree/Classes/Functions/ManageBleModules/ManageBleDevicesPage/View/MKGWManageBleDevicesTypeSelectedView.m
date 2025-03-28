@@ -88,26 +88,18 @@ MKGWManageBleDevicesTypeSelectedCellDelegate>
 #pragma mark - Private method
 
 - (void)dismiss{
-    [UIView animateWithDuration:0.25f animations:^{
-        self.tableView.alpha = 0;
-    } completion:^(BOOL finished) {
-        if (self.superview) {
-            [self removeFromSuperview];
-        }
-    }];
+    if (self.superview) {
+        [self removeFromSuperview];
+    }
 }
 
 - (void)confirmButtonPressed{
-    [UIView animateWithDuration:0.25f animations:^{
-        self.tableView.alpha = 0;
-    } completion:^(BOOL finished) {
-        if (self.selectedBlock) {
-            self.selectedBlock(self.selectedType);
-        }
-        if (self.superview) {
-            [self removeFromSuperview];
-        }
-    }];
+    if (self.selectedBlock) {
+        self.selectedBlock(self.selectedType);
+    }
+    if (self.superview) {
+        [self removeFromSuperview];
+    }
 }
 
 - (void)addTapAction{
@@ -135,11 +127,7 @@ MKGWManageBleDevicesTypeSelectedCellDelegate>
     [self loadSectionDatas];
     [kAppWindow addSubview:self];
     self.selectedBlock = selecteBlock;
-    [UIView animateWithDuration:0.25 animations:^{
-        self.tableView.alpha = 1;
-    } completion:^(BOOL finished) {
-        [self.tableView reloadData];
-    }];
+    [self.tableView reloadData];
 }
 
 - (void)loadSectionDatas {

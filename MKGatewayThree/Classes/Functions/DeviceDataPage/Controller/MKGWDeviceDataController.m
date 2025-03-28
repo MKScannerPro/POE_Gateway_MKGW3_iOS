@@ -36,6 +36,7 @@
 #import "MKGWUploadOptionController.h"
 #import "MKGWUploadOptionV2Controller.h"
 #import "MKGWManageBleDevicesController.h"
+#import "MKGWManageBleDevicesV2Controller.h"
 #import "MKGWNormalConnectedController.h"
 #import "MKGWBXPButtonController.h"
 #import "MKGWBXPButtonCRController.h"
@@ -186,6 +187,11 @@ MKGWReceiveDeviceDatasDelegate>
             return;
         }
         //网关没有连接设备
+        if ([MKGWDeviceModeManager shared].isV2) {
+            MKGWManageBleDevicesV2Controller *vc = [[MKGWManageBleDevicesV2Controller alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
         MKGWManageBleDevicesController *vc = [[MKGWManageBleDevicesController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }

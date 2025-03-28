@@ -29,7 +29,7 @@
                failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
         if (![self readBXPSAdvParams:bleMac]) {
-            [self operationFailedBlockWithMsg:@"Read BXP-Button Adv Params Error" block:failedBlock];
+            [self operationFailedBlockWithMsg:@"Read BXP-S Adv Params Error" block:failedBlock];
             return;
         }
         moko_dispatch_main_safe(^{
@@ -41,7 +41,7 @@
 #pragma mark - interface
 - (BOOL)readBXPSAdvParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_bxpBtnReadAdvParamsWithBleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readBXPSAdvParamsWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.dataList = returnData[@"data"][@"adv_param"];
         dispatch_semaphore_signal(self.semaphore);

@@ -53,6 +53,8 @@ extern NSString *const MKGWReceiveBXPCRealTimeHTDataNotification;
 
 extern NSString *const MKGWReceiveBXPCAccDataNotification;
 
+extern NSString *const MKGWReceiveBXPBtnCRAlarmEventDataNotification;
+
 extern NSString *const MKGWReceiveBXPCHistoricalHTDataNotification;
 
 extern NSString *const MKGWReceiveBXPDAccDataNotification;
