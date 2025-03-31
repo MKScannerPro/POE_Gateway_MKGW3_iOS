@@ -7,20 +7,20 @@
 //
 
 #import "MKHudManager.h"
-#import "JGProgressHUD.h"
+#import "MKProgressHUD.h"
 #import "MKMacroDefines.h"
 
-@interface MKHudManager ()
+@interface MKHudManager (){
+    __weak UIView *_inView;
+}
 
-@property (nonatomic, strong)UIView *inView;
-
-@property (nonatomic, strong)JGProgressHUD *progressHUD;
+@property (nonatomic,strong) MKProgressHUD      *MKProgressHUD;
 
 @end
 
 @implementation MKHudManager
 
-+ (instancetype)share {
++ (instancetype)share{
     static dispatch_once_t t;
     static MKHudManager *manager = nil;
     dispatch_once(&t, ^{
@@ -31,49 +31,53 @@
 
 - (void)showHUDWithTitle:(NSString *)title
                   inView:(UIView *)inView
-           isPenetration:(BOOL)isPenetration {
-    if (_progressHUD) {
+           isPenetration:(BOOL)isPenetration{
+    if (_MKProgressHUD) {
         [self hide];
-        _progressHUD = nil;
+        _MKProgressHUD = nil;
     }
-    
     _inView = inView;
-    UIView *baseView = inView ?: kAppWindow;
-    
-    _progressHUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    _progressHUD.interactionType = isPenetration ? JGProgressHUDInteractionTypeBlockNoTouches : JGProgressHUDInteractionTypeBlockAllTouches;
-    _progressHUD.square = NO;
-    _progressHUD.cornerRadius = 5.0;
-    _progressHUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    
-    _progressHUD.textLabel.text = title;
-    
-    [_progressHUD showInView:baseView];
-}
-
-- (void)showHUDWithTitle:(NSString *)title inView:(UIView *)inView {
-    [self showHUDWithTitle:title inView:inView isPenetration:NO];
-}
-
-- (void)show {
+    UIView *baseView = nil;
     if (_inView) {
-        [_progressHUD showInView:_inView];
-    } else {
-        [_progressHUD showInView:kAppWindow];
+        baseView = _inView;
     }
+    else{
+        baseView = kAppWindow;
+    }
+    
+    _MKProgressHUD = [[MKProgressHUD alloc] initWithView:baseView];
+    _MKProgressHUD.userInteractionEnabled = !isPenetration;
+    _MKProgressHUD.removeFromSuperViewOnHide = YES;
+    _MKProgressHUD.bezelView.layer.cornerRadius = 5.0;
+    _MKProgressHUD.bezelView.color = [UIColor colorWithWhite:0.0 alpha:0.75];
+    _inView = inView;
+    if (_inView) {
+        [_inView addSubview:_MKProgressHUD];
+    }
+    else{
+        [kAppWindow addSubview:_MKProgressHUD];
+    }
+    
+    _MKProgressHUD.label.text = title;
+    [self show];
 }
 
-- (void)hide {
+-(void)show{
+    [kAppWindow bringSubviewToFront:_MKProgressHUD];
+    [_MKProgressHUD showAnimated:YES];
+}
+
+-(void)hide{
     if (_inView) {
         _inView.userInteractionEnabled = YES;
     }
     moko_dispatch_main_safe(^{
-        [_progressHUD dismiss];
+        [_MKProgressHUD hideAnimated:YES];
     });
 }
 
-- (void)hideAfterDelay:(NSTimeInterval)delay {
-    [_progressHUD dismissAfterDelay:delay];
+- (void)hideAfterDelay:(NSTimeInterval)delay{
+    [self performSelector:@selector(hide) withObject:nil afterDelay:delay];
 }
 
 @end
