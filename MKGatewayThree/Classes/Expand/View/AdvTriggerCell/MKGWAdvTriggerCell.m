@@ -127,17 +127,11 @@
 
 #pragma mark - event method
 - (void)setButtonPressed {
-    NSInteger txPower = 0;
-    for (NSInteger i = 0; i < self.txPowerList.count; i ++) {
-        if ([self.txPowerBtn.titleLabel.text isEqualToString:self.txPowerList[i]]) {
-            txPower = i;
-            break;
-        }
-    }
+    NSString *txPower = [self.txPowerBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"dBm" withString:@""];
     if ([self.delegate respondsToSelector:@selector(gw_advTriggerCell_setPressed:interval:txPower:)]) {
         [self.delegate gw_advTriggerCell_setPressed:self.dataModel.index
                                            interval:SafeStr(self.intervalField.text)
-                                            txPower:txPower];
+                                            txPower:[txPower integerValue]];
     }
 }
 

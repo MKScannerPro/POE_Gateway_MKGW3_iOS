@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, MKGWBXPAdvParamsCellSlotType) {
     MKGWBXPAdvParamsCellSlotTypeiBeacon,
     MKGWBXPAdvParamsCellSlotTypeAccelerometer,
     MKGWBXPAdvParamsCellSlotTypeHT,
+    MKGWBXPAdvParamsCellSlotTypeTag,
     MKGWBXPAdvParamsCellSlotTypeNoData,
 };
 
@@ -43,7 +44,11 @@ typedef NS_ENUM(NSInteger, MKGWBXPAdvParamsCellTriggerType) {
 
 @property (nonatomic, copy)NSString *interval;
 
+/// 对于BXP-Tag设备来说，txPower最大到6dBm
+@property (nonatomic, assign)BOOL bxpTag;
+
 /*
+ 对于非BXP-Tag
  0:-40dBm
  1:-20dBm
  2:-16dBm
@@ -53,6 +58,18 @@ typedef NS_ENUM(NSInteger, MKGWBXPAdvParamsCellTriggerType) {
  6:0dBm
  7:3dBm
  8:4dBm
+ */
+/*
+ 对于BXP-Tag
+ 0:-20dBm
+ 1:-16dBm
+ 2:-12dBm
+ 3:-8dBm
+ 4:-4dBm
+ 5:0dBm
+ 6:3dBm
+ 7:4dBm
+ 8:6dBm
  */
 @property (nonatomic, assign)NSInteger txPower;
 

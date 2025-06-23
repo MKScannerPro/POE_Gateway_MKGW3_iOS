@@ -599,6 +599,24 @@ NS_ASSUME_NONNULL_BEGIN
                                    sucBlock:(void (^)(id returnData))sucBlock
                                 failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// BXP DFU(V2).
+/// @param type 1:BXP-B-D   2:BXP-B-CR  3:BXP-C 4:BXP-D 5:BXP-TAG   6:BXP-S 7:PIR   8:TOF
+/// @param firmwareUrl Firmware file URL.1- 256 Characters.
+/// @param dataUrl Init data file URL.1- 256 Characters.
+/// @param dfuList @[@{@"mac":"aabbccddeeff",@"password":@"xxxx"}]
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_startBXPDfuWithBeaconType:(NSInteger)type
+                         firmwareUrl:(NSString *)firmwareUrl
+                             dataUrl:(NSString *)dataUrl
+                             dfuList:(NSArray <NSDictionary *>*)dfuList
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
 
 #pragma mark *********************Read************************
 
@@ -1303,6 +1321,20 @@ NS_ASSUME_NONNULL_BEGIN
                                          sucBlock:(void (^)(id returnData))sucBlock
                                       failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Clear the  BXP-Button-CR's event counts that connected to the current gateway.
+/// @param type 0:clear the single press event count    1:clear the double press event count    2:clear the long press event count
+/// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_clearBXPButtonCREventCountWithType:(mk_gw_triggerEventType)type
+                                bleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// BXP-B-CR notify Acc Data.
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param notify notify
@@ -1729,7 +1761,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Config the  BXP-T's Accelerometer paramters which is connected by the current gateway.
 /// @param scale scale
 /// @param sampleRate sampleRate
-/// @param sensitivity If the scale is mk_gw_threeAxisDataAG0, the range is 1~20.If the scale is mk_gw_threeAxisDataAG1, the range is 1~40.If the scale is mk_gw_threeAxisDataAG2, the range is 1~80.If the scale is mk_gw_threeAxisDataAG3, the range is 1~160.
+/// @param sensitivity 1~255. If the scale is mk_gw_threeAxisDataAG0, the unit is 3.91mg.If the scale is mk_gw_threeAxisDataAG1, the unit is 7.81mg.If the scale is mk_gw_threeAxisDataAG2, the unit is 15.63mg.If the scale is mk_gw_threeAxisDataAG3, the unit is 31.25mg.
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
 /// @param topic 1-128 Characters

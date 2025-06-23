@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 0:2g    1:4g    2:8g    3:16g
 @property (nonatomic, assign)NSInteger scale;
 
+/// 1~255
 @property (nonatomic, copy)NSString *sensitivity;
 
 - (void)readDataWithBleMac:(NSString *)bleMac

@@ -186,26 +186,14 @@
 
 #pragma mark - event method
 - (void)setButtonPressed {
-    NSInteger beforeTxPower = 0;
-    for (NSInteger i = 0; i < self.txPowerList.count; i ++) {
-        if ([self.beforeTxPowerBtn.titleLabel.text isEqualToString:self.txPowerList[i]]) {
-            beforeTxPower = i;
-            break;
-        }
-    }
-    NSInteger afterTxPower = 0;
-    for (NSInteger i = 0; i < self.txPowerList.count; i ++) {
-        if ([self.afterTxPowerBtn.titleLabel.text isEqualToString:self.txPowerList[i]]) {
-            afterTxPower = i;
-            break;
-        }
-    }
+    NSString *beforeTxPower = [self.beforeTxPowerBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"dBm" withString:@""];
+    NSString *afterTxPower = [self.afterTxPowerBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"dBm" withString:@""];
     if ([self.delegate respondsToSelector:@selector(gw_BXPSAdvTriggerTwoStateCell_setPressed:beforeInterval:beforeTxPower:afterInterval:afterTxPower:)]) {
         [self.delegate gw_BXPSAdvTriggerTwoStateCell_setPressed:self.dataModel.slotIndex
                                                  beforeInterval:SafeStr(self.beforeIntervalField.text)
-                                                  beforeTxPower:beforeTxPower
+                                                  beforeTxPower:[beforeTxPower integerValue]
                                                   afterInterval:SafeStr(self.afterIntervalField.text)
-                                                   afterTxPower:afterTxPower];
+                                                   afterTxPower:[afterTxPower integerValue]];
     }
 }
 
@@ -394,7 +382,7 @@
 
 - (NSArray *)txPowerList {
     if (!_txPowerList) {
-        _txPowerList = @[@"-40dBm",@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm"];
+        _txPowerList = @[@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm",@"6dBm"];
     }
     return _txPowerList;
 }

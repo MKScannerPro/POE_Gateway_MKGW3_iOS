@@ -328,7 +328,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         cellModel.index = section;
         cellModel.msg = channelMsg;
         cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"normal_adv"][@"adv_interval"] integerValue] / 20];
-        cellModel.txPower = [advParams[@"normal_adv"][@"tx_power"] integerValue];
+        cellModel.txPower = [self fetchTxPower:[advParams[@"normal_adv"][@"tx_power"] integerValue]];
         return cellModel;
     }
     if (channelType == 1) {
@@ -337,7 +337,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         cellModel.index = section;
         cellModel.msg = channelMsg;
         cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_after_adv"][@"adv_interval"] integerValue] / 20];
-        cellModel.txPower = [advParams[@"trigger_after_adv"][@"tx_power"] integerValue];
+        cellModel.txPower = [self fetchTxPower:[advParams[@"trigger_after_adv"][@"tx_power"] integerValue]];
         return cellModel;
     }
     //触发前+触发后广播
@@ -345,10 +345,38 @@ MKGWAdvTriggerTwoStateCellDelegate>
     cellModel.index = section;
     cellModel.msg = channelMsg;
     cellModel.beforeTriggerInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_before_adv"][@"adv_interval"] integerValue] / 20];
-    cellModel.beforeTriggerTxPower = [advParams[@"trigger_before_adv"][@"tx_power"] integerValue];
+    cellModel.beforeTriggerTxPower = [self fetchTxPower:[advParams[@"trigger_before_adv"][@"tx_power"] integerValue]];
     cellModel.afterTriggerInterval = [NSString stringWithFormat:@"%ld",(long)[advParams[@"trigger_after_adv"][@"adv_interval"] integerValue] / 20];
-    cellModel.afterTriggerTxPower = [advParams[@"trigger_after_adv"][@"tx_power"] integerValue];
+    cellModel.afterTriggerTxPower = [self fetchTxPower:[advParams[@"trigger_after_adv"][@"tx_power"] integerValue]];
     return cellModel;
+}
+
+- (NSInteger)fetchTxPower:(NSInteger)txPower {
+    if (txPower == -20) {
+        return 1;
+    }
+    if (txPower == -16) {
+        return 2;
+    }
+    if (txPower == -12) {
+        return 3;
+    }
+    if (txPower == -8) {
+        return 4;
+    }
+    if (txPower == -4) {
+        return 5;
+    }
+    if (txPower == 0) {
+        return 6;
+    }
+    if (txPower == 3) {
+        return 7;
+    }
+    if (txPower == 4) {
+        return 8;
+    }
+    return 0;
 }
 
 #pragma mark - UI

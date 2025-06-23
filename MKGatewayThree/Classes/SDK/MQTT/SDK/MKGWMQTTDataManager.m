@@ -31,6 +31,7 @@ NSString *const MKGWReceiveGatewayConnectedDeviceDatasNotification = @"MKGWRecei
 
 NSString *const MKGWReceiveBxpButtonDfuProgressNotification = @"MKGWReceiveBxpButtonDfuProgressNotification";
 NSString *const MKGWReceiveBxpButtonDfuResultNotification = @"MKGWReceiveBxpButtonDfuResultNotification";
+NSString *const MKGWReceiveBxpDfuFailedNotification = @"MKGWReceiveBxpDfuFailedNotification";
 
 NSString *const MKGWReceiveDeviceOfflineNotification = @"MKGWReceiveDeviceOfflineNotification";
 
@@ -185,16 +186,23 @@ static dispatch_once_t onceToken;
                                                           userInfo:data];
         return;
     }
-    if (msgID == 3203) {
-        //BXP-Button升级进度
+    if (msgID == 3203 || msgID == 3206) {
+        //BXP-Button升级进度    3206是MKGW3 V2
         [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBxpButtonDfuProgressNotification
                                                             object:nil
                                                           userInfo:data];
         return;
     }
-    if (msgID == 3204) {
-        //BXP-Button升级结果
+    if (msgID == 3204 || msgID == 3207) {
+        //BXP-Button升级结果 3207是MKGW3 V2
         [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBxpButtonDfuResultNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3208) {
+        //MKGW3 V2 dfu升级完成
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBxpDfuFailedNotification
                                                             object:nil
                                                           userInfo:data];
         return;

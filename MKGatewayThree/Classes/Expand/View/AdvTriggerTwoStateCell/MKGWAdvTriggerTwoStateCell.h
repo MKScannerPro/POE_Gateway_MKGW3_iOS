@@ -60,15 +60,15 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - afterInterval: ADV after triggered ADV interval
 ///   - afterTxPower: ADV after triggered Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ -40
+ -20
+ -16
+ -12
+ -8
+ -4
+ 0
+ 3
+ 4
  */
 - (void)gw_advNormalCell_setPressed:(NSInteger)index
                      beforeInterval:(NSString *)beforeInterval

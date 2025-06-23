@@ -130,17 +130,11 @@
 
 #pragma mark - event method
 - (void)setButtonPressed {
-    NSInteger txPower = 0;
-    for (NSInteger i = 0; i < self.txPowerList.count; i ++) {
-        if ([self.txPowerBtn.titleLabel.text isEqualToString:self.txPowerList[i]]) {
-            txPower = i;
-            break;
-        }
-    }
+    NSString *txPower = [self.txPowerBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"dBm" withString:@""];
     if ([self.delegate respondsToSelector:@selector(gw_BXPSAdvTriggerCell_setPressed:interval:txPower:)]) {
         [self.delegate gw_BXPSAdvTriggerCell_setPressed:self.dataModel.slotIndex
                                                interval:SafeStr(self.intervalField.text)
-                                                txPower:txPower];
+                                                txPower:[txPower integerValue]];
     }
 }
 
@@ -271,7 +265,7 @@
         _unitLabel.textColor = DEFAULT_TEXT_COLOR;
         _unitLabel.textAlignment = NSTextAlignmentRight;
         _unitLabel.font = MKFont(12.f);
-        _unitLabel.text = @"x 100ms";
+        _unitLabel.text = @"x 20ms";
     }
     return _unitLabel;
 }
@@ -304,7 +298,7 @@
 
 - (NSArray *)txPowerList {
     if (!_txPowerList) {
-        _txPowerList = @[@"-40dBm",@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm"];
+        _txPowerList = @[@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm",@"6dBm"];
     }
     return _txPowerList;
 }

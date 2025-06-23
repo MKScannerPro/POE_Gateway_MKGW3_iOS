@@ -42,6 +42,8 @@ extern NSString *const MKGWReceiveBxpButtonDfuProgressNotification;
 
 extern NSString *const MKGWReceiveBxpButtonDfuResultNotification;
 
+extern NSString *const MKGWReceiveBxpDfuFailedNotification;
+
 
 extern NSString *const MKGWReceiveDeviceOfflineNotification;
 

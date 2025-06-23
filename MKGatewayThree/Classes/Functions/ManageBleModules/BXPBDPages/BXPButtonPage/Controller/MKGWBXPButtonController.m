@@ -36,6 +36,7 @@
 #import "MKGWPressEventCountCell.h"
 
 #import "MKGWButtonDFUController.h"
+#import "MKGWButtonDFUV2Controller.h"
 #import "MKGWBXPButtonRemoteReminderController.h"
 #import "MKGWBXPButtonAccDataController.h"
 #import "MKGWBXPButtonAdvParamsController.h"
@@ -279,6 +280,13 @@ MKGWPressEventCountCellDelegate>
 - (void)gw_buttonFirmwareCell_buttonAction:(NSInteger)index {
     if (index == 0) {
         //DFU
+        if ([MKGWDeviceModeManager shared].isV2) {
+            MKGWButtonDFUV2Controller *vc = [[MKGWButtonDFUV2Controller alloc] init];
+            vc.bleMacAddress = self.deviceBleInfo[@"data"][@"mac"];
+            vc.type = 1;
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
         MKGWButtonDFUController *vc = [[MKGWButtonDFUController alloc] init];
         vc.bleMacAddress = self.deviceBleInfo[@"data"][@"mac"];
         [self.navigationController pushViewController:vc animated:YES];
@@ -289,7 +297,8 @@ MKGWPressEventCountCellDelegate>
 #pragma mark - MKGWPressEventCountCellDelegate
 - (void)gw_pressEventCountCell_clearButtonPressed:(NSInteger)index {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readBXPButtonConnectedStatusWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    
+    [MKGWMQTTInterface gw_clearTriggerEventCount:index bleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         MKGWPressEventCountCellModel *cellModel = self.section5List[index];
         cellModel.count = @"0";

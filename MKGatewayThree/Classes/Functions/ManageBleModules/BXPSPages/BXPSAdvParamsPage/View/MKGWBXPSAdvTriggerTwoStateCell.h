@@ -29,15 +29,15 @@ typedef NS_ENUM(NSInteger, MKGWBXPSAdvTriggerTwoStateCellSlotType) {
 @property (nonatomic, copy)NSString *beforeTriggerInterval;
 
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ 0:-20dBm
+ 1:-16dBm
+ 2:-12dBm
+ 3:-8dBm
+ 4:-4dBm
+ 5:0dBm
+ 6:3dBm
+ 7:4dBm
+ 8:6dBm
  */
 @property (nonatomic, assign)NSInteger beforeTriggerTxPower;
 
@@ -46,15 +46,15 @@ typedef NS_ENUM(NSInteger, MKGWBXPSAdvTriggerTwoStateCellSlotType) {
 @property (nonatomic, copy)NSString *afterTriggerInterval;
 
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ 0:-20dBm
+ 1:-16dBm
+ 2:-12dBm
+ 3:-8dBm
+ 4:-4dBm
+ 5:0dBm
+ 6:3dBm
+ 7:4dBm
+ 8:6dBm
  */
 @property (nonatomic, assign)NSInteger afterTriggerTxPower;
 
@@ -72,15 +72,15 @@ typedef NS_ENUM(NSInteger, MKGWBXPSAdvTriggerTwoStateCellSlotType) {
 ///   - afterInterval: ADV after triggered ADV interval
 ///   - afterTxPower: ADV after triggered Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ -20
+ -16
+ -12
+ -8
+ -4
+ 0
+ 3
+ 4
+ 6
  */
 - (void)gw_BXPSAdvTriggerTwoStateCell_setPressed:(NSInteger)index
                                   beforeInterval:(NSString *)beforeInterval

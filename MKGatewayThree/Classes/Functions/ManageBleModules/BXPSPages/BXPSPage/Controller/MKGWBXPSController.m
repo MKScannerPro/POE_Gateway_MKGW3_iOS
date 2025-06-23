@@ -32,7 +32,7 @@
 
 #import "MKGWButtonFirmwareCell.h"
 
-#import "MKGWButtonDFUController.h"
+#import "MKGWButtonDFUV2Controller.h"
 #import "MKGWBXPSRealTimeTHDataController.h"
 #import "MKGWBXPSHistoricalTHDataController.h"
 #import "MKGWBXPSAccelerometerController.h"
@@ -236,8 +236,9 @@ MKGWButtonFirmwareCellDelegate>
 - (void)gw_buttonFirmwareCell_buttonAction:(NSInteger)index {
     if (index == 0) {
         //DFU
-        MKGWButtonDFUController *vc = [[MKGWButtonDFUController alloc] init];
+        MKGWButtonDFUV2Controller *vc = [[MKGWButtonDFUV2Controller alloc] init];
         vc.bleMacAddress = self.deviceBleInfo[@"data"][@"mac"];
+        vc.type = 6;
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

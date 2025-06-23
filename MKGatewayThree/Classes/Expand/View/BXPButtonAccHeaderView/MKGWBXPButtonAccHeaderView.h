@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MKGWBXPButtonAccHeaderViewDelegate <NSObject>
 
-- (void)gw_bxpButtonAccHeaderView_syncButtonPressed;
+- (void)gw_bxpButtonAccHeaderView_syncButtonPressed:(BOOL)isOn;
 
 - (void)gw_bxpButtonAccHeaderView_exportButtonPressed;
 
@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)BOOL showTimeLabel;
 
 @property (nonatomic, weak)id <MKGWBXPButtonAccHeaderViewDelegate>delegate;
+
+- (void)updateSyncStatus:(BOOL)isOn;
 
 @end
 

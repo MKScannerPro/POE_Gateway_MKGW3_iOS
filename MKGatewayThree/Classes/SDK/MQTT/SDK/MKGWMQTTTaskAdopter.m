@@ -160,6 +160,14 @@
         }
         return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskBxpBtnCRBuzzerRemoteReminderOperation];
     }
+    if (msgID == 3163) {
+        //BXP-B-CR删除触发记录结果
+        BOOL success = ([json[@"result_code"] integerValue] == 0);
+        if (!success) {
+            return @{};
+        }
+        return [self dataParserGetDataSuccess:json operationID:mk_gw_server_taskClearBXPButtonCREventCountOperation];
+    }
     if (msgID == 3165) {
         //BXP-B-CR监听三轴数据开关
         BOOL success = ([json[@"result_code"] integerValue] == 0);
@@ -964,6 +972,9 @@
     }else if (msgID == 1202) {
         //指定BXP-Button设备DFU升级
         operationID = mk_gw_server_taskStartBXPButtonDfuWithMacOperation;
+    }else if (msgID == 1205) {
+        //指定MKGW3 V2设备DFU升级
+        operationID = mk_gw_server_taskStartBXPDfuWithMacOperation;
     }else if (msgID == 1209) {
         //配置蓝牙连接通信超时时间
         operationID = mk_gw_server_taskConfigBleCommunicateTimeoutOperation;

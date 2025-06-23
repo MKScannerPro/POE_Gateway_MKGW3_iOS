@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskStartBXPButtonDfuWithMacOperation,         //指定BXP-Button设备DFU升级
     
     mk_gw_server_taskConnectNormalBleDeviceWithMacOperation,    //网关连接指定mac地址的蓝牙设备
+    mk_gw_server_taskStartBXPDfuWithMacOperation,               //MKGW3 V2 dfu
     
 #pragma mark - Read
     mk_gw_server_taskReadKeyResetTypeOperation,         //读取按键恢复出厂设置类型
@@ -93,7 +94,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskReadBXPButtonConnectedDeviceInfoOperation, //读取已连接BXP-Button设备信息
     mk_gw_server_taskReadBXPButtonStatusOperation,              //读取已连接BXP-Button的状态
     mk_gw_server_taskDismissAlarmStatusOperation,               //BXP-Button消警
-    
+    mk_gw_server_taskClearBXPButtonEventCountOperation,         //清除BXP-Button触发记录
     mk_gw_server_taskReadGatewayBleConnectStatusOperation,      //读取网关蓝牙连接的状态
     
     mk_gw_server_taskReadNormalConnectedDeviceInfoOperation,    //读取蓝牙网关连接的指定设备的服务和特征信息
@@ -121,6 +122,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskDismissBXPBCRAlarmStatusOperation,             //BXP-B-CR消警
     mk_gw_server_taskBxpBtnCRLedRemoteReminderOperation,            //BXP-B-CR控制LED
     mk_gw_server_taskBxpBtnCRBuzzerRemoteReminderOperation,         //BXP-B-CR控制蜂鸣器
+    mk_gw_server_taskClearBXPButtonCREventCountOperation,           //BXP-B-CR删除触发记录
     mk_gw_server_taskBxpBtnCRNotifyAccDataOperation,                //BXP-B-CR监听三轴数据开关
     mk_gw_server_taskBxpBtnCRRemotePowerOffOperation,               //BXP-B-CR 远程关机
     mk_gw_server_taskBxpBtnCRVibratingRemoteReminderOperation,      //BXP-B-CR控制马达

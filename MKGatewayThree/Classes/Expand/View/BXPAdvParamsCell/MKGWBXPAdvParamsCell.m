@@ -200,6 +200,13 @@
     [self.contentView addSubview:self.unitLabel];
     [self.contentView addSubview:self.txPowerLabel];
     [self.contentView addSubview:self.txPowerBtn];
+    
+    if (_dataModel.bxpTag) {
+        self.txPowerList = @[@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm",@"6dBm"];
+    }else {
+        @[@"-40dBm",@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm"];
+    }
+    
     self.triggerLabel.text = [NSString stringWithFormat:@"Trigger type:%@",[self getTriggerTypeString:_dataModel.triggerType]];
     self.intervalField.text = SafeStr(_dataModel.interval);
     [self.txPowerBtn setTitle:self.txPowerList[_dataModel.txPower] forState:UIControlStateNormal];
@@ -232,6 +239,9 @@
     }
     if (slotType == MKGWBXPAdvParamsCellSlotTypeHT) {
         return @"TH";
+    }
+    if (slotType == MKGWBXPAdvParamsCellSlotTypeTag) {
+        return @"Tag";
     }
     return @"No data";
 }
@@ -330,13 +340,6 @@
                                                               action:@selector(txPowerButtonPressed)];
     }
     return _txPowerBtn;
-}
-
-- (NSArray *)txPowerList {
-    if (!_txPowerList) {
-        _txPowerList = @[@"-40dBm",@"-20dBm",@"-16dBm",@"-12dBm",@"-8dBm",@"-4dBm",@"0dBm",@"3dBm",@"4dBm"];
-    }
-    return _txPowerList;
 }
 
 - (UILabel *)loadLabelWithMsg:(NSString *)msg {

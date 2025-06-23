@@ -84,15 +84,15 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
 ///   - interval: 当前ADV interval
 ///   - txPower: 当前Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ -20
+ -16
+ -12
+ -8
+ -4
+ 0
+ 3
+ 4
+ 6
  */
 - (void)gw_BXPSAdvNormalCell_setPressed:(NSInteger)index
                                interval:(NSString *)interval
@@ -124,15 +124,15 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
 ///   - interval: 当前ADV interval
 ///   - txPower: 当前Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ -20
+ -16
+ -12
+ -8
+ -4
+ 0
+ 3
+ 4
+ 6
  */
 - (void)gw_BXPSAdvTriggerCell_setPressed:(NSInteger)index
                                 interval:(NSString *)interval
@@ -166,15 +166,15 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
 ///   - afterInterval: ADV after triggered ADV interval
 ///   - afterTxPower: ADV after triggered Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ -20
+ -16
+ -12
+ -8
+ -4
+ 0
+ 3
+ 4
+ 6
  */
 - (void)gw_BXPSAdvTriggerTwoStateCell_setPressed:(NSInteger)index
                                   beforeInterval:(NSString *)beforeInterval
@@ -291,7 +291,7 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
                 
                 cellModel.slotType = [self loadAdvType:[normalAdv[@"adv_type"] integerValue]];
                 cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)([normalAdv[@"adv_interval"] integerValue] / 20)];
-                cellModel.txPower = [normalAdv[@"tx_power"] integerValue];
+                cellModel.txPower = [self fetchTxPower:[normalAdv[@"tx_power"] integerValue]];
                 [self.dataList addObject:cellModel];
             }else if (channelType == 1) {
                 //触发广播
@@ -301,7 +301,7 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
                                 
                 cellModel.slotType = [self loadAdvType:[afterAdv[@"adv_type"] integerValue]];
                 cellModel.advInterval = [NSString stringWithFormat:@"%ld",(long)([afterAdv[@"adv_interval"] integerValue] / 20)];
-                cellModel.txPower = [afterAdv[@"tx_power"] integerValue];
+                cellModel.txPower = [self fetchTxPower:[afterAdv[@"tx_power"] integerValue]];
                 [self.dataList addObject:cellModel];
             }else if (channelType == 2) {
                 //触发前+触发后广播
@@ -311,10 +311,10 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
                 cellModel.slotIndex = channel;
                 cellModel.beforeSlotType = [self loadAdvType:[beforeAdv[@"adv_type"] integerValue]];
                 cellModel.beforeTriggerInterval = [NSString stringWithFormat:@"%ld",(long)([beforeAdv[@"adv_interval"] integerValue] / 20)];
-                cellModel.beforeTriggerTxPower = [beforeAdv[@"tx_power"] integerValue];
+                cellModel.beforeTriggerTxPower = [self fetchTxPower:[beforeAdv[@"tx_power"] integerValue]];
                 cellModel.afterSlotType = [self loadAdvType:[afterAdv[@"adv_type"] integerValue]];
                 cellModel.afterTriggerInterval = [NSString stringWithFormat:@"%ld",(long)([afterAdv[@"adv_interval"] integerValue] / 20)];
-                cellModel.afterTriggerTxPower = [afterAdv[@"tx_power"] integerValue];
+                cellModel.afterTriggerTxPower = [self fetchTxPower:[afterAdv[@"tx_power"] integerValue]];
                 [self.dataList addObject:cellModel];
             }
         }
@@ -343,6 +343,34 @@ MKGWBXPSAdvTriggerTwoStateCellDelegate>
         return 5;
     }
     return 6;
+}
+
+- (NSInteger)fetchTxPower:(NSInteger)txPower {
+    if (txPower == -20) {
+        return 0;
+    }
+    if (txPower == -16) {
+        return 1;
+    }
+    if (txPower == -12) {
+        return 2;
+    }
+    if (txPower == -8) {
+        return 3;
+    }
+    if (txPower == -4) {
+        return 4;
+    }
+    if (txPower == 0) {
+        return 5;
+    }
+    if (txPower == 3) {
+        return 6;
+    }
+    if (txPower == 4) {
+        return 7;
+    }
+    return 8;
 }
 
 #pragma mark - UI

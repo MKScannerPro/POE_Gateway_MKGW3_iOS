@@ -216,22 +216,22 @@ MKTextFieldCellDelegate>
     cellModel.index = 0;
     cellModel.msg = @"Sensitivity";
     cellModel.textFieldValue = self.dataModel.sensitivity;
-    cellModel.textPlaceholder = @"1 ~ 2048";
+    cellModel.textPlaceholder = @"1 ~ 255";
     cellModel.textFieldType = mk_realNumberOnly;
-    cellModel.maxLength = 4;
+    cellModel.maxLength = 3;
     [self.section1List addObject:cellModel];
 }
 
 - (void)reloadSensitivityPlaceHolder {
     MKTextFieldCellModel *cellModel2 = self.section1List[0];
     if (self.dataModel.scale == 0) {
-        cellModel2.textPlaceholder = @"1-20";
+        cellModel2.unit = @"x3.91mg";
     }else if (self.dataModel.scale == 1) {
-        cellModel2.textPlaceholder = @"1-40";
+        cellModel2.unit = @"x7.81mg";
     }else if (self.dataModel.scale == 2) {
-        cellModel2.textPlaceholder = @"1-80";
+        cellModel2.unit = @"x15.63mg";
     }else if (self.dataModel.scale == 3) {
-        cellModel2.textPlaceholder = @"1-160";
+        cellModel2.unit = @"x31.25mg";
     }
 }
 

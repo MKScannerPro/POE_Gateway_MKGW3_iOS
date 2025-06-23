@@ -84,16 +84,17 @@ MKGWBXPAdvParamsCellDelegate>
 ///   - interval: 当前ADV interval
 ///   - txPower: 当前Tx Power
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ 0:-20dBm
+ 1:-16dBm
+ 2:-12dBm
+ 3:-8dBm
+ 4:-4dBm
+ 5:0dBm
+ 6:3dBm
+ 7:4dBm
+ 8:6dBm
  */
+
 - (void)gw_BXPAdvParamsCell_setPressedWithSlotIndex:(NSInteger)slotIndex
                                            interval:(NSString *)interval
                                             txPower:(NSInteger)txPower {
@@ -134,9 +135,10 @@ MKGWBXPAdvParamsCellDelegate>
         cellModel.slotIndex = [dic[@"channel"] integerValue];
         MKGWBXPAdvParamsCellSlotType slotType = [self fetchSlotType:[dic[@"channel_type"] integerValue]];
         cellModel.slotType = slotType;
+        cellModel.bxpTag = YES;
         if (slotType != MKGWBXPAdvParamsCellSlotTypeNoData) {
             cellModel.triggerType = [dic[@"trigger_type"] integerValue];
-            cellModel.interval = [NSString stringWithFormat:@"%ld",(long)([dic[@"adv_interval"] integerValue] / 100)];
+            cellModel.interval = [NSString stringWithFormat:@"%@",dic[@"adv_interval"]];
             cellModel.txPower = [self fetchTxPower:[dic[@"tx_power"] integerValue]];
         }
         [self.dataList addObject:cellModel];
@@ -171,6 +173,9 @@ MKGWBXPAdvParamsCellDelegate>
     if (slotType == 0x70) {
         return MKGWBXPAdvParamsCellSlotTypeHT;
     }
+    if (slotType == 0x80) {
+        return MKGWBXPAdvParamsCellSlotTypeTag;
+    }
     if (slotType == 0xff) {
         return MKGWBXPAdvParamsCellSlotTypeNoData;
     }
@@ -179,27 +184,30 @@ MKGWBXPAdvParamsCellDelegate>
 
 - (NSInteger)fetchTxPower:(NSInteger)txPower {
     if (txPower == -20) {
-        return 1;
+        return 0;
     }
     if (txPower == -16) {
-        return 2;
+        return 1;
     }
     if (txPower == -12) {
-        return 3;
+        return 2;
     }
     if (txPower == -8) {
-        return 4;
+        return 3;
     }
     if (txPower == -4) {
-        return 5;
+        return 4;
     }
     if (txPower == 0) {
-        return 6;
+        return 5;
     }
     if (txPower == 3) {
-        return 7;
+        return 6;
     }
     if (txPower == 4) {
+        return 7;
+    }
+    if (txPower == 6) {
         return 8;
     }
     return 0;

@@ -1538,6 +1538,62 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_startBXPDfuWithBeaconType:(NSInteger)type
+                         firmwareUrl:(NSString *)firmwareUrl
+                             dataUrl:(NSString *)dataUrl
+                             dfuList:(NSArray <NSDictionary *>*)dfuList
+                          macAddress:(NSString *)macAddress
+                               topic:(NSString *)topic
+                            sucBlock:(void (^)(id returnData))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    if (type < 1 || type > 8) {
+        [self operationFailedBlockWithMsg:@"Dfu type error" failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidArray(dfuList)) {
+        [self operationFailedBlockWithMsg:@"Dfu list cannot be empty" failedBlock:failedBlock];
+        return;
+    }
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSMutableArray *tempList = [NSMutableArray array];
+    for (NSInteger i = 0; i < dfuList.count; i ++) {
+        NSDictionary *dic = dfuList[i];
+        NSString *mac = dic[@"mac"];
+        if (!ValidStr(mac) || mac.length != 12 || ![mac regularExpressions:isHexadecimal]) {
+            [self operationFailedBlockWithMsg:@"Mac error" failedBlock:failedBlock];
+            return;
+        }
+        [tempList addObject:@{@"mac":mac,@"passwd":SafeStr(dic[@"password"])}];
+    }
+    if (!firmwareUrl || firmwareUrl.length > 256 || !dataUrl || dataUrl.length > 256) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1205),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"beacon_type":@(type),
+            @"firmware_url":SafeStr(firmwareUrl),
+            @"init_data_url":SafeStr(dataUrl),
+            @"ble_dev":tempList,
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskStartBXPDfuWithMacOperation
+                                   timeout:50
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 #pragma mark *********************Read************************
 + (void)gw_readKeyResetTypeWithMacAddress:(NSString *)macAddress
                                     topic:(NSString *)topic
@@ -3259,6 +3315,40 @@
                                failedBlock:failedBlock];
 }
 
++ (void)gw_clearBXPButtonCREventCountWithType:(mk_gw_triggerEventType)type
+                                bleMacAddress:(NSString *)bleMacAddress
+                                   macAddress:(NSString *)macAddress
+                                        topic:(NSString *)topic
+                                     sucBlock:(void (^)(id returnData))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (!ValidStr(bleMacAddress) || bleMacAddress.length != 12 || ![bleMacAddress regularExpressions:isHexadecimal]) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1162),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"mac":bleMacAddress,
+            @"type":@(type),
+        }
+    };
+    
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskClearBXPButtonCREventCountOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
 + (void)gw_bxpBtnCRNotifyAccDataWithBleMac:(NSString *)bleMacAddress
                                     notify:(BOOL)notify
                                 macAddress:(NSString *)macAddress
@@ -4424,16 +4514,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (scale == mk_gw_threeAxisDataAG0 && (sensitivity < 1 || sensitivity > 20)) {
-        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
-        return;
-    }else if (scale == mk_gw_threeAxisDataAG1 && (sensitivity < 1 || sensitivity > 40)) {
-        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
-        return;
-    }else if (scale == mk_gw_threeAxisDataAG2 && (sensitivity < 1 || sensitivity > 80)) {
-        [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
-        return;
-    }else if (scale == mk_gw_threeAxisDataAG3 && (sensitivity < 1 || sensitivity > 160)) {
+    if (sensitivity < 1 || sensitivity > 255) {
         [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
@@ -4689,23 +4770,23 @@
         [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
         return;
     }
-    NSInteger tempTx = -40;
+    NSInteger tempTx = -20;
     if (txPower == 1) {
-        tempTx = -20;
-    }else if (txPower == 2) {
         tempTx = -16;
-    }else if (txPower == 3) {
+    }else if (txPower == 2) {
         tempTx = -12;
-    }else if (txPower == 4) {
+    }else if (txPower == 3) {
         tempTx = -8;
-    }else if (txPower == 5) {
+    }else if (txPower == 4) {
         tempTx = -4;
-    }else if (txPower == 6) {
+    }else if (txPower == 5) {
         tempTx = 0;
-    }else if (txPower == 7) {
+    }else if (txPower == 6) {
         tempTx = 3;
-    }else if (txPower == 8) {
+    }else if (txPower == 7) {
         tempTx = 4;
+    }else if (txPower == 8) {
+        tempTx = 6;
     }
     
     NSDictionary *data = @{
@@ -4716,7 +4797,7 @@
         @"data":@{
             @"mac":bleMacAddress,
             @"channel":@(channel),
-            @"adv_interval":@(interval * 100),
+            @"adv_interval":@(interval),
             @"tx_power":@(tempTx)
         }
     };

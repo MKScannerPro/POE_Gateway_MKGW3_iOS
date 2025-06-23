@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong)UIButton *syncButton;
 
-@property (nonatomic, strong)UIImageView *synIcon;
+@property (nonatomic, strong)UIImageView *syncIcon;
 
 @property (nonatomic, strong)UILabel *syncLabel;
 
@@ -38,7 +38,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = COLOR_WHITE_MACROS;
         [self addSubview:self.syncButton];
-        [self.syncButton addSubview:self.synIcon];
+        [self.syncButton addSubview:self.syncIcon];
         [self addSubview:self.syncLabel];
         [self addSubview:self.exportButton];
         [self addSubview:self.exportLabel];
@@ -57,7 +57,7 @@
         make.top.mas_equalTo(15.f);
         make.height.mas_equalTo(30.f);
     }];
-    [self.synIcon mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.syncIcon mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.syncButton.mas_centerX);
         make.centerY.mas_equalTo(self.syncButton.mas_centerY);
         make.width.mas_equalTo(25.f);
@@ -98,8 +98,8 @@
 #pragma mark - event method
 
 - (void)syncButtonPressed {
-    if ([self.delegate respondsToSelector:@selector(gw_bxpButtonAccHeaderView_syncButtonPressed)]) {
-        [self.delegate gw_bxpButtonAccHeaderView_syncButtonPressed];
+    if ([self.delegate respondsToSelector:@selector(gw_bxpButtonAccHeaderView_syncButtonPressed:)]) {
+        [self.delegate gw_bxpButtonAccHeaderView_syncButtonPressed:!self.syncButton.selected];
     }
 }
 
@@ -109,9 +109,22 @@
     }
 }
 
+#pragma mark - Public method
 - (void)setShowTimeLabel:(BOOL)showTimeLabel {
     self.timestampLabel.hidden = !showTimeLabel;
     self.axisLabel.hidden = !showTimeLabel;
+}
+
+- (void)updateSyncStatus:(BOOL)isOn {
+    [self.syncIcon.layer removeAnimationForKey:@"mk_gw_syncAnimation"];
+    self.syncButton.selected = isOn;
+    if (isOn) {
+        [self.syncIcon.layer addAnimation:[MKCustomUIAdopter refreshAnimation:1.f]
+                                   forKey:@"mk_gw_syncAnimation"];
+        self.syncLabel.text = @"Stop";
+    }else {
+        self.syncLabel.text = @"Sync";
+    }
 }
 
 #pragma mark - getter
@@ -127,12 +140,12 @@
     return _syncButton;
 }
 
-- (UIImageView *)synIcon {
-    if (!_synIcon) {
-        _synIcon = [[UIImageView alloc] init];
-        _synIcon.image = LOADICON(@"MKGatewayThree", @"MKGWBXPButtonAccHeaderView", @"gw_threeAxisAcceLoadingIcon.png");
+- (UIImageView *)syncIcon {
+    if (!_syncIcon) {
+        _syncIcon = [[UIImageView alloc] init];
+        _syncIcon.image = LOADICON(@"MKGatewayThree", @"MKGWBXPButtonAccHeaderView", @"gw_threeAxisAcceLoadingIcon.png");
     }
-    return _synIcon;
+    return _syncIcon;
 }
 
 - (UILabel *)syncLabel {
