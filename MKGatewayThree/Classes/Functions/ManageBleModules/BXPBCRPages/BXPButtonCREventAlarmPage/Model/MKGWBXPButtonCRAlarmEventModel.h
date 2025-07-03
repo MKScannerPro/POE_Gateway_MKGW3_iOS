@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MKGWBXPButtonCRAlarmEventModel : NSObject
 
 - (void)notifyDataWithBleMac:(NSString *)bleMac
+                      notify:(BOOL)notify
                     sucBlock:(void (^)(void))sucBlock
                  failedBlock:(void (^)(NSError *error))failedBlock;
 

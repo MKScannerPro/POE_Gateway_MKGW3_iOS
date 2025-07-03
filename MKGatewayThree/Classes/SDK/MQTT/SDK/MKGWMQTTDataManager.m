@@ -251,7 +251,7 @@ static dispatch_once_t onceToken;
                                                           userInfo:data];
         return;
     }
-    if (msgID == 3478) {
+    if (msgID == 3468) {
         //BXP-T 三轴数据通知
         [[NSNotificationCenter defaultCenter] postNotificationName:MKGWReceiveBXPTAccDataNotification
                                                             object:nil

@@ -59,7 +59,10 @@
         success = YES;
         self.timestamp = ([returnData[@"data"][@"timestamp"] integerValue] == 1);
         self.rawData_advertising = ([returnData[@"data"][@"adv_data"] integerValue] == 1);
-        self.rawData_response = ([returnData[@"data"][@"rsp_data"] integerValue] == 1);
+        if (![MKGWDeviceModeManager shared].isV2) {
+            //V2中无此参数
+            self.rawData_response = ([returnData[@"data"][@"rsp_data"] integerValue] == 1);
+        }
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);
@@ -70,6 +73,7 @@
 
 - (BOOL)configUploadDataOption {
     __block BOOL success = NO;
+    self.isV2 = [MKGWDeviceModeManager shared].isV2;
     [MKGWMQTTInterface gw_configUploadDataOption:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);

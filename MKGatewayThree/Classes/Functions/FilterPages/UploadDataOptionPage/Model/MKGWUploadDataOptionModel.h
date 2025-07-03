@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKGWUploadDataOptionModel : NSObject<gw_uploadDataOptionProtocol>
 
+/// V2版本固件
+@property (nonatomic, assign)BOOL isV2;
+
 @property (nonatomic, assign)BOOL timestamp;
 
 @property (nonatomic, assign)BOOL rawData_advertising;

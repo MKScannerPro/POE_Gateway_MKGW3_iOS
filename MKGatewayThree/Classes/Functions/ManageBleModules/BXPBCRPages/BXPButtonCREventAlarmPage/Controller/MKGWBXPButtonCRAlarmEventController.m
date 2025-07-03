@@ -61,10 +61,6 @@ MKGWBXPButtonCRAlarmEventHeaderDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveAlarmDatas:)
-                                                 name:MKGWReceiveBXPBtnCRAlarmEventDataNotification
-                                               object:nil];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
@@ -86,11 +82,20 @@ MKGWBXPButtonCRAlarmEventHeaderDelegate>
 }
 
 #pragma mark - MKGWBXPButtonCRAlarmEventHeaderDelegate
-- (void)gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed {
+- (void)gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [self.dataModel notifyDataWithBleMac:self.bleMac sucBlock:^{
+    [self.dataModel notifyDataWithBleMac:self.bleMac notify:isOn sucBlock:^{
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
+        [self.headerView updateSyncStatus:isOn];
+        if (isOn) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(receiveAlarmDatas:)
+                                                         name:MKGWReceiveBXPBtnCRAlarmEventDataNotification
+                                                       object:nil];
+        }else {
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+        }
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];

@@ -63,7 +63,10 @@
     if (self.type < 1 || self.type > 8 || !ValidStr(self.bleMac)) {
         return NO;
     }
-    if (!ValidStr(self.firmwareUrl) || self.firmwareUrl.length > 256 || !ValidStr(self.dataUrl) || self.dataUrl.length > 256) {
+    if (!ValidStr(self.firmwareUrl) || self.firmwareUrl.length > 256) {
+        return NO;
+    }
+    if (self.type != 5 && self.type != 6 && !ValidStr(self.dataUrl) || self.dataUrl.length > 256) {
         return NO;
     }
     return YES;

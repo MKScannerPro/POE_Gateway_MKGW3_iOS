@@ -78,17 +78,20 @@ MKGWBXPCHistoricalTHDataHeaderViewDelegate>
 }
 
 #pragma mark - MKGWBXPCHistoricalTHDataHeaderViewDelegate
-- (void)gw_bxpcHistoricalHTDataHeaderView_syncButtonPressed {
+- (void)gw_bxpcHistoricalHTDataHeaderView_syncButtonPressed:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBXPCNotifyHistoricalHTDataWithBleMac:self.bleMac notify:YES macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBXPCNotifyHistoricalHTDataWithBleMac:self.bleMac notify:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveHTDatas:)
-                                                     name:MKGWReceiveBXPCHistoricalHTDataNotification
-                                                   object:nil];
-        
+        [self.headerView updateSyncStatus:isOn];
+        if (isOn) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(receiveHTDatas:)
+                                                         name:MKGWReceiveBXPCHistoricalHTDataNotification
+                                                       object:nil];
+        }else {
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+        }
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
@@ -149,10 +152,10 @@ MKGWBXPCHistoricalTHDataHeaderViewDelegate>
     if (![dataDic[@"mac"] isEqualToString:self.bleMac]) {
         return;
     }
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:[dataDic[@"timestamp"] integerValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dataDic[@"timestamp"] integerValue]];
     NSString *dateString = [self.dateFormatter stringFromDate:date];
-    NSString *temperature = [NSString stringWithFormat:@"%.1f",[dataDic[@"temperature"] integerValue] * 0.1];
-    NSString *humidity = [NSString stringWithFormat:@"%.1f",[dataDic[@"humidity"] integerValue] * 0.1];
+    NSString *temperature = [NSString stringWithFormat:@"%.1f",[dataDic[@"temperature"] floatValue]];
+    NSString *humidity = [NSString stringWithFormat:@"%.1f",[dataDic[@"humidity"] floatValue]];
     NSString *text = [NSString stringWithFormat:@"\n%@ %@ %@",dateString,temperature,humidity];
     self.textView.text = [self.textView.text stringByAppendingString:text];
     [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length, 1)];

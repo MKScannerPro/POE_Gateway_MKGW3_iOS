@@ -78,17 +78,20 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
 }
 
 #pragma mark - MKGWBXPSHistoricalTHDataHeaderViewDelegate
-- (void)gw_BXPSHistoricalHTDataHeaderView_syncButtonPressed {
+- (void)gw_BXPSHistoricalHTDataHeaderView_syncButtonPressed:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:self.bleMac notify:YES macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:self.bleMac notify:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveHTDatas:)
-                                                     name:MKGWReceiveBXPSHistoricalHTDataNotification
-                                                   object:nil];
-        
+        [self.headerView updateSyncStatus:isOn];
+        if (isOn) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(receiveHTDatas:)
+                                                         name:MKGWReceiveBXPSHistoricalHTDataNotification
+                                                       object:nil];
+        }else {
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+        }
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
@@ -134,7 +137,7 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
     [mailComposer setSubject:@"Feedback of mail"];
     [mailComposer addAttachmentData:emailData
                            mimeType:@"application/txt"
-                           fileName:@"BXP-C HistoricalHTDatas.txt"];
+                           fileName:@"BXP-S HistoricalHTDatas.txt"];
     [mailComposer setMessageBody:bodyMsg isHTML:NO];
     [self presentViewController:mailComposer animated:YES completion:nil];
 }
@@ -155,10 +158,10 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
     }
     NSString *text = @"";
     for (NSDictionary *dic in historyList) {
-        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:[dic[@"timestamp"] integerValue]];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dic[@"timestamp"] integerValue]];
         NSString *dateString = [self.dateFormatter stringFromDate:date];
-        NSString *temperature = [NSString stringWithFormat:@"%@",dic[@"temperature"]];
-        NSString *humidity = [NSString stringWithFormat:@"%@",dic[@"humidity"]];
+        NSString *temperature = [NSString stringWithFormat:@"%.1f",[dic[@"temperature"] floatValue]];
+        NSString *humidity = [NSString stringWithFormat:@"%.1f",[dic[@"humidity"] floatValue]];
         NSString *tempString = [NSString stringWithFormat:@"\n%@      %@      %@",dateString,temperature,humidity];
         text = [tempString stringByAppendingString:text];
     }

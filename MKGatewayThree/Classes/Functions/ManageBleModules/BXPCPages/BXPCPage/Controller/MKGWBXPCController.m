@@ -288,7 +288,7 @@ MKGWButtonFirmwareCellDelegate>
 
 - (void)updateStatusDatas {
     MKNormalTextCellModel *cellModel1 = self.section2List[3];
-    cellModel1.rightMsg = [NSString stringWithFormat:@"%@%@",self.bxpStatusDic[@"data"][@"battery_v"],@"mV"];
+    cellModel1.rightMsg = [NSString stringWithFormat:@"%@%@",self.bxpStatusDic[@"data"][@"battery_level"],@"mV"];
     
     [self.tableView reloadData];
 }

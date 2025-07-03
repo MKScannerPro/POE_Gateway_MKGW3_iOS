@@ -98,14 +98,27 @@
 #pragma mark - event method
 
 - (void)syncButtonPressed {
-    if ([self.delegate respondsToSelector:@selector(gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed)]) {
-        [self.delegate gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed];
+    if ([self.delegate respondsToSelector:@selector(gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed:)]) {
+        [self.delegate gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed:!self.syncButton.selected];
     }
 }
 
 - (void)exportButtonPressed {
     if ([self.delegate respondsToSelector:@selector(gw_bxpButtonCRAlarmEventHeaderView_exportButtonPressed)]) {
         [self.delegate gw_bxpButtonCRAlarmEventHeaderView_exportButtonPressed];
+    }
+}
+
+#pragma mark - public method
+- (void)updateSyncStatus:(BOOL)isOn {
+    [self.synIcon.layer removeAnimationForKey:@"mk_gw_syncAnimation"];
+    self.syncButton.selected = isOn;
+    if (isOn) {
+        [self.synIcon.layer addAnimation:[MKCustomUIAdopter refreshAnimation:1.f]
+                                   forKey:@"mk_gw_syncAnimation"];
+        self.syncLabel.text = @"Stop";
+    }else {
+        self.syncLabel.text = @"Sync";
     }
 }
 

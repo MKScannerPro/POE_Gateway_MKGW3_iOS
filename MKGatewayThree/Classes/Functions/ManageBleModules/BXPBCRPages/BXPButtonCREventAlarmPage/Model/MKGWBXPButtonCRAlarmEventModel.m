@@ -25,11 +25,12 @@
 @implementation MKGWBXPButtonCRAlarmEventModel
 
 - (void)notifyDataWithBleMac:(NSString *)bleMac
-                    sucBlock:(void (^)(void))sucBlock
-                 failedBlock:(void (^)(NSError *error))failedBlock {
+                      notify:(BOOL)notify
+                    sucBlock:(nonnull void (^)(void))sucBlock
+                 failedBlock:(nonnull void (^)(NSError * _Nonnull))failedBlock {
     dispatch_async(self.readQueue, ^{
         for (NSInteger i = 0; i < 3; i ++) {
-            if (![self notifyAlarmEvent:bleMac eventType:i]) {
+            if (![self notifyAlarmEvent:bleMac notify:notify eventType:i]) {
                 [self operationFailedBlockWithMsg:@"Notify falied" block:failedBlock];
                 return;
             }
@@ -41,9 +42,11 @@
 }
 
 #pragma mark - interface
-- (BOOL)notifyAlarmEvent:(NSString *)bleMac eventType:(mk_gw_bxpcrAlarmEventType)eventType {
+- (BOOL)notifyAlarmEvent:(NSString *)bleMac
+                  notify:(BOOL)notify
+               eventType:(mk_gw_bxpcrAlarmEventType)eventType {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_BXPCRNotifyAlarmDataWithBleMac:bleMac alarmEventType:eventType notify:YES macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_BXPCRNotifyAlarmDataWithBleMac:bleMac alarmEventType:eventType notify:notify macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

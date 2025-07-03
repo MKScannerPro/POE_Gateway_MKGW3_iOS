@@ -1280,16 +1280,18 @@
         [self operationFailedBlockWithMsg:@"Params error" failedBlock:failedBlock];
         return;
     }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:(protocol.timestamp ? @(1) : @(0)) forKey:@"timestamp"];
+    [params setObject:(protocol.rawData_advertising ? @(1) : @(0)) forKey:@"adv_data"];
+    if (!protocol.isV2) {
+        [params setObject:(protocol.rawData_response ? @(1) : @(0)) forKey:@"rsp_data"];
+    }
     NSDictionary *data = @{
         @"msg_id":@(1059),
         @"device_info":@{
                 @"mac":macAddress
         },
-        @"data":@{
-            @"timestamp":(protocol.timestamp ? @(1) : @(0)),
-            @"adv_data":(protocol.rawData_advertising ? @(1) : @(0)),
-            @"rsp_data":(protocol.rawData_response ? @(1) : @(0)),
-        }
+        @"data":params
     };
     [[MKGWMQTTDataManager shared] sendData:data
                                      topic:topic
@@ -1569,7 +1571,11 @@
         }
         [tempList addObject:@{@"mac":mac,@"passwd":SafeStr(dic[@"password"])}];
     }
-    if (!firmwareUrl || firmwareUrl.length > 256 || !dataUrl || dataUrl.length > 256) {
+    if (!firmwareUrl || firmwareUrl.length > 256) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (type != 5 && type != 6 && !dataUrl || dataUrl.length > 256) {
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
@@ -5707,21 +5713,28 @@
         [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
         return;
     }
-    NSInteger tempTx = -40;
+    NSInteger tempTx = 7;
     if (txPower == 1) {
-        tempTx = -20;
+        //-20dBm
+        tempTx = 6;
     }else if (txPower == 2) {
-        tempTx = -16;
+        //-16dBm
+        tempTx = 5;
     }else if (txPower == 3) {
-        tempTx = -12;
-    }else if (txPower == 4) {
-        tempTx = -8;
-    }else if (txPower == 5) {
-        tempTx = -4;
-    }else if (txPower == 6) {
-        tempTx = 0;
-    }else if (txPower == 7) {
+        //-12dBm
         tempTx = 4;
+    }else if (txPower == 4) {
+        //-8dBm
+        tempTx = 3;
+    }else if (txPower == 5) {
+        //-4dBm
+        tempTx = 2;
+    }else if (txPower == 6) {
+        //0dBm
+        tempTx = 1;
+    }else if (txPower == 7) {
+        //4dBm
+        tempTx = 0;
     }
     
     NSDictionary *data = @{
@@ -5966,23 +5979,28 @@
         [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
         return;
     }
-    NSInteger tempTx = -40;
+    NSInteger tempTx = 7;
     if (txPower == 1) {
-        tempTx = -20;
+        //-20dBm
+        tempTx = 6;
     }else if (txPower == 2) {
-        tempTx = -16;
+        //-16dBm
+        tempTx = 5;
     }else if (txPower == 3) {
-        tempTx = -12;
-    }else if (txPower == 4) {
-        tempTx = -8;
-    }else if (txPower == 5) {
-        tempTx = -4;
-    }else if (txPower == 6) {
-        tempTx = 0;
-    }else if (txPower == 7) {
-        tempTx = 3;
-    }else if (txPower == 8) {
+        //-12dBm
         tempTx = 4;
+    }else if (txPower == 4) {
+        //-8dBm
+        tempTx = 3;
+    }else if (txPower == 5) {
+        //-4dBm
+        tempTx = 2;
+    }else if (txPower == 6) {
+        //0dBm
+        tempTx = 1;
+    }else if (txPower == 7) {
+        //4dBm
+        tempTx = 0;
     }
     
     NSDictionary *data = @{

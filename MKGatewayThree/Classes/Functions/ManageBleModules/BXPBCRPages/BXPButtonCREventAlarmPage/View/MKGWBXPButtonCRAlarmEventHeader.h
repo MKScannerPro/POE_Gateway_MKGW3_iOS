@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MKGWBXPButtonCRAlarmEventHeaderDelegate <NSObject>
 
-- (void)gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed;
+- (void)gw_bxpButtonCRAlarmEventHeaderView_syncButtonPressed:(BOOL)isOn;
 
 - (void)gw_bxpButtonCRAlarmEventHeaderView_exportButtonPressed;
 
@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MKGWBXPButtonCRAlarmEventHeader : UIView
 
 @property (nonatomic, weak)id <MKGWBXPButtonCRAlarmEventHeaderDelegate>delegate;
+
+- (void)updateSyncStatus:(BOOL)isOn;
 
 @end
 

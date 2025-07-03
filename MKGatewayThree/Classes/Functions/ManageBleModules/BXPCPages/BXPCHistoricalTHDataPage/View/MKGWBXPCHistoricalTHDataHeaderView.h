@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MKGWBXPCHistoricalTHDataHeaderViewDelegate <NSObject>
 
-- (void)gw_bxpcHistoricalHTDataHeaderView_syncButtonPressed;
+- (void)gw_bxpcHistoricalHTDataHeaderView_syncButtonPressed:(BOOL)isOn;
 
 - (void)gw_bxpcHistoricalHTDataHeaderView_deleteButtonPressed;
 
@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MKGWBXPCHistoricalTHDataHeaderView : UIView
 
 @property (nonatomic, weak)id <MKGWBXPCHistoricalTHDataHeaderViewDelegate>delegate;
+
+- (void)updateSyncStatus:(BOOL)isOn;
 
 @end
 

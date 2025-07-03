@@ -257,15 +257,18 @@ MKTextFieldCellDelegate>
     cellModel1.textFieldTextFont = MKFont(13.f);
     [self.dataList addObject:cellModel1];
     
-    MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
-    cellModel2.index = 1;
-    cellModel2.msgFont = MKFont(13.f);
-    cellModel2.msg = @"Init data file URL";
-    cellModel2.textPlaceholder = @"1- 256 Characters";
-    cellModel2.textFieldType = mk_normal;
-    cellModel2.maxLength = 256;
-    cellModel2.textFieldTextFont = MKFont(13.f);
-    [self.dataList addObject:cellModel2];
+    if (self.type != 5 && self.type != 6) {
+        //BXP-T和BXP-S没有此选项
+        MKTextFieldCellModel *cellModel2 = [[MKTextFieldCellModel alloc] init];
+        cellModel2.index = 1;
+        cellModel2.msgFont = MKFont(13.f);
+        cellModel2.msg = @"Init data file URL";
+        cellModel2.textPlaceholder = @"1- 256 Characters";
+        cellModel2.textFieldType = mk_normal;
+        cellModel2.maxLength = 256;
+        cellModel2.textFieldTextFont = MKFont(13.f);
+        [self.dataList addObject:cellModel2];
+    }
     
     [self.tableView reloadData];
 }

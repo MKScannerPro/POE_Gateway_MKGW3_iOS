@@ -293,10 +293,14 @@ typedef NS_ENUM(NSInteger, mk_gw_bxpcrAlarmEventType) {
 
 @protocol gw_uploadDataOptionProtocol <NSObject>
 
+/// V2版本固件
+@property (nonatomic, assign)BOOL isV2;
+
 @property (nonatomic, assign)BOOL timestamp;
 
 @property (nonatomic, assign)BOOL rawData_advertising;
 
+//V2版本固件没有此参数
 @property (nonatomic, assign)BOOL rawData_response;
 
 @end

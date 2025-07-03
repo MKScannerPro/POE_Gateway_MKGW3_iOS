@@ -83,29 +83,33 @@
 
 #pragma mark - private method
 - (NSInteger)fetchTxPower:(NSInteger)txPower {
-    if (txPower == -20) {
-        return 1;
-    }
-    if (txPower == -16) {
-        return 2;
-    }
-    if (txPower == -12) {
-        return 3;
-    }
-    if (txPower == -8) {
-        return 4;
-    }
-    if (txPower == -4) {
-        return 5;
-    }
     if (txPower == 0) {
-        return 6;
-    }
-    if (txPower == 3) {
+        //4dBm
         return 7;
     }
+    if (txPower == 1) {
+        //0dBm
+        return 6;
+    }
+    if (txPower == 2) {
+        //-4dBm
+        return 5;
+    }
+    if (txPower == 3) {
+        //-8dBm
+        return 4;
+    }
     if (txPower == 4) {
-        return 8;
+        //-12dBm
+        return 3;
+    }
+    if (txPower == 5) {
+        //-16dBm
+        return 2;
+    }
+    if (txPower == 6) {
+        //-20dBm
+        return 1;
     }
     return 0;
 }
