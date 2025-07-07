@@ -141,8 +141,8 @@ MKGWBXPButtonAccHeaderViewDelegate>
         return;
     }
     NSString *dateString = [self.dateFormatter stringFromDate:[NSDate date]];
-    NSString *temperature = [NSString stringWithFormat:@"%.1f",[dataDic[@"temperature"] integerValue] * 0.1];
-    NSString *humidity = [NSString stringWithFormat:@"%.1f",[dataDic[@"humidity"] integerValue] * 0.1];
+    NSString *temperature = [NSString stringWithFormat:@"%.1f",[dataDic[@"temperature"] floatValue]];
+    NSString *humidity = [NSString stringWithFormat:@"%.1f",[dataDic[@"humidity"] floatValue]];
     NSString *text = [NSString stringWithFormat:@"\n%@ %@ %@",dateString,temperature,humidity];
     self.textView.text = [self.textView.text stringByAppendingString:text];
     [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length, 1)];

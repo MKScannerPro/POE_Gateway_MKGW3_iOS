@@ -185,7 +185,7 @@ MKTextButtonCellDelegate>
     MKTextButtonCellModel *cellModel = [[MKTextButtonCellModel alloc] init];
     cellModel.index = 0;
     cellModel.msg = @"Tx Power";
-    cellModel.dataList = @[@"-40 dBm",@"-20 dBm",@"-16 dBm",@"-12 dBm",@"-8 dBm",@"-4 dBm",@"0 dBm",@"3 dBm",@"4 dBm"];
+    cellModel.dataList = @[@"-40 dBm",@"-20 dBm",@"-16 dBm",@"-12 dBm",@"-8 dBm",@"-4 dBm",@"0 dBm",@"4 dBm"];
     cellModel.dataListIndex = self.dataModel.txPower;
     [self.section1List addObject:cellModel];
 }
