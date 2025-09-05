@@ -1804,7 +1804,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param color LED color
 /// @param blinkingTime flash time, 1s ~ 600s.
-/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param blinkingInterval flash interval, 1 x 100ms ~ 100 x 100ms.
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
 /// @param sucBlock Success callback
@@ -2022,7 +2022,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
 /// @param color LED color
 /// @param blinkingTime flash time, 1s ~ 600s.
-/// @param blinkingInterval flash interval, 0 x 100ms ~ 100 x 100ms.
+/// @param blinkingInterval flash interval, 1 x 100ms ~ 100 x 100ms.
 /// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
 /// @param topic topic 1-128 Characters
 /// @param sucBlock Success callback

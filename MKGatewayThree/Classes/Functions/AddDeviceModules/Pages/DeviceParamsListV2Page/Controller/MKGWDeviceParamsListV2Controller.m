@@ -215,8 +215,15 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
 - (void)connectButtonPressed {
     if (!self.originMode) {
         //非初始状态，不需要走连接流程，只是发送命令给设备，然后返回扫描页面
-        [self.view showCentralToast:@"New settings are applying to device, device is connecting to network and MQTT"];
-        [self performSelector:@selector(backToDeviceListPage) withObject:nil afterDelay:0.5f];
+        [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
+        [MKGWInterface gw_enterSTAModeWithSucBlock:^{
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:@"New settings are applying to device, device is connecting to network and MQTT"];
+            [self performSelector:@selector(backToDeviceListPage) withObject:nil afterDelay:1.f];
+        } failedBlock:^(NSError * _Nonnull error) {
+            [[MKHudManager share] hide];
+            [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        }];
         return;
     }
     if (![MKGWDeviceMQTTParamsModel shared].wifiConfig || ![MKGWDeviceMQTTParamsModel shared].mqttConfig) {

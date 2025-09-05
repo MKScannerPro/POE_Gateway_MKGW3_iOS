@@ -46,6 +46,8 @@
 /// 分帧数据使用
 @property (nonatomic, strong)NSMutableArray *dataList;
 
+@property (nonatomic, assign)NSInteger resendCount;
+
 @end
 
 @implementation MKGWOperation
@@ -143,6 +145,12 @@
 }
 
 - (void)communicationTimeout{
+    //V2固件在配网成功的情况下，打开beacon广播可连接模式，发送命令会存在问题，设备端有时候接收不到数据，需要超时重发两次
+        if (self.resendCount < 2) {
+            self.resendCount ++;
+            [self startCommunication];
+            return;
+        }
     self.timeout = YES;
     if (self.receiveTimer) {
         dispatch_cancel(self.receiveTimer);

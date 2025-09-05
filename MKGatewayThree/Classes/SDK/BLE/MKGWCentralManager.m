@@ -413,8 +413,19 @@ static dispatch_once_t onceToken;
     NSDictionary *manuParams = advDic[CBAdvertisementDataServiceDataKey];
     NSData *manufacturerData = manuParams[[CBUUID UUIDWithString:@"AA0F"]];
     NSData *normalData = advDic[CBAdvertisementDataManufacturerDataKey];
-    if (!MKValidData(manufacturerData) || manufacturerData.length != 1
-        || !MKValidData(normalData) || normalData.length < 8) {
+    if (!MKValidData(manufacturerData) || manufacturerData.length != 1) {
+        return @{};
+    }
+    if (normalData == nil) {
+        return @{
+            @"rssi":rssi,
+            @"peripheral":peripheral,
+            @"deviceName":(advDic[CBAdvertisementDataLocalNameKey] ? advDic[CBAdvertisementDataLocalNameKey] : @""),
+            @"deviceType":[MKBLEBaseSDKAdopter hexStringFromData:manufacturerData],
+            @"connectable":advDic[CBAdvertisementDataIsConnectable],
+        };
+    }
+    if (!MKValidData(normalData) || normalData.length < 8) {
         return @{};
     }
     NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:[normalData subdataWithRange:NSMakeRange(2, 6)]];

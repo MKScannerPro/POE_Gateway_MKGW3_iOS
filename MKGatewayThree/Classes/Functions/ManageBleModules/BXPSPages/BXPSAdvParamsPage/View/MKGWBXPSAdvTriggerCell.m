@@ -116,7 +116,7 @@
     }];
     [self.txPowerLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.f);
-        make.width.mas_equalTo(140.f);
+        make.width.mas_equalTo(150.f);
         make.centerY.mas_equalTo(self.txPowerBtn.mas_centerY);
         make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];

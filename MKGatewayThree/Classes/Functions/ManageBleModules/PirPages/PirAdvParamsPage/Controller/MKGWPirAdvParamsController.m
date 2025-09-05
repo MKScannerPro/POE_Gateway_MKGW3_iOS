@@ -177,7 +177,7 @@ MKTextButtonCellDelegate>
     cellModel.textPlaceholder = @"1 - 100";
     cellModel.textFieldType = mk_realNumberOnly;
     cellModel.maxLength = 3;
-    cellModel.unit = @"second";
+    cellModel.unit = @"x 100ms";
     [self.section0List addObject:cellModel];
 }
 

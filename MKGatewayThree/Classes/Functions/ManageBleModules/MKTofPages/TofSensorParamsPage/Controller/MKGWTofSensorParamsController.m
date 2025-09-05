@@ -188,7 +188,7 @@ MKTextButtonCellDelegate>
     cellModel1.index = 0;
     cellModel1.msg = @"Sample interval";
     cellModel1.maxLength = 5;
-    cellModel1.textPlaceholder = @"0-86400";
+    cellModel1.textPlaceholder = @"1-86400";
     cellModel1.textFieldType = mk_realNumberOnly;
     cellModel1.textFieldValue = self.dataModel.interval;
     cellModel1.unit = @"second";

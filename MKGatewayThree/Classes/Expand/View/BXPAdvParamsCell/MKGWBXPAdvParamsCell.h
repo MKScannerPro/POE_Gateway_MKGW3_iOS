@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, MKGWBXPAdvParamsCellTriggerType) {
     MKGWBXPAdvParamsCellTriggerTypeTripleClick,
     MKGWBXPAdvParamsCellTriggerTypeMove,
     MKGWBXPAdvParamsCellTriggerTypeLight,
+    MKGWBXPAdvParamsCellTriggerTypeSingleClick
 };
 
 @interface MKGWBXPAdvParamsCellModel : NSObject

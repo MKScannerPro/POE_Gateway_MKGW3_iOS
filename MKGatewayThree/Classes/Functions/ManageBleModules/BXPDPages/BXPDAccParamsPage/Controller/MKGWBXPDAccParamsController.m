@@ -218,6 +218,7 @@ MKTextFieldCellDelegate>
     cellModel.textFieldValue = self.dataModel.sensitivity;
     cellModel.textPlaceholder = @"1 ~ 2048";
     cellModel.textFieldType = mk_realNumberOnly;
+    cellModel.unit = @"x 100mg";
     cellModel.maxLength = 4;
     [self.section1List addObject:cellModel];
 }

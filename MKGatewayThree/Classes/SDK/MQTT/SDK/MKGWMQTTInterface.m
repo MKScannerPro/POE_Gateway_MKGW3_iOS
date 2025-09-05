@@ -2785,7 +2785,7 @@
             @"minor":@(protocol.minor),
             @"uuid":SafeStr(protocol.uuid),
             @"adv_interval":@(protocol.advInterval),
-            @"tx_power":@(protocol.txPower)
+            @"tx_power":@(protocol.txPower),
         },
     };
     [[MKGWMQTTDataManager shared] sendData:data
@@ -4626,7 +4626,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 0 || blinkingInterval > 100) {
+    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 1 || blinkingInterval > 100) {
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
@@ -5206,7 +5206,7 @@
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }
-    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 0 || blinkingInterval > 100) {
+    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 1 || blinkingInterval > 100) {
         [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
         return;
     }

@@ -243,6 +243,9 @@
     if (slotType == MKGWBXPAdvParamsCellSlotTypeTag) {
         return @"Tag";
     }
+    if (slotType == MKGWBXPAdvParamsCellTriggerTypeSingleClick) {
+        return @"Single click button";
+    }
     return @"No data";
 }
 

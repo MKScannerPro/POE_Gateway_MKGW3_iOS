@@ -100,6 +100,10 @@ mk_textSwitchCellDelegate>
     [super viewDidLoad];
     [self loadSubViews];
     [self readDatasFromDevice];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveUpdateEAPCerts:)
+                                                 name:MKGWReceiveDeviceUpdateEapCertsResultNotification
+                                               object:nil];
 }
 
 #pragma mark - super method
@@ -377,10 +381,6 @@ mk_textSwitchCellDelegate>
         if (self.dataModel.security == 1 && !(!ValidStr(self.dataModel.caFilePath) && !ValidStr(self.dataModel.clientKeyPath) && !ValidStr(self.dataModel.clientCertPath))) {
             if (((self.dataModel.eapType == 0 || self.dataModel.eapType == 1) && self.dataModel.verifyServer) || self.dataModel.eapType == 2) {
                 //TLS需要配置证书，PEAP-MSCHAPV2和TTLS-MSCHAPV2这两种必须验证服务器打开的情况下才配置证书
-                [[NSNotificationCenter defaultCenter] addObserver:self
-                                                         selector:@selector(receiveUpdateEAPCerts:)
-                                                             name:MKGWReceiveDeviceUpdateEapCertsResultNotification
-                                                           object:nil];
                 return;
             }
         }
