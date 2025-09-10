@@ -271,6 +271,9 @@
     if (triggerType == MKGWBXPAdvParamsCellTriggerTypeLight) {
         return @"Light";
     }
+    if (triggerType == MKGWBXPAdvParamsCellTriggerTypeSingleClick) {
+        return @"Single click button";
+    }
     return @"";
 }
 

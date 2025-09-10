@@ -235,7 +235,7 @@
 
 - (UILabel *)statusLabel {
     if (!_statusLabel) {
-        _statusLabel = [self loadLabelWithMsg:@"ON"];
+        _statusLabel = [self loadLabelWithMsg:@""];
     }
     return _statusLabel;
 }
