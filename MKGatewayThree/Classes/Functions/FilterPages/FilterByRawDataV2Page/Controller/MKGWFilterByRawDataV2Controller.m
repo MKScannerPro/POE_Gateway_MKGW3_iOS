@@ -34,6 +34,7 @@
 #import "MKGWFilterByTagController.h"
 #import "MKGWFilterByPirController.h"
 #import "MKGWFilterByTofController.h"
+#import "MKGWFilterByNanoBeaconController.h"
 #import "MKGWFilterByOtherController.h"
 
 @interface MKGWFilterByRawDataV2Controller ()<UITableViewDelegate,
@@ -125,6 +126,12 @@ mk_textSwitchCellDelegate>
         return;
     }
     if (indexPath.section == 2 && indexPath.row == 4) {
+        //Nano Beacon
+        MKGWFilterByNanoBeaconController *vc = [[MKGWFilterByNanoBeaconController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    if (indexPath.section == 2 && indexPath.row == 5) {
         //Other
         MKGWFilterByOtherController *vc = [[MKGWFilterByOtherController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -290,7 +297,10 @@ mk_textSwitchCellDelegate>
     cellModel11.rightMsg = (self.dataModel.tof ? @"ON" : @"OFF");
     
     MKNormalTextCellModel *cellModel12 = self.section2List[4];
-    cellModel12.rightMsg = (self.dataModel.other ? @"ON" : @"OFF");
+    cellModel12.rightMsg = (self.dataModel.nanoBeacon ? @"ON" : @"OFF");
+    
+    MKNormalTextCellModel *cellModel13 = self.section2List[5];
+    cellModel13.rightMsg = (self.dataModel.other ? @"ON" : @"OFF");
     
     [self.tableView reloadData];
 }
@@ -357,8 +367,13 @@ mk_textSwitchCellDelegate>
     
     MKNormalTextCellModel *cellModel5 = [[MKNormalTextCellModel alloc] init];
     cellModel5.showRightIcon = YES;
-    cellModel5.leftMsg = @"Other";
+    cellModel5.leftMsg = @"NanoBeacon info";
     [self.section2List addObject:cellModel5];
+    
+    MKNormalTextCellModel *cellModel6 = [[MKNormalTextCellModel alloc] init];
+    cellModel6.showRightIcon = YES;
+    cellModel6.leftMsg = @"Other";
+    [self.section2List addObject:cellModel6];
 }
 
 #pragma mark - UI

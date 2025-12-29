@@ -515,6 +515,19 @@ TODO: Add long description of the pod here.
         end
       end
       
+      sss.subspec 'FilterByNanoBeaconPage' do |ssss|
+        ssss.subspec 'Controller' do |sssss|
+          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByNanoBeaconPage/Controller/**'
+        
+          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model'
+          
+        end
+      
+        ssss.subspec 'Model' do |sssss|
+          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByNanoBeaconPage/Model/**'
+        end
+      end
+      
       sss.subspec 'FilterByOtherPage' do |ssss|
         ssss.subspec 'Controller' do |sssss|
           sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByOtherPage/Controller/**'
@@ -554,6 +567,7 @@ TODO: Add long description of the pod here.
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByButtonPage'
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTag'
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByPirPage'
+          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage'
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByOtherPage'
           
         end

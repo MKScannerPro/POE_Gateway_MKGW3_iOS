@@ -1283,7 +1283,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:(protocol.timestamp ? @(1) : @(0)) forKey:@"timestamp"];
     [params setObject:(protocol.rawData_advertising ? @(1) : @(0)) forKey:@"adv_data"];
-    if (!protocol.isV2) {
+    if (protocol.isV2) {
+        [params setObject:(protocol.parsed_data ? @(1) : @(0)) forKey:@"parse_adv_data"];
+    }else {
         [params setObject:(protocol.rawData_response ? @(1) : @(0)) forKey:@"rsp_data"];
     }
     NSDictionary *data = @{
@@ -1394,6 +1396,47 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_gw_server_taskConfigUploadDataIntervalOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_configFilterByNanoBeacon:(BOOL)isOn
+                            advType:(mk_gw_filterByNanoBeaconAdvType)advType
+                  manufactureIDList:(NSArray <NSString *>*)manufactureIDList
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    if (manufactureIDList.count > 10 || !manufactureIDList || ![manufactureIDList isKindOfClass:NSArray.class]) {
+        [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+        return;
+    }
+    for (NSString * code in manufactureIDList) {
+        if (code.length != 4 || ![code regularExpressions:isHexadecimal]) {
+            [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
+            return;
+        }
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(1064),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+        @"data":@{
+            @"switch_value":(isOn ? @(1) : @(0)),
+            @"adv_type":@(advType),
+            @"mf_id":manufactureIDList
+        }
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskConfigFilterByNanoBeaconOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }
@@ -2448,6 +2491,29 @@
                                      topic:topic
                                 macAddress:macAddress
                                     taskID:mk_gw_server_taskReadUploadDataIntervalOperation
+                                  sucBlock:sucBlock
+                               failedBlock:failedBlock];
+}
+
++ (void)gw_readFilterByNanoBeaconWithMacAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *checkMsg = [self checkMacAddress:macAddress topic:topic];
+    if (ValidStr(checkMsg)) {
+        [self operationFailedBlockWithMsg:checkMsg failedBlock:failedBlock];
+        return;
+    }
+    NSDictionary *data = @{
+        @"msg_id":@(2064),
+        @"device_info":@{
+                @"mac":macAddress
+        },
+    };
+    [[MKGWMQTTDataManager shared] sendData:data
+                                     topic:topic
+                                macAddress:macAddress
+                                    taskID:mk_gw_server_taskReadFilterByNanoBeaconOperation
                                   sucBlock:sucBlock
                                failedBlock:failedBlock];
 }

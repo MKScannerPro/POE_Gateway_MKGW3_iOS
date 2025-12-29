@@ -1140,6 +1140,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByButtonPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByMacPage (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByOtherPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByPirPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage (= 0.0.1)
@@ -1347,6 +1348,36 @@ PODS:
     - MKGatewayThree/LoginManager
     - MKGatewayThree/SDK
     - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model (= 0.0.1)
+    - MKGatewayThree/LoginManager
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Controller (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model
+    - MKGatewayThree/LoginManager
+    - MKGatewayThree/SDK
+    - MLInputDodger
+  - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model (0.0.1):
+    - MKBaseModuleLibrary
+    - MKCustomUIModule
+    - MKGatewayThree/CTMediator
+    - MKGatewayThree/DeviceModel
+    - MKGatewayThree/Expand
+    - MKGatewayThree/LoginManager
+    - MKGatewayThree/SDK
+    - MLInputDodger
   - MKGatewayThree/Functions/FilterPages/FilterByOtherPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCustomUIModule
@@ -1426,6 +1457,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage
     - MKGatewayThree/Functions/FilterPages/FilterByButtonPage
+    - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage
     - MKGatewayThree/Functions/FilterPages/FilterByOtherPage
     - MKGatewayThree/Functions/FilterPages/FilterByPirPage
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model
@@ -3845,7 +3877,7 @@ DEPENDENCIES:
   - MKGatewayThree (from `../`)
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  trunk:
     - CircleProgressBar
     - CTMediator
     - FMDB
@@ -3877,7 +3909,7 @@ SPEC CHECKSUMS:
   MKBaseModuleLibrary: 2b79bcae588c755588413fbb643b510253271b23
   MKBaseMQTTModule: 6a934ccf507e0eb807ef8f8a74dacd5d60216834
   MKCustomUIModule: 8426eba1d3178b06d92741d31da32502920fb8fa
-  MKGatewayThree: 36aef32859a65ddec767db5c126ec9f118b00b9c
+  MKGatewayThree: 2849262dfcfeec3ec508fe9e1eb680ce62e47604
   MKIotCloudManager: 241bd4bb7fae48e6b031c69a40c26637aabe67be
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
@@ -3886,4 +3918,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 44df0394871259bdeda4a0bff31c2c9108964400
 
-COCOAPODS: 1.16.1
+COCOAPODS: 1.16.2

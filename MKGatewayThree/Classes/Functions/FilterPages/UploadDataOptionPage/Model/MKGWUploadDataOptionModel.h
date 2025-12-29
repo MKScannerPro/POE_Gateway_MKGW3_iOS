@@ -21,7 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)BOOL rawData_advertising;
 
+/// V2中无此参数
 @property (nonatomic, assign)BOOL rawData_response;
+
+/// V2中有此参数
+@property (nonatomic, assign)BOOL parsed_data;
 
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;
 

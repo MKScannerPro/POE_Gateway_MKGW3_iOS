@@ -544,6 +544,22 @@ NS_ASSUME_NONNULL_BEGIN
                            sucBlock:(void (^)(id returnData))sucBlock
                         failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Filtered information of NanoBeacon.
+/// @param isOn isOn
+/// @param advType advType
+/// @param manufactureIDList You can set up to 10 filters.2 Bytes.
+/// @param macAddress WIFI_STA Mac address of the device(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_configFilterByNanoBeacon:(BOOL)isOn
+                            advType:(mk_gw_filterByNanoBeaconAdvType)advType
+                  manufactureIDList:(NSArray <NSString *>*)manufactureIDList
+                         macAddress:(NSString *)macAddress
+                              topic:(NSString *)topic
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// The gateway connects to the BXP-Button with the specified MAC address.
 /// @param password 0-16 Characters
 /// @param bleMacAddress The mac address of the target bluetooth device.(e.g.AABBCCDDEEFF)
@@ -989,6 +1005,15 @@ NS_ASSUME_NONNULL_BEGIN
                                        sucBlock:(void (^)(id returnData))sucBlock
                                     failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Filtered information of NanoBeacon.
+/// @param macAddress WIFI_STA Mac address of the device.(e.g.AABBCCDDEEFF)
+/// @param topic topic 1-128 Characters
+/// @param sucBlock Success callback
+/// @param failedBlock Failed callback
++ (void)gw_readFilterByNanoBeaconWithMacAddress:(NSString *)macAddress
+                                          topic:(NSString *)topic
+                                       sucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError *error))failedBlock;
 
 #pragma mark *********************  BXP-B-D  ************************
 

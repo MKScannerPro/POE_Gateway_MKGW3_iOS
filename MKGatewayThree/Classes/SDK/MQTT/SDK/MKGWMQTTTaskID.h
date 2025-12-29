@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskConfigFilterByPHYOperation,            //配置扫描过滤PHY
     mk_gw_server_taskConfigFilterByTofOperation,            //配置tof过滤
     mk_gw_server_taskConfigUploadDataIntervalOperation,     //配置数据上报间隔
+    mk_gw_server_taskConfigFilterByNanoBeaconOperation,     //配置过滤NanoBeacon信息
     
     mk_gw_server_taskConnectBXPButtonWithMacOperation,      //连接指定mac地址的BXP-Button设备
     
@@ -90,6 +91,7 @@ typedef NS_ENUM(NSInteger, mk_gw_serverOperationID) {
     mk_gw_server_taskReadFilterByPHYOperation,                  //读取Phy过滤类型
     mk_gw_server_taskReadFilterByTofOperation,                  //读取MK-TOF过滤
     mk_gw_server_taskReadUploadDataIntervalOperation,           //读取数据上报间隔
+    mk_gw_server_taskReadFilterByNanoBeaconOperation,           //读取NanoBeacon过滤内容
     
     mk_gw_server_taskReadBXPButtonConnectedDeviceInfoOperation, //读取已连接BXP-Button设备信息
     mk_gw_server_taskReadBXPButtonStatusOperation,              //读取已连接BXP-Button的状态

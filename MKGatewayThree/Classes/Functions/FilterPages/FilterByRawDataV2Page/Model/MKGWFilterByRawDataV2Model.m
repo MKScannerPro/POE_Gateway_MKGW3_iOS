@@ -61,6 +61,9 @@
         self.other = ([returnData[@"data"][@"other"] integerValue] == 1);
         
         self.tof = ([returnData[@"data"][@"mk_tof"] integerValue] == 1);
+        
+        self.nanoBeacon = ([returnData[@"data"][@"nano_beacon_info"] integerValue] == 1);
+        
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

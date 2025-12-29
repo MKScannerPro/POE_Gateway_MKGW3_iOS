@@ -59,7 +59,10 @@
         success = YES;
         self.timestamp = ([returnData[@"data"][@"timestamp"] integerValue] == 1);
         self.rawData_advertising = ([returnData[@"data"][@"adv_data"] integerValue] == 1);
-        if (![MKGWDeviceModeManager shared].isV2) {
+        if ([MKGWDeviceModeManager shared].isV2) {
+            //V2
+            self.parsed_data = ([returnData[@"data"][@"parse_adv_data"] integerValue] == 1);
+        }else {
             //V2中无此参数
             self.rawData_response = ([returnData[@"data"][@"rsp_data"] integerValue] == 1);
         }

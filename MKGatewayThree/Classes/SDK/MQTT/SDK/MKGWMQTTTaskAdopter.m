@@ -966,6 +966,9 @@
     }else if (msgID == 1063) {
         //配置数据上报间隔
         operationID = mk_gw_server_taskConfigUploadDataIntervalOperation;
+    }else if (msgID == 1064) {
+        //配置过滤NanoBeacon信息
+        operationID = mk_gw_server_taskConfigFilterByNanoBeaconOperation;
     }else if (msgID == 1200) {
         //网关断开指定mac地址的蓝牙设备
         operationID = mk_gw_server_taskDisconnectNormalBleDeviceWithMacOperation;
@@ -1098,6 +1101,9 @@
     }else if (msgID == 2063) {
         //读取数据上报间隔
         operationID = mk_gw_server_taskReadUploadDataIntervalOperation;
+    }else if (msgID == 2064) {
+        //读取NanoBeacon过滤内容
+        operationID = mk_gw_server_taskReadFilterByNanoBeaconOperation;
     }else if (msgID == 2201) {
         //读取网关蓝牙连接的状态
         operationID = mk_gw_server_taskReadGatewayBleConnectStatusOperation;

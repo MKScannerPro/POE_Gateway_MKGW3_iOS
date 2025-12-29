@@ -85,6 +85,8 @@
 #import "MKGWFilterByButtonModel.h"
 #import "MKGWFilterByMacController.h"
 #import "MKGWFilterByMacModel.h"
+#import "MKGWFilterByNanoBeaconController.h"
+#import "MKGWFilterByNanoBeaconModel.h"
 #import "MKGWFilterByOtherController.h"
 #import "MKGWFilterByOtherModel.h"
 #import "MKGWFilterByPirController.h"
