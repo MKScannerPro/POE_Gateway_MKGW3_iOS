@@ -283,7 +283,7 @@ MKFilterEditSectionHeaderViewDelegate>
 #pragma mark - UI
 - (void)loadSubViews {
     self.defaultTitle = @"NanoBeacon info";
-    [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWFilterByNanoBeaconController", @"gw_slotSaveIcon.png") forState:UIControlStateNormal];
+    [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWFilterByNanoBeaconController", @"gw_saveIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);

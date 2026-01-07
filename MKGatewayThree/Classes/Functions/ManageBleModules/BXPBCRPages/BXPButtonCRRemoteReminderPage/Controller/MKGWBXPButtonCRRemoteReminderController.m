@@ -369,7 +369,7 @@ MKGWRemoteReminderCellDelegate>
 
 - (void)loadSection4Datas {
     MKGWRemoteReminderCellModel *cellModel = [[MKGWRemoteReminderCellModel alloc] init];
-    cellModel.msg = @"Buzzer notification";
+    cellModel.msg = @"Vibration notification";
     cellModel.index = 2;
     [self.section4List addObject:cellModel];
 }

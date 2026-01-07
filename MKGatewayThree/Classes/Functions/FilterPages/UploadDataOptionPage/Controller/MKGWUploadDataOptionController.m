@@ -152,7 +152,7 @@ mk_textSwitchCellDelegate>
     
     MKTextSwitchCellModel *cellModel2 = [[MKTextSwitchCellModel alloc] init];
     cellModel2.index = 1;
-    cellModel2.msg = @"RAW Data-Advertising";
+    cellModel2.msg = @"RAW Data";
     cellModel2.isOn = self.dataModel.rawData_advertising;
     [self.dataList addObject:cellModel2];
     
