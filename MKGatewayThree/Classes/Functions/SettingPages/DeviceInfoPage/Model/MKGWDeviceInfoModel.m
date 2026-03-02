@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -39,7 +39,7 @@
 #pragma mark - interface
 - (BOOL)readDeviceInfo {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readDeviceInfoWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readDeviceInfoWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.deviceName = returnData[@"data"][@"device_name"];
         self.productMode = returnData[@"data"][@"product_model"];
@@ -50,7 +50,7 @@
         self.software = returnData[@"data"][@"software_version"];
         self.ethernetMac = returnData[@"data"][@"eth_mac"];
         self.btMac = returnData[@"data"][@"ble_mac"];
-        self.wifiStaMac = [MKGWDeviceModeManager shared].macAddress;
+        self.wifiStaMac = [MKScannerDeviceModelManager shared].macAddress;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

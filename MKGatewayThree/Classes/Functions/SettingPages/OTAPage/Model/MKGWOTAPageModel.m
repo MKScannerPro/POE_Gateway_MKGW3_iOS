@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -60,7 +60,7 @@
 #pragma mark - interface
 - (NSInteger)readOTAState {
     __block NSInteger status = -1;
-    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         status = [returnData[@"data"][@"status"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -72,7 +72,7 @@
 
 - (BOOL)startOTA {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configOTAWithFilePath:self.filePath macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configOTAWithFilePath:self.filePath macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -84,7 +84,7 @@
 
 - (BOOL)startNpcOTA {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configNpcOTAWithFilePath:self.filePath macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configNpcOTAWithFilePath:self.filePath macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -22,7 +22,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWPressEventCountCell.h"
@@ -71,7 +71,7 @@ MKGWPressEventCountCellDelegate>
 #pragma mark - MKGWPressEventCountCellDelegate
 - (void)gw_pressEventCountCell_clearButtonPressed:(NSInteger)index {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_clearBXPTMotioEventCountWithBleMacAddress:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_clearBXPTMotioEventCountWithBleMacAddress:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         MKGWPressEventCountCellModel *cellModel = self.dataList[0];
         cellModel.count = @"0";
@@ -85,7 +85,7 @@ MKGWPressEventCountCellDelegate>
 #pragma mark - interface
 - (void)readDatasFromDevice {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readBXPTMotioEventCountWithBleMacAddress:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readBXPTMotioEventCountWithBleMacAddress:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Read Failed"];

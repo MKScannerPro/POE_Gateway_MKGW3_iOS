@@ -10,13 +10,13 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 

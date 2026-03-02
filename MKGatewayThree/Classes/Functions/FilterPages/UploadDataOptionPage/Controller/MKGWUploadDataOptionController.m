@@ -23,7 +23,7 @@
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWDeviceModel.h"
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 
 #import "MKGWUploadDataOptionModel.h"
@@ -102,7 +102,7 @@ mk_textSwitchCellDelegate>
         return;
     }
     if (index == 2) {
-        if ([MKGWDeviceModeManager shared].isV2) {
+        if ([MKScannerDeviceModelManager shared].isV2) {
             //Parsed data
             self.dataModel.parsed_data = isOn;
         }else {
@@ -158,7 +158,7 @@ mk_textSwitchCellDelegate>
     
     MKTextSwitchCellModel *cellModel3 = [[MKTextSwitchCellModel alloc] init];
     cellModel3.index = 2;
-    if ([MKGWDeviceModeManager shared].isV2) {
+    if ([MKScannerDeviceModelManager shared].isV2) {
         //V2
         cellModel3.msg = @"Parsed data";
         cellModel3.isOn = self.dataModel.parsed_data;

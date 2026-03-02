@@ -23,7 +23,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWNormalConnectedController.h"
@@ -171,7 +171,7 @@ MKGWManageBleDevicesCellDelegate>
 #pragma mark - note
 - (void)receiveDeviceDatas:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSArray *tempList = user[@"data"];
@@ -366,7 +366,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPButtonWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPButtonWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPButtonWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -384,7 +384,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPButtonCRWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPButtonCRWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPButtonCRWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -402,7 +402,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPCWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPCWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPCWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -420,7 +420,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPDWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPDWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPDWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -438,7 +438,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPTWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPTWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPTWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -456,7 +456,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectBXPSWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectBXPSWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectBXPSWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -474,7 +474,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectMKPirWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectMKPirWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectMKPirWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -492,7 +492,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectMKTofWithPassword:(NSString *)password bleMac:(NSString *)bleMac {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectMKTofWithPassword:password bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectMKTofWithPassword:password bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -510,7 +510,7 @@ MKGWManageBleDevicesCellDelegate>
 
 - (void)connectNormalDeviceWithBleMac:(NSString *)macAddress {
     [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_connectNormalBleDeviceWithBleMac:macAddress macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_connectNormalBleDeviceWithBleMac:macAddress macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             //连接失败
@@ -528,7 +528,7 @@ MKGWManageBleDevicesCellDelegate>
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = [MKGWDeviceModeManager shared].deviceName;
+    self.defaultTitle = [MKScannerDeviceModelManager shared].deviceName;
     UIView *topView = [[UIView alloc] init];
     topView.backgroundColor = RGBCOLOR(237, 243, 250);
     [self.view addSubview:topView];

@@ -21,7 +21,7 @@
 
 #import "MKHudManager.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTDataManager.h"
 
@@ -113,7 +113,7 @@ MKTextFieldCellDelegate>
 #pragma mark - notes
 - (void)receiveDisconnect:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];
@@ -126,7 +126,7 @@ MKTextFieldCellDelegate>
 
 - (void)receiveDfuProgress:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     if (!ValidStr(user[@"data"][@"mac"]) || ![self.bleMacAddress isEqualToString:user[@"data"][@"mac"]]) {
@@ -142,7 +142,7 @@ MKTextFieldCellDelegate>
 
 - (void)receiveDfuResult:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     if (!ValidStr(user[@"data"][@"mac"]) || ![self.bleMacAddress isEqualToString:user[@"data"][@"mac"]]) {
@@ -168,7 +168,7 @@ MKTextFieldCellDelegate>
 
 - (void)receiveDfuFailed:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSInteger resultCode = [user[@"data"][@"multi_dfu_result_code"] integerValue];

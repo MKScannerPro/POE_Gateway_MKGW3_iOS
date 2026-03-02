@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -51,7 +51,7 @@
 #pragma mark - interface
 - (BOOL)readReconnectTimeout {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readNetworkReconnectTimeoutWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readNetworkReconnectTimeoutWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.timeout = [NSString stringWithFormat:@"%@",returnData[@"data"][@"timeout"]];
         dispatch_semaphore_signal(self.semaphore);
@@ -64,7 +64,7 @@
 
 - (BOOL)configReconnectTimeout {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configReconnectTimeout:[self.timeout integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configReconnectTimeout:[self.timeout integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

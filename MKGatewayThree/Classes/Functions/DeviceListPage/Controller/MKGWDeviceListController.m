@@ -24,7 +24,11 @@
 
 #import "MKNetworkManager.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerCommonModule/MKScannerEasyShowView.h"
+#import "MKScannerCommonModule/MKScannerAddDeviceView.h"
+
+
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTServerManager.h"
@@ -41,9 +45,9 @@
 
 #import "MKGWDeviceListModel.h"
 
-#import "MKGWAddDeviceView.h"
+
 #import "MKGWDeviceListCell.h"
-#import "MKGWEasyShowView.h"
+
 
 #import "MKGWServerForAppController.h"
 #import "MKGWScanPageController.h"
@@ -55,17 +59,17 @@ static NSTimeInterval const kRefreshInterval = 0.5f;
 @interface MKGWDeviceListController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKGWDeviceListCellDelegate,
-MKGWDeviceModelDelegate>
+MKScannerDeviceModelDelegate>
 
 /// 没有添加设备的时候显示
-@property (nonatomic, strong)MKGWAddDeviceView *addView;
+@property (nonatomic, strong)MKScannerAddDeviceView *addView;
 
 /// 本地有设备的时候显示
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
 @property (nonatomic, strong)UIView *footerView;
 
-@property (nonatomic, strong)MKGWEasyShowView *loadingView;
+@property (nonatomic, strong)MKScannerEasyShowView *loadingView;
 
 @property (nonatomic, strong)NSMutableArray *dataList;
 
@@ -120,7 +124,7 @@ MKGWDeviceModelDelegate>
         return;
     }
     MKGWDeviceListModel *deviceModel = self.dataList[indexPath.row];
-    if (deviceModel.onLineState != MKGWDeviceModelStateOnline) {
+    if (deviceModel.onLineState != MKScannerDeviceModelStateOnline) {
         [self.view showCentralToast:@"Device is off-line!"];
         return;
     }
@@ -128,11 +132,11 @@ MKGWDeviceModelDelegate>
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
     [MKGWMQTTInterface gw_readDeviceInfoWithMacAddress:deviceModel.macAddress topic:[deviceModel currentSubscribedTopic] sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
-        [[MKGWDeviceModeManager shared] addDeviceModel:deviceModel];
+        [[MKScannerDeviceModelManager shared] addDeviceModel:deviceModel];
         NSString *firmware = returnData[@"data"][@"firmware_version"];
         firmware = [firmware stringByReplacingOccurrencesOfString:@"V" withString:@""];
         firmware = [firmware stringByReplacingOccurrencesOfString:@"." withString:@""];
-        [MKGWDeviceModeManager shared].isV2 = ([firmware integerValue] >= 200);
+        [MKScannerDeviceModelManager shared].isV2 = ([firmware integerValue] >= 200);
         MKGWDeviceDataController *vc = [[MKGWDeviceDataController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -185,11 +189,11 @@ MKGWDeviceModelDelegate>
     [alertView showAlertWithTitle:@"Remove Device" message:msg notificationName:@"mk_gw_needDismissAlert"];
 }
 
-#pragma mark - MKGWDeviceModelDelegate
+#pragma mark - MKScannerDeviceModelDelegate
 /// 当前设备离线
 /// @param deviceID 当前设备的deviceID
-- (void)gw_deviceOfflineWithMacAddress:(NSString *)macAddress {
-    [self deviceModelOnlineStateChanged:MKGWDeviceModelStateOffline macAddress:macAddress];
+- (void)mk_scanner_deviceOfflineWithMacAddress:(NSString *)macAddress {
+    [self deviceModelOnlineStateChanged:MKScannerDeviceModelStateOffline macAddress:macAddress];
 }
 
 #pragma mark - note
@@ -250,7 +254,7 @@ MKGWDeviceModelDelegate>
     if (!ValidDict(user) || !ValidStr(user[@"macAddress"]) || self.dataList.count == 0) {
         return;
     }
-    [self deviceModelOnlineStateChanged:MKGWDeviceModelStateOnline macAddress:user[@"macAddress"]];
+    [self deviceModelOnlineStateChanged:MKScannerDeviceModelStateOnline macAddress:user[@"macAddress"]];
 }
 
 - (void)receiveDeviceNetworkState:(NSNotification *)note {
@@ -261,7 +265,7 @@ MKGWDeviceModelDelegate>
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKGWDeviceListModel *deviceModel = self.dataList[i];
         if ([deviceModel.macAddress isEqualToString:user[@"macAddress"]]) {
-            deviceModel.onLineState = MKGWDeviceModelStateOnline;
+            deviceModel.onLineState = MKScannerDeviceModelStateOnline;
             [deviceModel startStateMonitoringTimer];
             deviceModel.networkType = [NSString stringWithFormat:@"%@",user[@"data"][@"net_interface"]];
             deviceModel.wifiLevel = [user[@"data"][@"wifi_rssi"] integerValue];
@@ -343,7 +347,7 @@ MKGWDeviceModelDelegate>
             model.publishedTopic = user[@"publishedTopic"];
             model.lwtStatus = [user[@"lwtStatus"] boolValue];
             model.lwtTopic = user[@"lwtTopic"];
-            model.onLineState = MKGWDeviceModelStateOffline;
+            model.onLineState = MKScannerDeviceModelStateOffline;
             [subTopicList addObject:[model currentPublishedTopic]];
             if (model.lwtStatus) {
                 //如果用户打开了遗嘱功能，则订阅topic
@@ -402,7 +406,7 @@ MKGWDeviceModelDelegate>
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKGWDeviceListModel *deviceModel = self.dataList[i];
         if ([deviceModel.macAddress isEqualToString:macAddress]) {
-            deviceModel.onLineState = MKGWDeviceModelStateOffline;
+            deviceModel.onLineState = MKScannerDeviceModelStateOffline;
             break;
         }
     }
@@ -422,7 +426,7 @@ MKGWDeviceModelDelegate>
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKGWDeviceListModel *deviceModel = self.dataList[i];
         if ([deviceModel.macAddress isEqualToString:macAddress]) {
-            deviceModel.onLineState = MKGWDeviceModelStateOffline;
+            deviceModel.onLineState = MKScannerDeviceModelStateOffline;
             [unSubTopicList addObject:[deviceModel currentPublishedTopic]];
             if (deviceModel.lwtStatus) {
                 [unSubTopicList addObject:deviceModel.lwtTopic];
@@ -550,12 +554,12 @@ MKGWDeviceModelDelegate>
     [[MKGWMQTTDataManager shared] subscriptions:topicList];
 }
 
-- (void)deviceModelOnlineStateChanged:(MKGWDeviceModelState)state macAddress:(NSString *)macAddress {
+- (void)deviceModelOnlineStateChanged:(MKScannerDeviceModelState)state macAddress:(NSString *)macAddress {
     for (NSInteger i = 0; i < self.dataList.count; i ++) {
         MKGWDeviceListModel *deviceModel = self.dataList[i];
         if ([deviceModel.macAddress isEqualToString:macAddress]) {
             deviceModel.onLineState = state;
-            if (state == MKGWDeviceModelStateOnline) {
+            if (state == MKScannerDeviceModelStateOnline) {
                 //在线状态开启监听
                 [deviceModel startStateMonitoringTimer];
             }
@@ -717,16 +721,16 @@ MKGWDeviceModelDelegate>
     return _tableView;
 }
 
-- (MKGWAddDeviceView *)addView {
+- (MKScannerAddDeviceView *)addView {
     if (!_addView) {
-        _addView = [[MKGWAddDeviceView alloc] init];
+        _addView = [[MKScannerAddDeviceView alloc] init];
     }
     return _addView;
 }
 
-- (MKGWEasyShowView *)loadingView {
+- (MKScannerEasyShowView *)loadingView {
     if (!_loadingView) {
-        _loadingView = [[MKGWEasyShowView alloc] init];
+        _loadingView = [[MKScannerEasyShowView alloc] init];
     }
     return _loadingView;
 }

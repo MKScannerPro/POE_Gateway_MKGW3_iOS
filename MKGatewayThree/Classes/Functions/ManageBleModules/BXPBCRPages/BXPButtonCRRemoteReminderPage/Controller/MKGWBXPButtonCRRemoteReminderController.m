@@ -20,7 +20,7 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKTextFieldCell.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -243,7 +243,7 @@ MKGWRemoteReminderCellDelegate>
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBtnCRLedRemoteReminderWithBleMac:self.bleMac blinkingTime:[self.dataModel.blinkingTime integerValue] blinkingInterval:[self.dataModel.blinkingInterval integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRLedRemoteReminderWithBleMac:self.bleMac blinkingTime:[self.dataModel.blinkingTime integerValue] blinkingInterval:[self.dataModel.blinkingInterval integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -263,7 +263,7 @@ MKGWRemoteReminderCellDelegate>
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBtnCRBuzzerRemoteReminderWithBleMac:self.bleMac ringTime:[self.dataModel.ringingTime integerValue] ringInterval:[self.dataModel.ringingInterval integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRBuzzerRemoteReminderWithBleMac:self.bleMac ringTime:[self.dataModel.ringingTime integerValue] ringInterval:[self.dataModel.ringingInterval integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -283,7 +283,7 @@ MKGWRemoteReminderCellDelegate>
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBtnCRVibratingRemoteReminderWithBleMac:self.bleMac vibratingTime:[self.dataModel.vibrationTime integerValue] vibratingInterval:[self.dataModel.vibrationInterval integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRVibratingRemoteReminderWithBleMac:self.bleMac vibratingTime:[self.dataModel.vibrationTime integerValue] vibratingInterval:[self.dataModel.vibrationInterval integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {

@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -79,7 +79,7 @@
 #pragma mark - interface
 - (BOOL)readFilterRelationship {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterRelationshipWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterRelationshipWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.relationship = [returnData[@"data"][@"relation"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -92,7 +92,7 @@
 
 - (BOOL)configFilterRelationship {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterRelationship:self.relationship macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterRelationship:self.relationship macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -104,7 +104,7 @@
 
 - (BOOL)readFilterPHY {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByPHYWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByPHYWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.phy = [returnData[@"data"][@"phy_filter"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -117,7 +117,7 @@
 
 - (BOOL)configFilterPHY {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByPHY:self.phy macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByPHY:self.phy macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -129,7 +129,7 @@
 
 - (BOOL)readFilterByRSSI {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByRSSIWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByRSSIWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.rssi = [returnData[@"data"][@"rssi"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -142,7 +142,7 @@
 
 - (BOOL)configFilterByRSSI {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByRSSI:self.rssi macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByRSSI:self.rssi macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -154,7 +154,7 @@
 
 - (BOOL)readDuplicateDataFilter {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readDuplicateDataFilterDatasWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readDuplicateDataFilterDatasWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.rule = [returnData[@"data"][@"rule"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -167,7 +167,7 @@
 
 - (BOOL)configDuplicateDataFilter {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configDuplicateDataFilter:self.rule period:1 macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configDuplicateDataFilter:self.rule period:1 macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

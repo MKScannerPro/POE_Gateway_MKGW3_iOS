@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -51,7 +51,7 @@
 #pragma mark - interface
 - (BOOL)readIndicatorLightStatus {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readIndicatorLightStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readIndicatorLightStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.network_indicator = [returnData[@"data"][@"net_led"] boolValue];
         self.system_indicator = [returnData[@"data"][@"sys_led"] boolValue];
@@ -66,7 +66,7 @@
 
 - (BOOL)configIndicatorLightStatus {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configIndicatorLightStatus:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configIndicatorLightStatus:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

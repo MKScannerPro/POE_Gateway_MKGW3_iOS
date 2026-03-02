@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -60,7 +60,7 @@
 #pragma mark - interface
 - (BOOL)readDuplicateDataFilter {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readDuplicateDataFilterDatasWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readDuplicateDataFilterDatasWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.rule = [returnData[@"data"][@"rule"] integerValue];
         self.time = [NSString stringWithFormat:@"%@",returnData[@"data"][@"timeout"]];
@@ -74,7 +74,7 @@
 
 - (BOOL)configDuplicateDataFilter {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configDuplicateDataFilter:self.rule period:[self.time longLongValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configDuplicateDataFilter:self.rule period:[self.time longLongValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

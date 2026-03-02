@@ -20,7 +20,7 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKTextFieldCell.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -201,7 +201,7 @@ MKGWRemoteReminderCellDelegate>
         return ;
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBtnLedRemoteReminderWithBleMac:self.bleMac blinkingTime:[self.dataModel.blinkingTime integerValue] blinkingInterval:[self.dataModel.blinkingInterval integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnLedRemoteReminderWithBleMac:self.bleMac blinkingTime:[self.dataModel.blinkingTime integerValue] blinkingInterval:[self.dataModel.blinkingInterval integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -221,7 +221,7 @@ MKGWRemoteReminderCellDelegate>
     }
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBtnBuzzerRemoteReminderWithBleMac:self.bleMac ringTime:[self.dataModel.ringingTime integerValue] ringInterval:[self.dataModel.ringingInterval integerValue] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnBuzzerRemoteReminderWithBleMac:self.bleMac ringTime:[self.dataModel.ringingTime integerValue] ringInterval:[self.dataModel.ringingInterval integerValue] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {

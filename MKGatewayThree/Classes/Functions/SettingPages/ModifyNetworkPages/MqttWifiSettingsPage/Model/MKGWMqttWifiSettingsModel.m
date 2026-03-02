@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -133,7 +133,7 @@
 #pragma mark - interface
 - (NSInteger)readOTAState {
     __block NSInteger status = -1;
-    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         status = [returnData[@"data"][@"status"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -145,7 +145,7 @@
 
 - (BOOL)readWifiInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readWifiInfosWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readWifiInfosWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.security = [returnData[@"data"][@"security_type"] integerValue];
         self.ssid = returnData[@"data"][@"ssid"];
@@ -165,7 +165,7 @@
 
 - (BOOL)configWifiInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_modifyWifiInfos:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyWifiInfos:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -177,7 +177,7 @@
 
 - (BOOL)readWifiNetworkInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readWifiNetworkInfosWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readWifiNetworkInfosWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.wifi_dhcp = ([returnData[@"data"][@"dhcp_en"] integerValue] == 1);
         self.wifi_ip = returnData[@"data"][@"ip"];
@@ -200,7 +200,7 @@
     settingModel.mask = self.wifi_mask;
     settingModel.gateway = self.wifi_gateway;
     settingModel.dns = self.wifi_dns;
-    [MKGWMQTTInterface gw_modifyWifiNetworkInfos:settingModel macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyWifiNetworkInfos:settingModel macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -212,7 +212,7 @@
 
 - (BOOL)readNetworkType {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.networkType = [returnData[@"data"][@"net_interface"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -225,7 +225,7 @@
 
 - (BOOL)configNetworkType {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_modifyNetworkType:self.networkType macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyNetworkType:self.networkType macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -237,7 +237,7 @@
 
 - (BOOL)readEthernetNetworkInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readEthernetNetworkInfosWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readEthernetNetworkInfosWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.ethernet_dhcp = ([returnData[@"data"][@"dhcp_en"] integerValue] == 1);
         self.ethernet_ip = returnData[@"data"][@"ip"];
@@ -260,7 +260,7 @@
     settingModel.mask = self.ethernet_mask;
     settingModel.gateway = self.ethernet_gateway;
     settingModel.dns = self.ethernet_dns;
-    [MKGWMQTTInterface gw_modifyEthernetNetworkInfos:settingModel macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyEthernetNetworkInfos:settingModel macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -272,7 +272,7 @@
 
 - (BOOL)configEAPCerts {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_modifyWifiCerts:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyWifiCerts:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

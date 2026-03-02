@@ -27,7 +27,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWButtonFirmwareCell.h"
@@ -224,7 +224,7 @@ MKGWButtonFirmwareCellDelegate>
 #pragma mark - notes
 - (void)receiveDisconnect:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];
@@ -242,7 +242,7 @@ MKGWButtonFirmwareCellDelegate>
 #pragma mark - interface
 - (void)readDatasFromDevice {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readMKTofConnectedStatusWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKTofConnectedStatusWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Read Failed"];
@@ -258,7 +258,7 @@ MKGWButtonFirmwareCellDelegate>
 
 - (void)disconnect {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_disconnectNormalBleDeviceWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_disconnectNormalBleDeviceWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.navigationController popViewControllerAnimated:YES];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -269,7 +269,7 @@ MKGWButtonFirmwareCellDelegate>
 
 - (void)powerOffCmdToDevice {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpMKTofPowerOffWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpMKTofPowerOffWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.navigationController popViewControllerAnimated:YES];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -394,7 +394,7 @@ MKGWButtonFirmwareCellDelegate>
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = [MKGWDeviceModeManager shared].deviceName;
+    self.defaultTitle = [MKScannerDeviceModelManager shared].deviceName;
     [self.rightButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

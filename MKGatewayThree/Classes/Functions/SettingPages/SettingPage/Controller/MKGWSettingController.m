@@ -26,7 +26,7 @@
 
 #import "MKGWDeviceDatabaseManager.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -239,8 +239,8 @@ UITableViewDataSource>
         @strongify(self);
         [self saveDeviceLocalName];
     }];
-    self.localNameAsciiStr = SafeStr([MKGWDeviceModeManager shared].deviceName);
-    MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:SafeStr([MKGWDeviceModeManager shared].deviceName)
+    self.localNameAsciiStr = SafeStr([MKScannerDeviceModelManager shared].deviceName);
+    MKAlertViewTextField *textField = [[MKAlertViewTextField alloc] initWithTextValue:SafeStr([MKScannerDeviceModelManager shared].deviceName)
                                                                           placeholder:@"1-20 characters"
                                                                         textFieldType:mk_normal
                                                                             maxLength:20
@@ -264,13 +264,13 @@ UITableViewDataSource>
     }
     [[MKHudManager share] showHUDWithTitle:@"Save..." inView:self.view isPenetration:NO];
     [MKGWDeviceDatabaseManager updateLocalName:self.localNameAsciiStr
-                                    macAddress:[MKGWDeviceModeManager shared].macAddress
+                                    macAddress:[MKScannerDeviceModelManager shared].macAddress
                                       sucBlock:^{
         [[MKHudManager share] hide];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_deviceNameChangedNotification"
                                                             object:nil
                                                           userInfo:@{
-                                                              @"macAddress":[MKGWDeviceModeManager shared].macAddress,
+                                                              @"macAddress":[MKScannerDeviceModelManager shared].macAddress,
                                                               @"deviceName":self.localNameAsciiStr
                                                           }];
     }
@@ -298,7 +298,7 @@ UITableViewDataSource>
 #pragma mark - 设备复位
 - (void)resetDevice {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_resetDeviceWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_resetDeviceWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self removeDevice];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -309,11 +309,11 @@ UITableViewDataSource>
 
 - (void)removeDevice {
     [[MKHudManager share] showHUDWithTitle:@"Delete..." inView:self.view isPenetration:NO];
-    [MKGWDeviceDatabaseManager deleteDeviceWithMacAddress:[MKGWDeviceModeManager shared].macAddress sucBlock:^{
+    [MKGWDeviceDatabaseManager deleteDeviceWithMacAddress:[MKScannerDeviceModelManager shared].macAddress sucBlock:^{
         [[MKHudManager share] hide];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_deleteDeviceNotification"
                                                             object:nil
-                                                          userInfo:@{@"macAddress":[MKGWDeviceModeManager shared].macAddress}];
+                                                          userInfo:@{@"macAddress":[MKScannerDeviceModelManager shared].macAddress}];
         [self popToViewControllerWithClassName:@"MKGWDeviceListController"];
     } failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
@@ -324,7 +324,7 @@ UITableViewDataSource>
 #pragma mark - 设备重启
 - (void)rebootDevice {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_rebootDeviceWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_rebootDeviceWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success!"];
     } failedBlock:^(NSError * _Nonnull error) {

@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -99,7 +99,7 @@
 #pragma mark - interface
 - (BOOL)readFilterByBeacon {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByBeaconWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByBeaconWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.isOn = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         NSInteger tempMinMinor = [returnData[@"data"][@"min_minor"] integerValue];
@@ -144,7 +144,7 @@
         tempMaxMajor = 65535;
     }
     
-    [MKGWMQTTInterface gw_configFilterByBeacon:self.isOn minMinor:tempMinMinor maxMinor:tempMaxMinor minMajor:tempMinMajor maxMajor:tempMaxMajor uuid:self.uuid macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByBeacon:self.isOn minMinor:tempMinMinor maxMinor:tempMaxMinor minMajor:tempMinMajor maxMajor:tempMaxMajor uuid:self.uuid macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

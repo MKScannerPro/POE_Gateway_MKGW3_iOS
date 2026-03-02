@@ -22,7 +22,7 @@
 #import "MKTextButtonCell.h"
 #import "MKTextFieldCell.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTInterface.h"

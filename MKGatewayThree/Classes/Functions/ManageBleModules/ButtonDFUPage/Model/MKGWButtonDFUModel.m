@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -45,7 +45,7 @@
 #pragma mark - interface
 - (BOOL)startDfu {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_startBXPButtonDfuWithFirmwareUrl:self.firmwareUrl dataUrl:self.dataUrl bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_startBXPButtonDfuWithFirmwareUrl:self.firmwareUrl dataUrl:self.dataUrl bleMac:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

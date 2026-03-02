@@ -23,7 +23,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWDeviceDataPageHeaderView.h"
@@ -79,7 +79,7 @@ MKGWReceiveDeviceDatasDelegate>
 
 - (void)dealloc {
     NSLog(@"MKGWDeviceDataController销毁");
-    [MKGWDeviceModeManager sharedDealloc];
+    [MKScannerDeviceModelManager sharedDealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //移除runloop的监听
     CFRunLoopRemoveObserver(CFRunLoopGetCurrent(), self.observerRef, kCFRunLoopCommonModes);
@@ -115,7 +115,7 @@ MKGWReceiveDeviceDatasDelegate>
 
 #pragma mark - super method
 - (void)rightButtonMethod {
-    if ([MKGWDeviceModeManager shared].isV2) {
+    if ([MKScannerDeviceModelManager shared].isV2) {
         MKGWSettingForV2Controller *vc = [[MKGWSettingForV2Controller alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -148,7 +148,7 @@ MKGWReceiveDeviceDatasDelegate>
 #pragma mark - MKGWDeviceDataPageHeaderViewDelegate
 
 - (void)gw_updateLoadButtonAction {
-    if ([MKGWDeviceModeManager shared].isV2) {
+    if ([MKScannerDeviceModelManager shared].isV2) {
         MKGWUploadOptionV2Controller *vc = [[MKGWUploadOptionV2Controller alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -160,8 +160,8 @@ MKGWReceiveDeviceDatasDelegate>
 - (void)gw_scannerStatusChanged:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
     [MKGWMQTTInterface gw_configScanSwitchStatus:isOn
-                                      macAddress:[MKGWDeviceModeManager shared].macAddress
-                                           topic:[MKGWDeviceModeManager shared].subscribedTopic
+                                      macAddress:[MKScannerDeviceModelManager shared].macAddress
+                                           topic:[MKScannerDeviceModelManager shared].subscribedTopic
                                         sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         self.headerModel.isOn = isOn;
@@ -175,8 +175,8 @@ MKGWReceiveDeviceDatasDelegate>
 
 - (void)gw_manageBleDeviceAction {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readGatewayBleConnectStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress
-                                                              topic:[MKGWDeviceModeManager shared].subscribedTopic
+    [MKGWMQTTInterface gw_readGatewayBleConnectStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress
+                                                              topic:[MKScannerDeviceModelManager shared].subscribedTopic
                                                            sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         NSArray *deviceList = returnData[@"data"][@"ble_conn_list"];
@@ -187,7 +187,7 @@ MKGWReceiveDeviceDatasDelegate>
             return;
         }
         //网关没有连接设备
-        if ([MKGWDeviceModeManager shared].isV2) {
+        if ([MKScannerDeviceModelManager shared].isV2) {
             MKGWManageBleDevicesV2Controller *vc = [[MKGWManageBleDevicesV2Controller alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             return;
@@ -215,7 +215,7 @@ MKGWReceiveDeviceDatasDelegate>
 
 #pragma mark - MKGWReceiveDeviceDatasDelegate
 - (void)mk_gw_receiveDeviceDatas:(NSDictionary *)data {
-    if (!ValidDict(data) || !ValidStr(data[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:data[@"device_info"][@"mac"]]) {
+    if (!ValidDict(data) || !ValidStr(data[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:data[@"device_info"][@"mac"]]) {
         return;
     }
     NSArray *tempList = data[@"data"];
@@ -253,7 +253,7 @@ MKGWReceiveDeviceDatasDelegate>
 
 - (void)receiveDeviceNameChanged:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"macAddress"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"macAddress"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"macAddress"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"macAddress"]]) {
         return;
     }
     self.defaultTitle = user[@"deviceName"];
@@ -262,8 +262,8 @@ MKGWReceiveDeviceDatasDelegate>
 #pragma mark - interface
 - (void)readDataFromServer {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readScanSwitchStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress
-                                                       topic:[MKGWDeviceModeManager shared].subscribedTopic
+    [MKGWMQTTInterface gw_readScanSwitchStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress
+                                                       topic:[MKScannerDeviceModelManager shared].subscribedTopic
                                                     sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         self.headerModel.isOn = ([returnData[@"data"][@"scan_switch"] integerValue] == 1);
@@ -280,7 +280,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 0) {
         //通用链接
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readNormalConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readNormalConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWNormalConnectedController *vc = [[MKGWNormalConnectedController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -294,7 +294,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 1) {
         //BXP-B-D
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPButtonConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPButtonConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPButtonController *vc = [[MKGWBXPButtonController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -308,7 +308,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 2) {
         //BXP-B-CR
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPButtonCRConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPButtonCRConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPButtonCRController *vc = [[MKGWBXPButtonCRController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -322,7 +322,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 3) {
         //BXP-C
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPCConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPCConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPCController *vc = [[MKGWBXPCController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -336,7 +336,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 4) {
         //BXP-D
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPDConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPDConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPDController *vc = [[MKGWBXPDController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -350,7 +350,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 5) {
         //BXP-T
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPTConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPTConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPTController *vc = [[MKGWBXPTController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -364,7 +364,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 6) {
         //BXP-S
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readBXPSConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readBXPSConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWBXPSController *vc = [[MKGWBXPSController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -378,7 +378,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 7) {
         //MK Pir
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readMKPirConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readMKPirConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWPirController *vc = [[MKGWPirController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -392,7 +392,7 @@ MKGWReceiveDeviceDatasDelegate>
     if (type == 8) {
         //MK Tof
         [[MKHudManager share] showHUDWithTitle:@"Connecting..." inView:self.view isPenetration:NO];
-        [MKGWMQTTInterface gw_readMKTofConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+        [MKGWMQTTInterface gw_readMKTofConnectedDeviceInfoWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
             [[MKHudManager share] hide];
             MKGWTofController *vc = [[MKGWTofController alloc] init];
             vc.deviceBleInfo = returnData;
@@ -480,7 +480,7 @@ MKGWReceiveDeviceDatasDelegate>
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = [MKGWDeviceModeManager shared].deviceName;
+    self.defaultTitle = [MKScannerDeviceModelManager shared].deviceName;
     [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWDeviceDataController", @"gw_moreIcon.png") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

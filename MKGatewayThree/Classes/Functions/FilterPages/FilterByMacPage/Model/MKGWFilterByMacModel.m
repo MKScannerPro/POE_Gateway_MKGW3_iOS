@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -56,7 +56,7 @@
 
 - (BOOL)readFilterByMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByMacWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByMacWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.preciseMatch = ([returnData[@"data"][@"precise"] integerValue] == 1);
         self.reverseFilter = ([returnData[@"data"][@"reverse"] integerValue] == 1);
@@ -73,7 +73,7 @@
 
 - (BOOL)configFilterByMac:(NSArray <NSString *>*)macList {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByMacAddress:macList preciseMatch:self.preciseMatch reverseFilter:self.reverseFilter macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByMacAddress:macList preciseMatch:self.preciseMatch reverseFilter:self.reverseFilter macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -20,7 +20,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWResetByButtonCell.h"
@@ -93,7 +93,7 @@ MKGWResetByButtonCellDelegate>
 #pragma mark - Interface
 - (void)readDataFromDevice {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readKeyResetTypeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readKeyResetTypeWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self updateCellModel:[returnData[@"data"][@"key_reset_type"] integerValue]];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -117,7 +117,7 @@ MKGWResetByButtonCellDelegate>
 
 - (void)configResetByButton:(NSInteger)index {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_configKeyResetType:index macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configKeyResetType:index macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self updateCellModel:index];
     } failedBlock:^(NSError * _Nonnull error) {

@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -55,7 +55,7 @@
 #pragma mark - interface
 - (BOOL)readFilterByTLM {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByTLMWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByTLMWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.isOn = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         self.tlm = [returnData[@"data"][@"tlm_version"] integerValue];
@@ -69,7 +69,7 @@
 
 - (BOOL)configFilterByTLM {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByTLM:self.isOn tlm:self.tlm macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByTLM:self.isOn tlm:self.tlm macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

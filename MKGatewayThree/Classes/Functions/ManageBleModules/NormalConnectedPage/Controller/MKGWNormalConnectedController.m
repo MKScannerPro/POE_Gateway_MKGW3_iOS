@@ -24,7 +24,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWNormalConnectedCell.h"
@@ -185,7 +185,7 @@ MKGWNormalConnectedCellDelegate>
 #pragma mark - notes
 - (void)receiveDisconnect:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];
@@ -199,7 +199,7 @@ MKGWNormalConnectedCellDelegate>
 
 - (void)receiveDeviceDatas:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];
@@ -279,7 +279,7 @@ MKGWNormalConnectedCellDelegate>
 
 - (void)disconnect {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_disconnectNormalBleDeviceWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_disconnectNormalBleDeviceWithBleMac:self.deviceBleInfo[@"data"][@"mac"] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.navigationController popViewControllerAnimated:YES];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -290,7 +290,7 @@ MKGWNormalConnectedCellDelegate>
 
 - (void)writeData:(NSString *)data serviceUUID:(NSString *)serverUUID characteristic:(NSString *)characteristic {
     [[MKHudManager share] showHUDWithTitle:@"Writing..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_writeValueToDeviceWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] value:data serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_writeValueToDeviceWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] value:data serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Write Failed"];
@@ -308,7 +308,7 @@ MKGWNormalConnectedCellDelegate>
                         section:(NSInteger)section
                             row:(NSInteger)row {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readCharacteristicValueWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readCharacteristicValueWithBleMacAddress:self.deviceBleInfo[@"data"][@"mac"] serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Read Failed"];
@@ -331,7 +331,7 @@ characteristic:(NSString *)characteristic
        section:(NSInteger)section
            row:(NSInteger)row {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_notifyCharacteristic:notify bleMacAddress:self.deviceBleInfo[@"data"][@"mac"] serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_notifyCharacteristic:notify bleMacAddress:self.deviceBleInfo[@"data"][@"mac"] serviceUUID:serverUUID characteristicUUID:characteristic macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         if ([returnData[@"data"][@"result_code"] integerValue] != 0) {
             [self.view showCentralToast:@"Read Failed"];
@@ -350,7 +350,7 @@ characteristic:(NSString *)characteristic
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = [MKGWDeviceModeManager shared].deviceName;
+    self.defaultTitle = [MKScannerDeviceModelManager shared].deviceName;
     [self.rightButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

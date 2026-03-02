@@ -12,7 +12,7 @@
 
 #import "MKBLEBaseSDKAdopter.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -114,7 +114,7 @@
 #pragma mark - interface
 - (BOOL)readFilterByOther {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterOtherDatasWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterOtherDatasWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.isOn = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         self.relationship = [returnData[@"data"][@"relation"] integerValue];
@@ -129,7 +129,7 @@
 
 - (BOOL)configFilterByOther:(NSArray <MKGWFilterRawAdvDataModel *>*)list relationship:(mk_gw_filterByOther)relationship {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByOtherDatas:self.isOn relationship:relationship rawDataList:list macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByOtherDatas:self.isOn relationship:relationship rawDataList:list macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

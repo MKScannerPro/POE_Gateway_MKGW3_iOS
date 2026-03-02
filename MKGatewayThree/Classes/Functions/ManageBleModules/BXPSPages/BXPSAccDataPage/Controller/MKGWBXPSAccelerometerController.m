@@ -31,7 +31,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWBXPButtonAccHeaderView.h"
@@ -80,7 +80,7 @@ MKGWBXPButtonAccHeaderViewDelegate>
 #pragma mark - MKGWBXPButtonAccHeaderViewDelegate
 - (void)gw_bxpButtonAccHeaderView_syncButtonPressed:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBXPSNotifyAccDataWithBleMac:self.bleMac notify:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBXPSNotifyAccDataWithBleMac:self.bleMac notify:isOn macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
         [self.headerView updateSyncStatus:isOn];
@@ -133,7 +133,7 @@ MKGWBXPButtonAccHeaderViewDelegate>
 #pragma mark - Notes
 - (void)receiveAccDatas:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];

@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "UIView+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTDataManager.h"
@@ -61,7 +61,7 @@
 - (void)addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceOffline:)
-                                                 name:MKGWDeviceModelOfflineNotification
+                                                 name:MKScannerDeviceModelOfflineNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDeviceLwtMessage:)
@@ -74,7 +74,7 @@
 }
 
 - (void)processOfflineWithMacAddress:(NSString *)macAddress {
-    if (![macAddress isEqualToString:[MKGWDeviceModeManager shared].macAddress] || ![MKBaseViewController isCurrentViewControllerVisible:self]) {
+    if (![macAddress isEqualToString:[MKScannerDeviceModelManager shared].macAddress] || ![MKBaseViewController isCurrentViewControllerVisible:self]) {
         return;
     }
     //让setting页面推出的alert消失

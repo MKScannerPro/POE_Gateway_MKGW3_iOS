@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -44,7 +44,7 @@
 #pragma mark - interface
 - (BOOL)readMqttInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMQTTParamsWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMQTTParamsWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.clientID = returnData[@"data"][@"client_id"];
         self.subscribeTopic = returnData[@"data"][@"sub_topic"];
@@ -61,7 +61,7 @@
 
 - (BOOL)readNetworkType {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readNetworkTypeWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.networkType = [NSString stringWithFormat:@"%@",returnData[@"data"][@"net_interface"]];
         dispatch_semaphore_signal(self.semaphore);

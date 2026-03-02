@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -55,7 +55,7 @@
 #pragma mark - interface
 - (BOOL)readAdvParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMKPirAdvParamsWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKPirAdvParamsWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.interval = [NSString stringWithFormat:@"%@",returnData[@"data"][@"adv_interval"]];
         self.txPower = [self fetchTxPower:[returnData[@"data"][@"tx_power"] integerValue]];
@@ -70,7 +70,7 @@
 
 - (BOOL)configAdvParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configMKPirAdvParamsWithInterval:[self.interval integerValue] txPower:self.txPower bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configMKPirAdvParamsWithInterval:[self.interval integerValue] txPower:self.txPower bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

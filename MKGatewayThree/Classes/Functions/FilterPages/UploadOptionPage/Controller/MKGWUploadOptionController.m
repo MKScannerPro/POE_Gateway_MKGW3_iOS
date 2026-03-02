@@ -22,7 +22,7 @@
 #import "MKCustomUIAdopter.h"
 
 #import "MKGWDeviceModel.h"
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWUploadOptionModel.h"
 
@@ -360,7 +360,7 @@ MKGWFilterCellDelegate>
 
 #pragma mark - UI
 - (void)loadSubViews {
-    self.defaultTitle = [MKGWDeviceModeManager shared].deviceName;
+    self.defaultTitle = [MKScannerDeviceModelManager shared].deviceName;
     [self.rightButton setImage:LOADICON(@"MKGatewayThree", @"MKGWUploadOptionController", @"gw_saveIcon.png")
                       forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];

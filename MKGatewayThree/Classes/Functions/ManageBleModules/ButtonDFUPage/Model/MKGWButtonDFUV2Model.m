@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -49,7 +49,7 @@
     if (self.type == 7 || self.type == 8) {
         password = @"MOKOMOKO";
     }
-    [MKGWMQTTInterface gw_startBXPDfuWithBeaconType:self.type firmwareUrl:self.firmwareUrl dataUrl:self.dataUrl dfuList:@[@{@"mac":self.bleMac,@"password":password}] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_startBXPDfuWithBeaconType:self.type firmwareUrl:self.firmwareUrl dataUrl:self.dataUrl dfuList:@[@{@"mac":self.bleMac,@"password":password}] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

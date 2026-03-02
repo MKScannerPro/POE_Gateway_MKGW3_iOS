@@ -22,7 +22,7 @@
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWDeviceModel.h"
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWSystemTimeCell.h"
 
@@ -159,7 +159,7 @@ MKTextButtonCellDelegate>
 #pragma mark - interface
 - (void)readDataFromServer {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_readDeviceUTCTimeWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readDeviceUTCTimeWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self updateCellData:returnData[@"data"]];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -170,7 +170,7 @@ MKTextButtonCellDelegate>
 
 - (void)syncTimeZoneToDevice:(NSInteger)timeZone {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_configDeviceTimeZone:timeZone - 24 timestamp:[[NSDate date] timeIntervalSince1970] macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configDeviceTimeZone:timeZone - 24 timestamp:[[NSDate date] timeIntervalSince1970] macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         self.timeZone = timeZone;
         MKTextButtonCellModel *cellModel = self.section2List[0];
         cellModel.dataListIndex = self.timeZone;

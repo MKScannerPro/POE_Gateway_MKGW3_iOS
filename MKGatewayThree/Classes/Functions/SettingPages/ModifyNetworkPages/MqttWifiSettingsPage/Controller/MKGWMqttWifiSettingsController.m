@@ -27,7 +27,9 @@
 
 #import "MKGWMQTTDataManager.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+
+#import "MKGWDeviceModel.h"
 
 #import "MKGWMqttWifiSettingsModel.h"
 
@@ -112,7 +114,8 @@ mk_textSwitchCellDelegate>
 }
 
 - (void)leftButtonMethod {
-    [MKGWDeviceModeManager shared].networkType = [NSString stringWithFormat:@"%ld",(long)self.dataModel.networkType];
+    MKGWDeviceModel *deviceModel = (MKGWDeviceModel *)[MKScannerDeviceModelManager shared].deviceModel;
+    deviceModel.networkType = [NSString stringWithFormat:@"%ld",(long)self.dataModel.networkType];
     [super leftButtonMethod];
 }
 
@@ -333,7 +336,7 @@ mk_textSwitchCellDelegate>
 #pragma mark - note
 - (void)receiveUpdateEAPCerts:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     [[MKHudManager share] hide];

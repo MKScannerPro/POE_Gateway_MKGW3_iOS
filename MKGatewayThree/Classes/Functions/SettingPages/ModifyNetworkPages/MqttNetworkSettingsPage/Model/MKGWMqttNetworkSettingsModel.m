@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -52,7 +52,7 @@
 #pragma mark - interface
 - (BOOL)readNetworkInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readWifiNetworkInfosWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readWifiNetworkInfosWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.dhcp = ([returnData[@"data"][@"dhcp_en"] integerValue] == 1);
         self.ip = returnData[@"data"][@"ip"];
@@ -69,7 +69,7 @@
 
 - (BOOL)configNetworkInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_modifyWifiNetworkInfos:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyWifiNetworkInfos:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

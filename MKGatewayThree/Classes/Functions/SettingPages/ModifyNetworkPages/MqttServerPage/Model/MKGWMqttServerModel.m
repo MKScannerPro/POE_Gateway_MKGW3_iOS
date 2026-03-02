@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -154,7 +154,7 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
 #pragma mark - interface
 - (NSInteger)readOTAState {
     __block NSInteger status = -1;
-    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readOtaStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         status = [returnData[@"data"][@"status"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -166,7 +166,7 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
 
 - (BOOL)readMqttInfos {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMQTTParamsWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMQTTParamsWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.host = returnData[@"data"][@"host"];
         self.port = [NSString stringWithFormat:@"%@",returnData[@"data"][@"port"]];
@@ -207,15 +207,15 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
     __block BOOL success = NO;
     if ([self.lwtTopic isEqualToString:defaultPubTopic]) {
         //用户使用默认的LWT topic
-        self.lwtTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKGWDeviceModeManager shared].deviceName,self.clientID,@"device_to_app"];
+        self.lwtTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKScannerDeviceModelManager shared].deviceName,self.clientID,@"device_to_app"];
     }
     if ([self.publishTopic isEqualToString:defaultPubTopic]) {
         //用户使用默认的topic
-        self.publishTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKGWDeviceModeManager shared].deviceName,self.clientID,@"device_to_app"];
+        self.publishTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKScannerDeviceModelManager shared].deviceName,self.clientID,@"device_to_app"];
     }
     if ([self.subscribeTopic isEqualToString:defaultSubTopic]) {
         //用户使用默认的topic
-        self.subscribeTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKGWDeviceModeManager shared].deviceName,self.clientID,@"app_to_device"];
+        self.subscribeTopic = [NSString stringWithFormat:@"%@/%@/%@",[MKScannerDeviceModelManager shared].deviceName,self.clientID,@"app_to_device"];
     }
     if (!self.sslIsOn) {
         self.connectMode = 0;
@@ -229,7 +229,7 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
         }
     }
     
-    [MKGWMQTTInterface gw_modifyMqttInfos:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyMqttInfos:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -241,7 +241,7 @@ static NSString *const defaultPubTopic = @"{device_name}/{device_id}/device_to_a
 
 - (BOOL)configMqttCerts {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_modifyMqttCerts:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_modifyMqttCerts:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -31,7 +31,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWBXPSHistoricalTHDataHeaderView.h"
@@ -80,7 +80,7 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
 #pragma mark - MKGWBXPSHistoricalTHDataHeaderViewDelegate
 - (void)gw_BXPSHistoricalHTDataHeaderView_syncButtonPressed:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:self.bleMac notify:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBXPSNotifyHistoricalHTDataWithBleMac:self.bleMac notify:isOn macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
         [self.headerView updateSyncStatus:isOn];
@@ -100,7 +100,7 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
 
 - (void)gw_BXPSHistoricalHTDataHeaderView_deleteButtonPressed {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_bxpBXPSDeleteHistoricalHTDataWithBleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBXPSDeleteHistoricalHTDataWithBleMac:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
         self.textView.text = @"";
@@ -145,7 +145,7 @@ MKGWBXPSHistoricalTHDataHeaderViewDelegate>
 #pragma mark - Notes
 - (void)receiveHTDatas:(NSNotification *)note {
     NSDictionary *user = note.userInfo;
-    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKGWDeviceModeManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"]) || ![[MKScannerDeviceModelManager shared].macAddress isEqualToString:user[@"device_info"][@"mac"]]) {
         return;
     }
     NSDictionary *dataDic = user[@"data"];

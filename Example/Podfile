@@ -16,4 +16,6 @@ platform :ios,'14.0'
 
 target 'MKGatewayThree_Example' do
   pod 'MKGatewayThree', :path => '../'
+  
+  pod 'MKScannerCommonModule', :path => '/Users/aa/Desktop/GitHub基础组件库/MKScannerCommonModule'
 end

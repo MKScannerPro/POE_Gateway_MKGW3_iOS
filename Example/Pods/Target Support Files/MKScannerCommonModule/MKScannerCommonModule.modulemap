@@ -1,0 +1,6 @@
+framework module MKScannerCommonModule {
+  umbrella header "MKScannerCommonModule-umbrella.h"
+
+  export *
+  module * { export * }
+}

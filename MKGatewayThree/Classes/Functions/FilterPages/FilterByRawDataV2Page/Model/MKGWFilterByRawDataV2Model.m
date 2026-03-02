@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -41,7 +41,7 @@
 #pragma mark - interface
 - (BOOL)readFilterByRawData {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByRawDataStatusWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByRawDataStatusWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.iBeacon = ([returnData[@"data"][@"ibeacon"] integerValue] == 1);
         self.uid = ([returnData[@"data"][@"eddystone_uid"] integerValue] == 1);

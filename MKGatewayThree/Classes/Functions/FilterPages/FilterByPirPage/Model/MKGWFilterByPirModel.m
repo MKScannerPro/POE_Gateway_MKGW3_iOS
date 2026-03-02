@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -60,7 +60,7 @@
 #pragma mark - interface
 - (BOOL)readFilterByPir {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByPirWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByPirWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.isOn = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         self.delayRespneseStatus = [returnData[@"data"][@"delay_response_status"] integerValue];
@@ -110,7 +110,7 @@
         tempMaxMajor = 65535;
     }
     
-    [MKGWMQTTInterface gw_configFilterByPir:self minMinor:tempMinMinor maxMinor:tempMaxMinor minMajor:tempMinMajor maxMajor:tempMaxMajor macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByPir:self minMinor:tempMinMinor maxMinor:tempMaxMinor minMajor:tempMinMajor maxMajor:tempMaxMajor macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

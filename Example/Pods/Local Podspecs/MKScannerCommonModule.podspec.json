@@ -1,0 +1,1617 @@
+{
+  "name": "MKScannerCommonModule",
+  "version": "0.0.1",
+  "summary": "A short description of MKScannerCommonModule.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/lovexiaoxia/MKScannerCommonModule",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "lovexiaoxia": "aadyx2007@163.com"
+  },
+  "source": {
+    "git": "https://github.com/lovexiaoxia/MKScannerCommonModule.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "14.0"
+  },
+  "resource_bundles": {
+    "MKScannerCommonModule": [
+      "MKScannerCommonModule/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "MLInputDodger": [
+
+    ],
+    "MKBaseModuleLibrary": [
+
+    ],
+    "MKCustomUIModule": [
+
+    ],
+    "Masonry": [
+
+    ],
+    "MJRefresh": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Expand",
+      "subspecs": [
+        {
+          "name": "ExcelManager",
+          "source_files": "MKScannerCommonModule/Classes/Expand/ExcelManager/**"
+        },
+        {
+          "name": "ImportServerPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKScannerCommonModule/Classes/Expand/ImportServerPage/Controller/**",
+              "dependencies": {
+                "MKScannerCommonModule/Expand/ExcelManager": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "View",
+          "subspecs": [
+            {
+              "name": "AddDeviceView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/AddDeviceView/**"
+            },
+            {
+              "name": "AdvNormalCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/AdvNormalCell/**"
+            },
+            {
+              "name": "AdvTriggerCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/AdvTriggerCell/**"
+            },
+            {
+              "name": "AdvTriggerTwoStateCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/AdvTriggerTwoStateCell/**"
+            },
+            {
+              "name": "AlertView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/AlertView/**"
+            },
+            {
+              "name": "BleWifiSettingsCertCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/BleWifiSettingsCertCell/**"
+            },
+            {
+              "name": "ButtonFirmwareCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/ButtonFirmwareCell/**"
+            },
+            {
+              "name": "BXPAdvParamsCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/BXPAdvParamsCell/**"
+            },
+            {
+              "name": "BXPButtonAccHeaderView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/BXPButtonAccHeaderView/**"
+            },
+            {
+              "name": "EasyShowView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/EasyShowView/**"
+            },
+            {
+              "name": "HistoricalTHDataHeaderView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/HistoricalTHDataHeaderView/**"
+            },
+            {
+              "name": "ManagerBleDeviceView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/ManagerBleDeviceView/**"
+            },
+            {
+              "name": "MKScannerFilterCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/MKScannerFilterCell/**"
+            },
+            {
+              "name": "PressEventCountCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/PressEventCountCell/**"
+            },
+            {
+              "name": "RemoteReminderCell",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/RemoteReminderCell/**"
+            },
+            {
+              "name": "ServerForAppView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/ServerForAppView/**"
+            },
+            {
+              "name": "UserCredentialsView",
+              "source_files": "MKScannerCommonModule/Classes/Expand/View/UserCredentialsView/**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DeviceModel",
+      "source_files": "MKScannerCommonModule/Classes/DeviceModel/**"
+    },
+    {
+      "name": "BleModule",
+      "subspecs": [
+        {
+          "name": "Manager",
+          "source_files": "MKScannerCommonModule/Classes/BleModule/Manager/**",
+          "dependencies": {
+            "MKScannerCommonModule/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "BaseController",
+          "source_files": "MKScannerCommonModule/Classes/BleModule/BaseController/**",
+          "dependencies": {
+            "MKScannerCommonModule/BleModule/Manager": [
+
+            ],
+            "MKScannerCommonModule/Expand/View/AlertView": [
+
+            ]
+          }
+        },
+        {
+          "name": "Pages",
+          "dependencies": {
+            "MKScannerCommonModule/BleModule/BaseController": [
+
+            ]
+          },
+          "subspecs": [
+            {
+              "name": "AdvBeaconPage",
+              "subspecs": [
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/AdvBeaconPage/Protocol/**"
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/AdvBeaconPage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/AdvBeaconPage/Protocol": [
+
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "DeviceInfoPage",
+              "subspecs": [
+                {
+                  "name": "Model",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/DeviceInfoPage/Model/**"
+                },
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/DeviceInfoPage/Protocol/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/DeviceInfoPage/Model": [
+
+                    ]
+                  }
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/DeviceInfoPage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/DeviceInfoPage/Protocol": [
+
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "NearbyWifiPage",
+              "subspecs": [
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/NearbyWifiPage/Protocol/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/NearbyWifiPage/View/**"
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/NearbyWifiPage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/NearbyWifiPage/Protocol": [
+
+                    ],
+                    "MKScannerCommonModule/BleModule/Pages/NearbyWifiPage/View": [
+
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "NTPTimezonePage",
+              "subspecs": [
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/NTPTimezonePage/Protocol/**"
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/NTPTimezonePage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/NTPTimezonePage/Protocol": [
+
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "ScannerFilterPage",
+              "subspecs": [
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/ScannerFilterPage/Protocol/**"
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/ScannerFilterPage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/ScannerFilterPage/Protocol": [
+
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "ServerForDevicePage",
+              "subspecs": [
+                {
+                  "name": "Protocol",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/ServerForDevicePage/Protocol/**"
+                },
+                {
+                  "name": "View",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/ServerForDevicePage/View/**"
+                },
+                {
+                  "name": "Controller",
+                  "source_files": "MKScannerCommonModule/Classes/BleModule/Pages/ServerForDevicePage/Controller/**",
+                  "dependencies": {
+                    "MKScannerCommonModule/BleModule/Pages/ServerForDevicePage/Protocol": [
+
+                    ],
+                    "MKScannerCommonModule/BleModule/Pages/ServerForDevicePage/View": [
+
+                    ],
+                    "MKScannerCommonModule/Expand/ExcelManager": [
+
+                    ],
+                    "MKScannerCommonModule/Expand/ImportServerPage": [
+
+                    ],
+                    "MKScannerCommonModule/Expand/View/AlertView": [
+
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MQTTModule",
+      "dependencies": {
+        "MKScannerCommonModule/DeviceModel": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "Manager",
+          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Manager/**",
+          "dependencies": {
+            "MKScannerCommonModule/DeviceModel": [
+
+            ]
+          }
+        },
+        {
+          "name": "BaseController",
+          "source_files": "MKScannerCommonModule/Classes/MQTTModule/BaseController/**",
+          "dependencies": {
+            "MKScannerCommonModule/MQTTModule/Manager": [
+
+            ],
+            "MKScannerCommonModule/Expand/View/AlertView": [
+
+            ]
+          }
+        },
+        {
+          "name": "Pages",
+          "dependencies": {
+            "MKScannerCommonModule/MQTTModule/BaseController": [
+
+            ]
+          },
+          "subspecs": [
+            {
+              "name": "Filter",
+              "subspecs": [
+                {
+                  "name": "DataUploadIntervalPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/DataUploadIntervalPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/DataUploadIntervalPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/DataUploadIntervalPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "DuplicateDataFilterPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/DuplicateDataFilterPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/DuplicateDataFilterPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/DuplicateDataFilterPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByAdvNamePage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByAdvNamePage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByAdvNamePage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByAdvNamePage/Protocol": [
+
+                        ],
+                        "MKScannerCommonModule/Expand/View/AdvNormalCell": [
+
+                        ],
+                        "MKScannerCommonModule/Expand/View/AdvTriggerCell": [
+
+                        ],
+                        "MKScannerCommonModule/Expand/View/AdvTriggerTwoStateCell": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByBeaconPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByBeaconPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByBeaconPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByBeaconPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByButtonPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByButtonPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByButtonPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByButtonPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByMacPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByMacPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByMacPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByMacPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByNanoBeaconPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByNanoBeaconPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByNanoBeaconPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByNanoBeaconPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByOtherPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByOtherPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByOtherPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByOtherPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByPirPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByPirPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByPirPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByPirPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByTagPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTagPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTagPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByTagPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByTLMPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTLMPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTLMPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByTLMPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByTofPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTofPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByTofPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByTofPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByUIDPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByUIDPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByUIDPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByUIDPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "FilterByURLPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByURLPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/FilterByURLPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/FilterByURLPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "UploadDataOptionPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/UploadDataOptionPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Filter/UploadDataOptionPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Filter/UploadDataOptionPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ManageBleModules",
+              "subspecs": [
+                {
+                  "name": "CommonPage",
+                  "subspecs": [
+                    {
+                      "name": "AccDataPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/AccDataPage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/AccDataPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/AccDataPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/BXPButtonAccHeaderView": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ButtonDFUPage",
+                      "subspecs": [
+                        {
+                          "name": "V1",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V1/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V1/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V1/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "V2",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V2/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V2/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/ButtonDFUPage/V2/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPCAdvParamsPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPCAdvParamsPage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPCAdvParamsPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/BXPCAdvParamsPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/BXPAdvParamsCell": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPDAdvParamsPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPDAdvParamsPage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPDAdvParamsPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/BXPDAdvParamsPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/BXPAdvParamsCell": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPSReminderPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPSReminderPage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/BXPSReminderPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/BXPSReminderPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/RemoteReminderCell": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "NormalConnectedPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/NormalConnectedPage/Protocol/**"
+                        },
+                        {
+                          "name": "View",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/NormalConnectedPage/View/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/NormalConnectedPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/NormalConnectedPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/NormalConnectedPage/View": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "RealTimeTHDataPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/RealTimeTHDataPage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/RealTimeTHDataPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/RealTimeTHDataPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/HistoricalTHDataHeaderView": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "RemoteReminderPage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/RemoteReminderPage/Protocol/**"
+                        },
+                        {
+                          "name": "Model",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/RemoteReminderPage/Model/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/RemoteReminderPage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/RemoteReminderPage/Protocol": [
+
+                            ],
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/RemoteReminderPage/Model": [
+
+                            ],
+                            "MKScannerCommonModule/Expand/View/RemoteReminderCell": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "THDataSampleRatePage",
+                      "subspecs": [
+                        {
+                          "name": "Protocol",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/THDataSampleRatePage/Protocol/**"
+                        },
+                        {
+                          "name": "Controller",
+                          "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/CommonPage/THDataSampleRatePage/Controller/**",
+                          "dependencies": {
+                            "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage/THDataSampleRatePage/Protocol": [
+
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "BleDevicePage",
+                  "dependencies": {
+                    "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/CommonPage": [
+
+                    ]
+                  },
+                  "subspecs": [
+                    {
+                      "name": "BXPBCR",
+                      "subspecs": [
+                        {
+                          "name": "CRPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/CRPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/CRPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/CRPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "EventAlarmPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage/Protocol/**"
+                            },
+                            {
+                              "name": "View",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage/View/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBCR/EventAlarmPage/View": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPBD",
+                      "subspecs": [
+                        {
+                          "name": "BXPButton",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBD/BXPButton/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBD/BXPButton/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPBD/BXPButton/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPC",
+                      "subspecs": [
+                        {
+                          "name": "CPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/CPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/CPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/CPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/HistoricalTHDataPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "HistoricalTHDataPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/HistoricalTHDataPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/HistoricalTHDataPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPC/HistoricalTHDataPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/Expand/View/HistoricalTHDataHeaderView": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPD",
+                      "subspecs": [
+                        {
+                          "name": "AccParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/AccParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/AccParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/AccParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "DPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/DPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/DPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/DPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPD/AccParamsPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPS",
+                      "subspecs": [
+                        {
+                          "name": "AdvParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "View",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage/View/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage/View": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "HallCountPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HallCountPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HallCountPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HallCountPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "HistoricalTHDataPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HistoricalTHDataPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HistoricalTHDataPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HistoricalTHDataPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/Expand/View/HistoricalTHDataHeaderView": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "SPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/SPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/SPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/SPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/AdvParamsPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HallCountPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPS/HistoricalTHDataPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "BXPT",
+                      "subspecs": [
+                        {
+                          "name": "AccParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/AccParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/AccParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/AccParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "MotionEventPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/MotionEventPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/MotionEventPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/MotionEventPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "TPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/TPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/TPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/TPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/AccParamsPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/BXPT/MotionEventPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Pir",
+                      "subspecs": [
+                        {
+                          "name": "AdvParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/AdvParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/AdvParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/AdvParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "PirPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/PirPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/PirPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/PirPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/AdvParamsPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorDataPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorParamsPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "SensorDataPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorDataPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorDataPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorDataPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "SensorParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Pir/SensorParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Tof",
+                      "subspecs": [
+                        {
+                          "name": "AdvParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/AdvParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/AdvParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/AdvParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "SensorDataPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorDataPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorDataPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorDataPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "SensorParamsPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorParamsPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorParamsPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorParamsPage/Protocol": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "TofPage",
+                          "subspecs": [
+                            {
+                              "name": "Protocol",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/TofPage/Protocol/**"
+                            },
+                            {
+                              "name": "Controller",
+                              "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/TofPage/Controller/**",
+                              "dependencies": {
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/TofPage/Protocol": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/AdvParamsPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorDataPage": [
+
+                                ],
+                                "MKScannerCommonModule/MQTTModule/Pages/ManageBleModules/BleDevicePage/Tof/SensorParamsPage": [
+
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Settings",
+              "subspecs": [
+                {
+                  "name": "AdvBeaconPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/AdvBeaconPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/AdvBeaconPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/AdvBeaconPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "CommunicatePage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/CommunicatePage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/CommunicatePage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/CommunicatePage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "DataReportPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/DataReportPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/DataReportPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/DataReportPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "DeviceInfoPage",
+                  "subspecs": [
+                    {
+                      "name": "Model",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/DeviceInfoPage/Model/**"
+                    },
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/DeviceInfoPage/Protocol/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/DeviceInfoPage/Model": [
+
+                        ]
+                      }
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/DeviceInfoPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/DeviceInfoPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "MqttServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/MqttServerPage/Protocol/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/MqttServerPage/View/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/MqttServerPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/MqttServerPage/Protocol": [
+
+                        ],
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/MqttServerPage/View": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "NetworkStatusPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/NetworkStatusPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/NetworkStatusPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/NetworkStatusPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "NTPServerPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/NTPServerPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/NTPServerPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/NTPServerPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "OTAPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/OTAPage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/OTAPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/OTAPage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ReconnectTimePage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/ReconnectTimePage/Protocol/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/ReconnectTimePage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/ReconnectTimePage/Protocol": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ResetByButtonPage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/ResetByButtonPage/Protocol/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/ResetByButtonPage/View/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/ResetByButtonPage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/ResetByButtonPage/Protocol": [
+
+                        ],
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/ResetByButtonPage/View": [
+
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "SystemTimePage",
+                  "subspecs": [
+                    {
+                      "name": "Protocol",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/SystemTimePage/Protocol/**"
+                    },
+                    {
+                      "name": "View",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/SystemTimePage/View/**"
+                    },
+                    {
+                      "name": "Controller",
+                      "source_files": "MKScannerCommonModule/Classes/MQTTModule/Pages/Settings/SystemTimePage/Controller/**",
+                      "dependencies": {
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/SystemTimePage/Protocol": [
+
+                        ],
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/SystemTimePage/View": [
+
+                        ],
+                        "MKScannerCommonModule/MQTTModule/Pages/Settings/NTPServerPage": [
+
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

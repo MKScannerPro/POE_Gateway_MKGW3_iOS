@@ -81,7 +81,7 @@
         deviceModel.macAddress = self.deviceModel.macAddress;
         deviceModel.lwtStatus = self.deviceModel.lwtStatus;
         deviceModel.lwtTopic = self.deviceModel.lwtTopic;
-        deviceModel.onLineState = MKGWDeviceModelStateOnline;
+        deviceModel.onLineState = MKScannerDeviceModelStateOnline;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_addNewDeviceSuccessNotification"
                                                             object:nil

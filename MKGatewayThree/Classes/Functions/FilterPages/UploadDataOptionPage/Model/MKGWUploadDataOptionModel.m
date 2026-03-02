@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -55,11 +55,11 @@
 #pragma mark - interface
 - (BOOL)readUploadDataOption {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readUploadDataOptionWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readUploadDataOptionWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.timestamp = ([returnData[@"data"][@"timestamp"] integerValue] == 1);
         self.rawData_advertising = ([returnData[@"data"][@"adv_data"] integerValue] == 1);
-        if ([MKGWDeviceModeManager shared].isV2) {
+        if ([MKScannerDeviceModelManager shared].isV2) {
             //V2
             self.parsed_data = ([returnData[@"data"][@"parse_adv_data"] integerValue] == 1);
         }else {
@@ -76,8 +76,8 @@
 
 - (BOOL)configUploadDataOption {
     __block BOOL success = NO;
-    self.isV2 = [MKGWDeviceModeManager shared].isV2;
-    [MKGWMQTTInterface gw_configUploadDataOption:self macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    self.isV2 = [MKScannerDeviceModelManager shared].isV2;
+    [MKGWMQTTInterface gw_configUploadDataOption:self macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

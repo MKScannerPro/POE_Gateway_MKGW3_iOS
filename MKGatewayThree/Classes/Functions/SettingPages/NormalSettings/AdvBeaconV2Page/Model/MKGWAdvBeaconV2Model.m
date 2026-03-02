@@ -10,7 +10,7 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -92,7 +92,7 @@
 #pragma mark - interface
 - (BOOL)readAdvBeaconDatas {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readAdvertiseBeaconParamsWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readAdvertiseBeaconParamsWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.advertise = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         self.major = [NSString stringWithFormat:@"%@",returnData[@"data"][@"major"]];
@@ -123,7 +123,7 @@
     dataModel.rssi1M = self.rssi1m;
     dataModel.connectable = self.connectable;
     
-    [MKGWMQTTInterface gw_configV2AdvertiseBeaconParams:dataModel macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configV2AdvertiseBeaconParams:dataModel macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

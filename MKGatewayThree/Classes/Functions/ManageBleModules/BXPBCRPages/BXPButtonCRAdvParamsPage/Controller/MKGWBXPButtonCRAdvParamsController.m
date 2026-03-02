@@ -26,7 +26,7 @@
 #import "MKGWAdvTriggerCell.h"
 #import "MKGWAdvTriggerTwoStateCell.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTInterface.h"
@@ -129,7 +129,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"advInterval":@([interval integerValue] * 20),
         @"txPower":@(txPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -153,7 +153,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"advInterval":@([interval integerValue] * 20),
         @"txPower":@(txPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -185,7 +185,7 @@ MKGWAdvTriggerTwoStateCellDelegate>
         @"beforeAdvInterval":@([beforeInterval integerValue] * 20),
         @"beforeTxPower":@(beforeTxPower)
     };
-    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_bxpBtnCRConfigAdvParamsWithParams:param bleMac:self.bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Success"];
     } failedBlock:^(NSError * _Nonnull error) {

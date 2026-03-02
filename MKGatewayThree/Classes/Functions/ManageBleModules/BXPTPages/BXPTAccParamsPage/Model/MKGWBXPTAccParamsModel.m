@@ -10,13 +10,13 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -61,7 +61,7 @@
 #pragma mark - interface
 - (BOOL)readAccAdvParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readBXPTAccParamsWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readBXPTAccParamsWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.scale = [returnData[@"data"][@"full_scale"] integerValue];
         self.sampleRate = [returnData[@"data"][@"sampling_rate"] integerValue];
@@ -78,7 +78,7 @@
 - (BOOL)configAccAdvParams:(NSString *)bleMac {
     __block BOOL success = NO;
     
-    [MKGWMQTTInterface gw_configBXPTAccParamsWithScale:self.scale sampleRate:self.sampleRate sensitivity:[self.sensitivity integerValue] bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configBXPTAccParamsWithScale:self.scale sampleRate:self.sampleRate sensitivity:[self.sensitivity integerValue] bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -12,7 +12,6 @@
 
 #import "CTMediator+MKGWAdd.h"
 #import "MKGWDeviceModel.h"
-#import "MKGWDeviceModeManager.h"
 #import "MKGWBaseViewController.h"
 #import "MKGWBleBaseController.h"
 #import "MKGWDeviceDatabaseManager.h"

@@ -24,7 +24,9 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+
+
 #import "MKGWDeviceModel.h"
 
 #import "MKGWDeviceDatabaseManager.h"
@@ -81,7 +83,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         //Network Settings
-        if ([MKGWDeviceModeManager shared].isV2) {
+        if ([MKScannerDeviceModelManager shared].isV2) {
             MKGWMqttNetworkSettingsV2Controller *vc = [[MKGWMqttNetworkSettingsV2Controller alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             return;
@@ -148,7 +150,7 @@
 
 - (void)deviceReboot {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_rebootDeviceWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_rebootDeviceWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         [self updateLocaDeviceData];
     } failedBlock:^(NSError * _Nonnull error) {
@@ -160,20 +162,21 @@
 #pragma mark - private method
 - (void)updateLocaDeviceData {
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWDeviceDatabaseManager updateClientID:self.dataModel.clientID subscribedTopic:self.dataModel.subscribeTopic publishedTopic:self.dataModel.publishTopic lwtStatus:self.dataModel.lwtStatus lwtTopic:self.dataModel.lwtTopic macAddress:[MKGWDeviceModeManager shared].macAddress networkType:[MKGWDeviceModeManager shared].networkType sucBlock:^{
+    MKGWDeviceModel *deviceModel = (MKGWDeviceModel *)[MKScannerDeviceModelManager shared].deviceModel;
+    [MKGWDeviceDatabaseManager updateClientID:self.dataModel.clientID subscribedTopic:self.dataModel.subscribeTopic publishedTopic:self.dataModel.publishTopic lwtStatus:self.dataModel.lwtStatus lwtTopic:self.dataModel.lwtTopic macAddress:[MKScannerDeviceModelManager shared].macAddress networkType:deviceModel.networkType sucBlock:^{
         [[MKHudManager share] hide];
         [self.view showCentralToast:@"Setup succeed!"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_deviceModifyMQTTServerSuccessNotification"
                                                             object:nil
                                                           userInfo:@{
-            @"macAddress":SafeStr([MKGWDeviceModeManager shared].macAddress),
+            @"macAddress":SafeStr([MKScannerDeviceModelManager shared].macAddress),
             @"networkType":SafeStr(self.dataModel.networkType),
             @"clientID":SafeStr(self.dataModel.clientID),
             @"subscribedTopic":SafeStr(self.dataModel.subscribeTopic),
             @"publishedTopic":SafeStr(self.dataModel.publishTopic),
             @"lwtStatus":@(self.dataModel.lwtStatus),
             @"lwtTopic":SafeStr(self.dataModel.lwtTopic),
-            @"networkType":SafeStr([MKGWDeviceModeManager shared].networkType),
+            @"networkType":SafeStr(deviceModel.networkType),
         }];
         [self performSelector:@selector(gotoHomePage) withObject:nil afterDelay:0.5f];
     } failedBlock:^(NSError * _Nonnull error) {

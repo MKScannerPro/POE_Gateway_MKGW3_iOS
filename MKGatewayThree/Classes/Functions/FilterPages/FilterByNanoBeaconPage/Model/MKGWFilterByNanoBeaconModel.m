@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "NSString+MKAdd.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -64,7 +64,7 @@
 
 - (BOOL)readFilterInformation {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readFilterByNanoBeaconWithMacAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readFilterByNanoBeaconWithMacAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.isOn = ([returnData[@"data"][@"switch_value"] integerValue] == 1);
         self.triggerType = [returnData[@"data"][@"adv_type"] integerValue];
@@ -82,7 +82,7 @@
 
 - (BOOL)configFilterInformation:(NSArray <NSString *>*)list {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configFilterByNanoBeacon:self.isOn advType:self.triggerType manufactureIDList:list macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterByNanoBeacon:self.isOn advType:self.triggerType manufactureIDList:list macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

@@ -1462,6 +1462,7 @@ TODO: Add long description of the pod here.
   
     ss.dependency 'MKBaseModuleLibrary'
     ss.dependency 'MKCustomUIModule'
+    ss.dependency 'MKScannerCommonModule'
     
     ss.dependency 'MLInputDodger'
     

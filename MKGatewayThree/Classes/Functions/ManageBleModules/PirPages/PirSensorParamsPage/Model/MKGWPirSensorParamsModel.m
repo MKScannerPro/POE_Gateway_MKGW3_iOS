@@ -10,13 +10,13 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -69,7 +69,7 @@
 #pragma mark - interface
 - (BOOL)readSensitivity:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMKPirSensorSensitivityWithBleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKPirSensorSensitivityWithBleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.sensitivity = [returnData[@"data"][@"sensitivity"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -84,7 +84,7 @@
 - (BOOL)configSensitivity:(NSString *)bleMac {
     __block BOOL success = NO;
     
-    [MKGWMQTTInterface gw_configMKPirSensorSensitivityWithBleMac:bleMac sensitivity:self.sensitivity macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configMKPirSensorSensitivityWithBleMac:bleMac sensitivity:self.sensitivity macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -98,7 +98,7 @@
 
 - (BOOL)readDelay:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMKPirSensorDelayWithBleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKPirSensorDelayWithBleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.delay = [returnData[@"data"][@"delay_status"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
@@ -113,7 +113,7 @@
 - (BOOL)configDelay:(NSString *)bleMac {
     __block BOOL success = NO;
     
-    [MKGWMQTTInterface gw_configMKPirSensorDelayWithBleMac:bleMac delay:self.delay macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configMKPirSensorDelayWithBleMac:bleMac delay:self.delay macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

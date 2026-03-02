@@ -10,13 +10,13 @@
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKMacroDefines.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -69,7 +69,7 @@
 #pragma mark - interface
 - (BOOL)readSensorParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMKTofSensorParamsWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKTofSensorParamsWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.interval = [NSString stringWithFormat:@"%@",returnData[@"data"][@"interval"]];
         self.count = [NSString stringWithFormat:@"%@",returnData[@"data"][@"count"]];
@@ -85,7 +85,7 @@
 
 - (BOOL)configSensorParams:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configMKTofSensorParamsWithInterval:[self.interval integerValue] sampleCount:[self.count integerValue] sampleTime:[self.time integerValue] bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configMKTofSensorParamsWithInterval:[self.interval integerValue] sampleCount:[self.count integerValue] sampleTime:[self.time integerValue] bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
@@ -99,7 +99,7 @@
 
 - (BOOL)readDistanceMode:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_readMKTofRangingModeWithBleMacAddress:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_readMKTofRangingModeWithBleMacAddress:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.distanceMode = [returnData[@"data"][@"mode"] integerValue] - 1;
         dispatch_semaphore_signal(self.semaphore);
@@ -113,7 +113,7 @@
 
 - (BOOL)configDistanceMode:(NSString *)bleMac {
     __block BOOL success = NO;
-    [MKGWMQTTInterface gw_configMKTofRangingMode:self.distanceMode bleMac:bleMac macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configMKTofRangingMode:self.distanceMode bleMac:bleMac macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

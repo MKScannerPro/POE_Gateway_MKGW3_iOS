@@ -19,7 +19,7 @@
 #import "MKNormalTextCell.h"
 #import "MKTextSwitchCell.h"
 
-#import "MKGWDeviceModeManager.h"
+#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTInterface.h"
@@ -213,7 +213,7 @@ mk_textSwitchCellDelegate>
 
 - (void)configFilterBXPDeviceInfo:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_configFilterFilterBXPDeviceInfo:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterFilterBXPDeviceInfo:isOn macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         MKTextSwitchCellModel *cellModel = self.section1List[0];
         cellModel.isOn = isOn;
@@ -227,7 +227,7 @@ mk_textSwitchCellDelegate>
 
 - (void)configFilterBXPACC:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_configFilterBXPAcc:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterBXPAcc:isOn macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         MKTextSwitchCellModel *cellModel = self.section1List[1];
         cellModel.isOn = isOn;
@@ -241,7 +241,7 @@ mk_textSwitchCellDelegate>
 
 - (void)configFilterBXPTH:(BOOL)isOn {
     [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWMQTTInterface gw_configFilterBXPTH:isOn macAddress:[MKGWDeviceModeManager shared].macAddress topic:[MKGWDeviceModeManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
+    [MKGWMQTTInterface gw_configFilterBXPTH:isOn macAddress:[MKScannerDeviceModelManager shared].macAddress topic:[MKScannerDeviceModelManager shared].subscribedTopic sucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];
         MKTextSwitchCellModel *cellModel = self.section1List[2];
         cellModel.isOn = isOn;
