@@ -217,7 +217,7 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
         [self.progressView dismiss];
     }
     [self.view showCentralToast:@"Device disconnect!"];
-    [self performSelector:@selector(leftButtonMethod) withObject:nil afterDelay:0.5f];
+    [self performSelector:@selector(gobackToScanPage) withObject:nil afterDelay:0.5f];
 }
 
 - (void)receiveDeviceOnline:(NSNotification *)note {
@@ -331,6 +331,10 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
     MKGWConnectSuccessController *vc = [[MKGWConnectSuccessController alloc] init];
     vc.deviceModel = deviceModel;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gobackToScanPage {
+    [self popToViewControllerWithClassName:@"MKGWScanPageController"];
 }
 
 #pragma mark - private method

@@ -426,6 +426,7 @@ PODS:
     - MKGatewayThree/Expand (= 0.0.1)
     - MKGatewayThree/Functions (= 0.0.1)
     - MKGatewayThree/LoginManager (= 0.0.1)
+    - MKGatewayThree/ScannerModuleManager (= 0.0.1)
     - MKGatewayThree/SDK (= 0.0.1)
     - MKGatewayThree/Target (= 0.0.1)
   - MKGatewayThree/CTMediator (0.0.1):
@@ -437,16 +438,10 @@ PODS:
   - MKGatewayThree/Expand (0.0.1):
     - MKBaseModuleLibrary
     - MKCustomUIModule
-    - MKGatewayThree/Expand/BaseController (= 0.0.1)
     - MKGatewayThree/Expand/DatabaseManager (= 0.0.1)
     - MKGatewayThree/Expand/ExcelManager (= 0.0.1)
     - MKGatewayThree/Expand/ImportServerPage (= 0.0.1)
     - MKGatewayThree/Expand/View (= 0.0.1)
-  - MKGatewayThree/Expand/BaseController (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/SDK/MQTT
   - MKGatewayThree/Expand/DatabaseManager (0.0.1):
     - FMDB
     - MKBaseModuleLibrary
@@ -531,6 +526,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages (= 0.0.1)
     - MKGatewayThree/Functions/SyncDevicePage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -543,6 +539,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -559,6 +556,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -572,6 +570,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -584,6 +583,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage/Model
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -595,6 +595,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -609,6 +610,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -622,6 +624,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -633,6 +636,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -644,6 +648,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -657,6 +662,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -669,6 +675,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage/Model
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -680,6 +687,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -692,6 +700,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -703,6 +712,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -716,6 +726,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -732,6 +743,7 @@ PODS:
     - MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -743,6 +755,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/AddDeviceModules/ParamsModel
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -753,6 +766,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -765,6 +779,7 @@ PODS:
     - MKGatewayThree/Functions/DeviceDataPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/DeviceDataPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -780,6 +795,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules
     - MKGatewayThree/Functions/SettingPages
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -790,6 +806,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -803,6 +820,7 @@ PODS:
     - MKGatewayThree/Functions/DeviceListPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/DeviceListPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -819,6 +837,7 @@ PODS:
     - MKGatewayThree/Functions/ServerForApp
     - MKGatewayThree/Functions/SyncDevicePage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -829,6 +848,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -840,6 +860,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/DeviceListPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -869,6 +890,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadOptionPage (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/UploadOptionV2Page (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -881,6 +903,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/DataUploadIntervalPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/DataUploadIntervalPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -892,6 +915,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/DataUploadIntervalPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -902,6 +926,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -914,6 +939,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -925,6 +951,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -935,6 +962,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -947,6 +975,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -958,6 +987,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -968,6 +998,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -981,6 +1012,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -993,6 +1025,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1003,6 +1036,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1014,6 +1048,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1026,6 +1061,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1037,6 +1073,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1047,6 +1084,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1059,6 +1097,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1070,6 +1109,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1080,6 +1120,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1092,6 +1133,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1103,6 +1145,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1113,6 +1156,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1125,6 +1169,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1136,6 +1181,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1146,6 +1192,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1158,6 +1205,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1169,6 +1217,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1179,6 +1228,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1191,6 +1241,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1211,6 +1262,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByUIDPage
     - MKGatewayThree/Functions/FilterPages/FilterByURLPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1221,6 +1273,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1233,6 +1286,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataV2Page/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByRawDataV2Page/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1253,6 +1307,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByUIDPage
     - MKGatewayThree/Functions/FilterPages/FilterByURLPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1263,6 +1318,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1275,6 +1331,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByTag/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByTag/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1286,6 +1343,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByTag/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1296,6 +1354,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1308,6 +1367,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1319,6 +1379,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1329,6 +1390,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1341,6 +1403,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByTofPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByTofPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1352,6 +1415,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByTofPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1362,6 +1426,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1374,6 +1439,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1385,6 +1451,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1395,6 +1462,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1407,6 +1475,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1418,6 +1487,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1428,6 +1498,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1440,6 +1511,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1451,6 +1523,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1461,6 +1534,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1473,6 +1547,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1489,6 +1564,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage
     - MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1499,6 +1575,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1511,6 +1588,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadOptionV2Page/Controller (= 0.0.1)
     - MKGatewayThree/Functions/FilterPages/UploadOptionV2Page/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1528,6 +1606,7 @@ PODS:
     - MKGatewayThree/Functions/FilterPages/UploadDataOptionPage
     - MKGatewayThree/Functions/FilterPages/UploadOptionV2Page/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1538,6 +1617,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1559,6 +1639,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/PirPages (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1571,6 +1652,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1582,6 +1664,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1592,6 +1675,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1607,6 +1691,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1619,6 +1704,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1630,6 +1716,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1640,6 +1727,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1652,6 +1740,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1663,6 +1752,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1673,6 +1763,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1686,6 +1777,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1698,6 +1790,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1708,6 +1801,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1718,6 +1812,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1729,6 +1824,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1744,6 +1840,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1756,6 +1853,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1767,6 +1865,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1777,6 +1876,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1791,6 +1891,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1802,6 +1903,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1812,6 +1914,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1824,6 +1927,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1835,6 +1939,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1845,6 +1950,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1856,6 +1962,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1870,6 +1977,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1882,6 +1990,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1893,6 +2002,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1903,6 +2013,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1919,6 +2030,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCRealTimeTHDataPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1930,6 +2042,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1940,6 +2053,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1952,6 +2066,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1963,6 +2078,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1973,6 +2089,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1985,6 +2102,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -1996,6 +2114,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2006,6 +2125,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2017,6 +2137,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2033,6 +2154,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCRealTimeTHDataPage
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2044,6 +2166,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCRealTimeTHDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2054,6 +2177,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2066,6 +2190,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2077,6 +2202,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2087,6 +2213,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2101,6 +2228,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2112,6 +2240,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2122,6 +2251,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2134,6 +2264,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2145,6 +2276,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2155,6 +2287,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2167,6 +2300,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2178,6 +2312,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2188,6 +2323,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2199,6 +2335,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2213,6 +2350,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage
     - MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2231,6 +2369,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2242,6 +2381,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2252,6 +2392,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2265,6 +2406,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2277,6 +2419,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/Model
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2287,6 +2430,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2297,6 +2441,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2308,6 +2453,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHallCountPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2318,6 +2464,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2330,6 +2477,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2341,6 +2489,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2351,6 +2500,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2362,6 +2512,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2380,6 +2531,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2391,6 +2543,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRealTimeTHDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2401,6 +2554,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2413,6 +2567,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2424,6 +2579,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2434,6 +2590,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2446,6 +2603,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2457,6 +2615,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2467,6 +2626,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2483,6 +2643,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2494,6 +2655,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2504,6 +2666,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2516,6 +2679,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2527,6 +2691,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2537,6 +2702,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2549,6 +2715,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2560,6 +2727,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2570,6 +2738,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2581,6 +2750,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTMotionEventPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2591,6 +2761,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2602,6 +2773,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2618,6 +2790,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTMotionEventPage
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2630,6 +2803,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2641,6 +2815,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2651,6 +2826,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2663,6 +2839,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2683,6 +2860,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage
     - MKGatewayThree/Functions/ManageBleModules/PirPages
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2693,6 +2871,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2708,6 +2887,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorDataPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2719,6 +2899,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAccDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2729,6 +2910,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2741,6 +2923,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2752,6 +2935,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2762,6 +2946,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2773,6 +2958,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2788,6 +2974,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorDataPage
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2799,6 +2986,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2809,6 +2997,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2821,6 +3010,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2832,6 +3022,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2842,6 +3033,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2854,6 +3046,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2865,6 +3058,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2875,6 +3069,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2889,6 +3084,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorDataPage (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2901,6 +3097,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2912,6 +3109,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2922,6 +3120,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2933,6 +3132,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2947,6 +3147,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorDataPage
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2958,6 +3159,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorDataPage/Controller (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2968,6 +3170,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2980,6 +3183,7 @@ PODS:
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -2991,6 +3195,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3001,6 +3206,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3014,6 +3220,7 @@ PODS:
     - MKGatewayThree/Functions/ScanPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/ScanPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3027,6 +3234,7 @@ PODS:
     - MKGatewayThree/Functions/ScanPage/Model
     - MKGatewayThree/Functions/ScanPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3037,6 +3245,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3048,6 +3257,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ScanPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3060,6 +3270,7 @@ PODS:
     - MKGatewayThree/Functions/ServerForApp/Controller (= 0.0.1)
     - MKGatewayThree/Functions/ServerForApp/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3071,6 +3282,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/ServerForApp/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3081,6 +3293,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3090,45 +3303,47 @@ PODS:
     - MKGatewayThree/CTMediator
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/OTAPage (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/SettingPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage (0.0.1):
+  - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage (0.0.1):
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MKGatewayThree/CTMediator
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Controller (= 0.0.1)
+    - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Controller (0.0.1):
+  - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Controller (0.0.1):
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MKGatewayThree/CTMediator
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model
+    - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model (0.0.1):
+  - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Model (0.0.1):
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MKGatewayThree/CTMediator
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3144,6 +3359,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3156,6 +3372,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3167,6 +3384,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3177,6 +3395,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3189,6 +3408,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsV2Page/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsV2Page/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3200,6 +3420,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsV2Page/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3210,6 +3431,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3222,6 +3444,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3237,6 +3460,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3247,6 +3471,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3260,6 +3485,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3272,6 +3498,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3282,6 +3509,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3292,6 +3520,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3304,6 +3533,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3315,6 +3545,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3325,390 +3556,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage
-    - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/OTAPage (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/OTAPage/Controller (= 0.0.1)
-    - MKGatewayThree/Functions/SettingPages/OTAPage/Model (= 0.0.1)
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/OTAPage/Controller (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/OTAPage/Model
-    - MKGatewayThree/LoginManager
-    - MKGatewayThree/SDK
-    - MKScannerCommonModule
-    - MLInputDodger
-  - MKGatewayThree/Functions/SettingPages/OTAPage/Model (0.0.1):
-    - MKBaseModuleLibrary
-    - MKCustomUIModule
-    - MKGatewayThree/CTMediator
-    - MKGatewayThree/DeviceModel
-    - MKGatewayThree/Expand
-    - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3721,6 +3569,7 @@ PODS:
     - MKGatewayThree/Functions/SettingPages/SettingPage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SettingPages/SettingPage/Model (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3730,12 +3579,11 @@ PODS:
     - MKGatewayThree/CTMediator
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
-    - MKGatewayThree/Functions/SettingPages/DeviceInfoPage
+    - MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage
     - MKGatewayThree/Functions/SettingPages/ModifyNetworkPages
-    - MKGatewayThree/Functions/SettingPages/NormalSettings
-    - MKGatewayThree/Functions/SettingPages/OTAPage
     - MKGatewayThree/Functions/SettingPages/SettingPage/Model
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3746,6 +3594,7 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3758,6 +3607,7 @@ PODS:
     - MKGatewayThree/Functions/SyncDevicePage/Controller (= 0.0.1)
     - MKGatewayThree/Functions/SyncDevicePage/View (= 0.0.1)
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3769,6 +3619,7 @@ PODS:
     - MKGatewayThree/Expand
     - MKGatewayThree/Functions/SyncDevicePage/View
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
@@ -3779,11 +3630,15 @@ PODS:
     - MKGatewayThree/DeviceModel
     - MKGatewayThree/Expand
     - MKGatewayThree/LoginManager
+    - MKGatewayThree/ScannerModuleManager
     - MKGatewayThree/SDK
     - MKScannerCommonModule
     - MLInputDodger
   - MKGatewayThree/LoginManager (0.0.1):
     - MKIotCloudManager
+  - MKGatewayThree/ScannerModuleManager (0.0.1):
+    - MKGatewayThree/SDK/MQTT
+    - MKScannerCommonModule
   - MKGatewayThree/SDK (0.0.1):
     - MKGatewayThree/SDK/BLE (= 0.0.1)
     - MKGatewayThree/SDK/MQTT (= 0.0.1)
@@ -6231,7 +6086,7 @@ SPEC CHECKSUMS:
   MKBaseModuleLibrary: 2b79bcae588c755588413fbb643b510253271b23
   MKBaseMQTTModule: 6a934ccf507e0eb807ef8f8a74dacd5d60216834
   MKCustomUIModule: 8426eba1d3178b06d92741d31da32502920fb8fa
-  MKGatewayThree: 3b949b96030dc5e0958217164e8e410317aa88f0
+  MKGatewayThree: 8e577509a81027e10e72f254796e0fbd2373f5b5
   MKIotCloudManager: 241bd4bb7fae48e6b031c69a40c26637aabe67be
   MKScannerCommonModule: 46f322c896d834c672ed277e1bf3dcc0d53d6377
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8

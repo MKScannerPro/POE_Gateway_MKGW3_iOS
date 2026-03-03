@@ -6,13 +6,13 @@
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKGWBaseViewController.h"
+#import <MKScannerCommonModule/MKScannerBaseController.h>
 
 #import "MKGWFilterByBeaconDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWFilterByBeaconController : MKGWBaseViewController
+@interface MKGWFilterByBeaconController : MKScannerBaseController
 
 @property (nonatomic, assign)mk_gw_filterByBeaconPageType pageType;
 

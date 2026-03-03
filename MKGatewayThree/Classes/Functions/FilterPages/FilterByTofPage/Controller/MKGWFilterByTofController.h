@@ -6,11 +6,11 @@
 //  Copyright © 2024 lovexiaoxia. All rights reserved.
 //
 
-#import "MKGWBaseViewController.h"
+#import <MKScannerCommonModule/MKScannerBaseController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWFilterByTofController : MKGWBaseViewController
+@interface MKGWFilterByTofController : MKScannerBaseController
 
 @end
 

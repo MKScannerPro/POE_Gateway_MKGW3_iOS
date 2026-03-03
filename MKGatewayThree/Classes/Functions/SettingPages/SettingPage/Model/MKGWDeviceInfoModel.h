@@ -1,0 +1,42 @@
+//
+//  MKGWDeviceInfoModel.h
+//  MKGatewayThree_Example
+//
+//  Created by aa on 2023/1/31.
+//  Copyright © 2023 aadyx2007@163.com. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "MKScannerDeviceInfoProtocol.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MKGWDeviceInfoModel : NSObject<MKScannerDeviceInfoProtocol>
+
+@property (nonatomic, copy)NSString *deviceName;
+
+@property (nonatomic, copy)NSString *productMode;
+
+@property (nonatomic, copy)NSString *manu;
+
+@property (nonatomic, copy)NSString *firmware;
+
+@property (nonatomic, copy)NSString *bleFirmware;
+
+@property (nonatomic, copy)NSString *software;
+
+@property (nonatomic, copy)NSString *hardware;
+
+@property (nonatomic, copy)NSString *wifiStaMac;
+
+@property (nonatomic, copy)NSString *ethernetMac;
+
+@property (nonatomic, copy)NSString *btMac;
+
+- (void)readDataWithSucBlock:(void (^)(NSArray <MKScannerDeviceInfoModel *>*dataList))sucBlock
+                 failedBlock:(void (^)(NSError *error))failedBlock;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -41,6 +41,8 @@
 
 #import "MKGWUserLoginManager.h"
 
+#import "MKGWScannerModuleManager.h"
+
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWDeviceListModel.h"
@@ -91,6 +93,7 @@ MKScannerDeviceModelDelegate>
     [[MKGWMQTTDataManager shared] disconnect];
     [MKGWMQTTDataManager singleDealloc];
     [MKGWMQTTServerManager singleDealloc];
+    [MKGWScannerModuleManager sharedDealloc];
 }
 
 - (void)viewDidLoad {
@@ -100,7 +103,7 @@ MKScannerDeviceModelDelegate>
         //对于从壳工程进来的时候，需要走本地联网流程
         [[MKGWMQTTServerManager shared] startWork];
     }
-    
+    [MKGWScannerModuleManager shared];
     [self readDataFromDatabase];
     [self runloopObserver];
     [self addNotifications];

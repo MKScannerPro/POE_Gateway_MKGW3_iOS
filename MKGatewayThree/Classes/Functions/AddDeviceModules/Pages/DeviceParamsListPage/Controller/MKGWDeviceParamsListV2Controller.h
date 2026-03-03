@@ -6,11 +6,11 @@
 //  Copyright © 2025 aadyx2007@163.com. All rights reserved.
 //
 
-#import <MKScannerCommonModule/MKScannerBleBaseController.h>
+#import <MKBaseModuleLibrary/MKBaseViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWDeviceParamsListV2Controller : MKScannerBleBaseController
+@interface MKGWDeviceParamsListV2Controller : MKBaseViewController
 
 /// 初始状态，需要进入配网流程，如果是非初始状态，则不需要进入配网流程
 @property (nonatomic, assign)BOOL originMode;

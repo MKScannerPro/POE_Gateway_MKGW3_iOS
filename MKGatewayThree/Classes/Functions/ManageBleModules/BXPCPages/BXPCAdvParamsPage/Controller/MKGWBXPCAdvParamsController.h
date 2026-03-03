@@ -6,11 +6,11 @@
 //  Copyright © 2025 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKGWBaseViewController.h"
+#import <MKScannerCommonModule/MKScannerBaseController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWBXPCAdvParamsController : MKGWBaseViewController
+@interface MKGWBXPCAdvParamsController : MKScannerBaseController
 
 @property (nonatomic, copy)NSString *bleMac;
 

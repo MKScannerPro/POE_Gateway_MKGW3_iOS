@@ -72,18 +72,6 @@
       },
       "subspecs": [
         {
-          "name": "BaseController",
-          "source_files": "MKGatewayThree/Classes/Expand/BaseController/**",
-          "dependencies": {
-            "MKGatewayThree/SDK/MQTT": [
-
-            ],
-            "MKGatewayThree/DeviceModel": [
-
-            ]
-          }
-        },
-        {
           "name": "DatabaseManager",
           "source_files": "MKGatewayThree/Classes/Expand/DatabaseManager/**",
           "dependencies": {
@@ -224,6 +212,18 @@
       }
     },
     {
+      "name": "ScannerModuleManager",
+      "source_files": "MKGatewayThree/Classes/ScannerModuleManager/**",
+      "dependencies": {
+        "MKScannerCommonModule": [
+
+        ],
+        "MKGatewayThree/SDK/MQTT": [
+
+        ]
+      }
+    },
+    {
       "name": "Functions",
       "dependencies": {
         "MKGatewayThree/SDK": [
@@ -239,6 +239,9 @@
 
         ],
         "MKGatewayThree/LoginManager": [
+
+        ],
+        "MKGatewayThree/ScannerModuleManager": [
 
         ],
         "MKBaseModuleLibrary": [
@@ -1805,24 +1808,6 @@
           "name": "SettingPages",
           "subspecs": [
             {
-              "name": "DeviceInfoPage",
-              "subspecs": [
-                {
-                  "name": "Controller",
-                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/DeviceInfoPage/Controller/**",
-                  "dependencies": {
-                    "MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model": [
-
-                    ]
-                  }
-                },
-                {
-                  "name": "Model",
-                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/DeviceInfoPage/Model/**"
-                }
-              ]
-            },
-            {
               "name": "ModifyNetworkPages",
               "subspecs": [
                 {
@@ -1937,208 +1922,20 @@
               ]
             },
             {
-              "name": "NormalSettings",
-              "subspecs": [
-                {
-                  "name": "AdvBeaconPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "AdvBeaconV2Page",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "CommunicatePage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "DataReportPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "IndicatorSettingsPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "NetworkStatusPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "NTPServerPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "ReconnectTimePage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "ResetByButtonPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "View",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/View/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "SystemTimePage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View": [
-
-                        ],
-                        "MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "View",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/View/**"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "OTAPage",
+              "name": "IndicatorSettingsPage",
               "subspecs": [
                 {
                   "name": "Controller",
-                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/OTAPage/Controller/**",
+                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/IndicatorSettingsPage/Controller/**",
                   "dependencies": {
-                    "MKGatewayThree/Functions/SettingPages/OTAPage/Model": [
+                    "MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Model": [
 
                     ]
                   }
                 },
                 {
                   "name": "Model",
-                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/OTAPage/Model/**"
+                  "source_files": "MKGatewayThree/Classes/Functions/SettingPages/IndicatorSettingsPage/Model/**"
                 }
               ]
             },
@@ -2152,16 +1949,10 @@
                     "MKGatewayThree/Functions/SettingPages/SettingPage/Model": [
 
                     ],
-                    "MKGatewayThree/Functions/SettingPages/DeviceInfoPage": [
-
-                    ],
                     "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages": [
 
                     ],
-                    "MKGatewayThree/Functions/SettingPages/NormalSettings": [
-
-                    ],
-                    "MKGatewayThree/Functions/SettingPages/OTAPage": [
+                    "MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage": [
 
                     ]
                   }

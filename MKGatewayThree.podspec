@@ -62,15 +62,6 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'Expand' do |ss|
-  
-    ss.subspec 'BaseController' do |sss|
-      
-      sss.source_files = 'MKGatewayThree/Classes/Expand/BaseController/**'
-    
-    
-      sss.dependency 'MKGatewayThree/SDK/MQTT'
-      sss.dependency 'MKGatewayThree/DeviceModel'
-    end
     
     ss.subspec 'DatabaseManager' do |sss|
       
@@ -182,6 +173,14 @@ TODO: Add long description of the pod here.
     ss.source_files = 'MKGatewayThree/Classes/LoginManager/**'
   
     ss.dependency 'MKIotCloudManager'
+  end
+  
+  s.subspec 'ScannerModuleManager' do |ss|
+    ss.source_files = 'MKGatewayThree/Classes/ScannerModuleManager/**'
+    
+    ss.dependency 'MKScannerCommonModule'
+    
+    ss.dependency 'MKGatewayThree/SDK/MQTT'
   end
   
   s.subspec 'Functions' do |ss|
@@ -1089,15 +1088,6 @@ TODO: Add long description of the pod here.
     end
     
     ss.subspec 'SettingPages' do |sss|
-        sss.subspec 'DeviceInfoPage' do |ssss|
-            ssss.subspec 'Controller' do |sssss|
-                sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/DeviceInfoPage/Controller/**'
-                sssss.dependency 'MKGatewayThree/Functions/SettingPages/DeviceInfoPage/Model'
-            end
-            ssss.subspec 'Model' do |sssss|
-                sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/DeviceInfoPage/Model/**'
-            end
-        end
         
         sss.subspec 'ModifyNetworkPages' do |ssss|
           
@@ -1168,130 +1158,14 @@ TODO: Add long description of the pod here.
             
         end
         
-        sss.subspec 'NormalSettings' do |ssss|
-          
-          ssss.subspec 'AdvBeaconPage' do |sssss|
-              sssss.subspec 'Controller'  do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model'
-              end
-              sssss.subspec 'Model'  do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconPage/Model/**'
-              end
-          end
-          
-          ssss.subspec 'AdvBeaconV2Page' do |sssss|
-              sssss.subspec 'Controller'  do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model'
-              end
-              sssss.subspec 'Model'  do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/AdvBeaconV2Page/Model/**'
-              end
-          end
-          
-            ssss.subspec 'CommunicatePage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/CommunicatePage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/CommunicatePage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'DataReportPage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/DataReportPage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/DataReportPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'IndicatorSettingsPage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/IndicatorSettingsPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'NetworkStatusPage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NetworkStatusPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'NTPServerPage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/NTPServerPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'ReconnectTimePage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ReconnectTimePage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model'
-                end
-                sssss.subspec 'Model'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ReconnectTimePage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'ResetByButtonPage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/ResetByButtonPage/View'
-                end
-                sssss.subspec 'View'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/ResetByButtonPage/View/**'
-                end
-            end
-            
-            ssss.subspec 'SystemTimePage' do |sssss|
-                sssss.subspec 'Controller'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/SystemTimePage/View'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings/NTPServerPage'
-                end
-                sssss.subspec 'View'  do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/NormalSettings/SystemTimePage/View/**'
-                end
-            end
-            
-        end
-        
-        sss.subspec 'OTAPage' do |ssss|
-            ssss.subspec 'Controller' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/OTAPage/Controller/**'
+        sss.subspec 'IndicatorSettingsPage' do |ssss|
+            ssss.subspec 'Controller'  do |sssss|
+              sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/IndicatorSettingsPage/Controller/**'
               
-              sssss.dependency 'MKGatewayThree/Functions/SettingPages/OTAPage/Model'
+              sssss.dependency 'MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage/Model'
             end
-            ssss.subspec 'Model' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/OTAPage/Model/**'
+            ssss.subspec 'Model'  do |sssss|
+              sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/IndicatorSettingsPage/Model/**'
             end
         end
         
@@ -1301,10 +1175,8 @@ TODO: Add long description of the pod here.
               
               sssss.dependency 'MKGatewayThree/Functions/SettingPages/SettingPage/Model'
               
-              sssss.dependency 'MKGatewayThree/Functions/SettingPages/DeviceInfoPage'
               sssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages'
-              sssss.dependency 'MKGatewayThree/Functions/SettingPages/NormalSettings'
-              sssss.dependency 'MKGatewayThree/Functions/SettingPages/OTAPage'
+              sssss.dependency 'MKGatewayThree/Functions/SettingPages/IndicatorSettingsPage'
             end
             ssss.subspec 'Model' do |sssss|
               sssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/SettingPage/Model/**'
@@ -1331,6 +1203,7 @@ TODO: Add long description of the pod here.
     ss.dependency 'MKGatewayThree/DeviceModel'
     ss.dependency 'MKGatewayThree/CTMediator'
     ss.dependency 'MKGatewayThree/LoginManager'
+    ss.dependency 'MKGatewayThree/ScannerModuleManager'
   
     ss.dependency 'MKBaseModuleLibrary'
     ss.dependency 'MKCustomUIModule'

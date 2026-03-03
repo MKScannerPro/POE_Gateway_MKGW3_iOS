@@ -6,11 +6,11 @@
 //  Copyright © 2025 lovexiaoxia. All rights reserved.
 //
 
-#import "MKGWBaseViewController.h"
+#import <MKScannerCommonModule/MKScannerBaseController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWFilterByNanoBeaconController : MKGWBaseViewController
+@interface MKGWFilterByNanoBeaconController : MKScannerBaseController
 
 @end
 

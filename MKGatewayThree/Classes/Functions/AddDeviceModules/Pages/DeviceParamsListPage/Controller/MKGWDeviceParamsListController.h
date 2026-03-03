@@ -6,11 +6,11 @@
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import <MKScannerCommonModule/MKScannerBleBaseController.h>
+#import <MKBaseModuleLibrary/MKBaseViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWDeviceParamsListController : MKScannerBleBaseController
+@interface MKGWDeviceParamsListController : MKBaseViewController
 
 @end
 

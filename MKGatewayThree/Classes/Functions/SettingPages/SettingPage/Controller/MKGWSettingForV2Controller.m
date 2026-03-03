@@ -24,23 +24,29 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKAlertView.h"
 
-#import "MKGWDeviceDatabaseManager.h"
-
 #import "MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceInfoController.h"
+#import "MKScannerBeaconController.h"
+#import "MKScannerCommunicateController.h"
+#import "MKScannerNetworkStatusController.h"
+#import "MKScannerSystemTimeController.h"
+#import "MKScannerOTAController.h"
+
+#import "MKGWDeviceDatabaseManager.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWIndicatorSettingsController.h"
-#import "MKGWNetworkStatusController.h"
-#import "MKGWCommunicateController.h"
-#import "MKGWSystemTimeController.h"
-#import "MKGWAdvBeaconV2Controller.h"
 
-#import "MKGWOTAController.h"
 #import "MKGWMqttParamsListController.h"
-#import "MKGWDeviceInfoController.h"
 
 #import "MKGWSettingModel.h"
+#import "MKGWDeviceInfoModel.h"
+#import "MKGWAdvBeaconModel.h"
+#import "MKGWCommunicateModel.h"
+#import "MKGWNetworkStatusModel.h"
+#import "MKGWSystemTimeModel.h"
+#import "MKGWOTAPageModel.h"
 
 @interface MKGWSettingForV2Controller ()<UITableViewDelegate,
 UITableViewDataSource>
@@ -105,31 +111,37 @@ UITableViewDataSource>
     }
     if (indexPath.section == 0 && indexPath.row == 1) {
         //Network status report interval
-        MKGWNetworkStatusController *vc = [[MKGWNetworkStatusController alloc] init];
+        MKGWNetworkStatusModel *model = [[MKGWNetworkStatusModel alloc] init];
+        MKScannerNetworkStatusController *vc = [[MKScannerNetworkStatusController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 2) {
         //Communicate timeout
-        MKGWCommunicateController *vc = [[MKGWCommunicateController alloc] init];
+        MKGWCommunicateModel *model = [[MKGWCommunicateModel alloc] init];
+        MKScannerCommunicateController *vc = [[MKScannerCommunicateController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 3) {
         //System time
-        MKGWSystemTimeController *vc = [[MKGWSystemTimeController alloc] init];
+        MKGWSystemTimeModel *model = [[MKGWSystemTimeModel alloc] init];
+        MKScannerSystemTimeController *vc = [[MKScannerSystemTimeController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 4) {
         //Advertisement settings
-        MKGWAdvBeaconV2Controller *vc = [[MKGWAdvBeaconV2Controller alloc] init];
+        MKGWAdvBeaconModel *model = [[MKGWAdvBeaconModel alloc] init];
+        model.isV2 = YES;
+        MKScannerBeaconController *vc = [[MKScannerBeaconController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 1 && indexPath.row == 0) {
         //OTA
-        MKGWOTAController *vc = [[MKGWOTAController alloc] init];
+        MKGWOTAPageModel *model = [[MKGWOTAPageModel alloc] init];
+        MKScannerOTAController *vc = [[MKScannerOTAController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
@@ -141,7 +153,8 @@ UITableViewDataSource>
     }
     if (indexPath.section == 2 && indexPath.row == 0) {
         //Device information
-        MKGWDeviceInfoController *vc = [[MKGWDeviceInfoController alloc] init];
+        MKGWDeviceInfoModel *model = [[MKGWDeviceInfoModel alloc] init];
+        MKScannerDeviceInfoController *vc = [[MKScannerDeviceInfoController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

@@ -33,6 +33,7 @@
 
 #import "MKGWSettingController.h"
 #import "MKGWSettingForV2Controller.h"
+
 #import "MKGWUploadOptionController.h"
 #import "MKGWUploadOptionV2Controller.h"
 #import "MKGWManageBleDevicesController.h"
@@ -107,10 +108,7 @@ MKGWReceiveDeviceDatasDelegate>
     [self loadSubViews];
     [self readDataFromServer];
     [self runloopObserver];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveDeviceNameChanged:)
-                                                 name:@"mk_gw_deviceNameChangedNotification"
-                                               object:nil];
+    [self addNotifications];
 }
 
 #pragma mark - super method
@@ -257,6 +255,30 @@ MKGWReceiveDeviceDatasDelegate>
         return;
     }
     self.defaultTitle = user[@"deviceName"];
+}
+
+- (void)deviceOffline:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"macAddress"])) {
+        return;
+    }
+    [self processOfflineWithMacAddress:user[@"macAddress"]];
+}
+
+- (void)receiveDeviceLwtMessage:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"])) {
+        return;
+    }
+    [self processOfflineWithMacAddress:user[@"device_info"][@"mac"]];
+}
+
+- (void)deviceResetByButton:(NSNotification *)note {
+    NSDictionary *user = note.userInfo;
+    if (!ValidDict(user) || !ValidStr(user[@"device_info"][@"mac"])) {
+        return;
+    }
+    [self processOfflineWithMacAddress:user[@"device_info"][@"mac"]];
 }
 
 #pragma mark - interface
@@ -476,6 +498,43 @@ MKGWReceiveDeviceDatasDelegate>
     });
     //添加监听，模式为kCFRunLoopCommonModes
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), self.observerRef, kCFRunLoopCommonModes);
+}
+
+- (void)addNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDeviceNameChanged:)
+                                                 name:@"mk_gw_deviceNameChangedNotification"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOffline:)
+                                                 name:MKScannerDeviceModelOfflineNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDeviceLwtMessage:)
+                                                 name:MKGWReceiveDeviceOfflineNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceResetByButton:)
+                                                 name:MKGWReceiveDeviceResetByButtonNotification
+                                               object:nil];
+}
+
+- (void)processOfflineWithMacAddress:(NSString *)macAddress {
+    if (![macAddress isEqualToString:[MKScannerDeviceModelManager shared].macAddress]) {
+        return;
+    }
+    //让setting页面推出的alert消失
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_scanner_needDismissAlert" object:nil];
+    //让所有MKPickView消失
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_customUIModule_dismissPickView" object:nil];
+    if ([MKBaseViewController isCurrentViewControllerVisible:self]) {
+        [self.view showCentralToast:@"device is off-line"];
+    }
+    [self performSelector:@selector(gobackToDeviceListView) withObject:nil afterDelay:0.5f];
+}
+
+- (void)gobackToDeviceListView {
+    [self popToViewControllerWithClassName:@"MKGWDeviceListController"];
 }
 
 #pragma mark - UI
