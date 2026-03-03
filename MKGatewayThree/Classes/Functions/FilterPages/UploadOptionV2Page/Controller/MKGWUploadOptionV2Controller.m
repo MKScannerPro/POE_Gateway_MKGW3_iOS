@@ -22,7 +22,7 @@
 #import "MKCustomUIAdopter.h"
 
 #import "MKGWDeviceModel.h"
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWUploadOptionV2Model.h"
 

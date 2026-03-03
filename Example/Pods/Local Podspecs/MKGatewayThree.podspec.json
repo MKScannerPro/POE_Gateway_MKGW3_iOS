@@ -72,15 +72,6 @@
       },
       "subspecs": [
         {
-          "name": "BleBaseController",
-          "source_files": "MKGatewayThree/Classes/Expand/BleBaseController/**",
-          "dependencies": {
-            "MKGatewayThree/SDK/BLE": [
-
-            ]
-          }
-        },
-        {
           "name": "BaseController",
           "source_files": "MKGatewayThree/Classes/Expand/BaseController/**",
           "dependencies": {
@@ -280,78 +271,6 @@
               },
               "subspecs": [
                 {
-                  "name": "BleAdvBeaconPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "BleAdvBeaconV2Page",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "BleDeviceInfoPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "BleDeviceInfoV2Page",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Model/**"
-                    }
-                  ]
-                },
-                {
                   "name": "BleNetworkSettingsPage",
                   "subspecs": [
                     {
@@ -381,9 +300,6 @@
                         ],
                         "MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View": [
 
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/NearbyWifiPage": [
-
                         ]
                       }
                     },
@@ -394,24 +310,6 @@
                     {
                       "name": "View",
                       "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "BleScannerFilterPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model/**"
                     }
                   ]
                 },
@@ -449,16 +347,13 @@
                       "name": "Controller",
                       "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller/**",
                       "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage": [
+                        "MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model": [
 
                         ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage": [
+                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page": [
 
                         ],
                         "MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage": [
 
                         ],
                         "MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage": [
@@ -466,107 +361,12 @@
                         ],
                         "MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage": [
 
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice": [
-
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "DeviceParamsListV2Page",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListV2Page/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice": [
-
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "NearbyWifiPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NearbyWifiPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/NearbyWifiPage/View": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "View",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NearbyWifiPage/View/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "NTPTimezonePage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model": [
-
                         ]
                       }
                     },
                     {
                       "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "ServerForDevice",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model": [
-
-                        ],
-                        "MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/View": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Model/**"
-                    },
-                    {
-                      "name": "View",
-                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/View/**"
+                      "source_files": "MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model/**"
                     }
                   ]
                 }
@@ -1992,19 +1792,12 @@
               "dependencies": {
                 "MKGatewayThree/Functions/ServerForApp/Model": [
 
-                ],
-                "MKGatewayThree/Functions/ServerForApp/View": [
-
                 ]
               }
             },
             {
               "name": "Model",
               "source_files": "MKGatewayThree/Classes/Functions/ServerForApp/Model/**"
-            },
-            {
-              "name": "View",
-              "source_files": "MKGatewayThree/Classes/Functions/ServerForApp/View/**"
             }
           ]
         },

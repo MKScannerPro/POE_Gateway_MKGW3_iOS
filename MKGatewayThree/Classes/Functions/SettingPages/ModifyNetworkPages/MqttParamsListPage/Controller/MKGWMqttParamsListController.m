@@ -24,7 +24,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 
 #import "MKGWDeviceModel.h"
@@ -130,7 +130,7 @@
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 #pragma mark - interface

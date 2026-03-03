@@ -62,14 +62,6 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'Expand' do |ss|
-    
-    ss.subspec 'BleBaseController' do |sss|
-      
-      sss.source_files = 'MKGatewayThree/Classes/Expand/BleBaseController/**'
-    
-    
-      sss.dependency 'MKGatewayThree/SDK/BLE'
-    end
   
     ss.subspec 'BaseController' do |sss|
       
@@ -199,54 +191,6 @@ TODO: Add long description of the pod here.
             ssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/ParamsModel/**'
         end
         sss.subspec 'Pages' do |ssss|
-          
-          ssss.subspec 'BleAdvBeaconPage' do |sssss|
-              sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model'
-              end
-              
-              sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconPage/Model/**'
-              end
-          end
-          
-          ssss.subspec 'BleAdvBeaconV2Page' do |sssss|
-              sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Model'
-              end
-              
-              sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page/Model/**'
-              end
-          end
-          
-            ssss.subspec 'BleDeviceInfoPage' do |sssss|
-                sssss.subspec 'Controller' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model'
-                end
-                
-                sssss.subspec 'Model' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'BleDeviceInfoV2Page' do |sssss|
-                sssss.subspec 'Controller' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Model'
-                end
-                
-                sssss.subspec 'Model' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page/Model/**'
-                end
-            end
             
             ssss.subspec 'BleNetworkSettingsPage' do |sssss|
                 sssss.subspec 'Controller' do |ssssss|
@@ -267,8 +211,6 @@ TODO: Add long description of the pod here.
                   ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/Model'
                   ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View'
                   
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/NearbyWifiPage'
-                  
                 end
                 
                 sssss.subspec 'Model' do |ssssss|
@@ -277,18 +219,6 @@ TODO: Add long description of the pod here.
                 
                 sssss.subspec 'View' do |ssssss|
                   ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page/View/**'
-                end
-            end
-            
-            ssss.subspec 'BleScannerFilterPage' do |sssss|
-                sssss.subspec 'Controller' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model'
-                end
-                
-                sssss.subspec 'Model' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/BleScannerFilterPage/Model/**'
                 end
             end
             
@@ -313,71 +243,17 @@ TODO: Add long description of the pod here.
             ssss.subspec 'DeviceParamsListPage' do |sssss|
               sssss.subspec 'Controller' do |ssssss|
                 ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Controller/**'
+                
+                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model'
               
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconPage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoPage'
+                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page'
                 ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsPage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage'
                 ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleWifiSettingsPage'
                 ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice'
               end
-            end
-            
-            ssss.subspec 'DeviceParamsListV2Page' do |sssss|
-              sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListV2Page/Controller/**'
-              
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleAdvBeaconV2Page'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleDeviceInfoV2Page'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleNetworkSettingsV2Page'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/BleScannerFilterPage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ConnectSuccessPage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage'
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice'
-              end
-            end
-            
-            ssss.subspec 'NearbyWifiPage' do |sssss|
-              sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NearbyWifiPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/NearbyWifiPage/View'
-              end
-              
-              sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NearbyWifiPage/View/**'
-              end
-            end
-            
-            ssss.subspec 'NTPTimezonePage' do |sssss|
-              sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model'
-              end
-              
               sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/NTPTimezonePage/Model/**'
+                ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/DeviceParamsListPage/Model/**'
               end
-            end
-            
-            ssss.subspec 'ServerForDevice' do |sssss|
-                sssss.subspec 'Controller' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/Model'
-                  ssssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/Pages/ServerForDevice/View'
-                end
-                
-                sssss.subspec 'Model' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/Model/**'
-                end
-                
-                sssss.subspec 'View' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/AddDeviceModules/Pages/ServerForDevice/View/**'
-                end
             end
             
             ssss.dependency 'MKGatewayThree/Functions/AddDeviceModules/ParamsModel'
@@ -1204,16 +1080,12 @@ TODO: Add long description of the pod here.
           ssss.source_files = 'MKGatewayThree/Classes/Functions/ServerForApp/Controller/**'
           
           ssss.dependency 'MKGatewayThree/Functions/ServerForApp/Model'
-          ssss.dependency 'MKGatewayThree/Functions/ServerForApp/View'
         end
         
         sss.subspec 'Model' do |ssss|
           ssss.source_files = 'MKGatewayThree/Classes/Functions/ServerForApp/Model/**'
         end
         
-        sss.subspec 'View' do |ssss|
-          ssss.source_files = 'MKGatewayThree/Classes/Functions/ServerForApp/View/**'
-        end
     end
     
     ss.subspec 'SettingPages' do |sss|

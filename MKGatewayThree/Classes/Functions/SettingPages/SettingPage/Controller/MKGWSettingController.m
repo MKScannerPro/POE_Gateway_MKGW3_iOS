@@ -26,7 +26,7 @@
 
 #import "MKGWDeviceDatabaseManager.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
@@ -209,7 +209,7 @@ UITableViewDataSource>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"Reboot Device" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"Reboot Device" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)resetButtonPressed {
@@ -226,7 +226,7 @@ UITableViewDataSource>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"Reset Device" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"Reset Device" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 #pragma mark - 修改设备本地名称
@@ -254,7 +254,7 @@ UITableViewDataSource>
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
     [alertView addTextField:textField];
-    [alertView showAlertWithTitle:@"Edit Local Name" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"Edit Local Name" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)saveDeviceLocalName {

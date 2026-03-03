@@ -6,7 +6,7 @@
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKScannerCommonModule/MKScannerDeviceModel.h"
+#import "MKScannerDeviceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

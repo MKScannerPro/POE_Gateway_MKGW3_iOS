@@ -143,27 +143,15 @@
     },
     {
       "name": "BleModule",
+      "dependencies": {
+        "MKScannerCommonModule/Expand": [
+
+        ]
+      },
       "subspecs": [
         {
-          "name": "Manager",
-          "source_files": "MKScannerCommonModule/Classes/BleModule/Manager/**",
-          "dependencies": {
-            "MKScannerCommonModule/DeviceModel": [
-
-            ]
-          }
-        },
-        {
           "name": "BaseController",
-          "source_files": "MKScannerCommonModule/Classes/BleModule/BaseController/**",
-          "dependencies": {
-            "MKScannerCommonModule/BleModule/Manager": [
-
-            ],
-            "MKScannerCommonModule/Expand/View/AlertView": [
-
-            ]
-          }
+          "source_files": "MKScannerCommonModule/Classes/BleModule/BaseController/**"
         },
         {
           "name": "Pages",

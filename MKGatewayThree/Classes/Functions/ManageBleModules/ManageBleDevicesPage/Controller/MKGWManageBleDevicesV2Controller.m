@@ -23,7 +23,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWNormalConnectedController.h"
@@ -361,7 +361,7 @@ MKGWManageBleDevicesCellDelegate>
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
     [alertView addTextField:textField];
-    [alertView showAlertWithTitle:@"Enter password" message:@"" notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"Enter password" message:@"" notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)connectBXPButtonWithPassword:(NSString *)password bleMac:(NSString *)bleMac {

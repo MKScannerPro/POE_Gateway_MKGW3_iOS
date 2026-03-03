@@ -6,11 +6,11 @@
 //  Copyright © 2023 aadyx2007@163.com. All rights reserved.
 //
 
-#import "MKGWBleBaseController.h"
+#import <MKScannerCommonModule/MKScannerBleBaseController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWBleNetworkSettingsController : MKGWBleBaseController
+@interface MKGWBleNetworkSettingsController : MKScannerBleBaseController
 
 @end
 

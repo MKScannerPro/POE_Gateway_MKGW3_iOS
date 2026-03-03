@@ -21,7 +21,7 @@
 
 #import "MKHudManager.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTDataManager.h"
 
@@ -120,7 +120,7 @@ MKTextFieldCellDelegate>
     if (![dataDic[@"mac"] isEqualToString:self.bleMacAddress]) {
         return;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_needDismissAlert" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_scanner_needDismissAlert" object:nil];
     [self gotoLastPage];
 }
 

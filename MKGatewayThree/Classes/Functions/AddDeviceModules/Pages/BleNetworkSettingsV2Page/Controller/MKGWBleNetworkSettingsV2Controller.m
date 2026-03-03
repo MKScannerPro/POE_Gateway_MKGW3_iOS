@@ -26,6 +26,8 @@
 #import "MKTextSwitchCell.h"
 #import "MKCAFileSelectController.h"
 
+#import "MKScannerBleNearbyWifiController.h"
+
 #import "MKGWDeviceModel.h"
 
 #include "MKGWBleWifiSettingsCertCell.h"
@@ -36,7 +38,7 @@
 
 #import "MKGWNetworkSsidSettingsCell.h"
 
-#import "MKGWNearbyWifiController.h"
+#import "MKGWNearbyWifiModel.h"
 
 static NSString *const noteMsg = @"Please note the CA certificate is required, the client certificate and client key are optional.";
 
@@ -48,7 +50,7 @@ mk_textSwitchCellDelegate,
 MKGWBleWifiSettingsCertCellDelegate,
 MKCAFileSelectControllerDelegate,
 MKGWNetworkSsidSettingsCellDelegate,
-MKGWNearbyWifiControllerDelegate>
+MKScannerBleNearbyWifiControllerDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -369,13 +371,14 @@ MKGWNearbyWifiControllerDelegate>
 }
 
 - (void)gw_networkSsidSettingsCell_buttonPressed {
-    MKGWNearbyWifiController *vc = [[MKGWNearbyWifiController alloc] init];
+    MKGWNearbyWifiModel *model = [[MKGWNearbyWifiModel alloc] init];
+    MKScannerBleNearbyWifiController *vc = [[MKScannerBleNearbyWifiController alloc] initWithProtocol:model];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - MKGWNearbyWifiControllerDelegate
-- (void)gw_nearbyWifiController_selectedWifi:(NSString *)ssid {
+- (void)mk_scanner_nearbyWifiController_selectedWifi:(NSString *)ssid {
     MKGWNetworkSsidSettingsCellModel *cellModel = self.section5List[0];
     cellModel.ssid = ssid;
     self.dataModel.ssid = ssid;

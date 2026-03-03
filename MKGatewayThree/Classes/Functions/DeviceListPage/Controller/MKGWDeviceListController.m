@@ -24,9 +24,9 @@
 
 #import "MKNetworkManager.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
-#import "MKScannerCommonModule/MKScannerEasyShowView.h"
-#import "MKScannerCommonModule/MKScannerAddDeviceView.h"
+#import "MKScannerDeviceModelManager.h"
+#import "MKScannerEasyShowView.h"
+#import "MKScannerAddDeviceView.h"
 
 
 #import "MKGWDeviceModel.h"
@@ -186,7 +186,7 @@ MKScannerDeviceModelDelegate>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"Remove Device" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"Remove Device" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 #pragma mark - MKScannerDeviceModelDelegate

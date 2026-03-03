@@ -11,7 +11,7 @@
 #import "MKMacroDefines.h"
 #import "UIView+MKAdd.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTDataManager.h"
@@ -78,7 +78,7 @@
         return;
     }
     //让setting页面推出的alert消失
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_needDismissAlert" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_scanner_needDismissAlert" object:nil];
     //让所有MKPickView消失
     [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_customUIModule_dismissPickView" object:nil];
     [self.view showCentralToast:@"device is off-line"];

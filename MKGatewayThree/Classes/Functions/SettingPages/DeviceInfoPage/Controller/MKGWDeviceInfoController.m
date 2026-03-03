@@ -17,7 +17,7 @@
 #import "MKHudManager.h"
 #import "MKNormalTextCell.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWDeviceInfoModel.h"
 

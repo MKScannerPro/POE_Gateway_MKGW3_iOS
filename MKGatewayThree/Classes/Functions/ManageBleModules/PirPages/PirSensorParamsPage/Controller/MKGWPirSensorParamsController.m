@@ -21,7 +21,7 @@
 #import "MKHudManager.h"
 #import "MKTextButtonCell.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWPirSensorParamsModel.h"

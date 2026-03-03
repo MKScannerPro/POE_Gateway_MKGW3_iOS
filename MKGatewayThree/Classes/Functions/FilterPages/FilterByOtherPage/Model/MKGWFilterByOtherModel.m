@@ -12,7 +12,7 @@
 
 #import "MKBLEBaseSDKAdopter.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 

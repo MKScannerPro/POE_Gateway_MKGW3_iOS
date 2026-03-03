@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "MKGWServerConfigDefines.h"
-#import "MKGWExcelProtocol.h"
+#import "MKScannerExcelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKGWServerForAppModel : NSObject<MKGWServerParamsProtocol,MKGWExcelAppProtocol>
+@interface MKGWServerForAppModel : NSObject<MKGWServerParamsProtocol,MKScannerExcelAppProtocol>
 
 @property (nonatomic, copy)NSString *host;
 

@@ -27,7 +27,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWButtonFirmwareCell.h"
@@ -104,7 +104,7 @@ MKGWButtonFirmwareCellDelegate>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)leftButtonMethod {
@@ -257,7 +257,7 @@ MKGWButtonFirmwareCellDelegate>
     if (![MKBaseViewController isCurrentViewControllerVisible:self]) {
         return;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_needDismissAlert" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_scanner_needDismissAlert" object:nil];
     //返回上一级页面
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -331,7 +331,7 @@ MKGWButtonFirmwareCellDelegate>
     [alertView addAction:confirmAction];
     [alertView showAlertWithTitle:@""
                           message:@"Please confirm again whether to power off BLE device"
-                 notificationName:@"mk_gw_needDismissAlert"];
+                 notificationName:@"mk_scanner_needDismissAlert"];
     return;
 }
 

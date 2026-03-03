@@ -11,7 +11,6 @@
 #endif
 
 #import "MKScannerBleBaseController.h"
-#import "MKScannerBleModuleManager.h"
 #import "MKScannerBleBeaconController.h"
 #import "MKScannerBleBeaconProtocol.h"
 #import "MKScannerBleDeviceInfoController.h"
@@ -24,6 +23,12 @@
 #import "MKScannerBleNearbyWifiCell.h"
 #import "MKScannerBleScannerFilterController.h"
 #import "MKScannerBleScannerFilterProtocol.h"
+#import "MKScannerBleServerForDeviceController.h"
+#import "MKScannerServerForDeviceProtocol.h"
+#import "MKScannerBleMQTTLWTForDeviceView.h"
+#import "MKScannerBleMQTTSSLForDeviceView.h"
+#import "MKScannerBleServerConfigDeviceFooterView.h"
+#import "MKScannerBleServerConfigDeviceSettingView.h"
 #import "MKScannerDeviceModel.h"
 #import "MKScannerDeviceModelManager.h"
 #import "MKScannerExcelDataManager.h"

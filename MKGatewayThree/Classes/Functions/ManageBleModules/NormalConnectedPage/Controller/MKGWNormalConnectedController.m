@@ -24,7 +24,7 @@
 #import "MKGWMQTTDataManager.h"
 #import "MKGWMQTTInterface.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWNormalConnectedCell.h"
@@ -103,7 +103,7 @@ MKGWNormalConnectedCellDelegate>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)leftButtonMethod {
@@ -156,7 +156,7 @@ MKGWNormalConnectedCellDelegate>
                                        serverUUID:(NSString *)serverUUID
                                    characteristic:(NSString *)characteristic {
     @weakify(self);
-    [self.writeAlert showAlertWithValue:@"" dismissNote:@"mk_gw_needDismissAlert" cancelAction:^{
+    [self.writeAlert showAlertWithValue:@"" dismissNote:@"mk_scanner_needDismissAlert" cancelAction:^{
         
     } confirmAction:^(NSString * _Nonnull textValue) {
         @strongify(self);
@@ -192,7 +192,7 @@ MKGWNormalConnectedCellDelegate>
     if (![dataDic[@"mac"] isEqualToString:self.deviceBleInfo[@"data"][@"mac"]]) {
         return;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_gw_needDismissAlert" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mk_scanner_needDismissAlert" object:nil];
     //返回上一级页面
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -21,7 +21,7 @@
 #import "MKHudManager.h"
 #import "MKTextFieldCell.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 #import "MKGWDeviceModel.h"
 
 #import "MKGWBXPSTHDataSampleRateModel.h"

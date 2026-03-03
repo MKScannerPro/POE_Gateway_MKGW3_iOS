@@ -29,22 +29,22 @@
 #import "MKCAFileSelectController.h"
 #import "MKAlertView.h"
 
+#import "MKScannerExcelDataManager.h"
+#import "MKScannerServerConfigAppFooterView.h"
+#import "MKScannerImportServerController.h"
+
 #import "MKGWMQTTDataManager.h"
-
-#import "MKGWExcelDataManager.h"
-
-#import "MKGWServerConfigAppFooterView.h"
 
 #import "MKGWServerForAppModel.h"
 
-#import "MKGWImportServerController.h"
+
 
 @interface MKGWServerForAppController ()<UITableViewDelegate,
 UITableViewDataSource,
 MKTextFieldCellDelegate,
-MKGWServerConfigAppFooterViewDelegate,
+MKScannerServerConfigAppFooterViewDelegate,
 MKCAFileSelectControllerDelegate,
-MKGWImportServerControllerDelegate,
+MKScannerImportServerControllerDelegate,
 MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
@@ -57,9 +57,9 @@ MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong)MKGWServerForAppModel *dataModel;
 
-@property (nonatomic, strong)MKGWServerConfigAppFooterView *sslParamsView;
+@property (nonatomic, strong)MKScannerServerConfigAppFooterView *sslParamsView;
 
-@property (nonatomic, strong)MKGWServerConfigAppFooterViewModel *sslParamsModel;
+@property (nonatomic, strong)MKScannerServerConfigAppFooterViewModel *sslParamsModel;
 
 @property (nonatomic, strong)UIView *footerView;
 
@@ -129,7 +129,7 @@ MFMailComposeViewControllerDelegate>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 #pragma mark - UITableViewDelegate
@@ -239,11 +239,11 @@ MFMailComposeViewControllerDelegate>
     }
 }
 
-#pragma mark - MKGWServerConfigAppFooterViewDelegate
+#pragma mark - MKScannerServerConfigAppFooterViewDelegate
 /// 用户改变了开关状态
 /// @param isOn isOn
 /// @param statusID 0:cleanSession   1:ssl
-- (void)gw_mqtt_serverForApp_switchStatusChanged:(BOOL)isOn statusID:(NSInteger)statusID {
+- (void)mk_scanner_mqtt_serverForApp_switchStatusChanged:(BOOL)isOn statusID:(NSInteger)statusID {
     if (statusID == 0) {
         //cleanSession
         self.dataModel.cleanSession = isOn;
@@ -261,7 +261,7 @@ MFMailComposeViewControllerDelegate>
     }
 }
 
-- (void)gw_mqtt_serverForApp_qosChanged:(NSInteger)qos {
+- (void)mk_scanner_mqtt_serverForApp_qosChanged:(NSInteger)qos {
     self.dataModel.qos = qos;
     self.sslParamsModel.qos = qos;
 }
@@ -269,7 +269,7 @@ MFMailComposeViewControllerDelegate>
 /// 输入框内容发生了改变
 /// @param text 最新的输入框内容
 /// @param textID 0:keepAlive    1:userName     2:password
-- (void)gw_mqtt_serverForApp_textFieldValueChanged:(NSString *)text textID:(NSInteger)textID {
+- (void)mk_scanner_mqtt_serverForApp_textFieldValueChanged:(NSString *)text textID:(NSInteger)textID {
     if (textID == 0) {
         //keep alive
         self.dataModel.keepAlive = text;
@@ -292,7 +292,7 @@ MFMailComposeViewControllerDelegate>
 
 /// 用户选择了加密方式
 /// @param certificate 0:CA signed server certificate     1:CA certificate     2:Self signed certificates
-- (void)gw_mqtt_serverForApp_certificateChanged:(NSInteger)certificate {
+- (void)mk_scanner_mqtt_serverForApp_certificateChanged:(NSInteger)certificate {
     self.dataModel.certificate = certificate;
     self.sslParamsModel.certificate = certificate;
     //动态刷新footer
@@ -302,7 +302,7 @@ MFMailComposeViewControllerDelegate>
 
 /// 用户点击了证书相关按钮
 /// @param fileType 0:caFaile   1:P12证书
-- (void)gw_mqtt_serverForApp_fileButtonPressed:(NSInteger)fileType {
+- (void)mk_scanner_mqtt_serverForApp_fileButtonPressed:(NSInteger)fileType {
     if (fileType == 0) {
         //caFaile
         MKCAFileSelectController *vc = [[MKCAFileSelectController alloc] init];
@@ -323,7 +323,7 @@ MFMailComposeViewControllerDelegate>
 
 /// 底部按钮点击事件
 /// @param index 0:Export Demo File   1:Import Config File 2:Clear All Configurations
-- (void)gw_mqtt_serverForApp_bottomButtonPressed:(NSInteger)index {
+- (void)mk_scanner_mqtt_serverForApp_bottomButtonPressed:(NSInteger)index {
     if (index == 0) {
         //Export Demo File
         [self exportServerConfig];
@@ -331,7 +331,7 @@ MFMailComposeViewControllerDelegate>
     }
     if (index == 1) {
         //Import Config File
-        MKGWImportServerController *vc = [[MKGWImportServerController alloc] init];
+        MKScannerImportServerController *vc = [[MKScannerImportServerController alloc] init];
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -369,10 +369,10 @@ MFMailComposeViewControllerDelegate>
     }
 }
 
-#pragma mark - MKGWImportServerControllerDelegate
-- (void)gw_selectedServerParams:(NSString *)fileName {
-    [MKGWExcelDataManager parseAppExcel:fileName
-                                sucBlock:^(NSDictionary * _Nonnull returnData) {
+#pragma mark - MKScannerImportServerControllerDelegate
+- (void)mk_scanner_selectedServerParams:(NSString *)fileName {
+    [MKScannerExcelDataManager parseAppExcel:fileName
+                                    sucBlock:^(NSDictionary * _Nonnull returnData) {
         MKGWServerForAppModel *model = [MKGWServerForAppModel mk_modelWithJSON:returnData];
         [self.dataModel updateValue:model];
         [self.section0List removeAllObjects];
@@ -380,7 +380,7 @@ MFMailComposeViewControllerDelegate>
         [self.sectionHeaderList removeAllObjects];
         [self loadSectionDatas];
     }
-                             failedBlock:^(NSError * _Nonnull error) {
+                                 failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
@@ -423,12 +423,12 @@ MFMailComposeViewControllerDelegate>
 //        return;
 //    }
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
-    [MKGWExcelDataManager exportAppExcel:self.dataModel
-                                 sucBlock:^{
+    [MKScannerExcelDataManager exportAppExcel:self.dataModel
+                                     sucBlock:^{
         [[MKHudManager share] hide];
         [self sharedExcel];
     }
-                              failedBlock:^(NSError * _Nonnull error) {
+                                  failedBlock:^(NSError * _Nonnull error) {
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
@@ -526,7 +526,7 @@ MFMailComposeViewControllerDelegate>
     MKAlertView *alertView = [[MKAlertView alloc] init];
     [alertView addAction:cancelAction];
     [alertView addAction:confirmAction];
-    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_gw_needDismissAlert"];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 - (void)clearAllParams {
@@ -697,9 +697,9 @@ MFMailComposeViewControllerDelegate>
     return _sectionHeaderList;
 }
 
-- (MKGWServerConfigAppFooterView *)sslParamsView {
+- (MKScannerServerConfigAppFooterView *)sslParamsView {
     if (!_sslParamsView) {
-        _sslParamsView = [[MKGWServerConfigAppFooterView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 230.f)];
+        _sslParamsView = [[MKScannerServerConfigAppFooterView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 230.f)];
         _sslParamsView.delegate = self;
     }
     return _sslParamsView;
@@ -714,9 +714,9 @@ MFMailComposeViewControllerDelegate>
     return _footerView;
 }
 
-- (MKGWServerConfigAppFooterViewModel *)sslParamsModel {
+- (MKScannerServerConfigAppFooterViewModel *)sslParamsModel {
     if (!_sslParamsModel) {
-        _sslParamsModel = [[MKGWServerConfigAppFooterViewModel alloc] init];
+        _sslParamsModel = [[MKScannerServerConfigAppFooterViewModel alloc] init];
     }
     return _sslParamsModel;
 }

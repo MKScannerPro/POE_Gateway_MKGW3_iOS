@@ -25,7 +25,7 @@
 #import "MKTextFieldCell.h"
 #import "MKTextSwitchCell.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTDataManager.h"
 

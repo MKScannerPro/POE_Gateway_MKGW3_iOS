@@ -22,6 +22,12 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKProgressView.h"
 
+#import "MKScannerBleServerForDeviceController.h"
+#import "MKScannerBleBeaconController.h"
+#import "MKScannerBleNTPTimezoneController.h"
+#import "MKScannerBleScannerFilterController.h"
+#import "MKScannerBleDeviceInfoController.h"
+
 #import "MKGWCentralManager.h"
 #import "MKGWInterface+MKGWConfig.h"
 
@@ -31,12 +37,13 @@
 
 #import "MKGWDeviceMQTTParamsModel.h"
 
+#import "MKGWBleAdvBeaconModel.h"
+#import "MKGWServerForDeviceModel.h"
+#import "MKGWBleNTPTimezoneModel.h"
+#import "MKGWBleScannerFilterModel.h"
+#import "MKGWBleDeviceInfoModel.h"
+
 #import "MKGWBleWifiSettingsController.h"
-#import "MKGWServerForDeviceController.h"
-#import "MKGWBleAdvBeaconController.h"
-#import "MKGWBleNTPTimezoneController.h"
-#import "MKGWBleScannerFilterController.h"
-#import "MKGWBleDeviceInfoController.h"
 #import "MKGWConnectSuccessController.h"
 
 static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settings are required,the other settings are optional.";
@@ -124,32 +131,51 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
     }
     if (indexPath.section == 0 && indexPath.row == 1) {
         //MQTT settings
-        MKGWServerForDeviceController *vc = [[MKGWServerForDeviceController alloc] init];
+        MKGWServerForDeviceModel *model = [[MKGWServerForDeviceModel alloc] init];
+        MKScannerBleServerForDeviceController *vc = [[MKScannerBleServerForDeviceController alloc] initWithProtocol:model];
+        vc.updateCompleteBlock = ^(BOOL success) {
+            [MKGWDeviceMQTTParamsModel shared].mqttConfig = success;
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.clientID = (success ? model.clientID : @"");
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.deviceName = (success ? model.deviceName : @"");
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.subscribedTopic = (success ? model.subscribeTopic : @"");
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.publishedTopic = (success ? model.publishTopic : @"");
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.macAddress = (success ? model.macAddress : @"");
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.lwtStatus = (success ? model.lwtStatus : NO);
+            [MKGWDeviceMQTTParamsModel shared].deviceModel.lwtTopic = (success ? model.lwtTopic : @"");
+        };
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     
     if (indexPath.section == 1 && indexPath.row == 0) {
         //NTP & Timezone
-        MKGWBleNTPTimezoneController *vc = [[MKGWBleNTPTimezoneController alloc] init];
+        MKGWBleNTPTimezoneModel *model = [[MKGWBleNTPTimezoneModel alloc] init];
+        MKScannerBleNTPTimezoneController *vc = [[MKScannerBleNTPTimezoneController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 1 && indexPath.row == 1) {
         //Scanner Filter
-        MKGWBleScannerFilterController *vc = [[MKGWBleScannerFilterController alloc] init];
+        BOOL supportInterval = [[MKGWDeviceMQTTParamsModel shared].deviceModel.deviceType isEqualToString:@"01"];
+        MKGWBleScannerFilterModel *model = [[MKGWBleScannerFilterModel alloc] init];
+        model.title = (supportInterval ? @"Scan & Upload" : @"Scanner Filter");
+        model.supportInterval = supportInterval;
+        MKScannerBleScannerFilterController *vc = [[MKScannerBleScannerFilterController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 1 && indexPath.row == 2) {
         //Advertise iBeacon
-        MKGWBleAdvBeaconController *vc = [[MKGWBleAdvBeaconController alloc] init];
+        MKGWBleAdvBeaconModel *model = [[MKGWBleAdvBeaconModel alloc] init];
+        model.isV2 = NO;
+        MKScannerBleBeaconController *vc = [[MKScannerBleBeaconController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 1 && indexPath.row == 3) {
         //Device Information
-        MKGWBleDeviceInfoController *vc = [[MKGWBleDeviceInfoController alloc] init];
+        MKGWBleDeviceInfoModel *model = [[MKGWBleDeviceInfoModel alloc] init];
+        MKScannerBleDeviceInfoController *vc = [[MKScannerBleDeviceInfoController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

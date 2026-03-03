@@ -23,7 +23,7 @@
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWDeviceModel.h"
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 
 #import "MKGWUploadDataOptionModel.h"

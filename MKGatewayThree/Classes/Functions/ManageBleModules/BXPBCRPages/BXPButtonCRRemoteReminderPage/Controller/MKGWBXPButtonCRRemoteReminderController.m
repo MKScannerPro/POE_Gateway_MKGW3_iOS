@@ -20,7 +20,7 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKTextFieldCell.h"
 
-#import "MKScannerCommonModule/MKScannerDeviceModelManager.h"
+#import "MKScannerDeviceModelManager.h"
 
 #import "MKGWMQTTInterface.h"
 
