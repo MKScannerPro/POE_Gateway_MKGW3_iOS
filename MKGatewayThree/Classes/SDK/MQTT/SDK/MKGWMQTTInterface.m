@@ -4842,23 +4842,23 @@
         [self operationFailedBlockWithMsg:@"Params Error" failedBlock:failedBlock];
         return;
     }
-    NSInteger tempTx = -20;
+    NSInteger tempTx = -40;
     if (txPower == 1) {
-        tempTx = -16;
+        tempTx = -20;
     }else if (txPower == 2) {
-        tempTx = -12;
+        tempTx = -16;
     }else if (txPower == 3) {
-        tempTx = -8;
+        tempTx = -12;
     }else if (txPower == 4) {
-        tempTx = -4;
+        tempTx = -8;
     }else if (txPower == 5) {
-        tempTx = 0;
+        tempTx = -4;
     }else if (txPower == 6) {
-        tempTx = 3;
+        tempTx = 0;
     }else if (txPower == 7) {
-        tempTx = 4;
+        tempTx = 3;
     }else if (txPower == 8) {
-        tempTx = 6;
+        tempTx = 4;
     }
     
     NSDictionary *data = @{

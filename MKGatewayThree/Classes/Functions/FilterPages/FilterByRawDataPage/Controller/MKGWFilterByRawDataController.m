@@ -20,20 +20,29 @@
 #import "MKTextSwitchCell.h"
 
 #import "MKScannerDeviceModelManager.h"
+#import "MKScannerFilterByBeaconController.h"
+#import "MKScannerFilterByUIDController.h"
+#import "MKScannerFilterByURLController.h"
+#import "MKScannerFilterByTLMController.h"
+#import "MKScannerFilterByButtonController.h"
+#import "MKScannerFilterByTagController.h"
+#import "MKScannerFilterByPirController.h"
+#import "MKScannerFilterByOtherController.h"
+
+
 #import "MKGWDeviceModel.h"
 
 #import "MKGWMQTTInterface.h"
 
 #import "MKGWFilterByRawDataModel.h"
-
-#import "MKGWFilterByBeaconController.h"
-#import "MKGWFilterByUIDController.h"
-#import "MKGWFilterByURLController.h"
-#import "MKGWFilterByTLMController.h"
-#import "MKGWFilterByButtonController.h"
-#import "MKGWFilterByTagController.h"
-#import "MKGWFilterByPirController.h"
-#import "MKGWFilterByOtherController.h"
+#import "MKGWFilterByBeaconModel.h"
+#import "MKGWFilterByButtonModel.h"
+#import "MKGWFilterByOtherModel.h"
+#import "MKGWFilterByPirModel.h"
+#import "MKGWFilterByTagModel.h"
+#import "MKGWFilterByTLMModel.h"
+#import "MKGWFilterByUIDModel.h"
+#import "MKGWFilterByURLModel.h"
 
 @interface MKGWFilterByRawDataController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -76,50 +85,56 @@ mk_textSwitchCellDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         //iBeacon
-        MKGWFilterByBeaconController *vc = [[MKGWFilterByBeaconController alloc] init];
-        vc.pageType = mk_gw_filterByBeaconPageType_beacon;
-        [self.navigationController pushViewController:vc animated:YES];
+        MKGWFilterByBeaconModel *model = [[MKGWFilterByBeaconModel alloc] init];
+        MKScannerFilterByBeaconController *vc = [[MKScannerFilterByBeaconController alloc] initWithProtocol:model];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 1) {
         //Eddystone-UID
-        MKGWFilterByUIDController *vc = [[MKGWFilterByUIDController alloc] init];
+        MKGWFilterByUIDModel *model = [[MKGWFilterByUIDModel alloc] init];
+        MKScannerFilterByUIDController *vc = [[MKScannerFilterByUIDController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 2) {
         //Eddystone-URL
-        MKGWFilterByURLController *vc = [[MKGWFilterByURLController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        MKGWFilterByURLModel *model = [[MKGWFilterByURLModel alloc] init];
+        MKScannerFilterByURLController *vc = [[MKScannerFilterByURLController alloc] initWithProtocol:model];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 3) {
         //Eddystone-TLM
-        MKGWFilterByTLMController *vc = [[MKGWFilterByTLMController alloc] init];
+        MKGWFilterByTLMModel *model = [[MKGWFilterByTLMModel alloc] init];
+        MKScannerFilterByTLMController *vc = [[MKScannerFilterByTLMController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 2 && indexPath.row == 0) {
         //BXP-Button
-        MKGWFilterByButtonController *vc = [[MKGWFilterByButtonController alloc] init];
+        MKGWFilterByButtonModel *model = [[MKGWFilterByButtonModel alloc] init];
+        MKScannerFilterByButtonController *vc = [[MKScannerFilterByButtonController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 2 && indexPath.row == 1) {
         //BXP-Tag
-        MKGWFilterByTagController *vc = [[MKGWFilterByTagController alloc] init];
+        MKGWFilterByTagModel *model = [[MKGWFilterByTagModel alloc] init];
+        model.isV2 = NO;
+        MKScannerFilterByTagController *vc = [[MKScannerFilterByTagController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 2 && indexPath.row == 2) {
         //PIR
-        MKGWFilterByPirController *vc = [[MKGWFilterByPirController alloc] init];
+        MKGWFilterByPirModel *model = [[MKGWFilterByPirModel alloc] init];
+        MKScannerFilterByPirController *vc = [[MKScannerFilterByPirController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     if (indexPath.section == 2 && indexPath.row == 3) {
         //Other
-        MKGWFilterByOtherController *vc = [[MKGWFilterByOtherController alloc] init];
+        MKGWFilterByOtherModel *model = [[MKGWFilterByOtherModel alloc] init];
+        MKScannerFilterByOtherController *vc = [[MKScannerFilterByOtherController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

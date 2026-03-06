@@ -269,8 +269,7 @@ TODO: Add long description of the pod here.
           
           ssss.dependency 'MKGatewayThree/Functions/SettingPages'
           ssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadOptionPage'
-          ssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadOptionV2Page'
-          ssss.dependency 'MKGatewayThree/Functions/ManageBleModules'
+          ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage'
         end
         
         sss.subspec 'View' do |ssss|
@@ -305,250 +304,16 @@ TODO: Add long description of the pod here.
     
     ss.subspec 'FilterPages' do |sss|
       
-      sss.subspec 'DataUploadIntervalPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/DataUploadIntervalPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/DataUploadIntervalPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/DataUploadIntervalPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'DuplicateDataFilterPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/DuplicateDataFilterPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/DuplicateDataFilterPage/Model/**'
-        end
-      end
-          
-      sss.subspec 'FilterByAdvNamePage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByAdvNamePage/Controller/**'
-            
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage/Model'
-              
-        end
-          
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByAdvNamePage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByBeaconPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByBeaconPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Model'
-          
-        end
-        
-        ssss.subspec 'Header' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByBeaconPage/Header/**'
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByBeaconPage/Model/**'
-          
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByBeaconPage/Header'
-        end
-      end
-      
-      sss.subspec 'FilterByButtonPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByButtonPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByButtonPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByButtonPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByMacPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByMacPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByMacPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByMacPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByNanoBeaconPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByNanoBeaconPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByNanoBeaconPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByOtherPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByOtherPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByOtherPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByOtherPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByPirPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByPirPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByPirPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByPirPage/Model/**'
-        end
-      end
-      
       sss.subspec 'FilterByRawDataPage' do |ssss|
         ssss.subspec 'Controller' do |sssss|
           sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByRawDataPage/Controller/**'
         
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByRawDataPage/Model'
           
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByBeaconPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByUIDPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByURLPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTLMPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByButtonPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTag'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByPirPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByNanoBeaconPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByOtherPage'
-          
         end
       
         ssss.subspec 'Model' do |sssss|
           sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByRawDataPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByRawDataV2Page' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByRawDataV2Page/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByRawDataV2Page/Model'
-          
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByBeaconPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByUIDPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByURLPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTLMPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByButtonPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTag'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByPirPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTofPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByOtherPage'          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByRawDataV2Page/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByTag' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTag/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTag/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTag/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByTLMPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTLMPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTLMPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTLMPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByTofPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTofPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByTofPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByTofPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByUIDPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByUIDPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByUIDPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByUIDPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'FilterByURLPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByURLPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByURLPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/FilterByURLPage/Model/**'
-        end
-      end
-      
-      sss.subspec 'UploadDataOptionPage' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/UploadDataOptionPage/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadDataOptionPage/Model'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/UploadDataOptionPage/Model/**'
         end
       end
       
@@ -558,10 +323,6 @@ TODO: Add long description of the pod here.
         
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadOptionPage/Model'
           
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadDataOptionPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByMacPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage'
           sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByRawDataPage'
           
         end
@@ -572,485 +333,88 @@ TODO: Add long description of the pod here.
         
       end
       
-      sss.subspec 'UploadOptionV2Page' do |ssss|
-        ssss.subspec 'Controller' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/UploadOptionV2Page/Controller/**'
-        
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadOptionV2Page/Model'
-          
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/DuplicateDataFilterPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/DataUploadIntervalPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/UploadDataOptionPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByMacPage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByAdvNamePage'
-          sssss.dependency 'MKGatewayThree/Functions/FilterPages/FilterByRawDataV2Page'
-          
-        end
-      
-        ssss.subspec 'Model' do |sssss|
-          sssss.source_files = 'MKGatewayThree/Classes/Functions/FilterPages/UploadOptionV2Page/Model/**'
-        end
-        
-      end
-      
     end
     
-    ss.subspec 'ManageBleModules' do |sss|
+    ss.subspec 'ManageBleDevicesPage' do |sss|
+      sss.subspec 'Manager' do |ssss|
+        ssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Manager/**'
+      end
+      sss.subspec 'Adopter' do |ssss|
+        ssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Adopter/**'
+        
+        ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Manager'
+        ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model'
+      end
       
-      sss.subspec 'ButtonDFUPage' do |ssss|
-          ssss.subspec 'Controller' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/ButtonDFUPage/Controller/**'
-              
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage/Model'
+      sss.subspec 'Controller' do |ssss|
+          ssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Controller/**'
+          
+          ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model'
+          ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Manager'
+          ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Adopter'
+          
+      end
+        
+        sss.subspec 'Model' do |ssss|
+          
+          ssss.subspec 'DFU' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/DFU/**'
           end
           
-          ssss.subspec 'Model' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/ButtonDFUPage/Model/**'
-          end
-      end
-      
-      sss.subspec 'BXPBCRPages' do |ssss|
-        ssss.subspec 'BXPButtonCRPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRPage/Controller/**'
-                                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage'
-            end
-        end
-        ssss.subspec 'BXPButtonCRRemoteReminderPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRRemoteReminderPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPButtonCRAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/View'
-            end
-            sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAccDataPage/View/**'
-            end
-        end
-        ssss.subspec 'BXPButtonCRAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRAdvParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPButtonCREventAlarmPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model'
-            end
-            sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/View/**'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBCRPages/BXPButtonCREventAlarmPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'BXPBDPages' do |ssss|
-        ssss.subspec 'BXPButtonPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonPage/Controller/**'
-                                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAccDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage'
-            end
-        end
-        ssss.subspec 'BXPButtonRemoteReminderPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonRemoteReminderPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPButtonAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonAccDataPage/Controller/**'
-                
-            end
-        end
-        ssss.subspec 'BXPButtonAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPBDPages/BXPButtonAdvParamsPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'BXPCPages' do |ssss|
-        ssss.subspec 'BXPCAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCAccDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPCAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPCPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCPage/Controller/**'
-                                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCRealTimeTHDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAccDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCAdvParamsPage'
-                
-            end
-        end
-        ssss.subspec 'BXPCHistoricalTHDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/View'
-            end
-            sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCHistoricalTHDataPage/View/**'
-            end
-        end
-        ssss.subspec 'BXPCRealTimeTHDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCRealTimeTHDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPCTHDataSampleRatePage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPCPages/BXPCTHDataSampleRatePage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'BXPDPages' do |ssss|
-        ssss.subspec 'BXPDPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDPage/Controller/**'
-          
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccDataPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage'
-          end
-        end
-        ssss.subspec 'BXPDAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDAccDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPDAccParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDAccParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPDAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPDPages/BXPDAdvParamsPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'BXPSPages' do |ssss|
-        ssss.subspec 'BXPSAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSAccDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPSAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/Controller/**'
-
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/Model'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/View'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/Model/**'
-            end
-            sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage/View/**'
-            end
-        end
-        ssss.subspec 'BXPSHallCountPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSHallCountPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPSPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSPage/Controller/**'
-                                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRealTimeTHDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAccDataPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHallCountPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage'
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSAdvParamsPage'
-            end
-        end
-        ssss.subspec 'BXPSHistoricalTHDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/View'
-            end
-            sssss.subspec 'View' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSHistoricalTHDataPage/View/**'
-            end
-        end
-        ssss.subspec 'BXPSRealTimeTHDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSRealTimeTHDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPSTHDataSampleRatePage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSTHDataSampleRatePage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPSRemoteReminderPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPSPages/BXPSRemoteReminderPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'BXPTPages' do |ssss|
-        ssss.subspec 'BXPTAccDataPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTAccDataPage/Controller/**'
-            end
-        end
-        ssss.subspec 'BXPTAccParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPTAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'BXPTMotionEventPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTMotionEventPage/Controller/**'
-                
-            end
-        end
-        ssss.subspec 'BXPTPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTPage/Controller/**'
-          
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccDataPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAccParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTAdvParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTMotionEventPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage'
-          end
-        end
-        ssss.subspec 'BXPTRemoteReminderPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/BXPTPages/BXPTRemoteReminderPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'ManageBleDevicesPage' do |ssss|
-          ssss.subspec 'Controller' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/ManageBleDevicesPage/Controller/**'
-              
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ManageBleDevicesPage/View'
-              
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBDPages/BXPButtonPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPBCRPages/BXPButtonCRPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPCPages/BXPCPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPDPages/BXPDPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPTPages/BXPTPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/BXPSPages/BXPSPage'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages'
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage'
-          end
-          
-          ssss.subspec 'View' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/ManageBleDevicesPage/View/**'
-          end
-      end
-      
-      sss.subspec 'MKTofPages' do |ssss|
-        ssss.subspec 'TofAccDataPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofAccDataPage/Controller/**'
-          
-          end
-        end
-        ssss.subspec 'TofAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'TofPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofPage/Controller/**'
-          
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAdvParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorDataPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofAccDataPage'
+          ssss.subspec 'BXPBCR' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPBCR/**'
             
-          end
-        end
-        ssss.subspec 'TofSensorDataPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofSensorDataPage/Controller/**'
-          
-          end
-        end
-        ssss.subspec 'TofSensorParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/MKTofPages/TofSensorParamsPage/Model/**'
-            end
-        end
-      end
-      
-      sss.subspec 'NormalConnectedPage' do |ssss|
-          ssss.subspec 'Controller' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/NormalConnectedPage/Controller/**'
-              
-              sssss.dependency 'MKGatewayThree/Functions/ManageBleModules/NormalConnectedPage/View'
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
           end
           
-          ssss.subspec 'View' do |sssss|
-              sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/NormalConnectedPage/View/**'
+          ssss.subspec 'BXPBD' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPBD/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
           end
-      end
-      
-      sss.subspec 'PirPages' do |ssss|
-        ssss.subspec 'PirAdvParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirAdvParamsPage/Model/**'
-            end
-        end
-        ssss.subspec 'PirPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirPage/Controller/**'
           
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/ButtonDFUPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages/PirAdvParamsPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorDataPage'
-            ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage'
+          ssss.subspec 'BXPC' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPC/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
           end
-        end
-        ssss.subspec 'PirSensorDataPage' do |sssss|
-          sssss.subspec 'Controller' do |ssssss|
-            ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirSensorDataPage/Controller/**'
           
+          ssss.subspec 'BXPD' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPD/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
           end
+          
+          ssss.subspec 'BXPS' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPS/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
+          end
+          
+          ssss.subspec 'BXPT' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/BXPT/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
+          end
+          
+          ssss.subspec 'Pir' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/Pir/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
+          end
+          
+          ssss.subspec 'Tof' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/Tof/**'
+            
+            sssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Model/DFU'
+          end
+          
+          ssss.subspec 'NormalConnected' do |sssss|
+            sssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Model/NormalConnected/**'
+          end
+          
+          ssss.dependency 'MKGatewayThree/Functions/ManageBleDevicesPage/Manager'
         end
-        ssss.subspec 'PirSensorParamsPage' do |sssss|
-            sssss.subspec 'Controller' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Controller/**'
-                
-                ssssss.dependency 'MKGatewayThree/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Model'
-            end
-            sssss.subspec 'Model' do |ssssss|
-                ssssss.source_files = 'MKGatewayThree/Classes/Functions/ManageBleModules/PirPages/PirSensorParamsPage/Model/**'
-            end
-        end
-      end
     end
     
     ss.subspec 'ScanPage' do |sss|

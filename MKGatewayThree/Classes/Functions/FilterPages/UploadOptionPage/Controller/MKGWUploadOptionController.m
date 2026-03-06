@@ -21,19 +21,25 @@
 #import "MKTableSectionLineHeader.h"
 #import "MKCustomUIAdopter.h"
 
-#import "MKGWDeviceModel.h"
 #import "MKScannerDeviceModelManager.h"
+#import "MKScannerDuplicateDataFilterController.h"
+#import "MKScannerFilterByAdvNameController.h"
+#import "MKScannerFilterByMacController.h"
+#import "MKScannerUploadDataOptionController.h"
 
-#import "MKGWUploadOptionModel.h"
+#import "MKGWDeviceModel.h"
 
 #import "MKGWFilterCell.h"
 
-#import "MKGWDuplicateDataFilterController.h"
-#import "MKGWUploadDataOptionController.h"
 
-#import "MKGWFilterByMacController.h"
-#import "MKGWFilterByAdvNameController.h"
+
 #import "MKGWFilterByRawDataController.h"
+
+#import "MKGWUploadOptionModel.h"
+#import "MKGWDuplicateDataFilterModel.h"
+#import "MKGWFilterByAdvNameModel.h"
+#import "MKGWFilterByMacModel.h"
+#import "MKGWUploadDataOptionModel.h"
 
 @interface MKGWUploadOptionController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -222,12 +228,14 @@ MKGWFilterCellDelegate>
 
 #pragma mark - cell event method
 - (void)filterByMACAddress {
-    MKGWFilterByMacController *vc = [[MKGWFilterByMacController alloc] init];
+    MKGWFilterByMacModel *model = [[MKGWFilterByMacModel alloc] init];
+    MKScannerFilterByMacController *vc = [[MKScannerFilterByMacController alloc] initWithProtocol:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)filterByADVName {
-    MKGWFilterByAdvNameController *vc = [[MKGWFilterByAdvNameController alloc] init];
+    MKGWFilterByAdvNameModel *model = [[MKGWFilterByAdvNameModel alloc] init];
+    MKScannerFilterByAdvNameController *vc = [[MKScannerFilterByAdvNameController alloc] initWithProtocol:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -237,12 +245,15 @@ MKGWFilterCellDelegate>
 }
 
 - (void)duplicateDataFilter {
-    MKGWDuplicateDataFilterController *vc = [[MKGWDuplicateDataFilterController alloc] init];
+    MKGWDuplicateDataFilterModel *model = [[MKGWDuplicateDataFilterModel alloc] init];
+    MKScannerDuplicateDataFilterController *vc = [[MKScannerDuplicateDataFilterController alloc] initWithProtocol:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)uploadDataOption {
-    MKGWUploadDataOptionController *vc = [[MKGWUploadDataOptionController alloc] init];
+    MKGWUploadDataOptionModel *model = [[MKGWUploadDataOptionModel alloc] init];
+    model.isV2 = NO;
+    MKScannerUploadDataOptionController *vc = [[MKScannerUploadDataOptionController alloc] initWithProtocol:model];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
