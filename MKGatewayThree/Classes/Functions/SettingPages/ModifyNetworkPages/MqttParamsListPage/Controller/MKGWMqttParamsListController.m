@@ -25,6 +25,7 @@
 #import "MKGWMQTTInterface.h"
 
 #import "MKScannerDeviceModelManager.h"
+#import "MKScannerMqttServerController.h"
 
 
 #import "MKGWDeviceModel.h"
@@ -32,9 +33,9 @@
 #import "MKGWDeviceDatabaseManager.h"
 
 #import "MKGWMqttParamsModel.h"
+#import "MKGWMqttServerModel.h"
 
 #import "MKGWMqttWifiSettingsController.h"
-#import "MKGWMqttServerController.h"
 #import "MKGWMqttNetworkSettingsController.h"
 #import "MKGWMqttNetworkSettingsV2Controller.h"
 
@@ -94,7 +95,8 @@
     }
     if (indexPath.section == 0 && indexPath.row == 1) {
         //MQTT Settings
-        MKGWMqttServerController *vc = [[MKGWMqttServerController alloc] init];
+        MKGWMqttServerModel *model = [[MKGWMqttServerModel alloc] init];
+        MKScannerMqttServerController *vc = [[MKScannerMqttServerController alloc] initWithProtocol:model];
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

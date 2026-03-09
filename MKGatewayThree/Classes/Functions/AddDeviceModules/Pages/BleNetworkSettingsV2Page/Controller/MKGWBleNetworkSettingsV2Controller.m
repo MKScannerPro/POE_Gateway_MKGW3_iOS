@@ -27,10 +27,9 @@
 #import "MKCAFileSelectController.h"
 
 #import "MKScannerBleNearbyWifiController.h"
+#include "MKScannerBleWifiSettingsCertCell.h"
 
 #import "MKGWDeviceModel.h"
-
-#include "MKGWBleWifiSettingsCertCell.h"
 
 #import "MKGWDeviceMQTTParamsModel.h"
 
@@ -47,7 +46,7 @@ UITableViewDataSource,
 MKTextButtonCellDelegate,
 MKTextFieldCellDelegate,
 mk_textSwitchCellDelegate,
-MKGWBleWifiSettingsCertCellDelegate,
+MKScannerBleWifiSettingsCertCellDelegate,
 MKCAFileSelectControllerDelegate,
 MKGWNetworkSsidSettingsCellDelegate,
 MKScannerBleNearbyWifiControllerDelegate>
@@ -306,8 +305,8 @@ MKScannerBleNearbyWifiControllerDelegate>
     }
 }
 
-#pragma mark - MKGWBleWifiSettingsCertCellDelegate
-- (void)gw_bleWifiSettingsCertPressed:(NSInteger)index {
+#pragma mark - MKScannerBleWifiSettingsCertCellDelegate
+- (void)mk_scanner_bleWifiSettingsCertPressed:(NSInteger)index {
     if (index == 0) {
         //CA certificate
         MKCAFileSelectController *vc = [[MKCAFileSelectController alloc] init];
@@ -339,7 +338,7 @@ MKScannerBleNearbyWifiControllerDelegate>
     if (certType == mk_caCertSelPage) {
         //CA certificate
         self.dataModel.caFileName = certName;
-        MKGWBleWifiSettingsCertCellModel *cellModel = self.section11List[0];
+        MKScannerBleWifiSettingsCertCellModel *cellModel = self.section11List[0];
         cellModel.fileName = certName;
         [self.tableView mk_reloadSection:11 withRowAnimation:UITableViewRowAnimationNone];
         return;
@@ -347,7 +346,7 @@ MKScannerBleNearbyWifiControllerDelegate>
     if (certType == mk_clientCertSelPage) {
         //Client certificate
         self.dataModel.clientCertName = certName;
-        MKGWBleWifiSettingsCertCellModel *cellModel = self.section12List[0];
+        MKScannerBleWifiSettingsCertCellModel *cellModel = self.section12List[0];
         cellModel.fileName = certName;
         [self.tableView mk_reloadSection:12 withRowAnimation:UITableViewRowAnimationNone];
         return;
@@ -355,7 +354,7 @@ MKScannerBleNearbyWifiControllerDelegate>
     if (certType == mk_clientKeySelPage) {
         //Client key
         self.dataModel.clientKeyName = certName;
-        MKGWBleWifiSettingsCertCellModel *cellModel = self.section13List[0];
+        MKScannerBleWifiSettingsCertCellModel *cellModel = self.section13List[0];
         cellModel.fileName = certName;
         [self.tableView mk_reloadSection:13 withRowAnimation:UITableViewRowAnimationNone];
         return;
@@ -590,21 +589,21 @@ MKScannerBleNearbyWifiControllerDelegate>
     }
     if (indexPath.section == 11) {
         //CA certificate.
-        MKGWBleWifiSettingsCertCell *cell = [MKGWBleWifiSettingsCertCell initCellWithTableView:self.tableView];
+        MKScannerBleWifiSettingsCertCell *cell = [MKScannerBleWifiSettingsCertCell initCellWithTableView:self.tableView];
         cell.dataModel = self.section11List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
     if (indexPath.section == 12) {
         //Client certificate.TLS特有
-        MKGWBleWifiSettingsCertCell *cell = [MKGWBleWifiSettingsCertCell initCellWithTableView:self.tableView];
+        MKScannerBleWifiSettingsCertCell *cell = [MKScannerBleWifiSettingsCertCell initCellWithTableView:self.tableView];
         cell.dataModel = self.section12List[indexPath.row];
         cell.delegate = self;
         return cell;
     }
     if (indexPath.section == 13) {
         //CA certificate
-        MKGWBleWifiSettingsCertCell *cell = [MKGWBleWifiSettingsCertCell initCellWithTableView:self.tableView];
+        MKScannerBleWifiSettingsCertCell *cell = [MKScannerBleWifiSettingsCertCell initCellWithTableView:self.tableView];
         cell.dataModel = self.section13List[indexPath.row];
         cell.delegate = self;
         return cell;
@@ -779,7 +778,7 @@ MKScannerBleNearbyWifiControllerDelegate>
 }
 
 - (void)loadSection11Datas {
-    MKGWBleWifiSettingsCertCellModel *cellModel = [[MKGWBleWifiSettingsCertCellModel alloc] init];
+    MKScannerBleWifiSettingsCertCellModel *cellModel = [[MKScannerBleWifiSettingsCertCellModel alloc] init];
     cellModel.index = 0;
     cellModel.msg = @"CA certificate";
     cellModel.fileName = self.dataModel.caFileName;
@@ -787,7 +786,7 @@ MKScannerBleNearbyWifiControllerDelegate>
 }
 
 - (void)loadSection12Datas {
-    MKGWBleWifiSettingsCertCellModel *cellModel = [[MKGWBleWifiSettingsCertCellModel alloc] init];
+    MKScannerBleWifiSettingsCertCellModel *cellModel = [[MKScannerBleWifiSettingsCertCellModel alloc] init];
     cellModel.index = 1;
     cellModel.msg = @"Client certificate";
     cellModel.fileName = self.dataModel.clientCertName;
@@ -795,7 +794,7 @@ MKScannerBleNearbyWifiControllerDelegate>
 }
 
 - (void)loadSection13Datas {
-    MKGWBleWifiSettingsCertCellModel *cellModel = [[MKGWBleWifiSettingsCertCellModel alloc] init];
+    MKScannerBleWifiSettingsCertCellModel *cellModel = [[MKScannerBleWifiSettingsCertCellModel alloc] init];
     cellModel.index = 2;
     cellModel.msg = @"Client key";
     cellModel.fileName = self.dataModel.clientKeyName;

@@ -27,14 +27,10 @@
 #import "MKScannerFilterByMacController.h"
 #import "MKScannerUploadDataOptionController.h"
 #import "MKScannerDataUploadIntervalController.h"
+#import "MKScannerFilterCell.h"
 
 
 #import "MKGWDeviceModel.h"
-
-
-
-
-#import "MKGWFilterCell.h"
 
 
 
@@ -50,7 +46,7 @@
 @interface MKGWUploadOptionV2Controller ()<UITableViewDelegate,
 UITableViewDataSource,
 MKNormalSliderCellDelegate,
-MKGWFilterCellDelegate>
+MKScannerFilterCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -177,7 +173,7 @@ MKGWFilterCellDelegate>
         return cell;
     }
     if (indexPath.section == 1) {
-        MKGWFilterCell *cell = [MKGWFilterCell initCellWithTableView:tableView];
+        MKScannerFilterCell *cell = [MKScannerFilterCell initCellWithTableView:tableView];
         cell.dataModel = self.section1List[indexPath.row];
         cell.delegate = self;
         return cell;
@@ -188,7 +184,7 @@ MKGWFilterCellDelegate>
         return cell;
     }
     if (indexPath.section == 3) {
-        MKGWFilterCell *cell = [MKGWFilterCell initCellWithTableView:tableView];
+        MKScannerFilterCell *cell = [MKScannerFilterCell initCellWithTableView:tableView];
         cell.dataModel = self.section3List[indexPath.row];
         cell.delegate = self;
         return cell;
@@ -215,26 +211,26 @@ MKGWFilterCellDelegate>
     }
 }
 
-#pragma mark - MKGWFilterCellDelegate
-- (void)gw_filterValueChanged:(NSInteger)dataListIndex index:(NSInteger)index {
+#pragma mark - MKScannerFilterCellDelegate
+- (void)mk_scanner_filterValueChanged:(NSInteger)dataListIndex index:(NSInteger)index {
     if (index == 0) {
         //Filter by PHY
         self.dataModel.phy = dataListIndex;
-        MKGWFilterCellModel *cellModel = self.section1List[0];
+        MKScannerFilterCellModel *cellModel = self.section1List[0];
         cellModel.dataListIndex = dataListIndex;
         return;
     }
     if (index == 1) {
         //Filter Relationship
         self.dataModel.relationship = dataListIndex;
-        MKGWFilterCellModel *cellModel = self.section3List[0];
+        MKScannerFilterCellModel *cellModel = self.section3List[0];
         cellModel.dataListIndex = dataListIndex;
         return;
     }
     if (index == 2) {
         //Duplicate Data Filter
         self.dataModel.rule = dataListIndex;
-        MKGWFilterCellModel *cellModel = self.section3List[1];
+        MKScannerFilterCellModel *cellModel = self.section3List[1];
         cellModel.dataListIndex = dataListIndex;
         return;
     }
@@ -336,7 +332,7 @@ MKGWFilterCellDelegate>
 }
 
 - (void)loadSection1Datas {
-    MKGWFilterCellModel *cellModel = [[MKGWFilterCellModel alloc] init];
+    MKScannerFilterCellModel *cellModel = [[MKScannerFilterCellModel alloc] init];
     cellModel.index = 0;
     cellModel.msg = @"Filter by PHY";
     cellModel.dataList = @[@"1M PHY(V4.2)",@"1M PHY(V5.0)",@"1M PHY(V4.2) & 1M PHY(V5.0)",@"Coded PHY(V5.0)"];
@@ -365,14 +361,14 @@ MKGWFilterCellDelegate>
 }
 
 - (void)loadSection3Datas {
-    MKGWFilterCellModel *cellModel1 = [[MKGWFilterCellModel alloc] init];
+    MKScannerFilterCellModel *cellModel1 = [[MKScannerFilterCellModel alloc] init];
     cellModel1.index = 1;
     cellModel1.msg = @"Filter Relationship";
     cellModel1.dataList = @[@"Null",@"Only MAC",@"Only ADV Name",@"Only RAW DATA",@"ADV name&Raw data",@"MAC&ADV name&Raw data",@"ADV name | Raw data",@"ADV Name & MAC"];
     cellModel1.dataListIndex = self.dataModel.relationship;
     [self.section3List addObject:cellModel1];
     
-    MKGWFilterCellModel *cellModel2 = [[MKGWFilterCellModel alloc] init];
+    MKScannerFilterCellModel *cellModel2 = [[MKScannerFilterCellModel alloc] init];
     cellModel2.index = 2;
     cellModel2.msg = @"Duplicate Data Filter";
     cellModel2.dataList = @[@"None",@"MAC",@"MAC+Data type",@"MAC+Raw data"];

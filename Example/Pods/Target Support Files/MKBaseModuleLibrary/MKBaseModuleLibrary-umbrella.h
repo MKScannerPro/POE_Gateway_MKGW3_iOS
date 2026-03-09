@@ -12,6 +12,8 @@
 
 #import "MKBaseCell.h"
 #import "MKBaseViewController.h"
+#import "WRCustomNavigationBar.h"
+#import "WRNavigationBar.h"
 #import "MKBaseNavigationController.h"
 #import "MKBaseCollectionView.h"
 #import "MKBaseTableView.h"

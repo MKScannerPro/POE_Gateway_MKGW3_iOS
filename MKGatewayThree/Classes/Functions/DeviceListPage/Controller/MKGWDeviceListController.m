@@ -456,12 +456,6 @@ MKScannerDeviceModelDelegate>
 
 #pragma mark - event method
 - (void)addButtonPressed {
-    if (!ValidStr([MKGWMQTTDataManager shared].serverParams.host)) {
-        //如果MQTT服务器参数不存在，则去引导用户添加服务器参数，让app连接MQTT服务器
-        [self rightButtonMethod];
-        return;
-    }
-    //MQTT服务器参数存在，则添加设备
     MKGWScanPageController *vc = [[MKGWScanPageController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }

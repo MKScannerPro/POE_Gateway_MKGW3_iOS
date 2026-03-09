@@ -21,6 +21,7 @@
 #import "MKSettingTextCell.h"
 #import "MKTableSectionLineHeader.h"
 #import "MKProgressView.h"
+#import "MKAlertView.h"
 
 #import "MKScannerBleServerForDeviceController.h"
 #import "MKScannerBleBeaconController.h"
@@ -239,18 +240,25 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
 
 #pragma mark - event method
 - (void)connectButtonPressed {
-    if (![MKGWDeviceMQTTParamsModel shared].wifiConfig || ![MKGWDeviceMQTTParamsModel shared].mqttConfig) {
-        [self.view showCentralToast:@"Please configure WIFI and MQTT settings first!"];
+    if ([MKGWMQTTDataManager shared].state == MKGWMQTTSessionManagerStateConnected) {
+        [self sendSTACmdToDevice:YES];
         return;
     }
-    [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
-    [MKGWInterface gw_enterSTAModeWithSucBlock:^{
-        [[MKHudManager share] hide];
-        [self startMqttProcess];
-    } failedBlock:^(NSError * _Nonnull error) {
-        [[MKHudManager share] hide];
-        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    //app与MQTT服务器未连接
+    @weakify(self);
+    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"NO" handler:^{
+        
     }];
+    
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"YES" handler:^{
+        @strongify(self);
+        [self sendSTACmdToDevice:NO];
+    }];
+    NSString *msg = @"APP connects to the MQTT broker failed, do you need continue to send configurations to gateway?";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:cancelAction];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
 }
 
 #pragma mark - connect process
@@ -287,7 +295,7 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
                                                           object:nil];
             moko_dispatch_main_safe(^{
                 [self.progressView dismiss];
-                [self.view showCentralToast:@"Connect Failed!"];
+                [self showConnectFailedAlert];
             });
             return ;
         }
@@ -322,6 +330,57 @@ static NSString *const noteMsg = @"Please note the WIFI settings and MQTT settin
 
 - (void)gobackToScanPage {
     [self popToViewControllerWithClassName:@"MKGWScanPageController"];
+}
+
+- (void)sendSTACmdToDevice:(BOOL)connected {
+    if (![MKGWDeviceMQTTParamsModel shared].wifiConfig || ![MKGWDeviceMQTTParamsModel shared].mqttConfig) {
+        [self.view showCentralToast:@"Please configure WIFI and MQTT settings first!"];
+        return;
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Config..." inView:self.view isPenetration:NO];
+    [MKGWInterface gw_enterSTAModeWithSucBlock:^{
+        [[MKHudManager share] hide];
+        if (connected) {
+            [self startMqttProcess];
+        }else {
+            //没有连接，则弹出第二个弹窗
+            [self showConfigSuccessAlert];
+        }
+        
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
+- (void)showConfigSuccessAlert {
+    @weakify(self);
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        @strongify(self);
+        [self backToDeviceListPage];
+    }];
+    NSString *msg = @"Configurations are successfully sent to gateway.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
+}
+
+- (void)showConnectFailedAlert {
+    @weakify(self);
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        @strongify(self);
+        [self gobackToScanPage];
+    }];
+    NSString *msg = @"The APP is unable to subscribe messages from the gateway. This may be caused by the failure connection with MQTT broker of the gayteway or an incorrect subscription topic set for the APP.";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"" message:msg notificationName:@"mk_scanner_needDismissAlert"];
+}
+
+- (void)backToDeviceListPage {
+    [self popToViewControllerWithClassName:@"MKGWDeviceListController"];
+    [[MKGWCentralManager shared] disconnect];
+    [MKGWDeviceMQTTParamsModel sharedDealloc];
 }
 
 #pragma mark - loadSectionDatas

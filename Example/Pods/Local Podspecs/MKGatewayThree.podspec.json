@@ -61,103 +61,19 @@
       }
     },
     {
-      "name": "Expand",
+      "name": "DatabaseManager",
+      "source_files": "MKGatewayThree/Classes/DatabaseManager/**",
       "dependencies": {
-        "MKBaseModuleLibrary": [
+        "FMDB": [
 
         ],
-        "MKCustomUIModule": [
+        "MKGatewayThree/DeviceModel": [
+
+        ],
+        "MKBaseModuleLibrary": [
 
         ]
-      },
-      "subspecs": [
-        {
-          "name": "DatabaseManager",
-          "source_files": "MKGatewayThree/Classes/Expand/DatabaseManager/**",
-          "dependencies": {
-            "FMDB": [
-
-            ],
-            "MKGatewayThree/DeviceModel": [
-
-            ]
-          }
-        },
-        {
-          "name": "ExcelManager",
-          "source_files": "MKGatewayThree/Classes/Expand/ExcelManager/**",
-          "dependencies": {
-            "libxlsxwriter": [
-
-            ],
-            "SSZipArchive": [
-
-            ]
-          }
-        },
-        {
-          "name": "View",
-          "subspecs": [
-            {
-              "name": "AdvNormalCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/AdvNormalCell/**"
-            },
-            {
-              "name": "AdvTriggerCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/AdvTriggerCell/**"
-            },
-            {
-              "name": "AdvTriggerTwoStateCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/AdvTriggerTwoStateCell/**"
-            },
-            {
-              "name": "AlertView",
-              "source_files": "MKGatewayThree/Classes/Expand/View/AlertView/**"
-            },
-            {
-              "name": "BleWifiSettingsCertCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/BleWifiSettingsCertCell/**"
-            },
-            {
-              "name": "ButtonFirmwareCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/ButtonFirmwareCell/**"
-            },
-            {
-              "name": "BXPAdvParamsCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/BXPAdvParamsCell/**"
-            },
-            {
-              "name": "BXPButtonAccHeaderView",
-              "source_files": "MKGatewayThree/Classes/Expand/View/BXPButtonAccHeaderView/**"
-            },
-            {
-              "name": "MKGWFilterCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/MKGWFilterCell/**"
-            },
-            {
-              "name": "PressEventCountCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/PressEventCountCell/**"
-            },
-            {
-              "name": "RemoteReminderCell",
-              "source_files": "MKGatewayThree/Classes/Expand/View/RemoteReminderCell/**"
-            },
-            {
-              "name": "UserCredentialsView",
-              "source_files": "MKGatewayThree/Classes/Expand/View/UserCredentialsView/**"
-            }
-          ]
-        },
-        {
-          "name": "ImportServerPage",
-          "subspecs": [
-            {
-              "name": "Controller",
-              "source_files": "MKGatewayThree/Classes/Expand/ImportServerPage/Controller/**"
-            }
-          ]
-        }
-      ]
+      }
     },
     {
       "name": "SDK",
@@ -229,7 +145,7 @@
         "MKGatewayThree/SDK": [
 
         ],
-        "MKGatewayThree/Expand": [
+        "MKGatewayThree/DatabaseManager": [
 
         ],
         "MKGatewayThree/CTMediator": [
@@ -501,6 +417,9 @@
               "name": "Adopter",
               "source_files": "MKGatewayThree/Classes/Functions/ManageBleDevicesPage/Adopter/**",
               "dependencies": {
+                "MKGatewayThree/Functions/ManageBleDevicesPage/Manager": [
+
+                ],
                 "MKGatewayThree/Functions/ManageBleDevicesPage/Model": [
 
                 ]
@@ -514,6 +433,9 @@
 
                 ],
                 "MKGatewayThree/Functions/ManageBleDevicesPage/Manager": [
+
+                ],
+                "MKGatewayThree/Functions/ManageBleDevicesPage/Adopter": [
 
                 ]
               }
@@ -716,9 +638,6 @@
                         "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage": [
 
                         ],
-                        "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage": [
-
-                        ],
                         "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage": [
 
                         ],
@@ -730,31 +649,6 @@
                     {
                       "name": "Model",
                       "source_files": "MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model/**"
-                    }
-                  ]
-                },
-                {
-                  "name": "MqttServerPage",
-                  "subspecs": [
-                    {
-                      "name": "Controller",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller/**",
-                      "dependencies": {
-                        "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model": [
-
-                        ],
-                        "MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View": [
-
-                        ]
-                      }
-                    },
-                    {
-                      "name": "Model",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model/**"
-                    },
-                    {
-                      "name": "View",
-                      "source_files": "MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View/**"
                     }
                   ]
                 },

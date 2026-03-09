@@ -44,6 +44,7 @@
 #import "MKScannerBleWifiSettingsCertCell.h"
 #import "MKScannerButtonFirmwareCell.h"
 #import "MKScannerEasyShowView.h"
+#import "MKScannerFilterCell.h"
 #import "MKScannerHistoricalTHDataHeaderView.h"
 #import "MKScannerManageBleDevicesCell.h"
 #import "MKScannerManageBleDeviceSearchView.h"

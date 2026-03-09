@@ -61,86 +61,15 @@ TODO: Add long description of the pod here.
   
   end
   
-  s.subspec 'Expand' do |ss|
+  s.subspec 'DatabaseManager' do |ss|
     
-    ss.subspec 'DatabaseManager' do |sss|
-      
-      sss.source_files = 'MKGatewayThree/Classes/Expand/DatabaseManager/**'
-    
-    
-      sss.dependency 'FMDB'
-      sss.dependency 'MKGatewayThree/DeviceModel'
-    end
-    
-    ss.subspec 'ExcelManager' do |sss|
-      
-      sss.source_files = 'MKGatewayThree/Classes/Expand/ExcelManager/**'
-    
-    
-      sss.dependency 'libxlsxwriter'
-      sss.dependency 'SSZipArchive'
-    end
-    
-    ss.subspec 'View' do |sss|
-      sss.subspec 'AdvNormalCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/AdvNormalCell/**'
-      end
-      
-      sss.subspec 'AdvTriggerCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/AdvTriggerCell/**'
-      end
-      
-      sss.subspec 'AdvTriggerTwoStateCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/AdvTriggerTwoStateCell/**'
-      end
-      
-      sss.subspec 'AlertView' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/AlertView/**'
-      end
-      
-      sss.subspec 'BleWifiSettingsCertCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/BleWifiSettingsCertCell/**'
-      end
-      
-      sss.subspec 'ButtonFirmwareCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/ButtonFirmwareCell/**'
-      end
-      
-      sss.subspec 'BXPAdvParamsCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/BXPAdvParamsCell/**'
-      end
-      
-      sss.subspec 'BXPButtonAccHeaderView' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/BXPButtonAccHeaderView/**'
-      end
-      
-      sss.subspec 'MKGWFilterCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/MKGWFilterCell/**'
-      end
-      
-      sss.subspec 'PressEventCountCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/PressEventCountCell/**'
-      end
-      
-      sss.subspec 'RemoteReminderCell' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/RemoteReminderCell/**'
-      end
-      
-      sss.subspec 'UserCredentialsView' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/View/UserCredentialsView/**'
-      end
-
-    end
-    
-    ss.subspec 'ImportServerPage' do |sss|
-      sss.subspec 'Controller' do |ssss|
-        ssss.source_files = 'MKGatewayThree/Classes/Expand/ImportServerPage/Controller/**'
-      end
-    end
-    
-    ss.dependency 'MKBaseModuleLibrary'
-    ss.dependency 'MKCustomUIModule'
+    ss.source_files = 'MKGatewayThree/Classes/DatabaseManager/**'
   
+  
+    ss.dependency 'FMDB'
+    ss.dependency 'MKGatewayThree/DeviceModel'
+    ss.dependency 'MKBaseModuleLibrary'
+    
   end
   
   s.subspec 'SDK' do |ss|
@@ -484,28 +413,13 @@ TODO: Add long description of the pod here.
                   ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model'
                   
                   ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsPage'
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage'
+
                   ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttWifiSettingsPage'
                   ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttNetworkSettingsV2Page'
                 end
                 
                 sssss.subspec 'Model' do |ssssss|
                   ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttParamsListPage/Model/**'
-                end
-            end
-            
-            ssss.subspec 'MqttServerPage' do |sssss|
-                sssss.subspec 'Controller' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Controller/**'
-                  
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model'
-                  ssssss.dependency 'MKGatewayThree/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View'
-                end
-                sssss.subspec 'Model' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/Model/**'
-                end
-                sssss.subspec 'View' do |ssssss|
-                  ssssss.source_files = 'MKGatewayThree/Classes/Functions/SettingPages/ModifyNetworkPages/MqttServerPage/View/**'
                 end
             end
             
@@ -562,7 +476,7 @@ TODO: Add long description of the pod here.
     end
     
     ss.dependency 'MKGatewayThree/SDK'
-    ss.dependency 'MKGatewayThree/Expand'
+    ss.dependency 'MKGatewayThree/DatabaseManager'
     ss.dependency 'MKGatewayThree/CTMediator'
     ss.dependency 'MKGatewayThree/DeviceModel'
     ss.dependency 'MKGatewayThree/CTMediator'

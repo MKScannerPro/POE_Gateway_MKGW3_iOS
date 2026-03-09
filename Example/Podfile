@@ -11,11 +11,11 @@ end
 use_frameworks!
 inhibit_all_warnings!
 source 'https://cdn.cocoapods.org/'
+source 'https://github.com/lovexiaoxia/MOKO-Specs.git'
 
 platform :ios,'14.0'
 
 target 'MKGatewayThree_Example' do
   pod 'MKGatewayThree', :path => '../'
   
-  pod 'MKScannerCommonModule', :path => '/Users/aa/Desktop/GitHub基础组件库/MKScannerCommonModule'
 end
